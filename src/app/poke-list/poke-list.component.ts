@@ -7,8 +7,6 @@ import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 
-
-
 @Component({
   selector: 'app-poke-list',
   standalone: true,
@@ -34,7 +32,6 @@ export class PokeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemonList();
-    this.loadPokemonDetails(this.pokeList);
   }
 
   loadPokemonList(): void {
@@ -49,9 +46,34 @@ export class PokeListComponent implements OnInit {
     pokeList.forEach(pokemon => {
       this.pokeService.getPokeDetails(pokemon.url).subscribe((data) => {
         this.pokemonList.push(data);
-        console.log(data?.sprites?.front_shiny);
       });
     });
   }
+
+  getColorForType(type: string): string {
+    switch (type) {
+      case 'fire':
+        return '#FF7F7F';
+      case 'water':
+        return '#51A8FF';
+      case 'grass':
+        return '#8BD36E';
+      case 'poison':
+        return '#A95498'
+      case 'bug':
+        return '#AABB22';
+      case 'fairy':
+          return '#EE99EE';
+      case 'ground':
+          return '#DDBB55';
+      case 'steel':
+          return '#AAAABB';
+      case 'fighting':
+          return '#BB5544';
+      default:
+        return '#AAAA99';
+    }
+  }
   
+
 }

@@ -1,4 +1,11 @@
+.container {
+  padding-left: 2%;
+}
+
 .example-card {
-    max-width: 400px;
+    width: 300px;
     margin-bottom: 8px;
+    display: inline-block;
+    margin-right: 5px;
+    background-color: white;
   }
