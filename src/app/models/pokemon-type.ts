@@ -1,0 +1,20 @@
+export enum PokemonType {
+    fire = 'linear-gradient(90deg, #F08030 0%, #FFB570 100%)',
+    water = 'linear-gradient(90deg, #6890F0 0%, #9CB6FF 100%)',
+    grass = 'linear-gradient(90deg, #78C850 0%, #A0E078 100%)',
+    poison = 'linear-gradient(90deg, #A040A0 0%, #D08AD0 100%)',
+    bug = 'linear-gradient(90deg, #AABB22 0%, #DDFF88 100%)',
+    fairy = 'linear-gradient(90deg, #EE99EE 0%, #FFC0FF 100%)',
+    ground = 'linear-gradient(90deg, #DDBB55 0%, #EEDD88 100%)',
+    steel = 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)',
+    fighting = 'linear-gradient(90deg, #BB5544 0%, #DD8877 100%)',
+    normal = 'linear-gradient(90deg, #AAAA99 0%, #DDDDCC 100%)',
+    psychic = 'linear-gradient(90deg, #F85888 0%, #FFB3C2 100%)',
+    flying = 'linear-gradient(90deg, #A890F0 0%, #D6C6FF 100%)',
+    ice = 'linear-gradient(90deg, #98D8D8 0%, #CCEEEE 100%)',
+    electric = 'linear-gradient(90deg, #F8D030 0%, #FFEB80 100%)',
+    dark = 'linear-gradient(90deg, #705848 0%, #A08A78 100%)',
+    dragon = 'linear-gradient(90deg, #7038F8 0%, #B080FF 100%)',
+    ghost = 'linear-gradient(90deg, #705898 0%, #A085C8 100%)',
+    rock = 'linear-gradient(90deg, #B8A038 0%, #D6C781 100%)'
+  }

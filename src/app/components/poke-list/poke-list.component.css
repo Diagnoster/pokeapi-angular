@@ -1,0 +1,13 @@
+.container {
+  padding-left: 2%;
+}
+
+.example-card {
+    width: 300px;
+    margin-bottom: 8px;
+    display: inline-block;
+    margin-right: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+

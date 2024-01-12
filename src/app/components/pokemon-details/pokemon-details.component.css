@@ -1,0 +1,9 @@
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .mat-card {
+    width: 48%;
+  }
