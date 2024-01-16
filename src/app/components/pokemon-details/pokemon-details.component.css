@@ -1,9 +1,12 @@
-.card-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  
-  .mat-card {
-    width: 48%;
-  }
+.pokemon-info-container {
+  display: flex;
+}
+
+.pokemon-artwork {
+  width: 200px; 
+  height: auto;
+}
+
+.pokemon-stats {
+  margin-left: 20px;
+}

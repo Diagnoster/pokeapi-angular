@@ -40,6 +40,7 @@ export class PokeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemonList();
+    console.log(this.pokemonList);
   }
 
   loadPokemonList(): void {
@@ -58,6 +59,10 @@ export class PokeListComponent implements OnInit {
     });
   }
 
+  upperFirstLetter(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
   getColorForType(type: string): string {
     return PokemonType[type as keyof typeof PokemonType];
   }
@@ -69,10 +74,9 @@ export class PokeListComponent implements OnInit {
 
   pokeModal(pokemon: any): void {
     this.dialog.open(PokemonDetailsComponent, {
-      width: '400px',
+      width: '600px',
       data: { pokemon },
     });
   }
   
-
 }

@@ -3,12 +3,14 @@ import { Pokemon } from '../../models/pokemon';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-details',
   standalone: true,
   imports: [
-    MatCardModule
+    MatCardModule,
+    CommonModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'

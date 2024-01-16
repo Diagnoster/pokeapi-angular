@@ -1,20 +1,23 @@
 <div class="card-container">
   <mat-card class="pokemon-detail">
-      <mat-card-header>
-        <mat-card-title-group>
-          <mat-card-title>{{ pokemon.name }}</mat-card-title>
-          <mat-card-subtitle>Extra large</mat-card-subtitle>
-          <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content>
-        text
-      </mat-card-content>
-  </mat-card>
-  <mat-card class="status">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title class="title">{{ pokemon.name }}</mat-card-title>
+        <mat-card-subtitle>Extra large</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+
+    <div class="pokemon-info-container">
+      <img class="pokemon-artwork" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png" alt="Imagem {{ pokemon.name }}">
+      <div class="pokemon-stats">
+        <div *ngFor="let stats of pokemon.stats">
+           {{ stats.stat.name }} - {{ stats.base_stat }}
+        </div>
+      </div>
+    </div>
     <mat-card-content>
-      <div *ngfor = "let stat of pokeDetail.stats">
-        {{ stat.base_stat }}
+      <div>
+        algo embaixo
       </div>
     </mat-card-content>
   </mat-card>

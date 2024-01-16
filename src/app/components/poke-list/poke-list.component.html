@@ -4,17 +4,21 @@
     (click)="pokeModal(pokemon)">
     <mat-card-header>
       <mat-card-title-group>
-        <mat-card-title> {{ pokemon.name }} </mat-card-title>
+        <mat-card-title> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
         <mat-card-subtitle>
           <div *ngFor="let poke of pokemon.types">
             <img [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
           </div>
         </mat-card-subtitle>
-        <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
+        <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">        
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-      TEXTO
+      <span></span>
+      <div class="numero-jiggly">
+        <div>{{ pokemon.id }}</div>
+      </div>
+      <!--<img class="jiggly" *ngIf="pokemon.id" src="../../../assets/jigglyID.png" alt="Jiggly Image">-->
     </mat-card-content>
   </mat-card>
 </div>
