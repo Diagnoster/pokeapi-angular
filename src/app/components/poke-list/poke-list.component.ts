@@ -68,7 +68,7 @@ export class PokeListComponent implements OnInit {
   }
 
   getTypeImageUrl(type: string): string {
-    const imagePath = `assets/${type.toLowerCase()}.png`;
+    const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
     return imagePath;
   }
 
