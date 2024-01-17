@@ -40,7 +40,7 @@ export class PokeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemonList();
-    console.log(this.pokemonList);
+    //console.log(this.pokemonList);
   }
 
   loadPokemonList(): void {

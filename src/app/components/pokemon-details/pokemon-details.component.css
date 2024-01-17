@@ -7,6 +7,13 @@
   padding-left: 2px;
 }
 
+.title-type {
+  font-size: 20px;
+  padding-left: 2px;
+  padding-right: 1em;
+  padding-top: 9px;
+}
+
 .example-header-image {
   font-size: 22px;
   padding-top: 7px;
@@ -23,22 +30,36 @@
 }
 
 .pokemon-stats {
-  margin-left: 20px;
+  margin-left: 25px;
+}
+
+.title-stat {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(77, 17, 17);
+  font-size: 20px;
 }
 
 .name-stat {
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: rgb(138, 33, 33);
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 14px;
+  margin-left: 10px;
 }
 
 .progress-bar {
   height: 10px;
   padding-bottom: 2px;
+  margin-left: 10px;
+}
+
+.type-info {
+  display: flex;
 }
 
 .type-icon {
   width: 40px;
   height: 40px;
+  padding-right: 3px;
 }
+

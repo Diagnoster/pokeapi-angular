@@ -31,7 +31,7 @@ export class PokemonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.pokeService.getPokemon(this.pokemon.name).subscribe((data) => {
       this.pokeDetail = data;
-      console.log(this.pokeDetail);
+     //console.log(this.pokeDetail);
     })
   }
 

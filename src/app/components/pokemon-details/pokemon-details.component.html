@@ -11,15 +11,17 @@
     <div class="pokemon-info-container">
       <img class="pokemon-artwork" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png" alt="Imagem {{ pokemon.name }}">
       <div class="pokemon-stats">
+        <span class="title-stat">Stats</span>
         <div *ngFor="let stats of pokemon.stats">          
           <span class="name-stat"> {{ stats.stat.name }} </span>
           <mat-progress-bar class="progress-bar" mode="determinate" value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>         
         </div>
       </div>
     </div>
-    <mat-card-content>
-      <div>
-        algo embaixo
+    <mat-card-content class="pokemon-info-container">
+      <span class="title-type">Types:</span>
+      <div clas="type-info" *ngFor="let poke of pokemon.types">    
+        <img class="type-icon" [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
       </div>
     </mat-card-content>
   </mat-card>
