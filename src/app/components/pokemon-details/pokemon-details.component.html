@@ -2,9 +2,9 @@
   <mat-card class="pokemon-detail"
     [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
     <mat-card-header>
+      <div class="example-header-image"># {{ pokemon.id }}</div>
       <mat-card-title-group>
         <mat-card-title class="title"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
-        <mat-card-subtitle>Extra large</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
 

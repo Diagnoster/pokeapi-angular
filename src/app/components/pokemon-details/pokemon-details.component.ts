@@ -43,5 +43,10 @@ export class PokemonDetailsComponent implements OnInit {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
+  getTypeImageUrl(type: string): string {
+    const imagePath = `assets/details-icons/${type.toLowerCase()}.png`;
+    return imagePath;
+  }
+
   
 }
