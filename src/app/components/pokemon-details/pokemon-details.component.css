@@ -29,6 +29,10 @@
   height: auto;
 }
 
+.stats {
+  padding-bottom: 2px;
+}
+
 .pokemon-stats {
   margin-left: 25px;
 }

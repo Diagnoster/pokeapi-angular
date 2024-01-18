@@ -23,6 +23,7 @@ export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: any;
   pokeDetail: any;
+  total!: number;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
@@ -31,6 +32,7 @@ export class PokemonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.pokeService.getPokemon(this.pokemon.name).subscribe((data) => {
       this.pokeDetail = data;
+      this.calculateTotalStats();
      //console.log(this.pokeDetail);
     })
   }
@@ -46,6 +48,10 @@ export class PokemonDetailsComponent implements OnInit {
   getTypeImageUrl(type: string): string {
     const imagePath = `assets/details-icons/${type.toLowerCase()}.png`;
     return imagePath;
+  }
+  
+  calculateTotalStats(): void {
+    this.total = this.pokeDetail.stats.reduce((sum: any, stat: { base_stat: any; }) => sum + stat.base_stat, 0);
   }
 
   
