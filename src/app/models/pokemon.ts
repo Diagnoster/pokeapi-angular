@@ -1,19 +1,30 @@
+import { Sprites } from "./sprites";
+import { Stat } from "./stat";
+import { Types } from "./types";
+
 export class Pokemon {
     id: number;
     name: string;
-    type: string[];
+    baseExperience: number;
     height: number;
     weight: number;
-    url: string;
     details: any;
+    types: Types [];
+    stats: Stat [];
+    sprites: Sprites;
+    url: string;
   
-    constructor(id: number, name: string, type: string[], height: number, weight: number, imageUrl: string, details: any) {
+    constructor(id: number, name: string, baseExperience: number, height: number, 
+      weight: number, details: any, types: Types[], stats: Stat [], sprites: Sprites, url: string) {
       this.id = id;
       this.name = name;
-      this.type = type;
+      this.baseExperience = baseExperience;
       this.height = height;
       this.weight = weight;
-      this.url = imageUrl;
       this.details = details;
+      this.types = types;
+      this.stats = stats;
+      this.sprites = sprites;
+      this.url = url;
     }
 }

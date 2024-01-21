@@ -27,5 +27,10 @@ export class PokeServiceService {
     //console.log(url);
     return this.http.get<any>(url);
   }
+
+  getDamageRelations(typeUrl: string): Observable<any> {
+    const url = `${typeUrl}`;
+    return this.http.get<any>(url);
+  }
   
 }

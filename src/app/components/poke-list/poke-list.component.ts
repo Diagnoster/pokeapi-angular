@@ -28,7 +28,7 @@ import { PokemonType } from '../../models/pokemon-type';
 export class PokeListComponent implements OnInit {
 
   pokeList: Pokemon[];
-  pokemonList: any[] = [];
+  pokemonList: Pokemon[];
 
   constructor(
     private pokeService: PokeServiceService, 
@@ -40,7 +40,7 @@ export class PokeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemonList();
-    //console.log(this.pokemonList);
+    console.log(this.pokemonList);
   }
 
   loadPokemonList(): void {

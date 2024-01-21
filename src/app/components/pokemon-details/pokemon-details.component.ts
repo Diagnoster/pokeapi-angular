@@ -22,8 +22,9 @@ import { PokemonType } from '../../models/pokemon-type';
 export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: any;
-  pokeDetail: any;
+  pokeDetail!: Pokemon;
   total!: number;
+  damageRelations: any[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
@@ -32,9 +33,10 @@ export class PokemonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.pokeService.getPokemon(this.pokemon.name).subscribe((data) => {
       this.pokeDetail = data;
-      this.calculateTotalStats();
-     //console.log(this.pokeDetail);
+      //this.calculateTotalStats();
+      console.log(this.pokeDetail);
     })
+    console.log(this.damageRelations);
   }
 
   getColorForType(type: string): string {
@@ -50,9 +52,9 @@ export class PokemonDetailsComponent implements OnInit {
     return imagePath;
   }
   
-  calculateTotalStats(): void {
+  /*calculateTotalStats(): void {
     this.total = this.pokeDetail.stats.reduce((sum: any, stat: { base_stat: any; }) => sum + stat.base_stat, 0);
-  }
+  }*/
 
   
 }
