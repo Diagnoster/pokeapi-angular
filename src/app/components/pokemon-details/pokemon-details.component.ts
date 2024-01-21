@@ -21,8 +21,7 @@ import { PokemonType } from '../../models/pokemon-type';
 })
 export class PokemonDetailsComponent implements OnInit {
 
-  pokemon!: any;
-  pokeDetail!: Pokemon;
+  pokemon!: Pokemon;
   total!: number;
   damageRelations: any[] = [];
 
@@ -31,11 +30,7 @@ export class PokemonDetailsComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.pokeService.getPokemon(this.pokemon.name).subscribe((data) => {
-      this.pokeDetail = data;
-      console.log(this.pokeDetail);
-      this.calculateTotalStats();
-    })
+    this.calculateTotalStats();
   }
 
   getColorForType(type: string): string {
@@ -53,7 +48,7 @@ export class PokemonDetailsComponent implements OnInit {
   
   calculateTotalStats(): void {    
     this.total = 0;
-    this.pokeDetail.stats.forEach(stat => {
+    this.pokemon.stats.forEach(stat => {
       this.total = this.total + stat.base_stat;
     });
   
