@@ -33,10 +33,9 @@ export class PokemonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.pokeService.getPokemon(this.pokemon.name).subscribe((data) => {
       this.pokeDetail = data;
-      //this.calculateTotalStats();
       console.log(this.pokeDetail);
+      this.calculateTotalStats();
     })
-    console.log(this.damageRelations);
   }
 
   getColorForType(type: string): string {
@@ -52,9 +51,12 @@ export class PokemonDetailsComponent implements OnInit {
     return imagePath;
   }
   
-  /*calculateTotalStats(): void {
-    this.total = this.pokeDetail.stats.reduce((sum: any, stat: { base_stat: any; }) => sum + stat.base_stat, 0);
-  }*/
-
+  calculateTotalStats(): void {    
+    this.total = 0;
+    this.pokeDetail.stats.forEach(stat => {
+      this.total = this.total + stat.base_stat;
+    });
+  
+  }
   
 }

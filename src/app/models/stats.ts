@@ -1,12 +1,12 @@
 import { Stat } from "./stat";
 
 export class Stats {
-    baseStat: number;
+    base_stat: number;
     effort: number;
     stat: Stat;
 
-    constructor(baseStat: number, effort: number, stat: Stat) {
-        this.baseStat = baseStat;
+    constructor(base_stat: number, effort: number, stat: Stat) {
+        this.base_stat = base_stat;
         this.effort = effort;
         this.stat = stat;
     }

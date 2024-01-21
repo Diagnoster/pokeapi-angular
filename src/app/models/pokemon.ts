@@ -1,5 +1,5 @@
 import { Sprites } from "./sprites";
-import { Stat } from "./stat";
+import { Stats } from "./stats";
 import { Types } from "./types";
 
 export class Pokemon {
@@ -10,12 +10,12 @@ export class Pokemon {
     weight: number;
     details: any;
     types: Types [];
-    stats: Stat [];
+    stats: Stats [];
     sprites: Sprites;
     url: string;
   
     constructor(id: number, name: string, baseExperience: number, height: number, 
-      weight: number, details: any, types: Types[], stats: Stat [], sprites: Sprites, url: string) {
+      weight: number, details: any, types: Types[], stats: Stats [], sprites: Sprites, url: string) {
       this.id = id;
       this.name = name;
       this.baseExperience = baseExperience;
