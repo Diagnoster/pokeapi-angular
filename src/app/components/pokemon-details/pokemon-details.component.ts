@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonType } from '../../models/pokemon-type';
+import { DamageRelations } from '../../models/damage-relations';
+import { TypeRelations } from '../../models/type-relations';
 
 
 @Component({
@@ -23,14 +25,23 @@ export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: Pokemon;
   total!: number;
-  damageRelations: any[] = [];
+  typeRelations: TypeRelations [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
+    this.typeRelations = [];
   }
   
   ngOnInit(): void {
     this.calculateTotalStats();
+    this.pokemon.types.forEach(pokeurl => {
+      this.pokeService.getDamageRelations(pokeurl.type.url).subscribe((data: any) => {
+        this.typeRelations.push(data);
+        console.log(this.typeRelations);
+        console.log(data);
+      });
+    });
+    
   }
 
   getColorForType(type: string): string {

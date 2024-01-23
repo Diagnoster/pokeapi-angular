@@ -67,3 +67,15 @@
   padding-right: 3px;
 }
 
+.type-relations-container {
+  display: flex;
+}
+
+.type-relations {
+  display: flex;
+  margin-right: 3px;
+}
+
+.text-center {
+  text-align: center;
+}

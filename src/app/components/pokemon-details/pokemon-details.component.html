@@ -11,12 +11,12 @@
     <div class="pokemon-info-container">
       <img class="pokemon-artwork" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png" alt="Imagem {{ pokemon.name }}">
       <div class="pokemon-stats">
-        <span class="title-stat">Stats</span>
+        <span class="title-stat"> Stats </span>
         <div class="stats" *ngFor="let stats of pokemon.stats">          
           <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
           <mat-progress-bar class="progress-bar" mode="determinate" value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>         
         </div>
-        <span class="title-stat">Total: {{ total }}</span>
+        <span class="title-stat"> Total: {{ total }} </span>
       </div>
     </div>
     <mat-card-content class="pokemon-info-container">
@@ -25,8 +25,15 @@
         <img class="type-icon" [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
       </div>
     </mat-card-content>
-    <mat-card-content>
-      <span>oi</span>
-    </mat-card-content>
-  </mat-card>
+    <div class="double-damage">
+      <p class="title-type text-center"> Double damage from: </p>
+      <mat-card-content class="type-relations-container">
+        <div *ngFor="let type of typeRelations" class="type-relations">
+          <div *ngFor="let relations of type.damage_relations.double_damage_from">
+            <img class="type-icon" [src]="getTypeImageUrl(relations.name)" alt="Tipo do Pokémon">
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+  </mat-card> 
 </div>

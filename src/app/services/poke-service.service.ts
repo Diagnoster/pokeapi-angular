@@ -24,7 +24,6 @@ export class PokeServiceService {
 
   getPokemon(pokemon: string): Observable<any> {
     const url = `${this.URL_BASE}/pokemon/${pokemon}`;
-    //console.log(url);
     return this.http.get<any>(url);
   }
 
