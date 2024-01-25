@@ -8,7 +8,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonType } from '../../models/pokemon-type';
 import { DamageRelations } from '../../models/damage-relations';
 import { TypeRelations } from '../../models/type-relations';
-
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import { Move } from '../../models/move';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -16,16 +19,22 @@ import { TypeRelations } from '../../models/type-relations';
   imports: [
     MatCardModule,
     CommonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'
 })
+
 export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: Pokemon;
   total!: number;
   typeRelations: TypeRelations [];
+  displayedColumns: string[] = ['name'];
+  moves: Move[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
@@ -37,11 +46,9 @@ export class PokemonDetailsComponent implements OnInit {
     this.pokemon.types.forEach(pokeurl => {
       this.pokeService.getDamageRelations(pokeurl.type.url).subscribe((data: any) => {
         this.typeRelations.push(data);
-        console.log(this.typeRelations);
-        console.log(data);
       });
-    });
-    
+    });  
+    console.log(this.moves);
   }
 
   getColorForType(type: string): string {
