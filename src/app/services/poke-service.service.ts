@@ -14,7 +14,7 @@ export class PokeServiceService {
   constructor(private http: HttpClient) { }
 
   getPokemons(): Observable<any> {
-    const url =`${this.URL_BASE}/pokemon?limit=150&offset=0`;
+    const url =`${this.URL_BASE}/pokemon?limit=1&offset=0`;
     return this.http.get<any>(url);
   }
 
@@ -30,6 +30,10 @@ export class PokeServiceService {
   getDamageRelations(typeUrl: string): Observable<any> {
     const url = `${typeUrl}`;
     return this.http.get<any>(url);
+  }
+
+  getPokeMoves(moveUrl: string): Observable<any> {
+    return this.http.get<any>(moveUrl);
   }
   
 }

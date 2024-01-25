@@ -12,6 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { Move } from '../../models/move';
+import { Moves } from '../../models/moves';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -34,11 +35,12 @@ export class PokemonDetailsComponent implements OnInit {
   total!: number;
   typeRelations: TypeRelations [];
   displayedColumns: string[] = ['name'];
-  moves: Move[] = [];
+  moves: Moves[];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
     this.typeRelations = [];
+    this.moves = [];
   }
   
   ngOnInit(): void {
@@ -48,6 +50,12 @@ export class PokemonDetailsComponent implements OnInit {
         this.typeRelations.push(data);
       });
     });  
+    this.pokemon.moves.forEach( pokeMove => {
+      console.log(pokeMove.move.url);
+      this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
+        this.moves.push(data);
+      });
+    });
     console.log(this.moves);
   }
 
@@ -69,7 +77,5 @@ export class PokemonDetailsComponent implements OnInit {
     this.pokemon.stats.forEach(stat => {
       this.total = this.total + stat.base_stat;
     });
-  
   }
-  
 }

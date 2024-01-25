@@ -40,12 +40,12 @@
     <table mat-table [dataSource]="moves" class="mat-elevation-z8">
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Move Name </th>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let move"> {{ move.name }} </td>
       </ng-container>
   
-      <tr mat-header-row *matHeaderRowDef="['name']"></tr>
-      <tr mat-row *matRowDef="let move; columns: ['name']"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let move; columns: displayedColumns;"></tr>
     </table>
   </mat-card>
 </div>

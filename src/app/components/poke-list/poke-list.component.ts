@@ -28,7 +28,7 @@ import { PokemonType } from '../../models/pokemon-type';
 export class PokeListComponent implements OnInit {
 
   pokeList: Pokemon[];
-  pokemonList: Pokemon[];
+  pokemonList: Pokemon[] = [];
 
   constructor(
     private pokeService: PokeServiceService, 
