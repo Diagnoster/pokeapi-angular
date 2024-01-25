@@ -2,6 +2,7 @@ import { Injectable, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Pokemon } from '../models/pokemon';
+import { MoveDetails } from '../models/move-details';
 
 @Injectable({
   providedIn: 'root'

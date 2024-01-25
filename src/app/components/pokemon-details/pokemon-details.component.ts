@@ -10,9 +10,10 @@ import { DamageRelations } from '../../models/damage-relations';
 import { TypeRelations } from '../../models/type-relations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { Move } from '../../models/move';
 import { Moves } from '../../models/moves';
+import { MoveDetails } from '../../models/move-details';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -34,8 +35,9 @@ export class PokemonDetailsComponent implements OnInit {
   pokemon!: Pokemon;
   total!: number;
   typeRelations: TypeRelations [];
-  displayedColumns: string[] = ['name'];
-  moves: Moves[];
+  moves: MoveDetails[];
+  displayedColumns = ['name'];
+  dataSource = new MatTableDataSource<MoveDetails>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
@@ -51,12 +53,14 @@ export class PokemonDetailsComponent implements OnInit {
       });
     });  
     this.pokemon.moves.forEach( pokeMove => {
-      console.log(pokeMove.move.url);
       this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
-        this.moves.push(data);
+        this.moves.push(data);  
       });
     });
+    this.dataSource = new MatTableDataSource(this.moves);
+    this.dataSource._updateChangeSubscription(); 
     console.log(this.moves);
+    console.log(this.dataSource.data);
   }
 
   getColorForType(type: string): string {
