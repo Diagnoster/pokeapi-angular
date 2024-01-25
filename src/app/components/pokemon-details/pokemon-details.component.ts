@@ -34,24 +34,17 @@ export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: Pokemon;
   total!: number;
-  typeRelations: TypeRelations [];
   moves: MoveDetails[];
   displayedColumns = ['name'];
   dataSource = new MatTableDataSource<MoveDetails>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
-    this.typeRelations = [];
     this.moves = [];
   }
   
   ngOnInit(): void {
     this.calculateTotalStats();
-    this.pokemon.types.forEach(pokeurl => {
-      this.pokeService.getDamageRelations(pokeurl.type.url).subscribe((data: any) => {
-        this.typeRelations.push(data);
-      });
-    });  
     this.pokemon.moves.forEach( pokeMove => {
       this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
         this.moves.push(data);  
