@@ -110,7 +110,6 @@ th[mat-header-cell] {
 }
 
 .table-container {
-  margin-top: 5px;
   max-height: 255px;
   overflow: auto;
   width: 98%;
@@ -120,4 +119,10 @@ th[mat-header-cell] {
 
 .title-move {
   text-align: center;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+  margin-bottom: -2em;
 }

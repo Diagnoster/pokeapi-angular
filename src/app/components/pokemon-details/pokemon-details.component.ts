@@ -7,14 +7,13 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonType } from '../../models/pokemon-type';
 import { PokemonMoveColor } from '../../models/pokemon-move-color';
-import { DamageRelations } from '../../models/damage-relations';
-import { TypeRelations } from '../../models/type-relations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { Move } from '../../models/move';
-import { Moves } from '../../models/moves';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MoveDetails } from '../../models/move-details';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-pokemon-details',
@@ -25,7 +24,9 @@ import { MoveDetails } from '../../models/move-details';
     MatProgressBarModule,
     MatIconModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'
@@ -88,5 +89,10 @@ export class PokemonDetailsComponent implements OnInit {
     this.dataSource.data = this.moves;
     console.log(this.moves);
     console.log(this.dataSource.data);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
