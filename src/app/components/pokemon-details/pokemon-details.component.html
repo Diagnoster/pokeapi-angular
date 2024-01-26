@@ -27,16 +27,6 @@
         <img class="type-icon" [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
       </div>
     </mat-card-content>
-    <!--<div class="double-damage">
-      <p class="title-type text-center"> Double damage from: </p>
-      <mat-card-content class="type-relations-container">
-        <div *ngFor="let type of typeRelations" class="type-relations">
-          <div *ngFor="let relations of type.damage_relations.double_damage_from">
-            <img class="type-icon" [src]="getTypeImageUrl(relations.name)" alt="Tipo do Pokémon">
-          </div>
-        </div>
-      </mat-card-content>
-    </div>-->
     <div class="table-container">
       <h2 class="title-move">Move List</h2>
 
@@ -48,7 +38,7 @@
 
       <table class="table-move mat-elevation-z8" mat-table *ngIf="dataSource.data.length > 85" [dataSource]="dataSource">
 
-        <!-- PP Column -->
+        <!-- Id Column -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>ID</th>
           <td mat-cell *matCellDef="let move"> {{ move.id }} </td>
