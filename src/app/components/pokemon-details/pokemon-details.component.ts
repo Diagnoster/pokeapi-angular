@@ -60,9 +60,16 @@ export class PokemonDetailsComponent implements OnInit {
   }
 
   upperFirstLetter(word: string): string {
+    if (this.checkHyphen(word)) {
+      word = word.replace(/-/g, ' ');
+    }
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
-
+  
+  checkHyphen(palavra: string): boolean {
+    return palavra.includes('-');
+  }
+  
   getTypeImageUrl(type: string): string {
     const imagePath = `assets/details-icons/${type.toLowerCase()}.png`;
     return imagePath;
