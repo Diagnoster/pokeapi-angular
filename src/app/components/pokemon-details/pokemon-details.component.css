@@ -1,3 +1,20 @@
+body {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
 .pokemon-detail {
   background-color: white;
 }
@@ -81,15 +98,26 @@
 }
 
 td[mat-cell] {
-  background-color: green;
+  text-align: center;
 }
 
 tr[mat-row] {
-  background-color: green;
+  text-align: center;
+}
+
+th[mat-header-cell] {
+  text-align: center;
 }
 
 .table-container {
   margin-top: 5px;
-  max-height: 200px;
+  max-height: 255px;
   overflow: auto;
+  width: 98%;
+  padding-left: 10px;
+  margin-bottom: 1em;
+}
+
+.title-move {
+  text-align: center;
 }

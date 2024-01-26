@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonType } from '../../models/pokemon-type';
+import { PokemonMoveColor } from '../../models/pokemon-move-color';
 import { DamageRelations } from '../../models/damage-relations';
 import { TypeRelations } from '../../models/type-relations';
 import {MatIconModule} from '@angular/material/icon';
@@ -35,7 +36,7 @@ export class PokemonDetailsComponent implements OnInit {
   pokemon!: Pokemon;
   total!: number;
   moves: MoveDetails[];
-  displayedColumns = ['name', 'id'];
+  displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
   dataSource = new MatTableDataSource<MoveDetails>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
@@ -53,12 +54,21 @@ export class PokemonDetailsComponent implements OnInit {
     return PokemonType[type as keyof typeof PokemonType];
   }
 
+  getColorForMove(move: string): string {
+    return PokemonMoveColor[move as keyof typeof PokemonMoveColor];
+  }
+
   upperFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
   getTypeImageUrl(type: string): string {
     const imagePath = `assets/details-icons/${type.toLowerCase()}.png`;
+    return imagePath;
+  }
+
+  getTypePixel(type: string): string {
+    const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
     return imagePath;
   }
   
