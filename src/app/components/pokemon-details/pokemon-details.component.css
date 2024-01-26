@@ -79,3 +79,17 @@
 .text-center {
   text-align: center;
 }
+
+td[mat-cell] {
+  background-color: green;
+}
+
+tr[mat-row] {
+  background-color: green;
+}
+
+.table-container {
+  margin-top: 5px;
+  max-height: 200px;
+  overflow: auto;
+}

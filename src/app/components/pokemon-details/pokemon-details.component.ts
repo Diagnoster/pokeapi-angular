@@ -35,25 +35,18 @@ export class PokemonDetailsComponent implements OnInit {
   pokemon!: Pokemon;
   total!: number;
   moves: MoveDetails[];
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'id'];
   dataSource = new MatTableDataSource<MoveDetails>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
     this.moves = [];
+    this.dataSource = new MatTableDataSource();
   }
   
   ngOnInit(): void {
     this.calculateTotalStats();
-    this.pokemon.moves.forEach( pokeMove => {
-      this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
-        this.moves.push(data);  
-      });
-    });
-    this.dataSource = new MatTableDataSource(this.moves);
-    this.dataSource._updateChangeSubscription(); 
-    console.log(this.moves);
-    console.log(this.dataSource.data);
+    this.catchPokeMoves();
   }
 
   getColorForType(type: string): string {
@@ -74,5 +67,16 @@ export class PokemonDetailsComponent implements OnInit {
     this.pokemon.stats.forEach(stat => {
       this.total = this.total + stat.base_stat;
     });
+  }
+
+  catchPokeMoves(): void {
+    this.pokemon.moves.forEach( pokeMove => {
+      this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
+        this.moves.push(data);  
+      });
+    });
+    this.dataSource.data = this.moves;
+    console.log(this.moves);
+    console.log(this.dataSource.data);
   }
 }
