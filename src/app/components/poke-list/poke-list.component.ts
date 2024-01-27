@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { PokemonType } from '../../models/pokemon-type';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { PokemonType } from '../../models/pokemon-type';
     CommonModule,
     MatGridListModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [PokeServiceService],
   templateUrl: './poke-list.component.html',
@@ -29,6 +31,9 @@ export class PokeListComponent implements OnInit {
 
   pokeList: Pokemon[];
   pokemonList: Pokemon[] = [];
+  pageSize: number = 30;
+  page: number = 1; 
+  totalPokemons: Pokemon [];
 
   constructor(
     private pokeService: PokeServiceService, 
@@ -36,6 +41,7 @@ export class PokeListComponent implements OnInit {
     public dialog: MatDialog) {
     this.pokeList = [];
     this.pokemonList = [];
+    this.totalPokemons = [];
   }
 
   ngOnInit(): void {
@@ -46,16 +52,20 @@ export class PokeListComponent implements OnInit {
     this.pokeService.getPokemons()
       .subscribe((data: any) => {
         this.pokeList = data.results;
-        this.loadPokemonDetails(this.pokeList);
+        if(this.totalPokemons != null){
+          this.totalPokemons = data.results;
+        }
+        this.loadPokemonDetails(0, 30);
       });
   }
   
-  loadPokemonDetails(pokeList: Pokemon[]): void {
-    pokeList.forEach(pokemon => {
+  loadPokemonDetails(startIndex: number, endIndex: number): void {
+    for (let i = startIndex; i < endIndex; i++) {
+      const pokemon = this.pokeList[i];
       this.pokeService.getPokeDetails(pokemon.url).subscribe((data: any) => {
         this.pokemonList.push(data);
       });
-    });
+    }
   }
 
   upperFirstLetter(word: string): string {
@@ -78,5 +88,13 @@ export class PokeListComponent implements OnInit {
       data: { pokemon },
     });
   }
+
+  onPageChange(event: any): void {
+    const startIndex = event.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pokemonList = []; // clean list
+    this.loadPokemonDetails(startIndex, endIndex);
+  }
+  
   
 }

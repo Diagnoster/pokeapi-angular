@@ -146,7 +146,7 @@ th[mat-header-cell] {
 
 .name-ability {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: rgb(138, 33, 33);
+  color: black;
   text-transform: uppercase;
   font-size: 14px;
   margin-left: 10px;
