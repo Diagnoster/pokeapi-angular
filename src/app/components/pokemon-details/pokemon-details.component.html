@@ -20,6 +20,9 @@
         </div>
         <span class="title-stat"> Total: {{ total }} </span>
       </div>
+      <div class="pokemon-abilities" *ngFor="let abilities of pokemon.abilities">
+          <span class="name-stat"> {{ abilities.ability.name }} </span>
+      </div>
     </div>
     <mat-card-content class="pokemon-info-container">
       <span class="title-type">Types:</span>

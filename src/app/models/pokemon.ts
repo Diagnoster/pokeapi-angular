@@ -1,4 +1,5 @@
-import { Move } from "./move";
+import { Abilities } from "./abilities";
+import { Ability } from "./ability";
 import { Moves } from "./moves";
 import { Sprites } from "./sprites";
 import { Stats } from "./stats";
@@ -16,9 +17,10 @@ export class Pokemon {
     sprites: Sprites;
     url: string;
     moves: Moves [];
+    abilities: Abilities [];
   
     constructor(id: number, name: string, baseExperience: number, height: number, 
-      weight: number, details: any, types: Types[], stats: Stats [], sprites: Sprites, url: string, moves: Moves []) {
+      weight: number, details: any, types: Types[], stats: Stats [], sprites: Sprites, url: string, moves: Moves [], abilities: Abilities [])  {
       this.id = id;
       this.name = name;
       this.baseExperience = baseExperience;
@@ -30,5 +32,6 @@ export class Pokemon {
       this.sprites = sprites;
       this.url = url;
       this.moves = moves;
+      this.abilities = abilities;
     }
 }

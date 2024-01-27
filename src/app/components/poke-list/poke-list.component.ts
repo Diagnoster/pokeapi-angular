@@ -72,8 +72,9 @@ export class PokeListComponent implements OnInit {
   }
 
   pokeModal(pokemon: any): void {
+    console.log(pokemon);
     this.dialog.open(PokemonDetailsComponent, {
-      width: '610px',
+      width: '750px',
       data: { pokemon },
     });
   }
