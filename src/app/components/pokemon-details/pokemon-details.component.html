@@ -18,10 +18,13 @@
           <mat-progress-bar class="progress-bar" mode="determinate"
             value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>
         </div>
-        <span class="title-stat"> Total: {{ total }} </span>
+        <span class="title-stat margin-top"> Total: {{ total }} </span>
       </div>
-      <div class="pokemon-abilities" *ngFor="let abilities of pokemon.abilities">
-          <span class="name-stat"> {{ abilities.ability.name }} </span>
+      <div class="pokemon-abilities">
+        <span class="title-ability"> Abilities </span>
+        <div class="stats" *ngFor="let abilities of pokemon.abilities">
+            <span class="name-ability"> {{ abilities.ability.name }} </span>
+        </div>
       </div>
     </div>
     <mat-card-content class="pokemon-info-container">

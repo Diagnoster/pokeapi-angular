@@ -58,6 +58,8 @@ body::-webkit-scrollbar {
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: rgb(77, 17, 17);
   font-size: 20px;
+  margin-bottom: 10%;
+  display: flex;
 }
 
 .name-stat {
@@ -125,4 +127,32 @@ th[mat-header-cell] {
   font-size: 14px;
   width: 100%;
   margin-bottom: -2em;
+}
+
+.pokemon-abilities {
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.title-ability {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(77, 17, 17);
+  font-size: 20px;
+  margin-bottom: 1em;
+}
+
+.name-ability {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: rgb(138, 33, 33);
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.margin-top {
+  margin-top: 10%;
 }
