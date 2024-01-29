@@ -3,13 +3,17 @@ import { Ability } from '../../models/ability';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { MatCardModule}  from '@angular/material/card';
+import { AbilitiesDetails } from '../../models/abilities-details';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-abilities-details',
   standalone: true,
   imports: [
-    MatCardModule
+    MatCardModule,
+    CommonModule
   ],
   templateUrl: './abilities-details.component.html',
   styleUrl: './abilities-details.component.css'
@@ -17,11 +21,12 @@ import { MatCardModule}  from '@angular/material/card';
 export class AbilitiesDetailsComponent implements OnInit{
 
   abilities: Ability;
-  ability: any;
+  ability: AbilitiesDetails [];
+  
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
     this.abilities = data.abilities;
-    this.ability = null;
+    this.ability = [];
   }
 
   ngOnInit(): void {
@@ -30,8 +35,8 @@ export class AbilitiesDetailsComponent implements OnInit{
   }
 
   getAbility(abilityUrl: string): void {
-    this.pokeService.getAbility(abilityUrl).subscribe ((data: any) => {
-      this.ability = data;
+    this.pokeService.getAbility(abilityUrl).subscribe((data: any) => {
+      this.ability.push(data);
     });
     console.log(this.ability);
   }
