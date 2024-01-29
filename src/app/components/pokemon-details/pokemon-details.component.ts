@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { PokeServiceService } from '../../services/poke-service.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -13,6 +13,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MoveDetails } from '../../models/move-details';
 import { MatInputModule } from '@angular/material/input';
+import { AbilitiesDetailsComponent } from '../abilities-details/abilities-details.component';
 
 
 @Component({
@@ -26,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'
@@ -40,7 +42,7 @@ export class PokemonDetailsComponent implements OnInit {
   displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
   dataSource = new MatTableDataSource<MoveDetails>();
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeServiceService) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();
@@ -101,5 +103,13 @@ export class PokemonDetailsComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  abilitiesModal(abilities: any): void {
+    console.log(abilities);
+    this.dialog.open(AbilitiesDetailsComponent, {
+      width: '750px',
+      data: { abilities },
+    });
   }
 }

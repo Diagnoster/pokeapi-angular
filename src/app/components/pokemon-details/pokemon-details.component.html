@@ -23,7 +23,7 @@
       <div class="pokemon-abilities">
         <span class="title-ability"> Abilities </span>
         <div class="stats" *ngFor="let abilities of pokemon.abilities">
-            <span class="name-ability"> {{ abilities.ability.name }} </span>
+            <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }} </span>
         </div>
       </div>
     </div>

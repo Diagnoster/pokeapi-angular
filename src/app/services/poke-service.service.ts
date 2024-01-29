@@ -36,5 +36,9 @@ export class PokeServiceService {
   getPokeMoves(moveUrl: string): Observable<any> {
     return this.http.get<any>(moveUrl);
   }
+
+  getAbility(abilityUrl: string): Observable<any> {
+    return this.http.get<any>(abilityUrl);
+  }
   
 }
