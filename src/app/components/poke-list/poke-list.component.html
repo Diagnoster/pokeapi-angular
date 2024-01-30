@@ -1,4 +1,10 @@
 <div class="container">
+  <mat-paginator [length]="totalPokemons.length"
+    [pageSize]="30"
+    [pageSizeOptions]="[30]"
+    (page)="onPageChange($event)"
+    aria-label="Select page">
+  </mat-paginator>
   <mat-card class="example-card" *ngFor="let pokemon of pokemonList" 
     [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
     (click)="pokeModal(pokemon)">

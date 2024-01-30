@@ -24,7 +24,7 @@ export class AbilitiesDetailsComponent implements OnInit{
   ability: AbilitiesDetails [];
   
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperServic) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.abilities = data.abilities;
     this.ability = [];
   }
