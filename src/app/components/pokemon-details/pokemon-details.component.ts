@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MoveDetails } from '../../models/move-details';
 import { MatInputModule } from '@angular/material/input';
 import { AbilitiesDetailsComponent } from '../abilities-details/abilities-details.component';
-
+import { PokeHelperService } from '../../services/poke-helper.service';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -42,7 +42,7 @@ export class PokemonDetailsComponent implements OnInit {
   displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
   dataSource = new MatTableDataSource<MoveDetails>();
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeServiceService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();
@@ -62,14 +62,7 @@ export class PokemonDetailsComponent implements OnInit {
   }
 
   upperFirstLetter(word: string): string {
-    if (this.checkHyphen(word)) {
-      word = word.replace(/-/g, ' ');
-    }
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }
-  
-  checkHyphen(palavra: string): boolean {
-    return palavra.includes('-');
+    return this.pokeHelperService.upperFirstLetter(word);
   }
   
   getTypeImageUrl(type: string): string {
