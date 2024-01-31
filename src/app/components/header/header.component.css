@@ -1,28 +1,32 @@
 .header {
-    background-color: white;
-    color: white;
-    margin-bottom: 1em;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: white;
+  margin-bottom: 1em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    height: 80px;
-    width: 115px;
-    padding-top: 4px;
+  height: 80px;
+  width: 115px;
+  padding-top: 4px;
 }
 
 
 span {
-    color: black;
-    padding-left: 2em;
+  color: black;
+  padding-left: 2em;
 }
 
 span:hover {
-    color: goldenrod;
-    cursor: pointer;
-    font-size: 23px;
+  color: goldenrod;
+  cursor: pointer;
+  font-size: 23px;
 }
 
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+a {
+  text-decoration: none;
 }
