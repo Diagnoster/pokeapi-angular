@@ -9,23 +9,7 @@ import { Move } from '../../models/move';
   templateUrl: './move-list.component.html',
   styleUrl: './move-list.component.css'
 })
-export class MoveListComponent implements OnInit {
-  move: Move[];
+export class MoveListComponent {
 
-  constructor(private pokeService: PokeServiceService) {
-    this.move = [];
-  }
-
-  ngOnInit(): void {
-    
-  }
-
-
-  getAllMoves() {
-    this.pokeService.getMoves().subscribe((data: any) => {
-      this.move.push(data);
-    });
-    console.log(this.move);
-  }
 
 }

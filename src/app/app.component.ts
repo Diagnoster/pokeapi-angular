@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { PokeListComponent } from "./components/poke-list/poke-list.component";
 import { HeaderComponent } from './components/header/header.component';
+import { MoveListComponent } from './components/move-list/move-list.component';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [CommonModule, RouterOutlet, PokeListComponent, HeaderComponent]
+    imports: [CommonModule, RouterOutlet, PokeListComponent, HeaderComponent, RouterLink, RouterLinkActive, MoveListComponent]
 })
 export class AppComponent {
   title = 'pokeapi';
