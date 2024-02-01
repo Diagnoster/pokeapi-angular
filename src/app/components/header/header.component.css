@@ -30,3 +30,7 @@ span:hover {
 a {
   text-decoration: none;
 }
+
+a:visited {
+  color: darkblue;
+}
