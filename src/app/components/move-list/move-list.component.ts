@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MoveDetails } from '../../models/move-details';
+import { PokeHelperService } from '../../services/poke-helper.service';
 
 @Component({
   selector: 'app-move-list',
@@ -21,10 +22,10 @@ export class MoveListComponent implements OnInit {
 
   moves: Move[];
   moveDetailsList: MoveDetails [];
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
   dataSource = new MatTableDataSource<MoveDetails>();
 
-  constructor(private pokeService: PokeServiceService) {
+  constructor(private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
@@ -46,7 +47,15 @@ export class MoveListComponent implements OnInit {
       this.dataSource.data = this.moveDetailsList;
       this.dataSource.connect();
     })
-
-
   }
+
+  getTypePixel(type: string): string {
+    const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
+    return imagePath;
+  }
+
+  upperFirstLetter(word: string): string {
+    return this.pokeHelperService.upperFirstLetter(word);
+  }
+
 }
