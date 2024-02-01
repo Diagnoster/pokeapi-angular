@@ -5,6 +5,7 @@ import { Moves } from '../../models/moves';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
+import { MoveDetails } from '../../models/move-details';
 
 @Component({
   selector: 'app-move-list',
@@ -19,11 +20,13 @@ import { MatTableModule } from '@angular/material/table';
 export class MoveListComponent implements OnInit {
 
   moves: Move[];
-  displayedColumns = ['name'];
-  dataSource = new MatTableDataSource<Move>();
+  moveDetailsList: MoveDetails [];
+  displayedColumns = ['id', 'name'];
+  dataSource = new MatTableDataSource<MoveDetails>();
 
   constructor(private pokeService: PokeServiceService) {
     this.moves = [];
+    this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
   }
 
@@ -33,12 +36,17 @@ export class MoveListComponent implements OnInit {
   }
 
   getMoves() {
-    this.pokeService.getMoves().subscribe((data: any) => {
+    this.pokeService.getAllMoves().subscribe((data: any) => {
       this.moves = data.results;
-      this.dataSource.data = this.moves;
+      this.moves.forEach( move => {
+        this.pokeService.getPokeMoves(move.url).subscribe((data:any) => {
+          this.moveDetailsList.push(data);
+        });
+      })
+      this.dataSource.data = this.moveDetailsList;
       this.dataSource.connect();
-      console.log(data.results);
     })
+
 
   }
 }

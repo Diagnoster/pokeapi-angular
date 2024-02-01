@@ -1,6 +1,12 @@
 <div class="container">
     <div class="content">
-        <table class="table-move mat-elevation-z8" mat-table *ngIf="dataSource.data.length > 85" [dataSource]="dataSource">
+        <table class="table-move mat-elevation-z8" mat-table *ngIf="dataSource.data.length === 937" [dataSource]="dataSource">
+            <!-- Id Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let move"> {{ move.id }} </td>
+            </ng-container>
+
             <!-- Name Column -->
             <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
