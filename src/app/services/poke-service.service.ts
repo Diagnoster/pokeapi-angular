@@ -42,7 +42,7 @@ export class PokeServiceService {
   }
 
   getMoves() : Observable<any> {
-    const url = `${this.URL_BASE}//move?offset=0&limit=937`;
+    const url = `${this.URL_BASE}/move?offset=0&limit=937`;
     return this.http.get<any>(url);
   }
   
