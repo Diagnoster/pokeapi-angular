@@ -2,9 +2,20 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 2em;
 }
 
+h1 {
+    font-size: 30px;
+    text-align: center;
+}
 
 .content {
     width: 50%;
 }
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: -2em;
+}
+

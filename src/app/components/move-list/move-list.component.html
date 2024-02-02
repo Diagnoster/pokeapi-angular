@@ -1,47 +1,53 @@
 <div class="container">
-    <div class="content">
-      <table class="table-move mat-elevation-z8" mat-table *ngIf="dataSource.data.length === 937"
-        [dataSource]="dataSource">
-  
-        <!-- Id Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let move"> {{ move.id }} </td>
-        </ng-container>
-  
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let move"> {{ upperFirstLetter(move.name) }} </td>
-        </ng-container>
-  
-        <!-- Type Column -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let move"><img [src]="getTypePixel(move.type.name)" alt="Tipo do Pokémon">
-          </td>
-        </ng-container>
-  
-        <!-- Power Column -->
-        <ng-container matColumnDef="power">
-          <th mat-header-cell *matHeaderCellDef>Power</th>
-          <td mat-cell *matCellDef="let move"> {{ move.power }} </td>
-        </ng-container>
-  
-        <!-- Accuracy Column -->
-        <ng-container matColumnDef="accuracy">
-          <th mat-header-cell *matHeaderCellDef>Accuracy</th>
-          <td mat-cell *matCellDef="let move"> {{ move.accuracy }} </td>
-        </ng-container>
-  
-        <!-- PP Column -->
-        <ng-container matColumnDef="pp">
-          <th mat-header-cell *matHeaderCellDef>PP</th>
-          <td mat-cell *matCellDef="let move"> {{ move.pp }} </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+  <div class="content">
+    <h1>Move List</h1>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
+    </mat-form-field>
+
+    <table class="table-move mat-elevation-z8" mat-table *ngIf="dataSource.data.length === 937"
+      [dataSource]="dataSource">
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let move"> {{ move.id }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let move"> {{ upperFirstLetter(move.name) }} </td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let move"><img [src]="getTypePixel(move.type.name)" alt="Tipo do Pokémon">
+        </td>
+      </ng-container>
+
+      <!-- Power Column -->
+      <ng-container matColumnDef="power">
+        <th mat-header-cell *matHeaderCellDef>Power</th>
+        <td mat-cell *matCellDef="let move"> {{ move.power }} </td>
+      </ng-container>
+
+      <!-- Accuracy Column -->
+      <ng-container matColumnDef="accuracy">
+        <th mat-header-cell *matHeaderCellDef>Accuracy</th>
+        <td mat-cell *matCellDef="let move"> {{ move.accuracy }} </td>
+      </ng-container>
+
+      <!-- PP Column -->
+      <ng-container matColumnDef="pp">
+        <th mat-header-cell *matHeaderCellDef>PP</th>
+        <td mat-cell *matCellDef="let move"> {{ move.pp }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
+</div>
