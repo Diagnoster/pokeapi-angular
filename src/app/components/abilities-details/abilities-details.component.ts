@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { MatCardModule}  from '@angular/material/card';
 import { AbilitiesDetails } from '../../models/abilities-details';
-import { CommonModule } from '@angular/common';
+
 import { PokeHelperService } from '../../services/poke-helper.service';
 
 
@@ -12,9 +12,8 @@ import { PokeHelperService } from '../../services/poke-helper.service';
   selector: 'app-abilities-details',
   standalone: true,
   imports: [
-    MatCardModule,
-    CommonModule
-  ],
+    MatCardModule
+],
   templateUrl: './abilities-details.component.html',
   styleUrl: './abilities-details.component.css'
 })

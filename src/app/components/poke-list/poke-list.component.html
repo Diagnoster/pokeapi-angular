@@ -5,27 +5,31 @@
     (page)="onPageChange($event)"
     aria-label="Select page">
   </mat-paginator>
-  <mat-card class="example-card" *ngFor="let pokemon of pokemonList" 
-    [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
-    (click)="pokeModal(pokemon)">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
-        <mat-card-subtitle>
-          <div *ngFor="let poke of pokemon.types">
-            <img [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
-          </div>
-        </mat-card-subtitle>
-        <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">        
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content>
-      <span></span>
-      <div class="poke-number">
-        <span> # {{ pokemon.id }}</span>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  @for (pokemon of pokemonList; track pokemon) {
+    <mat-card class="example-card"
+      [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
+      (click)="pokeModal(pokemon)">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
+          <mat-card-subtitle>
+            @for (poke of pokemon.types; track poke) {
+              <div>
+                <img [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+              </div>
+            }
+          </mat-card-subtitle>
+          <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <span></span>
+        <div class="poke-number">
+          <span> # {{ pokemon.id }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
   <mat-paginator [length]="totalPokemons.length"
     [pageSize]="30"
     [pageSizeOptions]="[30]"

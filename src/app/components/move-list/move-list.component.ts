@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { Move } from '../../models/move';
-import { Moves } from '../../models/moves';
-import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MoveDetails } from '../../models/move-details';
@@ -14,11 +12,10 @@ import { MatInputModule} from '@angular/material/input';
   selector: 'app-move-list',
   standalone: true,
   imports: [
-    CommonModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule
-  ],
+],
   templateUrl: './move-list.component.html',
   styleUrl: './move-list.component.css'
 })
