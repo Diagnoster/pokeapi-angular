@@ -1,26 +1,41 @@
-.header {
-  background-color: white;
-  color: white;
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #3f51b5;
   margin-bottom: 1em;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.158);
+}
+
+.main-header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-move {
+  display: none;
+  border-top: 2px solid rgba(0, 0, 0, 0.158);
+  background-color: #4e60c5;
+  position: fixed;
+  width: 100%;
+  top: 64px;
+  z-index: 900;
 }
 
 .logo {
   height: 80px;
-  width: 115px;
+  width: auto;
   padding-top: 4px;
 }
 
-
 span {
-  color: black;
+  color: #FFF;
   padding-left: 2em;
-}
-
-span:hover {
-  color: goldenrod;
-  cursor: pointer;
-  font-size: 23px;
+  font-size: 18px;
+  display: inline-block; 
 }
 
 .example-spacer {
@@ -28,9 +43,6 @@ span:hover {
 }
 
 a {
+  color: white;
   text-decoration: none;
-}
-
-a:visited {
-  color: darkblue;
 }
