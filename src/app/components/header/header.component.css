@@ -15,16 +15,6 @@ mat-toolbar {
   z-index: 1000;
 }
 
-.header-move {
-  display: none;
-  border-top: 2px solid rgba(0, 0, 0, 0.158);
-  background-color: #4e60c5;
-  position: fixed;
-  width: 100%;
-  top: 64px;
-  z-index: 900;
-}
-
 .logo {
   height: 80px;
   width: auto;
@@ -45,4 +35,18 @@ span {
 a {
   color: white;
   text-decoration: none;
+}
+
+h2 {
+  color: #FFF;
+  padding-left: 1em;
+  padding-top: 15px;
+}
+
+header {
+  margin-top: 60px;
+  width: 100%;
+  background-color: #4c5fcc;
+  margin-bottom: 1em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.158);
 }
