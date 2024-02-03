@@ -7,13 +7,12 @@
 .content {
   width: 90%;
   justify-content: center;
-  background-color: rgb(33, 130, 175);
 }
 
 .example-card {
   justify-content: center;
-  width: calc(25% - 2%);
-  margin: 1%;
+  width: calc(25% - 1%);
+  margin: 0.5%;
   box-sizing: border-box;
   min-width: 180px;
   display: inline-block;
@@ -27,6 +26,11 @@
   right: 5px;
   color: white;
   font-size: 16px;
+  font-weight: bold;
+}
+
+mat-paginator {
+  background: none;
   font-weight: bold;
 }
 

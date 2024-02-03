@@ -7,7 +7,7 @@ html, body {
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-image: url("assets/pokerealmap.png");
+    background-image: url("assets/pokerealmap_op.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
