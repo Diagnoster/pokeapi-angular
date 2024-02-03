@@ -12,10 +12,10 @@
 
 .example-card {
   justify-content: center;
-  width: 48%;
+  width: calc(25% - 2%);
+  margin: 1%;
   box-sizing: border-box;
   min-width: 180px;
-  margin-bottom: 8px;
   display: inline-block;
   background-color: white;
   cursor: pointer;
@@ -30,7 +30,19 @@
   font-weight: bold;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
+  .example-card {
+    width: calc(32% - 1%);
+  }
+}
+
+@media (max-width: 780px) {
+  mat-card-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 655px) {
   .example-card {
     width: calc(50% - 2%);
     float: none;
