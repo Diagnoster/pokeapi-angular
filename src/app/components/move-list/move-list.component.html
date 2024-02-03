@@ -20,7 +20,7 @@
         <!-- Type Column -->
         <ng-container matColumnDef="type">
           <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let move"><img [src]="getTypePixel(move.type.name)" alt="Tipo do Pokémon">
+          <td mat-cell *matCellDef="let move"><img [src]="getTypeRetroImageUrl(move.type.name)" alt="Tipo do Pokémon">
           </td>
         </ng-container>
         <!-- Power Column -->

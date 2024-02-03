@@ -34,7 +34,7 @@
         <span class="title-type">Types:</span>
         @for (poke of pokemon.types; track poke) {
           <div clas="type-info">
-            <img class="type-icon" [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+            <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
           </div>
         }
       </mat-card-content>
@@ -60,7 +60,7 @@
             <!-- Type Column -->
             <ng-container matColumnDef="type">
               <th mat-header-cell *matHeaderCellDef>Type</th>
-              <td mat-cell *matCellDef="let move"><img [src]="getTypePixel(move.type.name)" alt="Tipo do Pokémon"></td>
+              <td mat-cell *matCellDef="let move"><img [src]="getTypeRetroImageUrl(move.type.name)" alt="Tipo do Pokémon"></td>
             </ng-container>
             <!-- Power Column -->
             <ng-container matColumnDef="power">

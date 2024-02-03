@@ -50,11 +50,10 @@ export class MoveListComponent implements OnInit {
     })
   }
 
-  getTypePixel(type: string): string {
-    const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
-    return imagePath;
+  getTypeRetroImageUrl(type: string): string {
+    return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
-
+  
   upperFirstLetter(word: string): string {
     return this.pokeHelperService.upperFirstLetter(word);
   }

@@ -65,14 +65,12 @@ export class PokemonDetailsComponent implements OnInit {
     return this.pokeHelperService.upperFirstLetter(word);
   }
   
-  getTypeImageUrl(type: string): string {
-    const imagePath = `assets/details-icons/${type.toLowerCase()}.png`;
-    return imagePath;
+  getTypeDetailImageUrl(type: string): string {
+    return this.pokeHelperService.getTypeDetailImageUrl(type);
   }
 
-  getTypePixel(type: string): string {
-    const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
-    return imagePath;
+  getTypeRetroImageUrl(type: string): string {
+    return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
   
   calculateTotalStats(): void {    

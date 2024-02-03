@@ -16,7 +16,7 @@
             <mat-card-subtitle>
               @for (poke of pokemon.types; track poke) {
                 <div>
-                  <img [src]="getTypeImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+                  <img [src]="getTypeRetroImageUrl(poke.type.name)" alt="Tipo do Pokémon">
                 </div>
               }
             </mat-card-subtitle>

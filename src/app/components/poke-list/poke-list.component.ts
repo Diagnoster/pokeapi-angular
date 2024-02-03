@@ -10,6 +10,7 @@ import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.comp
 import { PokeServiceService } from '../../services/poke-service.service';
 import { PokemonType } from '../../models/pokemon-type';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { PokeHelperService } from '../../services/poke-helper.service';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class PokeListComponent implements OnInit {
 
   constructor(
     private pokeService: PokeServiceService, 
+    private pokeHelperService: PokeHelperService,
     private router: Router,
     public dialog: MatDialog) {
     this.pokeList = [];
@@ -76,9 +78,8 @@ export class PokeListComponent implements OnInit {
     return PokemonType[type as keyof typeof PokemonType];
   }
 
-  getTypeImageUrl(type: string): string {
-    const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
-    return imagePath;
+  getTypeRetroImageUrl(type: string) : string {
+    return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
 
   pokeModal(pokemon: any): void {
