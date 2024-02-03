@@ -145,15 +145,24 @@ th[mat-header-cell] {
 }
 
 .name-ability {
+  cursor: pointer;
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: black;
   text-transform: uppercase;
   font-size: 14px;
   margin-left: 10px;
   text-align: center;
-  cursor: pointer;
 }
 
 .margin-top {
   margin-top: 10%;
+}
+
+.icon {
+  vertical-align: middle; 
+  font-size: 18px;
+}
+
+.name-ability:hover {
+  color: white;
 }

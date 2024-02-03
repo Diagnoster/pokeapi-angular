@@ -25,7 +25,8 @@
           <span class="title-ability"> Abilities </span>
           @for (abilities of pokemon.abilities; track abilities) {
             <div class="stats">
-              <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }} </span>
+              <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }} <mat-icon class="icon">help_outline</mat-icon>
+              </span>
             </div>
           }
         </div>
