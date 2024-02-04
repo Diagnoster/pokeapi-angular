@@ -6,10 +6,16 @@
         {{ ab.generation.name }}
       </mat-card-subtitle>
     </mat-card-header>
-    @for (abs of ab.effect_entries; track abs) {
-      <mat-card-content>
-        <p> {{ abs.effect }} </p>
-      </mat-card-content>
+    @if (ab.effect_entries.length > 0) {
+      @if (ab.effect_entries[0].language.name === 'en') {
+        <mat-card-content>
+          <p> {{ ab.effect_entries[0].effect }} </p>
+        </mat-card-content>
+      } @else if (ab.effect_entries.length > 1 && ab.effect_entries[1].language.name === 'en') {
+        <mat-card-content>
+          <p> {{ ab.effect_entries[1].effect }} </p>
+        </mat-card-content>
+      }
     }
   </mat-card>
 }

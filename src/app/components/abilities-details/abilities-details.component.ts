@@ -2,26 +2,24 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Ability } from '../../models/ability';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PokeServiceService } from '../../services/poke-service.service';
-import { MatCardModule}  from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { AbilitiesDetails } from '../../models/abilities-details';
-
 import { PokeHelperService } from '../../services/poke-helper.service';
-
 
 @Component({
   selector: 'app-abilities-details',
   standalone: true,
   imports: [
     MatCardModule
-],
+  ],
   templateUrl: './abilities-details.component.html',
   styleUrl: './abilities-details.component.css'
 })
-export class AbilitiesDetailsComponent implements OnInit{
+export class AbilitiesDetailsComponent implements OnInit {
 
   abilities: Ability;
-  ability: AbilitiesDetails [];
-  
+  ability: AbilitiesDetails[];
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.abilities = data.abilities;
