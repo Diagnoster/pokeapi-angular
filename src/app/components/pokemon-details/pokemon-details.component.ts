@@ -6,7 +6,6 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonType } from '../../models/pokemon-type';
-import { PokemonMoveColor } from '../../models/pokemon-move-color';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -55,10 +54,6 @@ export class PokemonDetailsComponent implements OnInit {
 
   getColorForType(type: string): string {
     return PokemonType[type as keyof typeof PokemonType];
-  }
-
-  getColorForMove(move: string): string {
-    return PokemonMoveColor[move as keyof typeof PokemonMoveColor];
   }
 
   upperFirstLetter(word: string): string {
