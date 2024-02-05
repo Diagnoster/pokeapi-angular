@@ -1,9 +1,5 @@
 <div class="container">
   <div class="content">
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
-    </mat-form-field>
     @if (dataSource.data.length === 937) {
       <table class="table-move mat-elevation-z8" mat-table
         [dataSource]="dataSource">
@@ -42,5 +38,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     }
+    <mat-paginator 
+      [length]="dataSource.data.length"
+      [pageSizeOptions]="[10]"
+      showFirstLastButtons
+      aria-label="Select page of moves">
+    </mat-paginator>
   </div>
 </div>
