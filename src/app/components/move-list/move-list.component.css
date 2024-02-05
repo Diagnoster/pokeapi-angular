@@ -19,3 +19,16 @@ mat-form-field {
     margin-bottom: -2em;
 }
 
+@media (max-width: 1000px) {
+    .content {
+      width: 80%
+    }
+}
+  
+
+@media (max-width: 540px) {
+    .content {
+        width: calc(100% - 4%);
+        margin: 2%;
+    }
+} 
