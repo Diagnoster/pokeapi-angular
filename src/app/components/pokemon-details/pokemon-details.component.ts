@@ -95,6 +95,7 @@ export class PokemonDetailsComponent implements OnInit {
     console.log(abilities);
     this.dialog.open(AbilitiesDetailsComponent, {
       width: '750px',
+      maxHeight: '90vh',
       data: { abilities },
     });
   }

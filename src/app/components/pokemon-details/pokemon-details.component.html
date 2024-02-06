@@ -1,9 +1,8 @@
 <div class="card-container">
   <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
     <mat-card-header>
-      <div class="example-header-image"># {{ pokemon.id }} </div>
       <mat-card-title-group>
-        <mat-card-title class="title"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
+        <mat-card-title class="title"># {{ pokemon.id }} - {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
       </mat-card-title-group>
     </mat-card-header>
     <div class="pokemon-info-container">
@@ -19,7 +18,7 @@
               value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>
             </div>
           }
-          <span class="title-stat margin-top"> Total: {{ total }} </span>
+          <span class="title-total-stat"> Total: {{ total }} </span>
         </div>
         <div class="pokemon-abilities">
           <span class="title-ability"> Abilities </span>

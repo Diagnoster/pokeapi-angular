@@ -1,6 +1,5 @@
 <div class="container">
   <div class="content">
-    @if (dataSource.data.length === 937) {
       <table class="table-move mat-elevation-z8" mat-table
         [dataSource]="dataSource">
         <!-- Id Column -->
@@ -37,7 +36,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-    }
     <mat-paginator 
       [length]="dataSource.data.length"
       [pageSizeOptions]="[10]"
