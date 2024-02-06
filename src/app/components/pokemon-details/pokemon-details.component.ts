@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -14,6 +14,7 @@ import { MoveDetails } from '../../models/move-details';
 import { MatInputModule } from '@angular/material/input';
 import { AbilitiesDetailsComponent } from '../abilities-details/abilities-details.component';
 import { PokeHelperService } from '../../services/poke-helper.service';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -27,7 +28,8 @@ import { PokeHelperService } from '../../services/poke-helper.service';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'
@@ -38,8 +40,9 @@ export class PokemonDetailsComponent implements OnInit {
   pokemon!: Pokemon;
   total!: number;
   moves: MoveDetails[];
-  displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
+  displayedColumns = ['name', 'type', 'power', 'accuracy', 'pp'];
   dataSource = new MatTableDataSource<MoveDetails>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.pokemon = data.pokemon;
@@ -79,11 +82,10 @@ export class PokemonDetailsComponent implements OnInit {
     this.pokemon.moves.forEach( pokeMove => {
       this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
         this.moves.push(data);  
+        this.dataSource.data = this.moves;
+        this.dataSource.paginator = this.paginator;
       });
     });
-    this.dataSource.data = this.moves;
-    console.log(this.moves);
-    console.log(this.dataSource.data);
   }
 
   applyFilter(event: Event) {
@@ -94,8 +96,6 @@ export class PokemonDetailsComponent implements OnInit {
   abilitiesModal(abilities: any): void {
     console.log(abilities);
     this.dialog.open(AbilitiesDetailsComponent, {
-      width: '750px',
-      maxHeight: '90vh',
       data: { abilities },
     });
   }

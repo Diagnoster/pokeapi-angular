@@ -1,6 +1,6 @@
-.card-container {
-  overflow-y: auto;
-  overflow-x: auto;
+.overflow-container {
+  overflow: auto;
+  max-height: calc(100vh - 100px);
 }
 
 .pokemon-detail {
@@ -110,22 +110,24 @@ th[mat-header-cell] {
   background: #CFCFC4;
 }
 
+mat-paginator {
+  width: 100%;
+  background: none;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: -2em;
+}
+
 .table-container {
-  max-height: 255px;
-  overflow: auto;
-  width: 98%;
-  padding-left: 10px;
-  margin-bottom: 1em;
+  width: calc(100% - 4%);
+  float: none;
+  margin: 2%;
 }
 
 .title-move {
   text-align: center;
-}
-
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
-  margin-bottom: -2em;
 }
 
 .pokemon-abilities {
@@ -133,7 +135,6 @@ th[mat-header-cell] {
   display: flex;
   flex-direction: column;
   text-align: center;
-
 }
 
 .title-ability {

@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="overflow-container">
   <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
     <mat-card-header>
       <mat-card-title-group>
@@ -45,13 +45,13 @@
           <mat-label>Filter</mat-label>
           <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
         </mat-form-field>
-        @if (dataSource.data.length > 85) {
+        <mat-paginator 
+          [length]="dataSource.data.length"
+          [pageSizeOptions]="[5]"
+          showFirstLastButtons
+          aria-label="Select page of moves">
+        </mat-paginator>
           <table class="table-move mat-elevation-z8" mat-table [dataSource]="dataSource">
-            <!-- Id Column -->
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef>ID</th>
-              <td mat-cell *matCellDef="let move"> {{ move.id }} </td>
-            </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -68,7 +68,7 @@
               <td mat-cell *matCellDef="let move"> {{ move.power }} </td>
             </ng-container>
             <!-- Accuracy Column -->
-            <ng-container matColumnDef="accuracy" >
+            <ng-container matColumnDef="accuracy">
               <th mat-header-cell *matHeaderCellDef>Accuracy</th>
               <td mat-cell *matCellDef="let move"> {{ move.accuracy }} </td>
             </ng-container>
@@ -84,7 +84,6 @@
               <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
             </tr>
           </table>
-        }
       </div>
     </mat-card>
   </div>
