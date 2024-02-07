@@ -1,8 +1,10 @@
 <div class="container">
   <div class="content">
-    <mat-paginator [length]="totalPokemons.length"
+    <mat-paginator 
+      [length]="totalPokemons.length"
       [pageSize]="30"
       [pageSizeOptions]="[30]"
+      showFirstLastButtons
       (page)="onPageChange($event)"
       aria-label="Select page">
     </mat-paginator>
@@ -31,11 +33,5 @@
         </mat-card-content>
       </mat-card>
     }
-    <mat-paginator [length]="totalPokemons.length"
-      [pageSize]="30"
-      [pageSizeOptions]="[30]"
-      (page)="onPageChange($event)"
-      aria-label="Select page">
-    </mat-paginator>
   </div>
 </div>
