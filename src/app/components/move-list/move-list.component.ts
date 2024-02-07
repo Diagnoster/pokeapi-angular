@@ -64,4 +64,9 @@ export class MoveListComponent implements OnInit {
     return this.pokeHelperService.upperFirstLetter(word);
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

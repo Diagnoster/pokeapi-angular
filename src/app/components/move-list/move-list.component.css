@@ -11,20 +11,13 @@ h1 {
 }
 
 .content {
-    width: 50%;
+    width: 70%;
 }
 
 mat-form-field {
     width: 100%;
     margin-bottom: -2em;
 }
-
-@media (max-width: 1000px) {
-    .content {
-      width: 80%
-    }
-}
-  
 
 @media (max-width: 540px) {
     .content {

@@ -1,5 +1,9 @@
 <div class="container">
   <div class="content">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
+      </mat-form-field>
       <table class="table-move mat-elevation-z8" mat-table
         [dataSource]="dataSource">
         <!-- Id Column -->
