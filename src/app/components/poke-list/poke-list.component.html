@@ -8,6 +8,15 @@
       (page)="onPageChange($event)"
       aria-label="Select page">
     </mat-paginator>
+    <div class="filter">
+      <mat-form-field>
+        <mat-label>Search specific pokemon</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="pokemon" (selectionChange)="onPokemonSelectionChange()">
+          <mat-option *ngFor="let poke of pokeList" [value]="poke.name">{{ poke.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="reloadPokemonList()">Reload Pokemon List</button>
+    </div>
     @for (pokemon of pokemonList; track pokemon) {
       <mat-card class="example-card"
         [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"

@@ -11,7 +11,10 @@ import { PokeServiceService } from '../../services/poke-service.service';
 import { PokemonType } from '../../models/pokemon-type';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PokeHelperService } from '../../services/poke-helper.service';
-
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-poke-list',
@@ -22,7 +25,11 @@ import { PokeHelperService } from '../../services/poke-helper.service';
     MatGridListModule,
     MatCardModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule, 
+    FormsModule, 
+    MatFormFieldModule, 
+    MatCardModule
   ],
   providers: [PokeServiceService],
   templateUrl: './poke-list.component.html',
@@ -35,6 +42,9 @@ export class PokeListComponent implements OnInit {
   pageSize: number = 30;
   page: number = 1; 
   totalPokemons: Pokemon [];
+  selectedValue: string;
+  selectedPokemon: Pokemon | undefined;
+
 
   constructor(
     private pokeService: PokeServiceService, 
@@ -44,6 +54,7 @@ export class PokeListComponent implements OnInit {
     this.pokeList = [];
     this.pokemonList = [];
     this.totalPokemons = [];
+    this.selectedValue = "";
   }
 
   ngOnInit(): void {
@@ -62,12 +73,34 @@ export class PokeListComponent implements OnInit {
   }
   
   loadPokemonDetails(startIndex: number, endIndex: number): void {
+    const observables: Observable<any>[] = [];
+  
     for (let i = startIndex; i < endIndex; i++) {
       const pokemon = this.pokeList[i];
-      this.pokeService.getPokeDetails(pokemon.url).subscribe((data: any) => {
-        this.pokemonList.push(data);
+      observables.push(this.pokeService.getPokeDetails(pokemon.url));
+      console.log(observables);
+    }
+
+    forkJoin(observables).subscribe((results: any[]) => {
+      this.pokemonList = results;
+    });
+  }
+
+  onPokemonSelectionChange(): void {
+    console.log(this.selectedValue);
+    if (this.selectedValue) {
+      this.pokemonList = []; // clean pokemon list
+      this.pokeService.getPokemon(this.selectedValue).pipe().subscribe((data: any) => {
+        this.pokemonList.push(data); 
       });
     }
+  }
+
+  reloadPokemonList(): void {
+    this.pokemonList = [];
+    this.selectedValue = '';
+    this.selectedPokemon = undefined;
+    this.loadPokemonList();
   }
 
   upperFirstLetter(word: string): string {
