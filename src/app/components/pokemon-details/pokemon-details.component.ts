@@ -40,7 +40,7 @@ export class PokemonDetailsComponent implements OnInit {
   pokemon!: Pokemon;
   total!: number;
   moves: MoveDetails[];
-  displayedColumns = ['name', 'type', 'power', 'accuracy', 'pp'];
+  displayedColumns = ['name', 'type', 'power', 'accuracy'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

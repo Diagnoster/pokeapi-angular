@@ -39,7 +39,6 @@
 }
 
 .pokemon-stats {
-  margin-left: 25px;
 }
 
 .title-stat {
@@ -192,13 +191,22 @@ mat-form-field {
   }
 
   mat-progress-bar {
-    padding: 5px;
+    padding-bottom: 5px;
   }
 
   mat-card-title-group {
     justify-content: center;
   }
 
+}
+
+@media (max-width: 660px) {
+  .progress-bar {
+    padding-bottom: 2px;
+    margin-left: 1px;
+    margin-right: 5px;
+    height: 4px;
+  }
 }
 
 @media (max-width: 640px) {
