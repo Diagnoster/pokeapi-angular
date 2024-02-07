@@ -1,14 +1,16 @@
 <mat-toolbar #toolbar>
   <mat-toolbar-row class="main-header">
     <button mat-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site">
+      <a routerLink="/pokedex"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site"></a>
     </button>
     <span><a routerLink="/pokedex">Pokedex</a></span>
     <span><a routerLink="/moves">Move</a></span>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
+    <a href="https://github.com/Diagnoster/pokeapi-angular">
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </a>
   </mat-toolbar-row>
 </mat-toolbar>
 <header class="docs-primary-header component-page-header">

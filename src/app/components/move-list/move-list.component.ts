@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { Move } from '../../models/move';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,7 +23,7 @@ import { forkJoin } from 'rxjs';
   styleUrl: './move-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MoveListComponent implements AfterViewInit {
+export class MoveListComponent implements OnInit {
 
   moves: Move[];
   moveDetailsList: MoveDetails [];
@@ -37,7 +37,7 @@ export class MoveListComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource();
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.getMoves();
     this.dataSource = new MatTableDataSource(this.moveDetailsList);
 
