@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2em;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.content {
+    width: 70%;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: -2em;
+}
+
+.pokeball {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1em;
+}
+
+.loading {
+    justify-content: center;
+    display: flex;
+    font: bold;
+}
+
+p {
+    font-size: 20px; 
+    color: #222020;
+    text-align: center;
+}
+
+.pokeball-spinner {
+    animation: spin 3s infinite linear;
+}
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+@media (max-width: 640px) {
+    .content {
+        width: calc(100% - 4%);
+        margin: 2%;
+    }
+}
+
+@media (max-width: 540px) {
+    .content {
+        width: calc(100% - 4%);
+        margin: 2%;
+    }
+} 

@@ -45,5 +45,15 @@ export class PokeServiceService {
     const url = `${this.URL_BASE}/move?offset=0&limit=937`;
     return this.http.get<any>(url);
   }
+
+  getItens(itemUrl: string) : Observable<any> {
+    return this.http.get<any>(itemUrl);
+  }
+
+  getSelectOption(item: string) : Observable<any> {
+    const url = `${this.URL_BASE}/${item}`;
+    console.log(url);
+    return this.http.get<any>(url);
+  }
   
 }

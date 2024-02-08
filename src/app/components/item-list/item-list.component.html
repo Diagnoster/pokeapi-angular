@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="content">
+    @if (loading) {
+    <div class="loading">
+      <img class="pokeball pokeball-spinner" src="../../../assets/pokeball.png" alt="pokeball">
+    </div>
+    <p>Loading...</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+    <mat-menu #animals="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+      <button mat-menu-item [matMenuTriggerFor]="medicine">Medicine</button>
+    </mat-menu>
+
+    <mat-menu #vertebrates="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="pokeballs">Pokeballs</button>
+      <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+      <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+      <button mat-menu-item>Birds</button>
+      <button mat-menu-item>Mammals</button>
+    </mat-menu>
+
+    <mat-menu #medicine="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/26/')">Vitamins</button>
+      <button mat-menu-item (click)="selectItem('item-category/27/')">Healing</button>
+      <button mat-menu-item (click)="selectItem('item-category/28/')">PP Recovery</button>
+      <button mat-menu-item (click)="selectItem('item-category/29/')">Revival</button>
+      <button mat-menu-item (click)="selectItem('item-category/30/')">Status Cures</button>
+      <button mat-menu-item (click)="selectItem('item-category/50/')">Nature Mints</button>
+    </mat-menu>
+
+    <mat-menu #pokeballs="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/33/')">Special Balls</button>
+      <button mat-menu-item (click)="selectItem('item-category/34/')">Standard Balls</button>
+      <button mat-menu-item (click)="selectItem('item-category/39/')">Apricorn Balls</button>
+    </mat-menu>
+
+    <mat-menu #amphibians="matMenu">
+      <button mat-menu-item>Sonoran desert toad</button>
+      <button mat-menu-item>Western toad</button>
+      <button mat-menu-item>Arroyo toad</button>
+      <button mat-menu-item>Yosemite toad</button>
+    </mat-menu>
+
+    <mat-menu #reptiles="matMenu">
+      <button mat-menu-item>Banded Day Gecko</button>
+      <button mat-menu-item>Banded Gila Monster</button>
+      <button mat-menu-item>Black Tree Monitor</button>
+      <button mat-menu-item>Blue Spiny Lizard</button>
+      <button mat-menu-item disabled>Velociraptor</button>
+    </mat-menu>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
+    </mat-form-field>
+    <table class="table-move mat-elevation-z8" mat-table [dataSource]="dataSource">
+      <!-- Sprite Column -->
+      <ng-container matColumnDef="sprite">
+        <th mat-header-cell *matHeaderCellDef>Sprite</th>
+        <td mat-cell *matCellDef="let item"> <img [src]="item.sprites.default"> </td>
+      </ng-container> 
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item"> {{ item.name }} </td>
+      </ng-container>
+      <!-- Cost Column -->
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef>Cost</th>
+        <td mat-cell *matCellDef="let item"> {{ item.cost }} </td>
+      </ng-container>
+      <!-- Effect Column -->
+      <ng-container matColumnDef="effect_entries">
+        <th mat-header-cell *matHeaderCellDef>Effect</th>
+        <td mat-cell *matCellDef="let item"> {{ item.effect_entries.effect }} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10]" showFirstLastButtons
+      aria-label="Select page of moves">
+    </mat-paginator>
+  </div>
+</div>
