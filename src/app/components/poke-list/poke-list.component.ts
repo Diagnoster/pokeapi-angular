@@ -79,7 +79,9 @@ export class PokeListComponent implements OnInit {
   
     for (let i = startIndex; i < endIndex; i++) {
       const pokemon = this.pokeList[i];
-      observables.push(this.pokeService.getPokeDetails(pokemon.url));
+      if (pokemon) {
+        observables.push(this.pokeService.getPokeDetails(pokemon.url));
+      }
     }
 
     forkJoin(observables).subscribe((results: any[]) => {

@@ -30,6 +30,13 @@
   font-weight: bold;
 }
 
+.pokemon-name {
+  max-width: 150px; 
+  overflow: hidden;
+  text-overflow: ellipsis; /* show ... */
+  white-space: nowrap; 
+}
+
 .filter {
   display: flex;
   justify-content: center;
@@ -48,6 +55,10 @@ mat-paginator {
   margin-top: 2px;
   padding: 26px;
   margin-left: 1%;
+}
+
+mat-card-subtitle {
+  text-align: left;
 }
 
 @media (max-width: 1000px) {

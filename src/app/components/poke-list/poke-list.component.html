@@ -23,7 +23,7 @@
         (click)="pokeModal(pokemon)">
         <mat-card-header>
           <mat-card-title-group>
-            <mat-card-title> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
+            <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
             <mat-card-subtitle>
               @for (poke of pokemon.types; track poke) {
                 <div>
