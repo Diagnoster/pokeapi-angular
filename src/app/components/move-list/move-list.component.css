@@ -19,6 +19,37 @@ mat-form-field {
     margin-bottom: -2em;
 }
 
+.pokeball {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1em;
+}
+
+.loading {
+    justify-content: center;
+    display: flex;
+    font: bold;
+}
+
+p {
+    font-size: 20px; 
+    color: #222020;
+    text-align: center;
+}
+
+.pokeball-spinner {
+    animation: spin 3s infinite linear;
+}
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 @media (max-width: 540px) {
     .content {
         width: calc(100% - 4%);

@@ -27,7 +27,6 @@ export class AbilitiesDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.abilities.url);
     this.getAbility(this.abilities.url);
   }
 
@@ -39,7 +38,6 @@ export class AbilitiesDetailsComponent implements OnInit {
     this.pokeService.getAbility(abilityUrl).subscribe((data: any) => {
       this.ability.push(data);
     });
-    console.log(this.ability);
   }
 
 }

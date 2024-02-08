@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { forkJoin } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-move-list',
@@ -17,7 +18,8 @@ import { forkJoin } from 'rxjs';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressBarModule
   ],
   templateUrl: './move-list.component.html',
   styleUrl: './move-list.component.css',
@@ -30,6 +32,7 @@ export class MoveListComponent implements OnInit {
   displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  loading: boolean = true;
 
   constructor(private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.moves = [];
@@ -52,6 +55,8 @@ export class MoveListComponent implements OnInit {
         this.moveDetailsList = moveDetails;
         this.dataSource.data = this.moveDetailsList;
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
+        console.log(this.loading);
       });
     });
   }

@@ -94,7 +94,6 @@ export class PokemonDetailsComponent implements OnInit {
   }
 
   abilitiesModal(abilities: any): void {
-    console.log(abilities);
     this.dialog.open(AbilitiesDetailsComponent, {
       data: { abilities },
     });

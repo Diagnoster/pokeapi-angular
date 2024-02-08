@@ -80,7 +80,6 @@ export class PokeListComponent implements OnInit {
     for (let i = startIndex; i < endIndex; i++) {
       const pokemon = this.pokeList[i];
       observables.push(this.pokeService.getPokeDetails(pokemon.url));
-      console.log(observables);
     }
 
     forkJoin(observables).subscribe((results: any[]) => {
@@ -89,7 +88,6 @@ export class PokeListComponent implements OnInit {
   }
 
   onPokemonSelectionChange(): void {
-    console.log(this.selectedValue);
     if (this.selectedValue) {
       this.pokemonList = []; // clean pokemon list
       this.pokeService.getPokemon(this.selectedValue).pipe().subscribe((data: any) => {
@@ -118,7 +116,6 @@ export class PokeListComponent implements OnInit {
   }
 
   pokeModal(pokemon: any): void {
-    console.log(pokemon);
     this.dialog.open(PokemonDetailsComponent, {
       width: '750px',
       data: { pokemon },
