@@ -6,7 +6,8 @@
 
 .content {
   width: 90%;
-  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .example-card {
@@ -31,11 +32,22 @@
 
 .filter {
   display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  width: 40%;
 }
 
 mat-paginator {
   background: none;
   font-weight: bold;
+}
+
+.reset-button {
+  margin-top: 2px;
+  padding: 26px;
+  margin-left: 1%;
 }
 
 @media (max-width: 1000px) {

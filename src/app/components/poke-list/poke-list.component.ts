@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Observable, forkJoin } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-poke-list',
@@ -29,7 +30,8 @@ import { Observable, forkJoin } from 'rxjs';
     MatSelectModule, 
     FormsModule, 
     MatFormFieldModule, 
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [PokeServiceService],
   templateUrl: './poke-list.component.html',
