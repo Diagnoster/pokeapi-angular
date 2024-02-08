@@ -7,15 +7,14 @@
     <p>Loading...</p>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="animals">Items</button>
-    <mat-menu #animals="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="vertebrates">Pocket Items</button>
-      <button mat-menu-item [matMenuTriggerFor]="medicine">Medicine</button>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="items">Items</button>
+    <mat-menu #items="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="pocket">Pocket Items</button>
     </mat-menu>
 
-    <mat-menu #vertebrates="matMenu">
+    <mat-menu #pocket="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pokeballs">Pokeballs</button>
-      <button mat-menu-item [matMenuTriggerFor]="amphibians">Medicine</button>
+      <button mat-menu-item [matMenuTriggerFor]="medicine">Medicine</button>
       <button mat-menu-item [matMenuTriggerFor]="berries">Berries</button>
       <button mat-menu-item [matMenuTriggerFor]="machines">Machines</button>
       <button mat-menu-item [matMenuTriggerFor]="battle">Battle</button>
@@ -24,22 +23,13 @@
       <button mat-menu-item [matMenuTriggerFor]="misc">Misc</button>
     </mat-menu>
 
-    <mat-menu #medicine="matMenu">
-      <button mat-menu-item (click)="selectItem('item-category/26/')">Vitamins</button>
-      <button mat-menu-item (click)="selectItem('item-category/27/')">Healing</button>
-      <button mat-menu-item (click)="selectItem('item-category/28/')">PP Recovery</button>
-      <button mat-menu-item (click)="selectItem('item-category/29/')">Revival</button>
-      <button mat-menu-item (click)="selectItem('item-category/30/')">Status Cures</button>
-      <button mat-menu-item (click)="selectItem('item-category/50/')">Nature Mints</button>
-    </mat-menu>
-
     <mat-menu #pokeballs="matMenu">
       <button mat-menu-item (click)="selectItem('item-category/33/')">Special Balls</button>
       <button mat-menu-item (click)="selectItem('item-category/34/')">Standard Balls</button>
       <button mat-menu-item (click)="selectItem('item-category/39/')">Apricorn Balls</button>
     </mat-menu>
 
-    <mat-menu #amphibians="matMenu">
+    <mat-menu #medicine="matMenu">
       <button mat-menu-item (click)="selectItem('item-category/26/')">Vitamins</button>
       <button mat-menu-item (click)="selectItem('item-category/27/')">Healing</button>
       <button mat-menu-item (click)="selectItem('item-category/28/')">PP Recovery</button>
