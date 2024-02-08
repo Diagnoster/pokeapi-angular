@@ -7,16 +7,16 @@
     <p>Loading...</p>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
-    <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="animals">Items</button>
     <mat-menu #animals="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+      <button mat-menu-item [matMenuTriggerFor]="vertebrates">Pocket Items</button>
       <button mat-menu-item [matMenuTriggerFor]="medicine">Medicine</button>
     </mat-menu>
 
     <mat-menu #vertebrates="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pokeballs">Pokeballs</button>
-      <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-      <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+      <button mat-menu-item [matMenuTriggerFor]="amphibians">Medicine</button>
+      <button mat-menu-item [matMenuTriggerFor]="berries">Berries</button>
       <button mat-menu-item>Birds</button>
       <button mat-menu-item>Mammals</button>
     </mat-menu>
@@ -37,18 +37,23 @@
     </mat-menu>
 
     <mat-menu #amphibians="matMenu">
-      <button mat-menu-item>Sonoran desert toad</button>
-      <button mat-menu-item>Western toad</button>
-      <button mat-menu-item>Arroyo toad</button>
-      <button mat-menu-item>Yosemite toad</button>
+      <button mat-menu-item (click)="selectItem('item-category/26/')">Vitamins</button>
+      <button mat-menu-item (click)="selectItem('item-category/27/')">Healing</button>
+      <button mat-menu-item (click)="selectItem('item-category/28/')">PP Recovery</button>
+      <button mat-menu-item (click)="selectItem('item-category/29/')">Revival</button>
+      <button mat-menu-item (click)="selectItem('item-category/30/')">Status Cures</button>
+      <button mat-menu-item (click)="selectItem('item-category/50/')">Nature Mints</button>
     </mat-menu>
 
-    <mat-menu #reptiles="matMenu">
-      <button mat-menu-item>Banded Day Gecko</button>
-      <button mat-menu-item>Banded Gila Monster</button>
-      <button mat-menu-item>Black Tree Monitor</button>
-      <button mat-menu-item>Blue Spiny Lizard</button>
-      <button mat-menu-item disabled>Velociraptor</button>
+    <mat-menu #berries="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/2/')">Effort Drop</button>
+      <button mat-menu-item (click)="selectItem('item-category/3/')">Medicine</button>
+      <button mat-menu-item (click)="selectItem('item-category/5/')">In a Pinch</button>
+      <button mat-menu-item (click)="selectItem('item-category/6/')">Picky Healing</button>
+      <button mat-menu-item (click)="selectItem('item-category/7/')">Type Protection</button>
+      <button mat-menu-item (click)="selectItem('item-category/8/')">Baking Only</button>
+      <button mat-menu-item (click)="selectItem('item-category/48/')">Catching Bonus</button>
+      <button mat-menu-item (click)="selectItem('item-category/4/')">Other</button>
     </mat-menu>
     <mat-form-field>
       <mat-label>Filter</mat-label>

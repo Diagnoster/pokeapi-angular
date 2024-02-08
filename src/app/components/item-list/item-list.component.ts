@@ -67,6 +67,7 @@ export class ItemListComponent implements OnInit {
 
   selectItem(item: string) {
     this.itemDetailsList = [];
+    this.loading = true;
     this.pokeService.getSelectOption(item).subscribe(data => {
       this.items = data.items;
       this.items.forEach(value => {
@@ -74,6 +75,7 @@ export class ItemListComponent implements OnInit {
           this.itemDetailsList.push(data);
           this.dataSource.data = this.itemDetailsList;
           this.dataSource.paginator = this.paginator;
+          this.loading = false;
         });
       });
     });
