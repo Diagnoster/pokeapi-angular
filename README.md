@@ -32,6 +32,7 @@ To compile the application for production, use the command ng build. The build a
 - Pokémon Search: Use the search bar to find specific Pokémon by name.
 - Move List: See a list of all moves.
 - Ability details: Modal with the details of each ability that the Pokémon can have.
+- List Items: See a list of all pocket items (medicine, pokeballs, berries and more).
 
 ## Credits
 #### PokeAPI: Credits to PokeAPI for providing the API for data retrieval.
