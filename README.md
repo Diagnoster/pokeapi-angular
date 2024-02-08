@@ -18,13 +18,22 @@ This project is an Angular 17 application that utilizes the PokeAPI to display i
 
 ## How to Use
 ### Installation: 
-Make sure you have Node.js and Angular CLI installed on your machine. Clone this repository and run npm install to install the dependencies.
+Make sure you have Node.js and Angular CLI installed on your machine.
 
-### Development server: 
-Run ng serve to start a development server. Navigate to http://localhost:4200/ to view the application in your browser.
+## Running
 
-### Build: 
-To compile the application for production, use the command ng build. The build artifacts will be stored in the dist/ directory.
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Diagnoster/pokeapi-angular.git
+2. Navigate to the project directory:
+   ```bash
+   cd repository
+3. Install project dependencies:
+   ```bash
+   npm install
+4. Start Angular Application:
+    ```bash
+    ng serve -o
 
 ## Features
 - Pokémon Listing: View a list of Pokémon with their names, images, and types.
