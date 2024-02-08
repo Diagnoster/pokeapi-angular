@@ -50,6 +50,13 @@ p {
     }
   }
 
+@media (max-width: 640px) {
+    .content {
+        width: calc(100% - 4%);
+        margin: 2%;
+    }
+}
+
 @media (max-width: 540px) {
     .content {
         width: calc(100% - 4%);
