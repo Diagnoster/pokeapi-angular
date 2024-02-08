@@ -1,6 +1,14 @@
 # PokeAPI with Angular 17 and Angular Material
 This project is an Angular 17 application that utilizes the PokeAPI to display information about Pokémon. It is developed using Angular Material to ensure a beautiful and responsive user interface.
 
+## Screenshots
+<p align="center">
+  <img src="src/assets/screenshots/pokedexComponent.png" alt="material" width="555" height="250"/> 
+  <img src="src/assets/screenshots/pokeDetailsComponent.png" alt="material" width="450"/> 
+  <img src="src/assets/screenshots/abilitiesModal.png" alt="material" width="450"/> 
+  <img src="src/assets/screenshots/moveListComponent.png" alt="material" width="555" height="330"/> 
+</p>
+
 ## Technologies Used
 - <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="angular" width="40" height="40"/> Angular
 - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-plain.svg" alt="material" width="40" height="40"/> Angular Material
