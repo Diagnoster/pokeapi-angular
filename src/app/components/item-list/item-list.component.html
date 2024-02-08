@@ -17,8 +17,11 @@
       <button mat-menu-item [matMenuTriggerFor]="pokeballs">Pokeballs</button>
       <button mat-menu-item [matMenuTriggerFor]="amphibians">Medicine</button>
       <button mat-menu-item [matMenuTriggerFor]="berries">Berries</button>
-      <button mat-menu-item>Birds</button>
-      <button mat-menu-item>Mammals</button>
+      <button mat-menu-item [matMenuTriggerFor]="machines">Machines</button>
+      <button mat-menu-item [matMenuTriggerFor]="battle">Battle</button>
+      <button mat-menu-item [matMenuTriggerFor]="mail">Mail</button>
+      <button mat-menu-item [matMenuTriggerFor]="key">Key</button>
+      <button mat-menu-item [matMenuTriggerFor]="misc">Misc</button>
     </mat-menu>
 
     <mat-menu #medicine="matMenu">
@@ -55,6 +58,60 @@
       <button mat-menu-item (click)="selectItem('item-category/48/')">Catching Bonus</button>
       <button mat-menu-item (click)="selectItem('item-category/4/')">Other</button>
     </mat-menu>
+
+    <mat-menu #machines="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/37/')">All Machines</button>
+    </mat-menu>
+
+    <mat-menu #battle="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/1/')">Stat Boosts</button>
+      <button mat-menu-item (click)="selectItem('item-category/38/')">Flutes</button>
+      <button mat-menu-item (click)="selectItem('item-category/43/')">Miracle Shooter</button>
+    </mat-menu>
+
+    <mat-menu #mail="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/25/')">All Mail</button>
+    </mat-menu>
+
+    <mat-menu #key="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/20/')">Event items</button>
+      <button mat-menu-item (click)="selectItem('item-category/21/')">Gameplay</button>
+      <button mat-menu-item (click)="selectItem('item-category/22/')">Plot Advancement</button>
+      <button mat-menu-item (click)="selectItem('item-category/23/')">Unused</button>
+      <button mat-menu-item (click)="selectItem('item-category/40/')">Apricorn Box</button>
+      <button mat-menu-item (click)="selectItem('item-category/41/')">Data Cards</button>
+      <button mat-menu-item (click)="selectItem('item-category/46/')">Z Crystals</button>
+    </mat-menu>
+
+    
+    <mat-menu #misc="matMenu">
+      <button mat-menu-item (click)="selectItem('item-category/9/')">Collectibles</button>
+      <button mat-menu-item (click)="selectItem('item-category/10/')">Evolution</button>
+      <button mat-menu-item (click)="selectItem('item-category/11/')">Spelunking</button>
+      <button mat-menu-item (click)="selectItem('item-category/12/')">Held Itens</button>
+      <button mat-menu-item (click)="selectItem('item-category/13/')">Choice</button>
+      <button mat-menu-item (click)="selectItem('item-category/14/')">Effort Training</button>
+      <button mat-menu-item (click)="selectItem('item-category/15/')">Bad Held Items</button>
+      <button mat-menu-item (click)="selectItem('item-category/16/')">Training</button>
+      <button mat-menu-item (click)="selectItem('item-category/17/')">Plates</button>
+      <button mat-menu-item (click)="selectItem('item-category/18/')">Species Specific</button>
+      <button mat-menu-item (click)="selectItem('item-category/19/')">Type Enhancement</button>
+      <button mat-menu-item (click)="selectItem('item-category/24/')">Loot</button>
+      <button mat-menu-item (click)="selectItem('item-category/32/')">Mulch</button>
+      <button mat-menu-item (click)="selectItem('item-category/35/')">Dex Completion</button>
+      <button mat-menu-item (click)="selectItem('item-category/36/')">Scarves</button>
+      <button mat-menu-item (click)="selectItem('item-category/42/')">Jewels</button>
+      <button mat-menu-item (click)="selectItem('item-category/44/')">Mega Stones</button>
+      <button mat-menu-item (click)="selectItem('item-category/45/')">Memories</button>
+      <button mat-menu-item (click)="selectItem('item-category/47/')">Species Candies</button>
+      <button mat-menu-item (click)="selectItem('item-category/49/')">Dynamax Crystals</button>
+      <button mat-menu-item (click)="selectItem('item-category/51/')">Curry Ingredients</button>
+      <button mat-menu-item (click)="selectItem('item-category/52/')">Tera Shard</button>
+      <button mat-menu-item (click)="selectItem('item-category/53/')">Sandwich Ingredients</button>
+      <button mat-menu-item (click)="selectItem('item-category/54/')">TM Materials</button>
+      <button mat-menu-item (click)="selectItem('item-category/55/')">Picnic</button>
+    </mat-menu>
+
     <mat-form-field>
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
