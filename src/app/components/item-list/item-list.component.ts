@@ -7,10 +7,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { ItemDetails } from '../../models/item-details';
-import { Item } from '../../models/item';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { Observable, forkJoin } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -27,14 +25,14 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     MatInputModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatMenuModule,
     MatIconModule
   ],
   animations: [
     trigger('detailExpand', [
-      state('collapsed,void', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -44,7 +42,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class ItemListComponent implements OnInit {
 
   items: any[];
-  itemDetailsList: ItemDetails [];
+  itemDetailsList: ItemDetails[];
   displayedColumns = ['id', 'sprite', 'name', 'cost'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   dataSource = new MatTableDataSource<ItemDetails>();
@@ -64,18 +62,18 @@ export class ItemListComponent implements OnInit {
   }
 
   getItem() {
-    const observables: Observable<any>[] = [];
-    
-    const url = 'https://pokeapi.co/api/v2/item/6/';
-    if (url) {
-      observables.push(this.pokeService.getItens(url));
-    }
-
-    forkJoin(observables).subscribe((results: any[]) => {
-      this.itemDetailsList = results;
-      this.dataSource.data = this.itemDetailsList;
-      this.dataSource.paginator = this.paginator;
-      this.loading = false;
+    const url = 'item-category/34/';
+    this.loading = true;
+    this.pokeService.getSelectOption(url).subscribe(data => {
+      this.items = data.items;
+      this.items.forEach(value => {
+        this.pokeService.getItens(value.url).subscribe(data => {
+          this.itemDetailsList.push(data);
+          this.dataSource.data = this.itemDetailsList;
+          this.dataSource.paginator = this.paginator;
+          this.loading = false;
+        });
+      });
     });
   }
 
