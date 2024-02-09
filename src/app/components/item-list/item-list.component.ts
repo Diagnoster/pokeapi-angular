@@ -12,6 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { Observable, forkJoin } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 
 
 @Component({
@@ -25,7 +28,15 @@ import { CommonModule } from '@angular/common';
     MatPaginatorModule,
     MatProgressBarModule,
     MatButtonModule, 
-    MatMenuModule
+    MatMenuModule,
+    MatIconModule
+  ],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
   ],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.css'
@@ -34,15 +45,18 @@ export class ItemListComponent implements OnInit {
 
   items: any[];
   itemDetailsList: ItemDetails [];
-  displayedColumns = ['sprite', 'name', 'cost', 'effect_entries'];
+  displayedColumns = ['id', 'sprite', 'name', 'cost'];
+  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   dataSource = new MatTableDataSource<ItemDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
+  expandedElement: ItemDetails | null;
 
   constructor(private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.items = [];
     this.itemDetailsList = [];
     this.dataSource = new MatTableDataSource();
+    this.expandedElement = null;
   }
 
   ngOnInit() {

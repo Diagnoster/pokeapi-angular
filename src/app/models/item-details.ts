@@ -5,10 +5,10 @@ export class ItemDetails {
     id: number;
     name: string;
     cost: number;
-    effect_entries: EffectionDescription;
+    effect_entries: EffectionDescription [];
     sprites: Sprites;
 
-    constructor(id: number, name: string, cost: number, effect_entries: EffectionDescription, sprites: Sprites) {
+    constructor(id: number, name: string, cost: number, effect_entries: EffectionDescription [], sprites: Sprites) {
         this.id = id;
         this.name = name;
         this.cost = cost;
