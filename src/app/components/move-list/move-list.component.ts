@@ -10,6 +10,8 @@ import { MatInputModule} from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { forkJoin } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-move-list',
@@ -19,7 +21,15 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule
+  ],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
   ],
   templateUrl: './move-list.component.html',
   styleUrl: './move-list.component.css',
@@ -29,15 +39,19 @@ export class MoveListComponent implements OnInit {
 
   moves: Move[];
   moveDetailsList: MoveDetails [];
-  displayedColumns = ['id', 'name', 'type', 'power', 'accuracy', 'pp'];
+  displayedColumns = ['name', 'type', 'power', 'accuracy', 'pp'];
+  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
+  expandedElement: MoveDetails | null;
+
 
   constructor(private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
+    this.expandedElement = null;
   }
 
   ngOnInit() {

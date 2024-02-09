@@ -28,27 +28,49 @@ mat-form-field {
 .loading {
     justify-content: center;
     display: flex;
-    font: bold;
+    font-weight: bold;
 }
 
 p {
-    font-size: 20px; 
+    font-size: 20px;
     color: #222020;
     text-align: center;
 }
 
+table {
+    width: 100%;
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.example-element-description {
+    padding: 16px;
+}
+
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+/* Spinner pokeball */
 .pokeball-spinner {
     animation: spin 3s infinite linear;
 }
-  
-  @keyframes spin {
+
+@keyframes spin {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     to {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
 @media (max-width: 640px) {
     .content {
@@ -56,10 +78,3 @@ p {
         margin: 2%;
     }
 }
-
-@media (max-width: 540px) {
-    .content {
-        width: calc(100% - 4%);
-        margin: 2%;
-    }
-} 
