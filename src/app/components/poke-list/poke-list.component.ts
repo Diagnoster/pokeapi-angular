@@ -9,13 +9,15 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { PokeServiceService } from '../../services/poke-service.service';
 import { PokemonType } from '../../models/pokemon-type';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Observable, forkJoin } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @Component({
   selector: 'app-poke-list',
@@ -26,12 +28,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatGridListModule,
     MatCardModule,
     MatDialogModule,
-    MatPaginatorModule,
     MatSelectModule, 
     FormsModule, 
     MatFormFieldModule, 
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    MatProgressBarModule
   ],
   providers: [PokeServiceService],
   templateUrl: './poke-list.component.html',
@@ -41,12 +44,10 @@ export class PokeListComponent implements OnInit {
 
   pokeList: Pokemon[];
   pokemonList: Pokemon[] = [];
-  pageSize: number = 30;
-  page: number = 1; 
   totalPokemons: Pokemon [];
   selectedValue: string;
   selectedPokemon: Pokemon | undefined;
-
+  loading: boolean = true;
 
   constructor(
     private pokeService: PokeServiceService, 
@@ -61,31 +62,27 @@ export class PokeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPokemonList();
+    console.log(this.totalPokemons);
   }
 
   loadPokemonList(): void {
     this.pokeService.getPokemons()
       .subscribe((data: any) => {
         this.pokeList = data.results;
-        if(this.totalPokemons != null){
-          this.totalPokemons = data.results;
-        }
-        this.loadPokemonDetails(0, 30);
+        this.totalPokemons = data.results;
+        this.loadPokemonDetails(this.pokeList);
       });
   }
-  
-  loadPokemonDetails(startIndex: number, endIndex: number): void {
-    const observables: Observable<any>[] = [];
-  
-    for (let i = startIndex; i < endIndex; i++) {
-      const pokemon = this.pokeList[i];
-      if (pokemon) {
-        observables.push(this.pokeService.getPokeDetails(pokemon.url));
-      }
-    }
 
-    forkJoin(observables).subscribe((results: any[]) => {
-      this.pokemonList = results;
+  loadPokemonDetails(pokeList: Pokemon[]): void {
+    this.loading = true;
+    const requests = pokeList.map(pokemon => this.pokeService.getPokeDetails(pokemon.url));
+  
+    forkJoin(requests).subscribe((responses: any[]) => {
+      responses.forEach(data => {
+        this.pokemonList.push(data);
+        this.loading = false;
+      });
     });
   }
 
@@ -124,11 +121,12 @@ export class PokeListComponent implements OnInit {
     });
   }
 
-  onPageChange(event: any): void {
-    const startIndex = event.pageIndex * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.pokemonList = []; // clean list
-    this.loadPokemonDetails(startIndex, endIndex);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
+    this.pokemonList = this.pokemonList.filter(poke => 
+      poke.name.toLowerCase().indexOf(filterValue) >= 0 );
+
   }
   
   
