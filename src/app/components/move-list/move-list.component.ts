@@ -70,7 +70,6 @@ export class MoveListComponent implements OnInit {
         this.dataSource.data = this.moveDetailsList;
         this.dataSource.paginator = this.paginator;
         this.loading = false;
-        console.log(this.loading);
       });
     });
   }

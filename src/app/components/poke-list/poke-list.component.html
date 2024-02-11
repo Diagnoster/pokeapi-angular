@@ -15,12 +15,6 @@
           placeholder="Filter a movement from the list" 
           #input />
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Search Pokémon</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="pokemon" (selectionChange)="onPokemonSelectionChange()">
-          <mat-option *ngFor="let poke of pokeList" [value]="poke.name">{{ poke.name }}</mat-option>
-        </mat-select>
-      </mat-form-field>
       <button class="reset-button" mat-raised-button color="primary" (click)="reloadPokemonList()">Reset</button>
     </div>
     @for (pokemon of pokemonList; track pokemon) {

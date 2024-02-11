@@ -52,7 +52,6 @@ export class PokeServiceService {
 
   getSelectOption(item: string) : Observable<any> {
     const url = `${this.URL_BASE}/${item}`;
-    console.log(url);
     return this.http.get<any>(url);
   }
   

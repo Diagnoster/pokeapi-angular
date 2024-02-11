@@ -44,7 +44,6 @@ export class PokeListComponent implements OnInit {
 
   pokeList: Pokemon[];
   pokemonList: Pokemon[] = [];
-  totalPokemons: Pokemon [];
   selectedValue: string;
   selectedPokemon: Pokemon | undefined;
   loading: boolean = true;
@@ -56,20 +55,17 @@ export class PokeListComponent implements OnInit {
     public dialog: MatDialog) {
     this.pokeList = [];
     this.pokemonList = [];
-    this.totalPokemons = [];
     this.selectedValue = "";
   }
 
   ngOnInit(): void {
     this.loadPokemonList();
-    console.log(this.totalPokemons);
   }
 
   loadPokemonList(): void {
     this.pokeService.getPokemons()
       .subscribe((data: any) => {
         this.pokeList = data.results;
-        this.totalPokemons = data.results;
         this.loadPokemonDetails(this.pokeList);
       });
   }
@@ -81,8 +77,8 @@ export class PokeListComponent implements OnInit {
     forkJoin(requests).subscribe((responses: any[]) => {
       responses.forEach(data => {
         this.pokemonList.push(data);
-        this.loading = false;
       });
+      this.loading = false;
     });
   }
 
@@ -123,7 +119,6 @@ export class PokeListComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log(filterValue);
     this.pokemonList = this.pokemonList.filter(poke => 
       poke.name.toLowerCase().indexOf(filterValue) >= 0 );
 
