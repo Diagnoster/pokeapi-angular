@@ -36,6 +36,7 @@ Make sure you have Node.js and Angular CLI installed on your machine.
     ng serve -o
 
 ## Features
+- HomePage: To select various application features.
 - Pokémon Listing: View a list of Pokémon with their names, images, and types.
 - Pokémon Details: Click on a Pokémon to get detailed information about it, such as statistics, abilities, and moves.
 - Pokémon Search: Use the search bar to find specific Pokémon by name.
