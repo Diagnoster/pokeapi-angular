@@ -16,8 +16,8 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeComponent {
   card: any[] = [
-    {title: 'Pokedex', description: 'Encyclopedia that has all species of pokemon.', image: '../../../assets/pokedex.png', route: ''},
-    {title: 'Moves List',  description: 'List of all moves in the game.', image: '../../../assets/moveList.png', route: ''},
-    {title: 'Items List', description: 'List of items that appear in the Items Pocket.', image: '../../../assets/items.jpg', route: ''},
+    {title: 'Pokedex', description: 'Encyclopedia that has all species of pokemon.', image: '../../../assets/pokedex.png', route: '/pokedex'},
+    {title: 'Moves List',  description: 'List of all moves in the game.', image: '../../../assets/moveList.png', route: '/moves'},
+    {title: 'Items List', description: 'List of items that appear in the Items Pocket.', image: '../../../assets/items.jpg', route: '/items'},
   ];
 }

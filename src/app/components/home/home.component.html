@@ -1,6 +1,6 @@
 <div class="container">
     @for (option of card; track option) {
-        <mat-card class="example-card">
+        <mat-card class="example-card" [routerLink]="option.route">
             <mat-card-header>
                 <mat-card-title>{{option.title}}</mat-card-title>
             </mat-card-header>
