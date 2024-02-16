@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+.example-card {
+    justify-content: center;
+    width: calc(25% - 1%);
+    margin: 0.5%;
+    box-sizing: border-box;
+    min-width: 180px;
+    background-color: white;
+    cursor: pointer;
+}
+  
+mat-card-header {
+    justify-content: center;
+}
+
+mat-card-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    padding-top: 10px;
+    font-weight: bold;
+}
