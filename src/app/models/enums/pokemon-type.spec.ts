@@ -1,4 +1,4 @@
-import { PokemonType } from './pokemon-type';
+import { PokemonType } from '../../models/enums/pokemon-type';
 
 describe('PokemonType', () => {
   it('should create an instance', () => {

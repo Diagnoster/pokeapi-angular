@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { PokeServiceService } from '../../services/poke-service.service';
-import { PokemonType } from '../../models/pokemon-type';
+import { PokemonType } from '../../models/enums/pokemon-type';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
