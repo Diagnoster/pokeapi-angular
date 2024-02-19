@@ -19,6 +19,11 @@ export class PokeServiceService {
     return this.http.get<any>(url);
   }
 
+  getPokemonsLazy(offset: number, limit: number): Observable<any> {
+    const url =`${this.URL_BASE}/pokemon?offset=${offset}&limit=${limit}`;
+    return this.http.get<any>(url);
+  }
+
   getPokeDetails(pokemonUrl: string) : Observable<any> {
     return this.http.get<any>(pokemonUrl);
   }

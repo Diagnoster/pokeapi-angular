@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="content">
+  <div class="content" (window:scroll)="onScroll()">
     @if (loading) {
       <div class="loading">
         <img class="pokeball pokeball-spinner" src="../../../assets/pokeball.png" alt="pokeball" />
@@ -7,16 +7,6 @@
       <p>Loading...</p>
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
-    <div class="filter">
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput 
-          (keyup)="applyFilter($event)" 
-          placeholder="Filter a movement from the list" 
-          #input />
-      </mat-form-field>
-      <button class="reset-button" mat-raised-button color="primary" (click)="reloadPokemonList()">Reset</button>
-    </div>
     @for (pokemon of pokemonList; track pokemon) {
       <mat-card class="example-card"
         [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"

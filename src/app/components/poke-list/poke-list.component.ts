@@ -47,6 +47,9 @@ export class PokeListComponent implements OnInit {
   selectedValue: string;
   selectedPokemon: Pokemon | undefined;
   loading: boolean = true;
+  loadingMore: boolean = false;
+  pageSize = 30;
+  currentPage = 1;
 
   constructor(
     private pokeService: PokeServiceService, 
@@ -59,9 +62,45 @@ export class PokeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadPokemonList();
+    this.loadInitialPokemon();
   }
 
+  loadInitialPokemon(): void {
+    this.loading = true;
+    this.pokeService.getPokemonsLazy(0, this.pageSize) // first pokemon loading
+      .subscribe((data: any) => {
+        this.pokeList = data.results;
+        this.loadPokemonDetails(this.pokeList);
+        this.loading = false;
+        console.log(data.results);
+      });
+  }
+  
+  onScroll(): void {
+    const scrollPosition = window.pageYOffset + window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollPosition / documentHeight) * 100;
+  
+    if (scrollPercentage > 90 && !this.loading && !this.loadingMore) {
+      this.loadingMore = true;
+      this.loading = true;
+      this.currentPage++;
+      this.loadMorePokemon();
+    }
+  }
+  
+  loadMorePokemon(): void {
+    console.log('Loading more Pokemon...' + this.currentPage);
+    this.pokeService.getPokemonsLazy((this.currentPage - 1) * this.pageSize, this.pageSize)
+      .subscribe((data: any) => {
+        this.pokeList = data.results;
+        this.loadPokemonDetails(this.pokeList);
+        console.log('Updated pokeList:', this.pokeList);
+        this.loading = false;
+        this.loadingMore = false;
+      });
+  }
+  
   loadPokemonList(): void {
     this.pokeService.getPokemons()
       .subscribe((data: any) => {
@@ -82,22 +121,6 @@ export class PokeListComponent implements OnInit {
     });
   }
 
-  onPokemonSelectionChange(): void {
-    if (this.selectedValue) {
-      this.pokemonList = []; // clean pokemon list
-      this.pokeService.getPokemon(this.selectedValue).pipe().subscribe((data: any) => {
-        this.pokemonList.push(data); 
-      });
-    }
-  }
-
-  reloadPokemonList(): void {
-    this.pokemonList = [];
-    this.selectedValue = '';
-    this.selectedPokemon = undefined;
-    this.loadPokemonList();
-  }
-
   upperFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
@@ -116,13 +139,5 @@ export class PokeListComponent implements OnInit {
       data: { pokemon },
     });
   }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.pokemonList = this.pokemonList.filter(poke => 
-      poke.name.toLowerCase().indexOf(filterValue) >= 0 );
-
-  }
-  
   
 }
