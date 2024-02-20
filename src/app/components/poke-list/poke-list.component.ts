@@ -13,11 +13,12 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Observable, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-poke-list',
@@ -34,7 +35,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatAutocompleteModule
   ],
   providers: [PokeServiceService],
   templateUrl: './poke-list.component.html',
@@ -43,9 +45,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class PokeListComponent implements OnInit {
 
   pokeList: Pokemon[];
-  pokemonList: Pokemon[] = [];
-  selectedValue: string;
-  selectedPokemon: Pokemon | undefined;
+  allPokemonList: Pokemon[]; // for use in matAutocomplete
+  pokemonList: Pokemon[];
+  filteredPokemonList: Pokemon[]; 
+  selectedPokemon: string = '';
   loading: boolean = true;
   loadingMore: boolean = false;
   pageSize = 30;
@@ -57,12 +60,20 @@ export class PokeListComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog) {
     this.pokeList = [];
+    this.allPokemonList = [];
+    this.filteredPokemonList = [];
     this.pokemonList = [];
-    this.selectedValue = "";
   }
 
   ngOnInit(): void {
+    this.loadAllPokemons();
     this.loadInitialPokemon();
+  }
+
+  loadAllPokemons() : void {
+    this.pokeService.getPokemons().subscribe((data: any) => {
+      this.allPokemonList = data.results;
+    })
   }
 
   loadInitialPokemon(): void {
@@ -133,11 +144,24 @@ export class PokeListComponent implements OnInit {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
 
+  filterPokemonList() {
+    this.filteredPokemonList = this.pokemonList.filter(pokemon => 
+      pokemon && pokemon.name && pokemon.name.toLowerCase().includes(this.selectedPokemon.toLowerCase())
+    );
+  }
+  
+  onOptionSelected(event: MatAutocompleteSelectedEvent) {
+    this.filteredPokemonList = [];
+    const selectedPokemonName = event.option.viewValue;
+    this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
+      this.filteredPokemonList.push(pokemonDetails);
+    });
+  }
+
   pokeModal(pokemon: any): void {
     this.dialog.open(PokemonDetailsComponent, {
       width: '750px',
       data: { pokemon },
     });
   }
-  
 }

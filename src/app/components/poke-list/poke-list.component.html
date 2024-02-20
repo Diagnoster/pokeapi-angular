@@ -7,30 +7,69 @@
       <p>Loading...</p>
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
-    @for (pokemon of pokemonList; track pokemon) {
-      <mat-card class="example-card"
-        [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
-        (click)="pokeModal(pokemon)">
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
-            <mat-card-subtitle>
-              @for (poke of pokemon.types; track poke) {
-                <div>
-                  <img [src]="getTypeRetroImageUrl(poke.type.name)" alt="Tipo do Pokémon">
-                </div>
-              }
-            </mat-card-subtitle>
-            <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-          <span></span>
-          <div class="poke-number">
-            <span> # {{ pokemon.id }}</span>
-          </div>
-        </mat-card-content>
-      </mat-card>
+    <mat-form-field>
+      <mat-label>Search Pokémon</mat-label>
+      <input matInput [matAutocomplete]="auto" [(ngModel)]="selectedPokemon" placeholder="Filter a pokémon from the list">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+        <mat-option *ngFor="let pokemon of allPokemonList" [value]="pokemon.name">
+          {{pokemon.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    @if ( selectedPokemon === '') {
+      @for (pokemon of pokemonList; track pokemon) {
+        <mat-card class="example-card"
+          [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
+          (click)="pokeModal(pokemon)">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
+              <mat-card-subtitle>
+                @for (poke of pokemon.types; track poke) {
+                  <div>
+                    <img [src]="getTypeRetroImageUrl(poke.type.name)" alt="Tipo do Pok
+                    émon">
+                  </div>
+                }
+              </mat-card-subtitle>
+              <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            <span></span>
+            <div class="poke-number">
+              <span> # {{ pokemon.id }}</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    }
+    @else {
+      @for (pokemon of filteredPokemonList; track pokemon) {
+        <mat-card class="example-card"
+          [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
+          (click)="pokeModal(pokemon)">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
+              <mat-card-subtitle>
+                @for (poke of pokemon.types; track poke) {
+                  <div>
+                    <img [src]="getTypeRetroImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+                  </div>
+                }
+              </mat-card-subtitle>
+              <img [src]="pokemon.sprites.front_default" alt="Imagem do pokémon {{pokemon.name}}">
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            <span></span>
+            <div class="poke-number">
+              <span> # {{ pokemon.id }}</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
     }
   </div>
 </div>
