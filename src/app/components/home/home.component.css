@@ -4,14 +4,20 @@
     flex-wrap: wrap; 
 }
 
-.example-card {
+.home-card {
     justify-content: center;
     width: calc(25% - 1%);
     margin: 0.5%;
     box-sizing: border-box;
     min-width: 180px;
-    background-color: white;
+    background-color: #3F51B5;
     cursor: pointer;
+}
+
+
+.home-card img {
+    height: 90%;
+    object-fit: cover;
 }
   
 mat-card-header {
@@ -20,11 +26,27 @@ mat-card-header {
 
 mat-card-title {
     font-size: 28px;
-    margin-bottom: 10px;
+    color: #FFFF;
 }
 
 p {
     text-align: center;
-    padding-top: 10px;
+    padding-top: 8px;
     font-weight: bold;
+}
+
+img {
+    width: calc(94 - 100);
+    margin: 3%;
+    border-radius: 6px;
+}
+
+@media(max-width: 1167px) {
+    p {
+        font-size: 12px;
+    }
+
+    mat-card-title {
+        font-size: 25px;
+    }
 }

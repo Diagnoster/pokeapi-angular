@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.example-card {
+.poke-card {
   justify-content: center;
   width: calc(25% - 1%);
   margin: 0.5%;
@@ -50,6 +50,7 @@
 
 mat-form-field {
   width: 100%;
+  display: flex;
 }
 
 mat-paginator {
@@ -79,7 +80,7 @@ mat-card-subtitle {
 }
 
 @media (max-width: 1000px) {
-  .example-card {
+  .poke-card {
     width: calc(32% - 1%);
   }
 }
@@ -91,7 +92,7 @@ mat-card-subtitle {
 }
 
 @media (max-width: 655px) {
-  .example-card {
+  .poke-card {
     width: calc(50% - 2%);
     float: none;
     margin: 1%;

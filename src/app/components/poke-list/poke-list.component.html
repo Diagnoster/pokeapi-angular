@@ -10,6 +10,9 @@
     <mat-form-field>
       <mat-label>Search Pokémon</mat-label>
       <input matInput [matAutocomplete]="auto" [(ngModel)]="selectedPokemon" placeholder="Filter a pokémon from the list">
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput($event)">
+        <mat-icon>cancel</mat-icon>
+      </button>
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
         @for (poke of allPokemonList; track poke) {
           @if (poke.name.includes(selectedPokemon.toLowerCase())) {
@@ -22,7 +25,7 @@
     </mat-form-field>
     @if ( selectedPokemon === '') {
       @for (pokemon of pokemonList; track pokemon) {
-        <mat-card class="example-card"
+        <mat-card class="poke-card"
           [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
           (click)="pokeModal(pokemon)">
           <mat-card-header>
@@ -50,7 +53,7 @@
     }
     @else {
       @for (pokemon of filteredPokemonList; track pokemon) {
-        <mat-card class="example-card"
+        <mat-card class="poke-card"
           [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
           (click)="pokeModal(pokemon)">
           <mat-card-header>

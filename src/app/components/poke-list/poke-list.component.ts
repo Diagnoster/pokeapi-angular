@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-poke-list',
@@ -36,7 +38,8 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
     MatButtonModule,
     MatInputModule,
     MatProgressBarModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatIconModule
   ],
   providers: [PokeService],
   templateUrl: './poke-list.component.html',
@@ -154,6 +157,11 @@ export class PokeListComponent implements OnInit {
     this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
       this.filteredPokemonList.push(pokemonDetails);
     });
+  }
+
+  clearInput(event: Event) {
+    event.stopPropagation();
+    this.selectedPokemon = "";
   }
 
   pokeModal(pokemon: any): void {
