@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { PokeServiceService } from '../../services/poke-service.service';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { PokeService } from '../../services/poke.service';
 import { Move } from '../../models/move';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
@@ -47,7 +47,7 @@ export class MoveListComponent implements OnInit {
   expandedElement: MoveDetails | null;
 
 
-  constructor(private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();

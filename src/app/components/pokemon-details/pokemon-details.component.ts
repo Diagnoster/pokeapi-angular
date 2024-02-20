@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
-import { PokeServiceService } from '../../services/poke-service.service';
+import { PokeService } from '../../services/poke.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
@@ -44,7 +44,7 @@ export class PokemonDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();

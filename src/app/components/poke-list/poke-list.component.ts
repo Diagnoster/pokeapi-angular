@@ -7,7 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
-import { PokeServiceService } from '../../services/poke-service.service';
+import { PokeService } from '../../services/poke.service';
 import { PokemonType } from '../../models/enums/pokemon-type';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatSelectModule } from '@angular/material/select';
@@ -38,7 +38,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
     MatProgressBarModule,
     MatAutocompleteModule
   ],
-  providers: [PokeServiceService],
+  providers: [PokeService],
   templateUrl: './poke-list.component.html',
   styleUrl: './poke-list.component.css'
 })
@@ -55,7 +55,7 @@ export class PokeListComponent implements OnInit {
   currentPage = 1;
 
   constructor(
-    private pokeService: PokeServiceService, 
+    private pokeService: PokeService, 
     private pokeHelperService: PokeHelperService,
     private router: Router,
     public dialog: MatDialog) {

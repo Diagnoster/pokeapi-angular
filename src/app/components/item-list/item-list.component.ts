@@ -4,7 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { PokeServiceService } from '../../services/poke-service.service';
+import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { ItemDetails } from '../../models/item-details';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,7 +48,7 @@ export class ItemListComponent implements OnInit {
   loading: boolean = true;
   expandedElement: ItemDetails | null;
 
-  constructor(private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.items = [];
     this.itemDetailsList = [];
     this.dataSource = new MatTableDataSource();

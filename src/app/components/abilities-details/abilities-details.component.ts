@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Ability } from '../../models/ability';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PokeServiceService } from '../../services/poke-service.service';
+import { PokeService } from '../../services/poke.service';
 import { MatCardModule } from '@angular/material/card';
 import { AbilitiesDetails } from '../../models/abilities-details';
 import { PokeHelperService } from '../../services/poke-helper.service';
@@ -20,8 +20,7 @@ export class AbilitiesDetailsComponent implements OnInit {
   abilities: Ability;
   ability: AbilitiesDetails[];
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeServiceService, private pokeHelperService: PokeHelperService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.abilities = data.abilities;
     this.ability = [];
   }
