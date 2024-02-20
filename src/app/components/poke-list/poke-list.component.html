@@ -11,9 +11,13 @@
       <mat-label>Search Pokémon</mat-label>
       <input matInput [matAutocomplete]="auto" [(ngModel)]="selectedPokemon" placeholder="Filter a pokémon from the list">
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
-        <mat-option *ngFor="let pokemon of allPokemonList" [value]="pokemon.name">
-          {{pokemon.name}}
-        </mat-option>
+        @for (poke of allPokemonList; track poke) {
+          @if (poke.name.includes(selectedPokemon.toLowerCase())) {
+            <mat-option [value]="poke.name">
+              {{poke.name}}
+            </mat-option>
+          }
+        }
       </mat-autocomplete>
     </mat-form-field>
     @if ( selectedPokemon === '') {
