@@ -47,6 +47,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
   expandedElement: ItemDetails | null;
+  nameCategory = '';
 
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.items = [];
@@ -64,8 +65,9 @@ export class ItemListComponent implements OnInit {
     this.loading = true;
     this.pokeService.getSelectOption(url).subscribe(data => {
       this.items = data.items;
+      this.nameCategory = data.name;
       this.items.forEach(value => {
-        this.pokeService.getItens(value.url).subscribe(data => {
+        this.pokeService.getItens(value.url).subscribe(data => {       
           this.itemDetailsList.push(data);
           this.dataSource.data = this.itemDetailsList;
           this.dataSource.paginator = this.paginator;
@@ -80,6 +82,7 @@ export class ItemListComponent implements OnInit {
     this.loading = true;
     this.pokeService.getSelectOption(item).subscribe(data => {
       this.items = data.items;
+      this.nameCategory = data.name;
       this.items.forEach(value => {
         this.pokeService.getItens(value.url).subscribe(data => {
           this.itemDetailsList.push(data);
@@ -94,6 +97,10 @@ export class ItemListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  upperFirstLetter(word: string): string {
+    return this.pokeHelperService.upperFirstLetter(word);
   }
 
 }

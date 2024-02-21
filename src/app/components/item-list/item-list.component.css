@@ -41,6 +41,12 @@ table {
   width: 100%;
 }
 
+.title-move {
+  text-align: center;
+  font-style: italic;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 tr.example-detail-row {
   height: 0;
 }
@@ -82,4 +88,10 @@ tr.example-detail-row {
     width: 70px;
     height: 70px;
   }
+
+  .title-move {
+    font-size: 20px;
+    font-style: italic;
+  }
+  
 }

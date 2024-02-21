@@ -8,6 +8,7 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
     <button class="main-button" mat-raised-button color="primary" [matMenuTriggerFor]="items">Items</button>
+    <h1 class="title-move"> {{ upperFirstLetter(nameCategory) }} </h1>
     <mat-menu #items="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pocket">Pocket Items</button>
     </mat-menu>
