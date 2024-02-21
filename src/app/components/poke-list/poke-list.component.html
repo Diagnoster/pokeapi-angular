@@ -25,7 +25,7 @@
     </mat-form-field>
     @if ( selectedPokemon === '') {
       @for (pokemon of pokemonList; track pokemon) {
-        <mat-card class="poke-card"
+        <mat-card class="poke-card pulse"
           [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
           (click)="pokeModal(pokemon)">
           <mat-card-header>
@@ -53,7 +53,7 @@
     }
     @else {
       @for (pokemon of filteredPokemonList; track pokemon) {
-        <mat-card class="poke-card"
+        <mat-card class="poke-card pulse"
           [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
           (click)="pokeModal(pokemon)">
           <mat-card-header>

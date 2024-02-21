@@ -30,15 +30,12 @@
 }
 
 .pokemon-artwork {
-  width: 300px; 
+  width: 300px;
   height: auto;
 }
 
 .stats {
   padding-bottom: 2px;
-}
-
-.pokemon-stats {
 }
 
 .title-stat {
@@ -154,7 +151,7 @@ mat-form-field {
 }
 
 .icon {
-  vertical-align: middle; 
+  vertical-align: middle;
   font-size: 18px;
 }
 
@@ -164,7 +161,7 @@ mat-form-field {
 
 @media (max-width: 890px) {
   .pokemon-info-container {
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
   }
 
   .pokemon-abilities {

@@ -3,78 +3,83 @@
     justify-content: center;
     width: 100%;
     margin-top: 2em;
-}
-
-h1 {
+  }
+  
+  h1 {
     font-size: 30px;
     text-align: center;
-}
-
-.content {
+  }
+  
+  .content {
     width: 70%;
-}
-
-mat-form-field {
+  }
+  
+  mat-form-field {
     width: 100%;
     margin-bottom: -2em;
-}
-
-.pokeball {
+  }
+  
+  .pokeball {
     width: 100px;
     height: 100px;
     margin-bottom: 1em;
-}
-
-.loading {
+  }
+  
+  .loading {
     justify-content: center;
     display: flex;
     font-weight: bold;
-}
-
-p {
+  }
+  
+  p {
     font-size: 20px;
     color: #222020;
     text-align: center;
-}
-
-table {
+  }
+  
+  table {
     width: 100%;
-}
-
-tr.example-detail-row {
+  }
+  
+  tr.example-detail-row {
     height: 0;
-}
-
-.example-element-row td {
+  }
+  
+  .example-element-row td {
     border-bottom-width: 0;
-}
-
-.example-element-description {
+  }
+  
+  .example-element-description {
     padding: 16px;
-}
-
-.example-element-description-attribution {
+  }
+  
+  .example-element-description-attribution {
     opacity: 0.5;
-}
-
-/* Spinner pokeball */
-.pokeball-spinner {
+  }
+  
+  /* Spinner pokeball */
+  .pokeball-spinner {
     animation: spin 3s infinite linear;
-}
-
-@keyframes spin {
+  }
+  
+  @keyframes spin {
     from {
-        transform: rotate(0deg);
+      transform: rotate(0deg);
     }
-
+  
     to {
-        transform: rotate(360deg);
+      transform: rotate(360deg);
     }
-}
-
-@media (max-width: 640px) {
+  }
+  
+  @media (max-width: 640px) {
     .content {
-        width: calc(100% - 4%);
-        margin: 2%;
+      width: calc(100% - 4%);
+      margin: 2%;
     }
-}
+  
+    .pokeball {
+      width: 70px;
+      height: 70px;
+    }
+  }

@@ -1,12 +1,12 @@
 <div class="container">
     @for (option of card; track option) {
-        <mat-card class="home-card" [routerLink]="option.route">
-            <mat-card-header>
-                <mat-card-title>{{option.title}}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src="{{option.image}}" alt="{{option.title}}" />
-            <mat-card-content>
-            </mat-card-content>
-        </mat-card>
+    <mat-card class="home-card" [routerLink]="option.route">
+        <mat-card-header>
+            <mat-card-title>{{option.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{option.image}}" alt="{{option.title}}" />
+        <mat-card-content>
+        </mat-card-content>
+    </mat-card>
     }
 </div>

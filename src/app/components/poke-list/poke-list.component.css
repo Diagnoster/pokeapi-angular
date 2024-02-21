@@ -31,10 +31,11 @@
 }
 
 .pokemon-name {
-  max-width: 150px; 
+  max-width: 150px;
   overflow: hidden;
-  text-overflow: ellipsis; /* show ... */
-  white-space: nowrap; 
+  text-overflow: ellipsis;
+  /* show ... */
+  white-space: nowrap;
 }
 
 .filter {
@@ -79,6 +80,24 @@ mat-card-subtitle {
   animation: spin 3s infinite linear;
 }
 
+.poke-card:hover {
+  animation: card-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes card-pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 1000px) {
   .poke-card {
     width: calc(32% - 1%);
@@ -89,6 +108,11 @@ mat-card-subtitle {
   mat-card-title {
     font-size: 16px;
   }
+
+  .pokeball {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 @media (max-width: 655px) {
@@ -98,5 +122,10 @@ mat-card-subtitle {
     margin: 1%;
     align-items: center;
     align-content: center;
+  }
+
+  .pokeball {
+    width: 70px;
+    height: 70px;
   }
 }

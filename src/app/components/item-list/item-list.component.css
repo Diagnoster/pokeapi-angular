@@ -18,6 +18,7 @@ mat-form-field {
   width: 100%;
   margin-bottom: -2em;
 }
+
 .pokeball {
   width: 100px;
   height: 100px;
@@ -75,5 +76,10 @@ tr.example-detail-row {
   .content {
     width: calc(100% - 4%);
     margin: 2%;
+  }
+
+  .pokeball {
+    width: 70px;
+    height: 70px;
   }
 }
