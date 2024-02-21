@@ -86,7 +86,6 @@ export class PokeListComponent implements OnInit {
         this.pokeList = data.results;
         this.loadPokemonDetails(this.pokeList);
         this.loading = false;
-        console.log(data.results);
       });
   }
   
