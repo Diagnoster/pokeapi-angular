@@ -21,7 +21,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/assets"
+              "src/assets",
+              "src/pokeball.ico"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -85,7 +86,8 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/assets"
+              "src/assets",
+              "src/pokeball.ico"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
