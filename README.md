@@ -3,10 +3,12 @@ This project is an Angular 17 application that utilizes the PokeAPI to display i
 
 ## Screenshots
 <p align="center">
+  <img src="src/assets/screenshots/homeC.png" alt="material" width="300"/> 
   <img src="src/assets/screenshots/pokedexC.png" alt="material" width="300"/> 
   <img src="src/assets/screenshots/detailsC.png" alt="material" width="300"/> 
   <img src="src/assets/screenshots/abilitiesC.png" alt="material" width="300"/> 
   <img src="src/assets/screenshots/movesC.png" alt="material" width="300"/> 
+  <img src="src/assets/screenshots/itemsC.png" alt="material" width="300"/> 
 </p>
 
 ## Technologies Used
