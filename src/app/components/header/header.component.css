@@ -19,13 +19,14 @@ mat-toolbar {
   height: 80px;
   width: auto;
   padding-top: 4px;
+  padding-right: 2em;
 }
 
 span {
   color: #FFF;
-  padding-left: 2em;
   font-size: 18px;
   display: inline-block;
+  margin-right: 2em;
 }
 
 .example-spacer {
@@ -34,6 +35,11 @@ span {
 
 .example-icon {
   color: red;
+}
+
+.selected {
+  background-color: #4c5fcc;
+  border-radius: 8px;
 }
 
 a {
@@ -58,5 +64,10 @@ header {
 @media (max-width: 600px) {
   header {
     margin-top: 55px;
+  }
+
+  span {
+    font-size: 15px;
+    margin-right: 5px;
   }
 }
