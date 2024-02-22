@@ -7,7 +7,10 @@
     <p>Loading...</p>
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
-    <button class="main-button" mat-raised-button color="primary" [matMenuTriggerFor]="items">Items</button>
+    <button class="main-button" mat-raised-button color="primary" [matMenuTriggerFor]="items">
+      <mat-icon>list</mat-icon>
+      Items
+    </button>
     <h1 class="title-move"> {{ upperFirstLetter(nameCategory) }} </h1>
     <mat-menu #items="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pocket">Pocket Items</button>
@@ -125,7 +128,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let item"> {{ item.name }} </td>
+        <td mat-cell *matCellDef="let item"> {{ upperFirstLetter(item.name) }} </td>
       </ng-container>
 
       <!-- Cost Column -->

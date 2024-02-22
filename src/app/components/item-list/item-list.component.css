@@ -42,10 +42,14 @@ table {
 }
 
 .title-move {
-  text-align: center;
-  font-style: italic;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #3f51b5; 
+  padding: 10px; 
+  color: white; 
+  border-radius: 8px;
+  margin-top: 1em;
+  margin-bottom: -4px;
 }
+
 
 tr.example-detail-row {
   height: 0;
@@ -91,7 +95,6 @@ tr.example-detail-row {
 
   .title-move {
     font-size: 20px;
-    font-style: italic;
   }
   
 }

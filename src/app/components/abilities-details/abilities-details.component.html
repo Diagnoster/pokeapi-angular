@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-title> {{ upperFirstLetter(ab.name) }} </mat-card-title>
       <mat-card-subtitle>
-        {{ ab.generation.name }}
+        {{ upperFirstLetter(ab.generation.name) }}
       </mat-card-subtitle>
     </mat-card-header>
     @if (ab.effect_entries.length > 0) {
