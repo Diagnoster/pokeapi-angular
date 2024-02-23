@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+}
+
+.choose-pokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.player-pokemon {
+display: flex;
+}
+
+.enemy-pokemon {
+    
+}
+
+.pokemon-artwork {
+    width: 300px;
+    height: auto;
+}
+
+.example-card {
+    width: calc(94% - 6%);
+    margin: 3%;
+}
+
+.type-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 2px;
+  }
+  
+
+  mat-card {
+    justify-content: center; 
+    align-items: center
+  }
+  
+  mat-card-title {
+    font-size: 23px;
+    margin-bottom: 2px;
+  }
+  
+  mat-card-subtitle {
+    align-items: center;
+  }
+  
+  .title {
+    align-items: center;
+  }

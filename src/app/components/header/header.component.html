@@ -7,6 +7,7 @@
     <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" (click)="selectSpan('pokedex')">Pokedex</a></span>
     <span [ngClass]="{'selected': selectedSpan === 'moves'}"><a mat-button routerLink="/moves" (click)="selectSpan('moves')">Moves</a></span>
     <span [ngClass]="{'selected': selectedSpan === 'items'}"><a mat-button routerLink="/items" (click)="selectSpan('items')">Items</a></span>
+    <span [ngClass]="{'selected': selectedSpan === 'battle'}"><a mat-button routerLink="/battle" (click)="selectSpan('battle')">Battle</a></span>
     <span class="example-spacer"></span>
     <a href="https://github.com/Diagnoster/pokeapi-angular">
       <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">

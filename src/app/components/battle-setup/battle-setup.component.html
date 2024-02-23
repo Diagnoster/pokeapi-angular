@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="player-pokemon">
+        <mat-card class="example-card">
+            @if (playerPokemon) {
+                <mat-card-header>
+                <mat-card-title class="title" > {{ playerPokemon.name }} </mat-card-title>
+                <mat-card-subtitle>@for (poke of playerPokemon.types; track poke) {
+                    <div clas="type-info">
+                        <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+                    </div>
+                }</mat-card-subtitle>
+                
+                </mat-card-header>
+                <img mat-card-image class="pokemon-artwork"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{playerPokemon.id}}.png"
+                    alt="Imagem {{ playerPokemon.name }}">
+                <mat-card-content>
+                <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                </p>
+                </mat-card-content>
+                <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+                </mat-card-actions>
+            }
+          </mat-card>
+    </div>
+    <div class="choose-pokemon">
+        <mat-form-field>
+            <mat-label>Search Pokémon</mat-label>
+            <input matInput [matAutocomplete]="autoPlayer" [(ngModel)]="selectedPokemonPlayer" placeholder="Filter a pokémon from the list">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('player')">
+            <mat-icon>cancel</mat-icon>
+            </button>
+            <mat-autocomplete autoActiveFirstOption #autoPlayer="matAutocomplete" (optionSelected)="onPlayerOptionSelected($event)">
+            @for (poke of allPokemonListPlayer; track poke) {
+                @if (poke.name.includes(selectedPokemonPlayer.toLowerCase())) {
+                <mat-option [value]="poke.name">
+                    {{poke.name}}
+                </mat-option>
+                }
+            }
+            </mat-autocomplete>
+        </mat-form-field>
+        <p> VS </p>
+        <mat-form-field>
+            <mat-label>Search Pokémon</mat-label>
+            <input matInput [matAutocomplete]="autoEnemy" [(ngModel)]="selectedPokemonEnemy" placeholder="Filter a pokémon from the list">
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('enemy')">
+            <mat-icon>cancel</mat-icon>
+            </button>
+            <mat-autocomplete autoActiveFirstOption #autoEnemy="matAutocomplete" (optionSelected)="onEnemyOptionSelected($event)">
+            @for (poke of allPokemonListEnemy; track poke) {
+                @if (poke.name.includes(selectedPokemonEnemy.toLowerCase())) {
+                <mat-option [value]="poke.name">
+                    {{poke.name}}
+                </mat-option>
+                }
+            }
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="enemy-pokemon">
+        <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Shiba Inu</mat-card-title>
+              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image class="pokemon-artwork" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+</div>
