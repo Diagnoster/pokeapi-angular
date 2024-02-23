@@ -11,7 +11,9 @@
       <mat-icon>list</mat-icon>
       Items
     </button>
-    <h1 class="title-item"> {{ upperFirstLetter(nameCategory) }} </h1>
+    @if (nameCategory) {
+      <h1 class="title-item"> {{ upperFirstLetter(nameCategory) }} </h1>
+    }
     <mat-menu #items="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pocket">Pocket Items</button>
     </mat-menu>
