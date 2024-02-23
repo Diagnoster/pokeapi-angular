@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-move-list',
@@ -22,7 +23,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     MatInputModule,
     MatPaginatorModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   animations: [
     trigger('detailExpand', [
