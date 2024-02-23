@@ -33,8 +33,7 @@
 .pokemon-name {
   max-width: 150px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  /* show ... */
+  text-overflow: ellipsis; /* show ... */
   white-space: nowrap;
 }
 
@@ -52,11 +51,6 @@
 mat-form-field {
   width: 100%;
   display: flex;
-}
-
-mat-paginator {
-  background: none;
-  font-weight: bold;
 }
 
 .reset-button {

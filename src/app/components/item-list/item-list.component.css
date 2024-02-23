@@ -41,7 +41,7 @@ table {
   width: 100%;
 }
 
-.title-move {
+.title-item {
   background-color: #3f51b5; 
   padding: 10px; 
   color: white; 
@@ -93,7 +93,7 @@ tr.example-detail-row {
     height: 70px;
   }
 
-  .title-move {
+  .title-item {
     font-size: 20px;
   }
   

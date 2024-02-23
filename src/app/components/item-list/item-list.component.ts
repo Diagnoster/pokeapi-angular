@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -35,7 +35,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ]),
   ],
   templateUrl: './item-list.component.html',
-  styleUrl: './item-list.component.css'
+  styleUrl: './item-list.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemListComponent implements OnInit {
 
@@ -93,14 +94,14 @@ export class ItemListComponent implements OnInit {
       });
     });
   }
+  
+  upperFirstLetter(word: string): string {
+    return this.pokeHelperService.upperFirstLetter(word);
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
 }

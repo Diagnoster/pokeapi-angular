@@ -13,3 +13,9 @@ body {
     background-color: #CBDFF0;
 }
 
+
+.line {
+    border-bottom: 1px solid rgb(128, 126, 126);
+    width: calc(100% - 6%);
+    margin: 3%;
+}

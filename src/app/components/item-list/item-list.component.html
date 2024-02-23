@@ -1,17 +1,17 @@
 <div class="container">
   <div class="content">
     @if (loading) {
-    <div class="loading">
-      <img class="pokeball pokeball-spinner" src="../../../assets/pokeball.png" alt="pokeball">
-    </div>
-    <p>Loading...</p>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <div class="loading">
+        <img class="pokeball pokeball-spinner" src="../../../assets/pokeball.png" alt="pokeball">
+      </div>
+      <p>Loading...</p>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     }
     <button class="main-button" mat-raised-button color="primary" [matMenuTriggerFor]="items">
       <mat-icon>list</mat-icon>
       Items
     </button>
-    <h1 class="title-move"> {{ upperFirstLetter(nameCategory) }} </h1>
+    <h1 class="title-item"> {{ upperFirstLetter(nameCategory) }} </h1>
     <mat-menu #items="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pocket">Pocket Items</button>
     </mat-menu>
@@ -112,7 +112,7 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter an item from the list" #input>
     </mat-form-field>
 
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+    <table class="table-item mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows>
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -144,7 +144,8 @@
           <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === item ? null : item); $event.stopPropagation()">
             @if (expandedElement === item) {
               <mat-icon>keyboard_arrow_up</mat-icon>
-            } @else {
+            } 
+            @else {
               <mat-icon>keyboard_arrow_down</mat-icon>
             }
           </button>
@@ -171,9 +172,8 @@
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
     </table>
-
     <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10]" showFirstLastButtons
-      aria-label="Select page of moves">
+      aria-label="Select page of items">
     </mat-paginator>
   </div>
 </div>

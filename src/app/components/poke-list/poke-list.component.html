@@ -13,7 +13,7 @@
       <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput($event)">
         <mat-icon>cancel</mat-icon>
       </button>
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
         @for (poke of allPokemonList; track poke) {
           @if (poke.name.includes(selectedPokemon.toLowerCase())) {
             <mat-option [value]="poke.name">

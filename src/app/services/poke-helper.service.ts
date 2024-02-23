@@ -7,12 +7,22 @@ export class PokeHelperService {
 
   constructor() { }
 
-  upperFirstLetter(word: string): string {
+  upperFirstLetter(word: string, gen?: boolean): string {
     if (this.checkHyphen(word)) {
       word = word.replace(/-/g, ' ');
     }
-    return word.charAt(0).toUpperCase() + word.slice(1);
+    const words = word.split(' ');
+  
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+      if (gen && i === 1) {
+        words[i] = words[i].toUpperCase();
+      }
+    }
+
+    return words.join(' ');
   }
+  
   
   checkHyphen(palavra: string): boolean {
     return palavra.includes('-');

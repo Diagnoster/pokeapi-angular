@@ -56,8 +56,6 @@ export class MoveListComponent implements OnInit {
 
   ngOnInit() {
     this.getMoves();
-    this.dataSource = new MatTableDataSource(this.moveDetailsList);
-
   }
 
   getMoves() {
