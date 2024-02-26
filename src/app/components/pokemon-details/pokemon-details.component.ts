@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AbilitiesDetailsComponent } from '../abilities-details/abilities-details.component';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MovesComponent } from '../moves/moves.component';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -29,7 +30,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MovesComponent
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'

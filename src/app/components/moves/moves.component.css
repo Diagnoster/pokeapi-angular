@@ -1,0 +1,32 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: -2em;
+}
+
+td[mat-cell] {
+    text-align: center;
+}
+
+tr[mat-row] {
+    text-align: center;
+}
+
+th[mat-header-cell] {
+    text-align: center;
+    background: #CFCFC4;
+}
+
+mat-paginator {
+    width: 100%;
+    background: none;
+}
+
+.table-container {
+    width: calc(100% - 4%);
+    float: none;
+    margin: 2%;
+}
+
+.title-move {
+    text-align: center;
+}
