@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokeHelperService } from '../../services/poke-helper.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-battle-setup',
@@ -33,7 +35,8 @@ import { PokeHelperService } from '../../services/poke-helper.service';
     MatInputModule,
     MatProgressBarModule,
     MatAutocompleteModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './battle-setup.component.html',
   styleUrl: './battle-setup.component.css'
@@ -45,15 +48,17 @@ export class BattleSetupComponent implements OnInit {
   selectedPokemonEnemy: string = '';
   playerPokemon: any;
   enemyPokemon: any;
+  total!: number;
 
   constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService) {
     this.allPokemonListPlayer = [];
     this.allPokemonListEnemy= [];
-    this.playerPokemon = {};
+    this.playerPokemon = undefined;
   }
 
   ngOnInit(): void {
     this.loadAllPokemons();
+    console.log(this.playerPokemon);
   }
 
   loadAllPokemons() : void {
@@ -66,7 +71,7 @@ export class BattleSetupComponent implements OnInit {
   onEnemyOptionSelected(event: MatAutocompleteSelectedEvent) {
     const selectedPokemonName = event.option.viewValue;
     this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
-      this.playerPokemon = pokemonDetails;
+      this.enemyPokemon = pokemonDetails;
     });
   }
 
@@ -88,5 +93,10 @@ export class BattleSetupComponent implements OnInit {
         this.selectedPokemonEnemy = "";
     }
   }
+
+  upperFirstLetter(word: string, gen?: boolean): string {
+    return this.pokeHelper.upperFirstLetter(word);
+  }
+  
   
 }

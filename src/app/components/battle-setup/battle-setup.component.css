@@ -1,52 +1,72 @@
 .container {
-    display: flex;
+  display: flex;
+  width: 100%;
 }
 
 .choose-pokemon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .player-pokemon {
-display: flex;
+  width: 100%;
 }
 
 .enemy-pokemon {
-    
-}
+  width: 100%;
 
-.pokemon-artwork {
-    width: 300px;
-    height: auto;
 }
 
 .example-card {
-    width: calc(94% - 6%);
-    margin: 3%;
+  display: flex;
+  flex-direction: row;
+  width: calc(94% - 6%);
+  margin: 3%;
+}
+
+.pokemon-artwork {
+  width: 150px;
+  height: auto;
 }
 
 .type-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 2px;
-  }
-  
+  width: 30px;
+  height: 30px;
+  margin-right: 2px;
+}
 
-  mat-card {
-    justify-content: center; 
-    align-items: center
-  }
-  
-  mat-card-title {
-    font-size: 23px;
-    margin-bottom: 2px;
-  }
-  
-  mat-card-subtitle {
-    align-items: center;
-  }
-  
-  .title {
-    align-items: center;
-  }
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-title {
+  font-size: 23px;
+  margin-bottom: 2px;
+}
+
+.info-poke {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+mat-card-content {
+  flex: 1
+}
+
+mat-progress-bar {
+  height: 10px;
+}
+
+.name-stat {
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
