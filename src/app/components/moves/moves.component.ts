@@ -66,10 +66,6 @@ export class MovesComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getTypeDetailImageUrl(type: string): string {
-    return this.pokeHelperService.getTypeDetailImageUrl(type);
-  }
-
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
