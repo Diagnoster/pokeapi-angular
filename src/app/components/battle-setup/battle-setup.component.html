@@ -1,7 +1,7 @@
 <div class="container">
     <div class="player-pokemon">
+        @if (playerPokemon ) {
         <mat-card class="example-card">
-            @if (playerPokemon ) {
             <div class="info-poke">
                 <mat-card-header>
                     <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
@@ -29,8 +29,13 @@
                     }
                 </div>
             </mat-card-content>
-            }
         </mat-card>
+        } 
+        @else {
+            <div class="pokemon-empty">
+                <h2 class="title-empty">Select Pokémon for battle!</h2>
+            </div>
+        }
     </div>
     <div class="choose-pokemon">
         <mat-form-field>

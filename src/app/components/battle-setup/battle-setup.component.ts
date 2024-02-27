@@ -17,7 +17,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
 @Component({
   selector: 'app-battle-setup',
   standalone: true,
