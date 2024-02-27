@@ -30,7 +30,14 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-            <app-moves [pokemon]="playerPokemon"></app-moves>
+            <div class="moveset">
+                @for(move of selectedMoves; track move) {
+                    <mat-card>
+                        <mat-card-content>{{move.name}}</mat-card-content>
+                    </mat-card>
+                }
+            </div>
+            <app-moves [pokemon]="playerPokemon" (selectedMovesChange)="onSelectedMovesChange($event)"></app-moves>
         } 
         @else {
             <div class="pokemon-empty">

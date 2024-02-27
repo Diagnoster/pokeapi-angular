@@ -17,6 +17,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovesComponent } from '../moves/moves.component';
+import { MoveDetails } from '../../models/move-details';
 
 @Component({
   selector: 'app-battle-setup',
@@ -50,6 +51,8 @@ export class BattleSetupComponent implements OnInit {
   playerPokemon: any;
   enemyPokemon: any;
   total!: number;
+  selectedMoves: MoveDetails[] = [];
+
 
   constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService) {
     this.allPokemonListPlayer = [];
@@ -97,6 +100,10 @@ export class BattleSetupComponent implements OnInit {
 
   upperFirstLetter(word: string, gen?: boolean): string {
     return this.pokeHelper.upperFirstLetter(word);
+  }
+
+  onSelectedMovesChange(moves: MoveDetails[]) {
+    this.selectedMoves = moves;
   }
   
   

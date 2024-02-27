@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
@@ -40,6 +40,8 @@ export class MovesComponent implements OnInit{
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() pokemon: Pokemon | undefined;
+  @Output() selectedMovesChange: EventEmitter<MoveDetails[]> = new EventEmitter<MoveDetails[]>();
+  clickedRows = new Set<MoveDetails>()
 
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.moves = [];
@@ -72,5 +74,17 @@ export class MovesComponent implements OnInit{
   upperFirstLetter(word: string): string {
     return this.pokeHelperService.upperFirstLetter(word);
   }
+
+  clicked(row: MoveDetails) {
+    if (this.clickedRows.has(row)) {
+      this.clickedRows.delete(row);
+    } else if (this.clickedRows.size >= 4) {
+      console.log("Número máximo de ataques atingido!");
+    } else {
+      this.clickedRows.add(row);
+    }
+    this.selectedMovesChange.emit(Array.from(this.clickedRows));
+  }
+
 
 }
