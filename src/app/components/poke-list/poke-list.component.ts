@@ -133,7 +133,7 @@ export class PokeListComponent implements OnInit {
   }
 
   upperFirstLetter(word: string): string {
-    return word.charAt(0).toUpperCase() + word.slice(1);
+    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   getColorForType(type: string): string {
