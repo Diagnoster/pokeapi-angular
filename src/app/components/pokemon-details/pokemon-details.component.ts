@@ -54,7 +54,6 @@ export class PokemonDetailsComponent implements OnInit {
   
   ngOnInit(): void {
     this.calculateTotalStats();
-    this.catchPokeMoves();
   }
 
   getColorForType(type: string): string {
@@ -68,31 +67,12 @@ export class PokemonDetailsComponent implements OnInit {
   getTypeDetailImageUrl(type: string): string {
     return this.pokeHelperService.getTypeDetailImageUrl(type);
   }
-
-  getTypeRetroImageUrl(type: string): string {
-    return this.pokeHelperService.getTypeRetroImageUrl(type);
-  }
   
   calculateTotalStats(): void {    
     this.total = 0;
     this.pokemon.stats.forEach(stat => {
       this.total = this.total + stat.base_stat;
     });
-  }
-
-  catchPokeMoves(): void {
-    this.pokemon.moves.forEach( pokeMove => {
-      this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
-        this.moves.push(data);  
-        this.dataSource.data = this.moves;
-        this.dataSource.paginator = this.paginator;
-      });
-    });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   abilitiesModal(abilities: any): void {
