@@ -1,48 +1,48 @@
 <div class="table-container">
-    <h2 class="title-move">Move List</h2>
-    <!-- Filter Move list -->
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input>
-    </mat-form-field>
-    <mat-paginator 
-      [length]="dataSource.data.length"
-      [pageSizeOptions]="[5]"
-      showFirstLastButtons
-      aria-label="Select page of moves">
-    </mat-paginator>
-      <table class="table-move mat-elevation-z8" mat-table [dataSource]="dataSource">
+  <h2 class="title-move">Move List</h2>
+  <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons
+    aria-label="Select page of moves">
+  </mat-paginator>
+  <!-- Filter Move list -->
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
+  </mat-form-field>
+  <table class="table-move mat-elevation-z8" mat-table [dataSource]="dataSource">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let move">{{ upperFirstLetter(move.name) }}</td>
+    </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let move"> {{ upperFirstLetter(move.name) }} </td>
-        </ng-container>
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let move">
+        <img [src]="getTypeRetroImageUrl(move.type.name)" alt="Tipo do Pokémon" />
+      </td>
+    </ng-container>
 
-        <!-- Type Column -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let move"><img [src]="getTypeRetroImageUrl(move.type.name)" alt="Tipo do Pokémon"></td>
-        </ng-container>
+    <!-- Power Column -->
+    <ng-container matColumnDef="power">
+      <th mat-header-cell *matHeaderCellDef>Power</th>
+      <td mat-cell *matCellDef="let move">{{ move.power }}</td>
+    </ng-container>
 
-        <!-- Power Column -->
-        <ng-container matColumnDef="power">
-          <th mat-header-cell *matHeaderCellDef>Power</th>
-          <td mat-cell *matCellDef="let move"> {{ move.power }} </td>
-        </ng-container>
+    <!-- Accuracy Column -->
+    <ng-container matColumnDef="accuracy">
+      <th mat-header-cell *matHeaderCellDef>Accuracy</th>
+      <td mat-cell *matCellDef="let move">{{ move.accuracy }}</td>
+    </ng-container>
 
-        <!-- Accuracy Column -->
-        <ng-container matColumnDef="accuracy">
-          <th mat-header-cell *matHeaderCellDef>Accuracy</th>
-          <td mat-cell *matCellDef="let move"> {{ move.accuracy }} </td>
-        </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-        </tr>
-      </table>
-  </div>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+</div>

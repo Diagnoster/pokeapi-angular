@@ -16,6 +16,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MovesComponent } from '../moves/moves.component';
 
 @Component({
   selector: 'app-battle-setup',
@@ -35,7 +36,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatProgressBarModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MovesComponent
   ],
   templateUrl: './battle-setup.component.html',
   styleUrl: './battle-setup.component.css'

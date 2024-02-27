@@ -1,35 +1,36 @@
 <div class="container">
     <div class="player-pokemon">
         @if (playerPokemon ) {
-        <mat-card class="example-card">
-            <div class="info-poke">
-                <mat-card-header>
-                    <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
-                    <mat-card-subtitle>
-                        @for (poke of playerPokemon.types; track poke) {
-                        <div clas="type-info">
-                            <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+            <mat-card class="example-card">
+                <div class="info-poke">
+                    <mat-card-header>
+                        <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
+                        <mat-card-subtitle>
+                            @for (poke of playerPokemon.types; track poke) {
+                            <div clas="type-info">
+                                <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+                            </div>
+                            }
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image class="pokemon-artwork"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{playerPokemon.id}}.png"
+                    alt="Imagem {{ playerPokemon.name }}">
+                </div>
+                <mat-card-content>
+                    <div class="pokemon-stats">
+                        <span class="title-stat"> Stats </span>
+                        @for (stats of playerPokemon.stats; track stats) {
+                        <div class="stats">
+                            <span class="name-stat"> {{ upperFirstLetter(stats.stat.name) }} : {{ stats.base_stat }} </span>
+                            <mat-progress-bar class="progress-bar" mode="determinate"
+                                value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>
                         </div>
                         }
-                    </mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image class="pokemon-artwork"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{playerPokemon.id}}.png"
-                alt="Imagem {{ playerPokemon.name }}">
-            </div>
-            <mat-card-content>
-                <div class="pokemon-stats">
-                    <span class="title-stat"> Stats </span>
-                    @for (stats of playerPokemon.stats; track stats) {
-                    <div class="stats">
-                        <span class="name-stat"> {{ upperFirstLetter(stats.stat.name) }} : {{ stats.base_stat }} </span>
-                        <mat-progress-bar class="progress-bar" mode="determinate"
-                            value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>
                     </div>
-                    }
-                </div>
-            </mat-card-content>
-        </mat-card>
+                </mat-card-content>
+            </mat-card>
+            <app-moves [pokemon]="playerPokemon"></app-moves>
         } 
         @else {
             <div class="pokemon-empty">
