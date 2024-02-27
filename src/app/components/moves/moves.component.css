@@ -18,7 +18,7 @@ th[mat-header-cell] {
 
 mat-paginator {
     width: 100%;
-    background: none;
+    background: white;
 }
 
 .table-container {
