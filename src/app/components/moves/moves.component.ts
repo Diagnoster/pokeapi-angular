@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
@@ -35,14 +35,13 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 })
 export class MovesComponent implements OnInit{
 
-  pokemon!: Pokemon;
   moves: MoveDetails[];
   dataSource = new MatTableDataSource<MoveDetails>();
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Input() pokemon: Pokemon | undefined;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
-    this.pokemon = data.pokemon;
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
@@ -52,7 +51,7 @@ export class MovesComponent implements OnInit{
   }
 
   catchPokeMoves(): void {
-    this.pokemon.moves.forEach( pokeMove => {
+    this.pokemon?.moves.forEach( pokeMove => {
       this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
         this.moves.push(data);  
         this.dataSource.data = this.moves;
