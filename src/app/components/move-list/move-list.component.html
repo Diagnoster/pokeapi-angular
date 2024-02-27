@@ -1,13 +1,8 @@
 <div class="container">
   <div class="content">
     @if (loading) {
-    <div class="loading">
-      <img class="pokeball pokeball-spinner" src="../../../assets/pokeball.png" alt="pokeball" />
-    </div>
-    <p>Loading...</p>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <app-loading></app-loading>
     }
-
     <!-- Filter -->
     <mat-form-field>
       <mat-label>Filter</mat-label>

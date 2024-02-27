@@ -16,10 +16,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { forkJoin } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
+import { LoadingComponent } from '../loading/loading.component';
 
 
 @Component({
@@ -37,9 +37,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatProgressBarModule,
     MatAutocompleteModule,
-    MatIconModule
+    MatIconModule,
+    LoadingComponent
   ],
   providers: [PokeService],
   templateUrl: './poke-list.component.html',

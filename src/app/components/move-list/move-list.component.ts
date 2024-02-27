@@ -9,10 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { forkJoin } from 'rxjs';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-move-list',
@@ -22,9 +22,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatProgressBarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    LoadingComponent
   ],
   animations: [
     trigger('detailExpand', [
