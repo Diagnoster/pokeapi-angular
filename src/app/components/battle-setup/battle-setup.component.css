@@ -20,8 +20,8 @@
 .example-card {
   display: flex;
   flex-direction: row;
-  width: calc(94% - 6%);
-  margin: 3%;
+  width: calc(96% - 4%);
+  margin: 2%;
 }
 
 .pokemon-artwork {
@@ -35,16 +35,6 @@
   margin-right: 2px;
 }
 
-mat-card-header {
-  display: flex;
-  justify-content: center;
-}
-
-mat-card-title {
-  font-size: 20px;
-  margin-bottom: 2px;
-}
-
 .title-choose {
   align-items: center;
   width: 100%;
@@ -53,8 +43,8 @@ mat-card-title {
 .pokemon-empty {
   display: flex;
   background-color: white;
-  width: calc(94% - 6%);
-  margin: 3%;
+  width: calc(96% - 4%);
+  margin: 2%;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -73,6 +63,36 @@ mat-card-title {
   margin-top: 1em;
 }
 
+.name-stat {
+  font-weight: bold;
+}
+
+.move-set {
+  display: flex;
+  width: calc(96% - 4%);
+  margin: 2%;
+  flex-wrap: wrap;
+  background-color: #ebe8e8;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+.move-name {
+  width: calc(49% - 1%);
+  margin: 0.5%;
+  text-align: center;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-title {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
 mat-card-content {
   flex: 1;
   align-items: center;
@@ -81,10 +101,6 @@ mat-card-content {
 
 mat-progress-bar {
   height: 10px;
-}
-
-.name-stat {
-  font-weight: bold;
 }
 
 mat-card-subtitle {

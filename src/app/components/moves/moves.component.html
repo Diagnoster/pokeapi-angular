@@ -49,13 +49,4 @@
       </td>
     </tr>
   </table>
-  @if (!clickedRows.size) {
-    <div>Clicked rows will be logged here</div>
-  }
-  
-  <ul>
-    @for (clickedRow of clickedRows; track clickedRow) {
-      <li>Clicked on {{clickedRow.name}}</li>
-    }
-  </ul>
 </div>

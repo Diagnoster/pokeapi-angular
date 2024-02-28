@@ -13,6 +13,8 @@ import { MoveDetails } from '../../models/move-details';
 import { PokeService } from '../../services/poke.service';
 import { Pokemon } from '../../models/pokemon';
 import { PokeHelperService } from '../../services/poke-helper.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-moves',
@@ -27,8 +29,8 @@ import { PokeHelperService } from '../../services/poke-helper.service';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatPaginatorModule
-
+    MatPaginatorModule,
+    MatSnackBarModule
   ],
   templateUrl: './moves.component.html',
   styleUrl: './moves.component.css'
@@ -41,9 +43,9 @@ export class MovesComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() pokemon: Pokemon | undefined;
   @Output() selectedMovesChange: EventEmitter<MoveDetails[]> = new EventEmitter<MoveDetails[]>();
-  clickedRows = new Set<MoveDetails>()
+  clickedRows = new Set<MoveDetails>();
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _snackBar: MatSnackBar) {
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
@@ -79,7 +81,11 @@ export class MovesComponent implements OnInit{
     if (this.clickedRows.has(row)) {
       this.clickedRows.delete(row);
     } else if (this.clickedRows.size >= 4) {
-      console.log("Número máximo de ataques atingido!");
+      this._snackBar.open('Número máximo de movimentos atingido!', 'Fechar', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 4 * 1000,
+      });
     } else {
       this.clickedRows.add(row);
     }
