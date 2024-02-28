@@ -32,19 +32,19 @@ table {
   margin-bottom: -4px;
 }
 
-tr.example-detail-row {
+tr.detail-row {
   height: 0;
 }
 
-.example-element-row td {
+.element-row td {
   border-bottom-width: 0;
 }
 
-.example-element-description {
+.element-description {
   padding: 16px;
 }
 
-.example-element-description-attribution {
+.element-description-attribution {
   opacity: 0.5;
 }
 
