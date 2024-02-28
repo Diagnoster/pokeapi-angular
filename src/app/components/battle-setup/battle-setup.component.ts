@@ -18,6 +18,7 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovesComponent } from '../moves/moves.component';
 import { MoveDetails } from '../../models/move-details';
+import { PokemonType } from '../../models/enums/pokemon-type';
 
 @Component({
   selector: 'app-battle-setup',
@@ -51,7 +52,8 @@ export class BattleSetupComponent implements OnInit {
   playerPokemon: any;
   enemyPokemon: any;
   total!: number;
-  selectedMoves: MoveDetails[] = [];
+  playerSelectedMoves: MoveDetails[] = [];
+  enemySelectedMoves: MoveDetails[] = [];
 
 
   constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService) {
@@ -72,20 +74,6 @@ export class BattleSetupComponent implements OnInit {
     })
   }
 
-  onEnemyOptionSelected(event: MatAutocompleteSelectedEvent) {
-    const selectedPokemonName = event.option.viewValue;
-    this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
-      this.enemyPokemon = pokemonDetails;
-    });
-  }
-
-  onPlayerOptionSelected(event: MatAutocompleteSelectedEvent) {
-    const selectedPokemonName = event.option.viewValue;
-    this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
-      this.playerPokemon = pokemonDetails;
-    });
-  }
-
   getTypeDetailImageUrl(type: string): string {
     return this.pokeHelper.getTypeDetailImageUrl(type);
   }
@@ -102,9 +90,32 @@ export class BattleSetupComponent implements OnInit {
     return this.pokeHelper.upperFirstLetter(word);
   }
 
-  onSelectedMovesChange(moves: MoveDetails[]) {
-    this.selectedMoves = moves;
+  onSelectedMovesChange(pokemon: Pokemon, moves: MoveDetails[]) {
+    if (pokemon === this.playerPokemon) {
+      this.playerSelectedMoves = moves;
+    } else if (pokemon === this.enemyPokemon) {
+      this.enemySelectedMoves = moves;
+    }
+  }
+
+  onEnemyOptionSelected(event: MatAutocompleteSelectedEvent) {
+    const selectedPokemonName = event.option.viewValue;
+    this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
+      this.enemyPokemon = pokemonDetails;
+      this.enemySelectedMoves = [];
+    });
   }
   
-  
+  onPlayerOptionSelected(event: MatAutocompleteSelectedEvent) {
+    const selectedPokemonName = event.option.viewValue;
+    this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
+      this.playerPokemon = pokemonDetails;
+      this.playerSelectedMoves = [];
+    });
+  }
+
+  getColorForType(type: string): string {
+    return PokemonType[type as keyof typeof PokemonType];
+  }
+
 }

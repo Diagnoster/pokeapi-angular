@@ -81,7 +81,7 @@ export class MovesComponent implements OnInit{
     if (this.clickedRows.has(row)) {
       this.clickedRows.delete(row);
     } else if (this.clickedRows.size >= 4) {
-      this._snackBar.open('Número máximo de movimentos atingido!', 'Fechar', {
+      this._snackBar.open('Maximum number of moves achieved!', 'Close', {
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
         duration: 4 * 1000,

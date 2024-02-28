@@ -9,7 +9,7 @@
   justify-content: space-between;
 }
 
-.player-pokemon {
+.select-pokemon {
   width: 100%;
 }
 
@@ -72,14 +72,22 @@
   width: calc(96% - 4%);
   margin: 2%;
   flex-wrap: wrap;
-  background-color: #ebe8e8;
   border-radius: 5px;
   justify-content: center;
+  padding-bottom: 10px;
 }
 
 .move-name {
   width: calc(49% - 1%);
   margin: 0.5%;
+  text-align: center;
+}
+
+.title-item {
+  color: white; 
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 100%;
   text-align: center;
 }
 
