@@ -29,4 +29,8 @@ mat-paginator {
 
 .title-move {
     text-align: center;
+    background-color: #AFAF9E;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -1px;
+    padding: 5px; 
 }

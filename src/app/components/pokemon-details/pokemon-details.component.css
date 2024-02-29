@@ -21,6 +21,7 @@
 
 .pokemon-info-container {
   display: flex;
+  margin-bottom: 4px;
 }
 
 app-moves {
@@ -70,6 +71,7 @@ app-moves {
 
 .type-info {
   display: flex;
+  margin-bottom: 2px;
 }
 
 .type-icon {
