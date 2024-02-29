@@ -14,7 +14,7 @@
                         </mat-card-subtitle>
                     </mat-card-header>
                     <img mat-card-image class="pokemon-artwork"
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{playerPokemon.id}}.png"
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{playerPokemon.id}}.gif"
                         alt="Imagem {{ playerPokemon.name }}">
                 </div>
                 <mat-card-content>
@@ -32,7 +32,7 @@
             </mat-card>
             <div class="move-set" [ngStyle]="{ 'background': getColorForType(playerPokemon.types[0].type.name) }">
                 <h2 class="title-item"> Move Set </h2>
-                @if(enemySelectedMoves.length === 0) {
+                @if(playerSelectedMoves.length === 0) {
                     <mat-card class="mat-card-content">
                         <mat-card-content>Choose the moves from the list below</mat-card-content>
                     </mat-card>
@@ -71,7 +71,9 @@
                 }
             </mat-autocomplete>
         </mat-form-field>
-        <p> VS </p>
+        <img mat-card-image class="vs-image"
+                        src="../../../assets/vs.png"
+                        alt="image versus pixel art">
         <mat-form-field>
             <mat-label>Search Pokémon</mat-label>
             <input matInput [matAutocomplete]="autoEnemy" [(ngModel)]="selectedPokemonEnemy"
@@ -90,6 +92,7 @@
                 }
             </mat-autocomplete>
         </mat-form-field>
+        <button class="battle-button" mat-button color="primary">Start Battle</button>
     </div>
     <div class="enemy-pokemon">
         @if (enemyPokemon) {
@@ -106,7 +109,7 @@
                         </mat-card-subtitle>
                     </mat-card-header>
                     <img mat-card-image class="pokemon-artwork"
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{enemyPokemon.id}}.png"
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{enemyPokemon.id}}.gif"
                         alt="Imagem {{ enemyPokemon.name }}">
                 </div>
                 <mat-card-content>
@@ -125,7 +128,7 @@
             <div class="move-set" [ngStyle]="{ 'background': getColorForType(enemyPokemon.types[0].type.name) }">
                 <h2 class="title-item"> Move Set </h2>
                 @if(enemySelectedMoves.length === 0) {
-                    <mat-card class="move-name">
+                    <mat-card class="mat-card-content">
                         <mat-card-content>Choose the moves from the list below</mat-card-content>
                     </mat-card>
                 }
