@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
@@ -12,6 +11,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { LoadingComponent } from '../loading/loading.component';
+
 
 @Component({
   selector: 'app-item-list',
@@ -22,10 +23,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatProgressBarModule,
     MatButtonModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    LoadingComponent
   ],
   animations: [
     trigger('detailExpand', [

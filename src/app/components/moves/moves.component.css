@@ -18,7 +18,7 @@ th[mat-header-cell] {
 
 mat-paginator {
     width: 100%;
-    background: none;
+    background: white;
 }
 
 .table-container {
@@ -29,6 +29,10 @@ mat-paginator {
 
 .title-move {
     text-align: center;
+    background-color: #AFAF9E;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -1px;
+    padding: 5px; 
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {

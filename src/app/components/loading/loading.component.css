@@ -1,0 +1,39 @@
+.loading {
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+}
+
+.pokeball {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1em;
+}
+
+/* Spinner pokeball */
+.pokeball-spinner {
+    animation: spin 3s infinite linear;
+}
+
+p {
+    font-size: 20px;
+    color: #222020;
+    text-align: center;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media(max-width: 655px) {
+    .pokeball {
+        width: 75px;
+        height: 75px;
+    }
+}

@@ -1,11 +1,7 @@
 <div class="container">
   <div class="content" (window:scroll)="onScroll()">
     @if (loading) {
-      <div class="loading">
-        <img class="pokeball pokeball-spinner" src="../../../assets/pokeball.png" alt="pokeball" />
-      </div>
-      <p>Loading...</p>
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <app-loading></app-loading>
     }
     <mat-form-field>
       <mat-label>Search Pokémon</mat-label>

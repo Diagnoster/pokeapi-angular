@@ -19,14 +19,13 @@
   padding-top: 9px;
 }
 
-.example-header-image {
-  font-size: 22px;
-  padding-top: 7px;
-  width: 12%;
-}
-
 .pokemon-info-container {
   display: flex;
+  margin-bottom: 4px;
+}
+
+app-moves {
+  margin-top: -3%;
 }
 
 .pokemon-artwork {
@@ -72,6 +71,7 @@
 
 .type-info {
   display: flex;
+  margin-bottom: 2px;
 }
 
 .type-icon {

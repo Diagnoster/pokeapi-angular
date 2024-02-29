@@ -42,12 +42,6 @@
   justify-content: center;
 }
 
-.pokeball {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 1em;
-}
-
 mat-form-field {
   width: 100%;
   display: flex;
@@ -59,19 +53,8 @@ mat-form-field {
   margin-left: 1%;
 }
 
-.loading {
-  justify-content: center;
-  display: flex;
-  font-weight: bold;
-}
-
 mat-card-subtitle {
   text-align: left;
-}
-
-/* Spinner pokeball */
-.pokeball-spinner {
-  animation: spin 3s infinite linear;
 }
 
 .poke-card:hover {
@@ -103,10 +86,6 @@ mat-card-subtitle {
     font-size: 16px;
   }
 
-  .pokeball {
-    width: 75px;
-    height: 75px;
-  }
 }
 
 @media (max-width: 655px) {
@@ -116,10 +95,5 @@ mat-card-subtitle {
     margin: 1%;
     align-items: center;
     align-content: center;
-  }
-
-  .pokeball {
-    width: 70px;
-    height: 70px;
   }
 }

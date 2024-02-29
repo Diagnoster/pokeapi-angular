@@ -29,12 +29,8 @@ span {
   margin-right: 2em;
 }
 
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
-}
-
-.example-icon {
-  color: red;
 }
 
 .selected {
