@@ -1,0 +1,8 @@
+<div class="battle-container">
+    <div class="pokemon-container" *ngFor="let pokemon of pokemons">
+        <img [src]="pokemon.image" alt="{{ pokemon.name }}" class="pokemon-image">
+        <p>{{ pokemon.name }}</p>
+        <p>HP: {{ pokemon.hp }}</p>
+    </div>
+</div>
+

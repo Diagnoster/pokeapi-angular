@@ -17,6 +17,11 @@
   width: 100%;
 }
 
+app-moves {
+  width: calc(96% - 4%);
+  margin: 2%;
+}
+
 .example-card {
   display: flex;
   flex-direction: row;
@@ -125,4 +130,11 @@ mat-card-subtitle {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+@media(max-width: 990px) {
+  .container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
