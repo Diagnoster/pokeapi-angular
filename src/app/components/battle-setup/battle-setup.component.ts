@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -19,6 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovesComponent } from '../moves/moves.component';
 import { MoveDetails } from '../../models/move-details';
 import { PokemonType } from '../../models/enums/pokemon-type';
+import { BattleFightComponent } from '../battle-fight/battle-fight.component';
 
 @Component({
   selector: 'app-battle-setup',
@@ -49,17 +50,16 @@ export class BattleSetupComponent implements OnInit {
   allPokemonListEnemy: Pokemon[];
   selectedPokemonPlayer: string = '';
   selectedPokemonEnemy: string = '';
-  playerPokemon: any;
-  enemyPokemon: any;
+  playerPokemon!: Pokemon;
+  enemyPokemon!: Pokemon;
   total!: number;
   playerSelectedMoves: MoveDetails[] = [];
   enemySelectedMoves: MoveDetails[] = [];
 
 
-  constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService, public dialog: MatDialog) {
     this.allPokemonListPlayer = [];
     this.allPokemonListEnemy= [];
-    this.playerPokemon = undefined;
   }
 
   ngOnInit(): void {
@@ -116,6 +116,19 @@ export class BattleSetupComponent implements OnInit {
 
   getColorForType(type: string): string {
     return PokemonType[type as keyof typeof PokemonType];
+  }
+
+  
+  fightModal(): void {
+    console.log(this.playerPokemon.name);
+    this.dialog.open(BattleFightComponent, {
+      data: { 
+        playerPokemon: this.playerPokemon,
+        playerSelectedMoves: this.playerSelectedMoves,
+        enemySelectedMoves: this.enemySelectedMoves,
+        enemyPokemon: this.enemyPokemon,
+      },
+    });
   }
 
 }

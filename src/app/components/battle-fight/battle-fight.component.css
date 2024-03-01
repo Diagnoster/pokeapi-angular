@@ -1,17 +1,70 @@
 .battle-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .pokemon-container {
-    position: absolute;
-  }
-  
-  .pokemon-image {
-    width: 150px;
-    height: 150px;
-  }
+  display: flex;
+  width: 500px;
+  height: 400px;
+  background-image: url("../../../assets/battle.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.enemy-container {
+  width: 500px;
+  height: 35%;
+  display: flex;
+}
+
+.pokemon-container {
+  width: 500px;
+  height: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.poke-stats {
+  width: 250px;
+  height: 20%;
+  margin: 2%;
+}
+
+.poke-stats2 {
+  width: 240px;
+  margin: 1%;
+  align-self: flex-end;
+}
+
+.player-info {
+  width: 200px;
+  margin: 1%;
+  background-color: aquamarine;
+}
+
+.move-set {
+  width: 300px;
+  background-color: red;
+  margin: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.move-name {
+  width: calc(49% - 1%);
+  margin: 0.5%;
+  text-align: center;
+}
+
+.player-container {
+  width: 500px;
+  display: flex;
+  height: 30%;
+}
+
+.pokemon-image {
+  width: 73px;
+  height: 79px;
+  align-self: flex-end;
+  align-items: flex-end;
+  margin-left: 15%;
+}

@@ -92,7 +92,7 @@
                 }
             </mat-autocomplete>
         </mat-form-field>
-        <button class="battle-button" mat-button color="primary">Start Battle</button>
+        <button class="battle-button" mat-button color="primary" (click)="fightModal()">Start Battle</button>
     </div>
     <div class="enemy-pokemon">
         @if (enemyPokemon) {
