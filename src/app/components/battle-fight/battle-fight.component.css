@@ -2,7 +2,7 @@
   display: flex;
   width: 500px;
   height: 400px;
-  background-image: url("../../../assets/battle.png");
+  /*background-image: url("../../../assets/battle.png");*/
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
@@ -37,7 +37,10 @@
 .player-info {
   width: 200px;
   margin: 1%;
-  background-color: aquamarine;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .move-set {
@@ -53,6 +56,7 @@
   width: calc(49% - 1%);
   margin: 0.5%;
   text-align: center;
+  cursor: pointer;
 }
 
 .player-container {
@@ -67,4 +71,7 @@
   align-self: flex-end;
   align-items: flex-end;
   margin-left: 15%;
+}
+
+.battle-text {
 }

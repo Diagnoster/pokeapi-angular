@@ -3,15 +3,15 @@
         <div class="enemy-stats">
             <mat-card>
                 <mat-card-header>
-                    <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
+                    <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-progress-bar class="progress-bar" mode="determinate" value="100"></mat-progress-bar>
+                    <mat-progress-bar class="progress-bar" mode="determinate" value="{{ enemyStats.hp }}"></mat-progress-bar>
                 </mat-card-content>
             </mat-card>
         </div>
         <img mat-card-image class="pokemon-image"
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{playerPokemon.id}}.gif"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{enemyPokemon.id}}.gif"
         alt="Imagem {{ playerPokemon.name }}">
     </div>
     <div class="pokemon-container">
@@ -24,18 +24,18 @@
                     <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-progress-bar class="progress-bar" mode="determinate" value="100"></mat-progress-bar>
+                    <mat-progress-bar class="progress-bar" mode="determinate" value="{{ playerStats.hp }}"></mat-progress-bar>
                 </mat-card-content>
             </mat-card>
         </div>
     </div>
     <div class="player-container">
         <div class="player-info">
-
+            <p class="battle-text"> {{ battleText }} </p>
         </div>
         <div class="move-set">
             @for(move of playerSelectedMoves; track move) {
-                <mat-card class="move-name">
+                <mat-card class="move-name" (click)="selectMove(move)">
                     <mat-card-content>{{ upperFirstLetter(move.name) }}</mat-card-content>
                 </mat-card>
             }
