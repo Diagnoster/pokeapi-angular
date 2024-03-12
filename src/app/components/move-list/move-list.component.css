@@ -11,7 +11,8 @@ h1 {
 }
 
 .content {
-  width: 75%;
+  width: calc(100% - 4%);
+  margin: 2%;
 }
 
 mat-form-field {
@@ -37,11 +38,4 @@ tr.detail-row {
 
 .element-description-attribution {
   opacity: 0.5;
-}
-
-@media (max-width: 640px) {
-  .content {
-    width: calc(100% - 4%);
-    margin: 2%;
-  }
 }

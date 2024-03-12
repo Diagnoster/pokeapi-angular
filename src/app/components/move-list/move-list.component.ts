@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { LoadingComponent } from '../loading/loading.component';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-move-list',
@@ -24,7 +26,8 @@ import { LoadingComponent } from '../loading/loading.component';
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
-    LoadingComponent
+    LoadingComponent,
+    MatSortModule
   ],
   animations: [
     trigger('detailExpand', [
@@ -41,15 +44,18 @@ export class MoveListComponent implements OnInit {
 
   moves: Move[];
   moveDetailsList: MoveDetails [];
-  displayedColumns = ['name', 'type', 'power', 'accuracy', 'pp'];
+  displayedColumns = ['name', 'type', 'power', 'accuracy'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
   expandedElement: MoveDetails | null;
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
 
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
@@ -68,6 +74,7 @@ export class MoveListComponent implements OnInit {
       forkJoin(observables).subscribe((moveDetails: any) => {
         this.moveDetailsList = moveDetails;
         this.dataSource.data = this.moveDetailsList;
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.loading = false;
       });
@@ -87,4 +94,11 @@ export class MoveListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 }

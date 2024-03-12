@@ -13,6 +13,8 @@ import { MoveDetails } from '../../models/move-details';
 import { PokeService } from '../../services/poke.service';
 import { Pokemon } from '../../models/pokemon';
 import { PokeHelperService } from '../../services/poke-helper.service';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-moves',
@@ -27,8 +29,8 @@ import { PokeHelperService } from '../../services/poke-helper.service';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatPaginatorModule
-
+    MatPaginatorModule,
+    MatSortModule
   ],
   templateUrl: './moves.component.html',
   styleUrl: './moves.component.css'
@@ -40,8 +42,10 @@ export class MovesComponent implements OnInit{
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() pokemon: Pokemon | undefined;
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer) {
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
@@ -55,6 +59,7 @@ export class MovesComponent implements OnInit{
       this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
         this.moves.push(data);  
         this.dataSource.data = this.moves;
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
     });
@@ -71,6 +76,14 @@ export class MovesComponent implements OnInit{
 
   upperFirstLetter(word: string): string {
     return this.pokeHelperService.upperFirstLetter(word);
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
 }

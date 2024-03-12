@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { LoadingComponent } from '../loading/loading.component';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 
 @Component({
@@ -26,7 +28,8 @@ import { LoadingComponent } from '../loading/loading.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    LoadingComponent
+    LoadingComponent,
+    MatSortModule
   ],
   animations: [
     trigger('detailExpand', [
@@ -50,8 +53,10 @@ export class ItemListComponent implements OnInit {
   loading: boolean = true;
   expandedElement: ItemDetails | null;
   nameCategory = '';
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer) {
     this.items = [];
     this.itemDetailsList = [];
     this.dataSource = new MatTableDataSource();
@@ -72,6 +77,7 @@ export class ItemListComponent implements OnInit {
         this.pokeService.getItens(value.url).subscribe(data => {       
           this.itemDetailsList.push(data);
           this.dataSource.data = this.itemDetailsList;
+          this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
           this.loading = false;
         });
@@ -103,6 +109,14 @@ export class ItemListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
 }
