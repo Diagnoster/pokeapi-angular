@@ -2,11 +2,15 @@
   display: flex;
   width: 500px;
   height: 400px;
-  /*background-image: url("../../../assets/battle.png");*/
+  background-image: url("../../../assets/battle.png");
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.name-card {
+  background-color: white;
 }
 
 .enemy-container {
@@ -37,41 +41,45 @@
 .player-info {
   width: 200px;
   margin: 1%;
-  background-color: rgb(241, 241, 241);
+  background-color: #476e81;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-style: groove;
+  border-radius: 10px;
 }
 
 .move-set {
-  width: 300px;
-  background-color: red;
+  width: 60%;
+  background-color: rgb(223, 223, 223);
   margin: 1%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border-style: groove;
+  border-radius: 10px;
 }
 
 .move-name {
-  width: calc(49% - 1%);
-  margin: 0.5%;
+  width: 47%;
+  height: 45%;
+  margin: 1%;
   text-align: center;
   cursor: pointer;
 }
 
 .player-container {
-  width: 500px;
+  width: 100%;
   display: flex;
   height: 30%;
 }
 
 .pokemon-image {
-  width: 73px;
-  height: 79px;
   align-self: flex-end;
   align-items: flex-end;
   margin-left: 15%;
 }
 
 .battle-text {
+  color: white;
 }

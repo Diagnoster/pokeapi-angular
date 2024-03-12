@@ -6,13 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress-bar';
 import { BattleStats } from '../../models/battle-stats';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-battle-fight',
   standalone: true,
   imports: [
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    CommonModule
   ],
   templateUrl: './battle-fight.component.html',
   styleUrl: './battle-fight.component.css'
@@ -35,10 +37,10 @@ export class BattleFightComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.playerSelectedMoves);
-    console.log(this.enemySelectedMoves);
     this.calcStats(this.playerPokemon);
     this.calcStats2(this.enemyPokemon);
+    console.log(this.playerStats);
+    console.log(this.enemyStats);
   }
 
   upperFirstLetter(word: string, gen?: boolean): string {
@@ -111,21 +113,25 @@ export class BattleFightComponent implements OnInit {
     }
     if (this.playerStats.hp > 0 && this.enemyStats.hp > 0) {
       this.attack(this.playerStats, this.enemyStats, this.selectedMove);
-      if (this.enemyStats.hp > 0) {
-        this.attack(this.enemyStats, this.playerStats, this.enemySelectedMoves[0]);
-      }
-    }
-    if (this.playerStats.hp <= 0) {
-      this.battleText = "Player lost";
-    } else {
-      this.battleText = "Enemy lost";
+      setTimeout(() => {
+        if (this.enemyStats.hp > 0) {
+          this.attack(this.enemyStats, this.playerStats, this.enemySelectedMoves[0]);
+          if(this.playerStats.hp <= 0) {
+            this.battleText = "You lost!"
+          }
+        }
+        else {
+          this.battleText = "You win!";
+        }
+      }, 1300); // 1300 milliseconds delay
     }
   }
+
 
   attack(attacker: BattleStats, defender: BattleStats, move: MoveDetails) {
     if (defender.hp > 0) {
       defender.hp -= move.power;
-      this.battleText = `attacks with ${move.name} causing ${move.power} damage.`;
+      this.battleText = `Attacks with ${move.name} causing ${move.power} damage.`;
     }
     this.selectedMove = null;
   }

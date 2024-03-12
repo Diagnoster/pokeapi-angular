@@ -1,7 +1,7 @@
 <div class="battle-container">
     <div class="enemy-container">
         <div class="enemy-stats">
-            <mat-card>
+            <mat-card class="name-card" [ngStyle]="{ 'background': '#F0EFD1' }">
                 <mat-card-header>
                     <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }} </mat-card-title>
                 </mat-card-header>
@@ -19,7 +19,7 @@
         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/{{playerPokemon.id}}.gif"
         alt="Imagem {{ playerPokemon.name }}">
         <div class="poke-stats2">
-            <mat-card>
+            <mat-card class="name-card" [ngStyle]="{ 'background': '#F0EFD1' }">
                 <mat-card-header>
                     <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
                 </mat-card-header>
