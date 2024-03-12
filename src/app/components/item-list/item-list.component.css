@@ -11,7 +11,8 @@ h1 {
 }
 
 .content {
-  width: 70%;
+  width: calc(100% - 4%);
+  margin: 2%;
 }
 
 mat-form-field {
@@ -49,11 +50,6 @@ tr.detail-row {
 }
 
 @media (max-width: 640px) {
-  .content {
-    width: calc(100% - 4%);
-    margin: 2%;
-  }
-
   .title-item {
     font-size: 20px;
   }
