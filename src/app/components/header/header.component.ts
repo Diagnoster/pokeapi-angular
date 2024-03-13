@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
     MatButtonModule, 
     MatIconModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    MatMenuModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

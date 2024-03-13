@@ -19,12 +19,15 @@ mat-toolbar {
   height: 80px;
   width: auto;
   padding-top: 4px;
-  padding-right: 2em;
+  margin-right: 2em;
+}
+
+.menu-list {
+  margin-right: 2em;
 }
 
 span {
   color: #FFF;
-  font-size: 18px;
   display: inline-block;
   margin-right: 2em;
 }
@@ -57,13 +60,20 @@ header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.158);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   header {
     margin-top: 55px;
   }
 
   span {
-    font-size: 15px;
-    margin-right: 5px;
+    display: none;
+  }
+
+  .menu-list {
+    margin-right: 1em;
+  }
+
+  .mat-toolbar .mat-mdc-button-base.mat-mdc-button-base.mat-unthemed {
+    flex: 1 1 auto;
   }
 }

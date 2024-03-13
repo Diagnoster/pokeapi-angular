@@ -1,5 +1,14 @@
 <mat-toolbar #toolbar>
   <mat-toolbar-row class="main-header">
+    <button class="menu-list" mat-button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+      <mat-icon>list</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below">
+      <button mat-menu-item routerLink="/home">Home</button>
+      <button mat-menu-item routerLink="/pokedex">Pokedex</button>
+      <button mat-menu-item routerLink="/moves">Moves</button>
+      <button mat-menu-item routerLink="/items">Items</button>
+    </mat-menu>
     <button mat-button>
       <a routerLink="/home"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site"></a>
     </button>
