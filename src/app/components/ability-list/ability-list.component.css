@@ -1,57 +1,76 @@
 .container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.content {
+  width: 90%;
+  align-items: center;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.element-description {
+  padding: 16px;
+}
+
+.element-description-attribution {
+  opacity: 0.5;
+}
+
+.expand-cell {
+  position: relative;
+}
+
+.expand-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 35%;
+}
+
+@media(max-width: 700px) {
+  .expand-button {
+    margin-left: 30%;
   }
-  
-  h1 {
-    font-size: 30px;
-    text-align: center;
-  }
-  
-  .content {
-    width: calc(100% - 4%);
-    margin: 2%;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: -2em;
-  }
-  
-  table {
-    width: 100%;
-  }
-  
-  .title-item {
-    background-color: #3f51b5; 
-    padding: 10px; 
-    color: white; 
-    border-radius: 8px;
-    margin-top: 1em;
-    margin-bottom: -4px;
-  }
-  
-  tr.detail-row {
-    height: 0;
-  }
-  
-  .element-row td {
-    border-bottom-width: 0;
-  }
-  
-  .element-description {
-    padding: 16px;
-  }
-  
-  .element-description-attribution {
-    opacity: 0.5;
-  }
-  
-  @media (max-width: 640px) {
-    .title-item {
-      font-size: 20px;
-    }
-    
-  }
+}
