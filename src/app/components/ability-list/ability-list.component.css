@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 2em;
+  }
+  
+  h1 {
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .content {
+    width: calc(100% - 4%);
+    margin: 2%;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: -2em;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .title-item {
+    background-color: #3f51b5; 
+    padding: 10px; 
+    color: white; 
+    border-radius: 8px;
+    margin-top: 1em;
+    margin-bottom: -4px;
+  }
+  
+  tr.detail-row {
+    height: 0;
+  }
+  
+  .element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .element-description {
+    padding: 16px;
+  }
+  
+  .element-description-attribution {
+    opacity: 0.5;
+  }
+  
+  @media (max-width: 640px) {
+    .title-item {
+      font-size: 20px;
+    }
+    
+  }

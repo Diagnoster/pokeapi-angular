@@ -1,1 +1,66 @@
-<p>ability-list works!</p>
+<div class="container">
+    <div class="content">
+      @if (loading) {
+        <app-loading></app-loading>
+      }
+      <!-- Filter -->
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter an item from the list" #input>
+      </mat-form-field>
+  
+      <table class="table-item mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort (matSortChange)="announceSortChange($event)">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ID">ID</th>
+          <td mat-cell *matCellDef="let item"> {{ item.id }} </td>
+        </ng-container>
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
+          <td mat-cell *matCellDef="let item"> {{ upperFirstLetter(item.name) }} </td>
+        </ng-container>
+  
+        <!-- Expand Column-->
+        <ng-container matColumnDef="expand">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let item">
+            <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === item ? null : item); $event.stopPropagation()">
+              @if (expandedElement === item) {
+                <mat-icon>keyboard_arrow_up</mat-icon>
+              } 
+              @else {
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              }
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let item" [attr.colspan]="displayedColumns.length">
+            <div class="element-detail" [@detailExpand]="item == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="element-description">
+                @for (effect of item.effect_entries; track effect) {
+                    @if(effect.language.name === 'en') {
+                        <span class="element-description-attribution"> {{effect.short_effect}} </span>
+                    }
+                }
+              </div>
+            </div>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="element-row"
+          [class.expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+      </table>
+      <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10]" showFirstLastButtons
+        aria-label="Select page of items">
+      </mat-paginator>
+    </div>
+  </div>
