@@ -1,1 +1,14 @@
-<p>nature-list works!</p>
+
+<div class="container">
+    @for(nature of natureDetails; track nature) {
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title> {{ nature.name }} </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>This card has divider and indeterminate progress as footer</p>
+                <p>text</p>
+            </mat-card-content>
+        </mat-card>
+    }
+</div>

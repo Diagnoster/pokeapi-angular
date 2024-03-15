@@ -1,0 +1,14 @@
+.container {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+mat-card {
+    justify-content: center;
+    align-items: center;
+    width: calc(25% - 1%);
+    margin: 0.5%;
+    min-width: 200px;
+    display: inline-block;
+}
