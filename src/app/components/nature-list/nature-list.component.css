@@ -20,3 +20,8 @@ mat-card {
 .title {
     align-items: center;
 }
+
+.stats-image {
+    width: 150px;
+    height: auto;
+}

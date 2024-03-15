@@ -8,6 +8,8 @@
             <mat-card-content>
                 @if(nature.increased_stat != null) {
                     <span> {{upperFirstLetter(nature.increased_stat.name)}}</span>
+                    <img class="stats-image" src="../../../assets/down_stats64.png" alt="pokeball" />
+                    <img class="stats-image" src="../../../assets/up_stats64.png" alt="pokeball" />
                     <span> {{upperFirstLetter(nature.decreased_stat.name)}}</span>
                 }
                 @else {
