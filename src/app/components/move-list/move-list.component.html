@@ -9,7 +9,7 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
     </mat-form-field>
 
-    <table class="table-move mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort (matSortChange)="announceSortChange($event)">
+    <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort (matSortChange)="announceSortChange($event)">
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
@@ -41,8 +41,8 @@
       <!-- Expand Column-->
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let move">
-          <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === move ? null : move); $event.stopPropagation()">
+        <td mat-cell *matCellDef="let move" class="expand-cell">
+          <button mat-icon-button aria-label="expand row" class="expand-button" (click)="(expandedElement = expandedElement === move ? null : move); $event.stopPropagation()">
             @if (expandedElement === move) {
               <mat-icon>keyboard_arrow_up</mat-icon>
             }
@@ -55,7 +55,7 @@
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let move" [attr.colspan]="displayedColumns.length">
+        <td mat-cell *matCellDef="let move" [attr.colspan]="columnsToDisplayWithExpand.length">
           <div class="element-detail" [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'">
             ID: {{ move.id }}
             <div class="element-description">

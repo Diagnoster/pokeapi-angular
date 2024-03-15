@@ -60,7 +60,7 @@ header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.158);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 815px) {
   header {
     margin-top: 55px;
   }

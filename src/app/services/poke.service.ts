@@ -57,5 +57,10 @@ export class PokeService {
     const url = `${this.URL_BASE}/${item}`;
     return this.http.get<any>(url);
   }
+
+  getAbilities(): Observable<any> {
+    const url = `${this.URL_BASE}/ability/?offset=0&limit=240`;
+    return this.http.get<any>(url);
+  }
   
 }
