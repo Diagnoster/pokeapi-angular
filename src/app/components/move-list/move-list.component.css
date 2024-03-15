@@ -5,14 +5,14 @@
   margin-top: 2em;
 }
 
-h1 {
-  font-size: 30px;
-  text-align: center;
-}
-
 .content {
   width: calc(100% - 4%);
   margin: 2%;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
 }
 
 mat-form-field {
@@ -28,6 +28,14 @@ tr.detail-row {
   height: 0;
 }
 
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
 .element-row td {
   border-bottom-width: 0;
 }
@@ -38,4 +46,19 @@ tr.detail-row {
 
 .element-description-attribution {
   opacity: 0.5;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.expand-cell {
+  position: relative;
+}
+
+.expand-button {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
