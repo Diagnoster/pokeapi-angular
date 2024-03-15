@@ -18,7 +18,7 @@ export class NatureListComponent implements OnInit{
   natures: Item[] = [];
   natureDetails: Nature[] = [];
 
-  constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService){}
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService){}
 
   ngOnInit() {
     this.getNatures();
@@ -34,5 +34,9 @@ export class NatureListComponent implements OnInit{
         });
       });
     });
+  }
+
+  upperFirstLetter(word: string): string {
+    return this.pokeHelperService.upperFirstLetter(word);
   }
 }

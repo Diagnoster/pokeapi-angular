@@ -3,7 +3,7 @@
     @for(nature of natureDetails; track nature) {
         <mat-card>
             <mat-card-header>
-                <mat-card-title> {{ nature.name }} </mat-card-title>
+                <mat-card-title class="title"> {{ upperFirstLetter(nature.name) }} </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>This card has divider and indeterminate progress as footer</p>

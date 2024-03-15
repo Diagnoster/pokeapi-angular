@@ -12,3 +12,11 @@ mat-card {
     min-width: 200px;
     display: inline-block;
 }
+
+.mat-mdc-card-header {
+    justify-content: center;
+}
+
+.title {
+    align-items: center;
+}
