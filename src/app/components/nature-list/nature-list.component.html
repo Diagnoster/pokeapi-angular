@@ -5,12 +5,20 @@
             <mat-card-header>
                 <mat-card-title class="title"> {{ upperFirstLetter(nature.name) }} </mat-card-title>
             </mat-card-header>
+            <div class="line"></div>
             <mat-card-content>
                 @if(nature.increased_stat != null) {
-                    <span> {{upperFirstLetter(nature.increased_stat.name)}}</span>
-                    <img class="stats-image" src="../../../assets/down_stats64.png" alt="pokeball" />
-                    <img class="stats-image" src="../../../assets/up_stats64.png" alt="pokeball" />
-                    <span> {{upperFirstLetter(nature.decreased_stat.name)}}</span>
+                    
+                    <div>
+                        <p> {{upperFirstLetter(nature.increased_stat.name)}}</p>
+                        <img class="stats-image" src="../../../assets/up_stats64.png" alt="up stats pixel art" />
+                    </div>
+                    <div>
+                        <p> {{upperFirstLetter(nature.decreased_stat.name)}}</p>
+                        <img class="stats-image" src="../../../assets/down_stats64.png" alt="down stats pixel art" />
+                    </div>
+                    
+                    
                 }
                 @else {
                     <span>No changes</span>

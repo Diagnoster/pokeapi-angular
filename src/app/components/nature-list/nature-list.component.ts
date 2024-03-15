@@ -4,12 +4,14 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatCardModule } from '@angular/material/card';
 import { Nature } from '../../models/nature';
 import { BaseClass } from '../../models/base-class';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-nature-list',
   standalone: true,
   imports: [
-    MatCardModule
+    MatCardModule,
+    MatDividerModule
   ],
   templateUrl: './nature-list.component.html',
   styleUrl: './nature-list.component.css'
