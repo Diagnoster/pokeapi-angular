@@ -6,8 +6,13 @@
                 <mat-card-title class="title"> {{ upperFirstLetter(nature.name) }} </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p>This card has divider and indeterminate progress as footer</p>
-                <p>text</p>
+                @if(nature.increased_stat != null) {
+                    <span> {{upperFirstLetter(nature.increased_stat.name)}}</span>
+                    <span> {{upperFirstLetter(nature.decreased_stat.name)}}</span>
+                }
+                @else {
+                    <span>No changes</span>
+                }
             </mat-card-content>
         </mat-card>
     }

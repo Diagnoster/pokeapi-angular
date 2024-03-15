@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatCardModule } from '@angular/material/card';
-import { Item } from '../../models/item';
 import { Nature } from '../../models/nature';
+import { BaseClass } from '../../models/base-class';
 
 @Component({
   selector: 'app-nature-list',
@@ -15,7 +15,7 @@ import { Nature } from '../../models/nature';
   styleUrl: './nature-list.component.css'
 })
 export class NatureListComponent implements OnInit{
-  natures: Item[] = [];
+  natures: BaseClass[] = [];
   natureDetails: Nature[] = [];
 
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService){}
