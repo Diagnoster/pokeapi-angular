@@ -9,11 +9,11 @@
             <mat-card-content>
                 @if(nature.increased_stat != null) {
                     
-                    <div>
+                    <div class="stats">
                         <p> {{upperFirstLetter(nature.increased_stat.name)}}</p>
                         <img class="stats-image" src="../../../assets/up_stats64.png" alt="up stats pixel art" />
                     </div>
-                    <div>
+                    <div class="stats">
                         <p> {{upperFirstLetter(nature.decreased_stat.name)}}</p>
                         <img class="stats-image" src="../../../assets/down_stats64.png" alt="down stats pixel art" />
                     </div>
@@ -21,7 +21,10 @@
                     
                 }
                 @else {
-                    <span>No changes</span>
+                    <div class="stats">
+                        <p> No Change Stats </p>
+                        <img class="stats-image" src="../../../assets/no_change64.png" alt="down stats pixel art" />
+                    </div>
                 }
             </mat-card-content>
         </mat-card>

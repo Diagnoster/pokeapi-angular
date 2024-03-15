@@ -10,8 +10,14 @@ mat-card {
     width: calc(25% - 1%);
     margin: 0.5%;
     min-width: 250px;
+    min-height: 250px;
     display: inline-block;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+.stats {
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 mat-card:hover {
@@ -40,7 +46,7 @@ mat-card-content {
 
 p {
     margin-top: 3%;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     font-style: italic;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -50,13 +56,13 @@ p {
     opacity: 25%;
 }
 
-@media(max-width: 1350px) {
+@media(max-width: 1400px) {
     .stats-image {
         width: 120px;
     }
 
     p {
-        font-size: 17px;
+        font-size: 15px;
     }
 
     .title {
@@ -70,7 +76,7 @@ p {
     }
 
     p {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .title {
