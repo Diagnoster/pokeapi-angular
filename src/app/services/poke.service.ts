@@ -62,5 +62,14 @@ export class PokeService {
     const url = `${this.URL_BASE}/ability/?offset=0&limit=240`;
     return this.http.get<any>(url);
   }
+
+  getNatures(): Observable<any> {
+    const url = `${this.URL_BASE}/nature/?offset=0&limit=25`;
+    return this.http.get<any>(url);
+  }
+
+  getNatureDetails(natureUrl: string): Observable<any> {
+    return this.http.get<any>(natureUrl);
+  }
   
 }
