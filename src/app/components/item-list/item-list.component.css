@@ -29,8 +29,11 @@ table {
   padding: 10px; 
   color: white; 
   border-radius: 8px;
-  margin-top: 1em;
   margin-bottom: -4px;
+}
+
+.main-button {
+  margin-bottom: 1em;
 }
 
 tr.detail-row {

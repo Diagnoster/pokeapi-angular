@@ -1,12 +1,12 @@
 <div class="container">
   <div class="content">
-    @if (loading) {
-    <app-loading></app-loading>
-    }
     <button class="main-button" mat-raised-button color="primary" [matMenuTriggerFor]="items">
       <mat-icon>list</mat-icon>
       Items
     </button>
+    @if (loading) {
+      <app-loading></app-loading>
+    }
     @if (nameCategory) {
     <h1 class="title-item"> {{ upperFirstLetter(nameCategory) }} </h1>
     }
