@@ -4,6 +4,18 @@
     width: 100%;
 }
 
+.content {
+    background-color: white;
+    border-radius: 10px;
+    width: calc(100% - 1%);
+    margin: 0.5%;
+}
+
+h1 {
+    font-size: 25px;
+    padding-top: 3px;
+}
+
 mat-card {
     justify-content: center;
     align-items: center;
@@ -15,9 +27,24 @@ mat-card {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
 }
 
+.text {
+    margin: 1%;
+    font-size: 15px;
+    font-weight: normal;
+}
+
 .stats {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+}
+
+.poke-image {
+    width: 250px;
+}
+
+.example-stats {
+    width: 350px;
+    margin-bottom: 1%;
 }
 
 mat-card:hover {
