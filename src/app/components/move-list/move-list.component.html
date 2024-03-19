@@ -1,53 +1,96 @@
 <div class="container">
   <div class="content">
     @if (loading) {
-      <app-loading></app-loading>
+    <app-loading></app-loading>
     }
     <!-- Filter -->
     <mat-form-field>
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filter a movement from the list"
+        #input
+      />
     </mat-form-field>
 
-    <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort (matSortChange)="announceSortChange($event)">
+    <table
+      class="mat-elevation-z8"
+      mat-table
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+      matSort
+      (matSortChange)="announceSortChange($event)"
+    >
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by name"
+        >
+          Name
+        </th>
         <td mat-cell *matCellDef="let move">
           {{ upperFirstLetter(move.name) }}
         </td>
       </ng-container>
-      
+
       <!-- Type Column -->
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>Type</th>
         <td mat-cell *matCellDef="let move">
-          <img [src]="getTypeRetroImageUrl(move.type.name)" alt="Tipo do Pokémon" />
+          <img
+            [src]="getTypeRetroImageUrl(move.type.name)"
+            alt="Tipo do Pokémon"
+          />
         </td>
       </ng-container>
-      
+
       <!-- Power Column -->
       <ng-container matColumnDef="power">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by power">Power</th>
-        <td mat-cell *matCellDef="let move"> {{ move.power }} </td>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by power"
+        >
+          Power
+        </th>
+        <td mat-cell *matCellDef="let move">{{ move.power }}</td>
       </ng-container>
-      
+
       <!-- Accuracy Column -->
       <ng-container matColumnDef="accuracy">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by accuracy">Acc</th>
-        <td mat-cell *matCellDef="let move"> {{ move.accuracy }} </td>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by accuracy"
+        >
+          Acc
+        </th>
+        <td mat-cell *matCellDef="let move">{{ move.accuracy }}</td>
       </ng-container>
-      
+
       <!-- Expand Column-->
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let move" class="expand-cell">
-          <button mat-icon-button aria-label="expand row" class="expand-button" (click)="(expandedElement = expandedElement === move ? null : move); $event.stopPropagation()">
+          <button
+            mat-icon-button
+            aria-label="expand row"
+            class="expand-button"
+            (click)="
+              expandedElement = expandedElement === move ? null : move;
+              $event.stopPropagation()
+            "
+          >
             @if (expandedElement === move) {
-              <mat-icon>keyboard_arrow_up</mat-icon>
-            }
-            @else {
-              <mat-icon>keyboard_arrow_down</mat-icon>
+            <mat-icon>keyboard_arrow_up</mat-icon>
+            } @else {
+            <mat-icon>keyboard_arrow_down</mat-icon>
             }
           </button>
         </td>
@@ -55,37 +98,71 @@
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let move" [attr.colspan]="columnsToDisplayWithExpand.length">
-          <div class="element-detail" [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'">
-            ID: {{ move.id }}
+        <td
+          mat-cell
+          *matCellDef="let move"
+          [attr.colspan]="columnsToDisplayWithExpand.length"
+        >
+          <div
+            class="element-detail"
+            [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'"
+          >
+            <p>ID: {{ move.id }} </p>
             <div class="element-description">
               @for (effect of move.effect_entries; track effect) {
               <span class="element-description-attribution">
                 {{ effect.effect }}
               </span>
               }
-              <p> PP: {{ move.pp }} </p>
-              @for (poke of move.learned_by_pokemon; track poke) {
-                <img class="pokemon-artwork" 
-                (click)="pokeModal(poke.name)"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{extractPokemonId(poke.url)}}.png"
-                (error)="handleImageError($event)"
-                matTooltip="{{poke.name}}">
-              }
+              <p>PP: {{ move.pp }}</p>
+              <mat-card>
+                <mat-card-header>
+                  <div mat-card-avatar>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png"/>
+                  </div>
+                  <mat-card-title class="title">
+                    Learned by Pokémon
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  @for (poke of move.learned_by_pokemon; track poke) {
+                  <img
+                    class="pokemon-artwork"
+                    (click)="pokeModal(poke.name)"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{
+                      extractPokemonId(poke.url)
+                    }}.png"
+                    (error)="handleImageError($event)"
+                    matTooltip="{{ poke.name }}"
+                  />
+                  }
+                </mat-card-content>
+              </mat-card>
             </div>
           </div>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-      <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="element-row"
+      <tr
+        mat-row
+        *matRowDef="let element; columns: columnsToDisplayWithExpand"
+        class="element-row"
         [class.expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element">
-      </tr>
-      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        (click)="expandedElement = expandedElement === element ? null : element"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: ['expandedDetail']"
+        class="detail-row"
+      ></tr>
     </table>
-    <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10]" showFirstLastButtons
-      aria-label="Select page of moves">
+    <mat-paginator
+      [length]="dataSource.data.length"
+      [pageSizeOptions]="[10]"
+      showFirstLastButtons
+      aria-label="Select page of moves"
+    >
     </mat-paginator>
   </div>
 </div>

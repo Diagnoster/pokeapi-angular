@@ -18,6 +18,7 @@ import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-move-list',
@@ -31,7 +32,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     LoadingComponent,
     MatSortModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule
   ],
   animations: [
     trigger('detailExpand', [
