@@ -15,8 +15,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { LoadingComponent } from '../loading/loading.component';
-import { Ability } from '../../models/ability';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { BaseClass } from '../../models/base/base-class';
 
 @Component({
   selector: 'app-ability-list',
@@ -48,7 +48,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AbilityListComponent implements OnInit {
-  abilities: Ability[] = [];
+  abilities: BaseClass[] = [];
   ability: AbilitiesDetails[] = [];
   dataSource = new MatTableDataSource<AbilitiesDetails>();
   displayedColumns = ['id', 'name'];

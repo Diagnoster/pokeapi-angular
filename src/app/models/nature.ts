@@ -1,4 +1,4 @@
-import { BaseClass } from "./base-class";
+import { BaseClass } from "./base/base-class";
 
 export class Nature {
     id: number;

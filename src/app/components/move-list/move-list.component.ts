@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { PokeService } from '../../services/poke.service';
-import { Move } from '../../models/move';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MoveDetails } from '../../models/move-details';
@@ -19,7 +18,7 @@ import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.comp
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
-import { BaseClass } from '../../models/base-class';
+import { BaseClass } from '../../models/base/base-class';
 
 @Component({
   selector: 'app-move-list',
@@ -49,7 +48,7 @@ import { BaseClass } from '../../models/base-class';
 })
 export class MoveListComponent implements OnInit {
 
-  moves: Move[];
+  moves: BaseClass[];
   moveDetailsList: MoveDetails [];
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];

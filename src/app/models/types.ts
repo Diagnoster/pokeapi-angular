@@ -1,10 +1,10 @@
-import { Type } from "./type";
+import { BaseClass } from "./base/base-class";
 
 export class Types {
     slot: number;
-    type: Type ;
+    type: BaseClass ;
 
-    constructor(slot: number, type: Type ) {
+    constructor(slot: number, type: BaseClass ) {
         this.slot = slot;
         this.type = type;
     }

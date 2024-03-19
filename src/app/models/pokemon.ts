@@ -1,5 +1,4 @@
 import { Abilities } from "./abilities";
-import { Ability } from "./ability";
 import { Moves } from "./moves";
 import { Sprites } from "./sprites";
 import { Stats } from "./stats";

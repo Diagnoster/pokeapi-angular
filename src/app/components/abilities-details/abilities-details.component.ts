@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Ability } from '../../models/ability';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PokeService } from '../../services/poke.service';
 import { MatCardModule } from '@angular/material/card';
@@ -8,6 +7,7 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonType } from '../../models/enums/pokemon-type';
 import { CommonModule } from '@angular/common';
+import { BaseClass } from '../../models/base/base-class';
 
 @Component({
   selector: 'app-abilities-details',
@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AbilitiesDetailsComponent implements OnInit {
 
-  abilities: Ability;
+  abilities: BaseClass;
   pokemon: Pokemon;
   ability: AbilitiesDetails[];
 
