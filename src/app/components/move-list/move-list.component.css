@@ -42,7 +42,20 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 150px;
   min-width: 150px;
+}
 
+.text {
+  font-weight: bold;
+  text-align: center;
+}
+
+.poke-box:hover {
+  cursor: pointer;
+  background: #4c5fcc;
+}
+
+.poke-box:hover .text {
+  color: white;
 }
 
 mat-form-field {
@@ -95,11 +108,6 @@ tr.element-row:not(.expanded-row):active {
 
 mat-card {
   display: table-row;
-}
-
-.text {
-  font-weight: bold;
-  text-align: center;
 }
 
 p {
