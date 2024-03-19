@@ -24,7 +24,7 @@ h1 {
 .pokemon-artwork:hover {
   transform: scale(1.3);
   cursor: pointer;
-  background: lightcoral;
+  background: rgb(235, 165, 165);
   border-radius: 20px;
 }
 
@@ -78,4 +78,8 @@ tr.element-row:not(.expanded-row):active {
 
 mat-card {
   display: table-row;
+}
+
+p {
+  font-weight: bold;
 }

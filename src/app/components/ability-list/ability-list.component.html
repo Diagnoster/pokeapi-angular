@@ -43,9 +43,9 @@
           <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
             <div class="element-description">
               @for (effect of element.effect_entries; track effect) {
-              @if(effect.language.name === 'en') {
-              <span class="element-description-attribution"> {{effect.short_effect}} </span>
-              }
+                @if(effect.language.name === 'en') {
+                  <span class="element-description-attribution"> {{effect.short_effect}} </span>
+                }
               }
             </div>
           </div>
