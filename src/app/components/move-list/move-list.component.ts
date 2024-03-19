@@ -19,6 +19,7 @@ import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.comp
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
+import { BaseClass } from '../../models/base-class';
 
 @Component({
   selector: 'app-move-list',
@@ -106,18 +107,16 @@ export class MoveListComponent implements OnInit {
     }
   }
 
-  extractPokemonId(pokeUrl: string): any {
-      const parts: string[] = pokeUrl.split('/');
+  extractValidPokemon(poke: any): boolean {
+      const parts: string[] = poke.url.split('/');
       const pokeID = parseInt(parts[parts.length - 2]); // catch ID
-      if(pokeID <= 1025) {
-        return parseInt(parts[parts.length - 2]);
+      if(pokeID <= 899) {
+        return true;
+      } else{
+        return false;
       }
   };
-
-  handleImageError(event: any) { 
-    event.target.style.display = 'none'; // pokemons without art
-  }
-
+  
   pokeModal(pokemon: any): void {
     this.pokeService.getPokemon(pokemon).subscribe(pokemon => {
       this.dialog.open(PokemonDetailsComponent, {

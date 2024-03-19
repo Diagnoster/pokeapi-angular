@@ -28,6 +28,23 @@ h1 {
   border-radius: 20px;
 }
 
+.mat-mdc-card-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.poke-box {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 150px;
+  min-width: 150px;
+
+}
+
 mat-form-field {
   width: 100%;
   margin-bottom: -2em;
@@ -78,6 +95,11 @@ tr.element-row:not(.expanded-row):active {
 
 mat-card {
   display: table-row;
+}
+
+.text {
+  font-weight: bold;
+  text-align: center;
 }
 
 p {

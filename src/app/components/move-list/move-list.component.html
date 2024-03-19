@@ -85,9 +85,11 @@
                 </mat-card-header>
                 <mat-card-content>
                   @for (poke of move.learned_by_pokemon; track poke) {
-                  <img class="pokemon-artwork" (click)="pokeModal(poke.name)" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{
-                        extractPokemonId(poke.url)
-                      }}.png" (error)="handleImageError($event)" matTooltip="{{ poke.name }}" />
+                    @if(extractValidPokemon(poke) === true) {
+                      <div class="poke-box" (click)="pokeModal(poke.name)">                   
+                        <p class="text">{{upperFirstLetter(poke.name)}}</p>       
+                      </div>
+                    }
                   }
                 </mat-card-content>
               </mat-card>
