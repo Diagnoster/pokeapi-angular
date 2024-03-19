@@ -17,7 +17,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-move-list',
@@ -56,8 +56,6 @@ export class MoveListComponent implements OnInit {
   expandedElement: MoveDetails | null;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-
-
 
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.moves = [];
@@ -108,7 +106,7 @@ export class MoveListComponent implements OnInit {
 
   extractPokemonId(pokeUrl: string): any {
       const parts: string[] = pokeUrl.split('/');
-      const pokeID = parseInt(parts[parts.length - 2]);
+      const pokeID = parseInt(parts[parts.length - 2]); // catch ID
       if(pokeID <= 1025) {
         return parseInt(parts[parts.length - 2]);
       }
