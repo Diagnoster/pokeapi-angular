@@ -15,22 +15,10 @@ h1 {
   text-align: center;
 }
 
-.pokemon-artwork {
-  width: 37px;
-  height: 35px;
-  transition: transform 0.3s ease;
-}
-
-.pokemon-artwork:hover {
-  transform: scale(1.3);
-  cursor: pointer;
-  background: rgb(235, 165, 165);
-  border-radius: 20px;
-}
-
 .mat-mdc-card-content {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .poke-box {

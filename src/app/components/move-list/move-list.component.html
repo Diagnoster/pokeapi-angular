@@ -87,7 +87,7 @@
                   @for (poke of move.learned_by_pokemon; track poke) {
                     @if(extractValidPokemon(poke) === true) {
                       <div class="poke-box" (click)="pokeModal(poke.name)">                   
-                        <p class="text">{{upperFirstLetter(poke.name)}}</p>       
+                        <span class="text">{{upperFirstLetter(poke.name)}}</span> 
                       </div>
                     }
                   }
