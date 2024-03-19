@@ -62,3 +62,16 @@ tr.element-row:not(.expanded-row):active {
   top: 0;
   left: 0;
 }
+
+.pokemon-artwork {
+  width: 37px;
+  height: 35px;
+  transition: transform 0.3s ease; 
+}
+
+.pokemon-artwork:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  background: lightcoral;
+  border-radius: 20px;
+}

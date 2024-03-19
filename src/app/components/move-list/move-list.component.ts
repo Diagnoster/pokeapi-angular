@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoadingComponent } from '../loading/loading.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-move-list',
@@ -55,7 +57,7 @@ export class MoveListComponent implements OnInit {
 
 
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
@@ -101,4 +103,22 @@ export class MoveListComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  extractPokemonId(pokeUrl: string): any {
+      const parts: string[] = pokeUrl.split('/');
+      const pokeID = parseInt(parts[parts.length - 2]); // catch ID
+      if(pokeID <= 1025) {
+        return parseInt(parts[parts.length - 2]);
+      }
+  };
+
+  pokeModal(pokemon: any): void {
+    this.pokeService.getPokemon(pokemon).subscribe(pokemon => {
+      this.dialog.open(PokemonDetailsComponent, {
+        width: '750px',
+        data: { pokemon },
+      });
+    });
+  }
+  
 }
