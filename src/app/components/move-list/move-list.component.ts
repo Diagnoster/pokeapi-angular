@@ -17,6 +17,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-move-list',
@@ -29,7 +30,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatIconModule,
     MatButtonModule,
     LoadingComponent,
-    MatSortModule
+    MatSortModule,
+    MatTooltipModule
   ],
   animations: [
     trigger('detailExpand', [
@@ -106,11 +108,15 @@ export class MoveListComponent implements OnInit {
 
   extractPokemonId(pokeUrl: string): any {
       const parts: string[] = pokeUrl.split('/');
-      const pokeID = parseInt(parts[parts.length - 2]); // catch ID
+      const pokeID = parseInt(parts[parts.length - 2]);
       if(pokeID <= 1025) {
         return parseInt(parts[parts.length - 2]);
       }
   };
+
+  handleImageError(event: any) { 
+    event.target.style.display = 'none'; // pokemons without art
+  }
 
   pokeModal(pokemon: any): void {
     this.pokeService.getPokemon(pokemon).subscribe(pokemon => {
