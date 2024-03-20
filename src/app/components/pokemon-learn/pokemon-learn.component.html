@@ -9,7 +9,7 @@
   </mat-card-header>
   <mat-card-content>
     @for (poke of pokemon; track poke) {
-      <div class="poke-box" (click)="pokeModal(poke.url)">
+      <div class="poke-box" (click)="pokeModal(poke.name)">
         <span class="text">{{ upperFirstLetter(poke.name) }}</span>
       </div>
     }
