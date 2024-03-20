@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
-import { PokeAbility } from '../../poke-ability';
 import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
+import { PokeAbility } from '../../models/poke-ability';
 
 @Component({
   selector: 'app-pokemon-learn',
