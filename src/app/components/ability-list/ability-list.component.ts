@@ -17,6 +17,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { LoadingComponent } from '../loading/loading.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BaseClass } from '../../models/base/base-class';
+import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
 
 @Component({
   selector: 'app-ability-list',
@@ -34,7 +35,8 @@ import { BaseClass } from '../../models/base/base-class';
     MatPaginatorModule,
     MatSortModule,
     LoadingComponent,
-    MatCardModule
+    MatCardModule,
+    PokemonLearnComponent
   ],
   animations: [
     trigger('detailExpand', [
@@ -80,7 +82,6 @@ export class AbilityListComponent implements OnInit {
           this.loading = false;
         })
       });
-      console.log(this.abilities);
     });
   }
 
@@ -104,4 +105,5 @@ export class AbilityListComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
 }

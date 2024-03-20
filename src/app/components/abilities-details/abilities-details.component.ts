@@ -15,6 +15,7 @@ import { BaseClass } from '../../models/base/base-class';
   imports: [
     MatCardModule,
     CommonModule
+
   ],
   templateUrl: './abilities-details.component.html',
   styleUrl: './abilities-details.component.css'
