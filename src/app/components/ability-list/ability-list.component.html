@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content">
     @if (loading) {
-    <app-loading></app-loading>
+      <app-loading></app-loading>
     }
     <!-- Filter -->
     <mat-form-field>
@@ -30,9 +30,9 @@
           <button mat-icon-button aria-label="expand row" class="expand-button"
             (click)="(expandedElement = expandedElement === item ? null : item); $event.stopPropagation()">
             @if (expandedElement === item) {
-            <mat-icon>keyboard_arrow_up</mat-icon>
+              <mat-icon>keyboard_arrow_up</mat-icon>
             } @else {
-            <mat-icon>keyboard_arrow_down</mat-icon>
+              <mat-icon>keyboard_arrow_down</mat-icon>
             }
           </button>
         </td>
@@ -45,7 +45,7 @@
             <div class="element-description">
               @for (effect of element.effect_entries; track effect) {
                 @if(effect.language.name === 'en') {
-                <span class="element-description-attribution"> {{effect.short_effect}} </span>
+                  <span class="element-description-attribution"> {{effect.short_effect}} </span>
                 }
               }
               <app-pokemon-learn [pokemon]="element.pokemon"></app-pokemon-learn>

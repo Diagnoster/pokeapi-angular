@@ -1,3 +1,11 @@
+mat-card {
+    display: table-row;
+}
+
+p {
+    font-weight: bold;
+}
+
 .mat-mdc-card-content {
     display: flex;
     flex-wrap: wrap;
@@ -23,8 +31,8 @@
 .poke-box:hover {
     cursor: pointer;
     background: #4c5fcc;
-  }
-  
-  .poke-box:hover .text {
+}
+
+.poke-box:hover .text {
     color: white;
-  }
+}

@@ -74,25 +74,7 @@
                 </span>
               }
               <p>PP: {{ move.pp }}</p>
-              <mat-card>
-                <mat-card-header>
-                  <div mat-card-avatar>
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png" />
-                  </div>
-                  <mat-card-title class="title">
-                    Learned by Pokémon
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                  @for (poke of move.learned_by_pokemon; track poke) {
-                    @if(extractValidPokemon(poke) === true) {
-                      <div class="poke-box" (click)="pokeModal(poke.name)">                   
-                        <span class="text">{{upperFirstLetter(poke.name)}}</span> 
-                      </div>
-                    }
-                  }
-                </mat-card-content>
-              </mat-card>
+              <app-pokemon-learn [pokemon]="move.pokemon"></app-pokemon-learn>
             </div>
           </div>
         </td>

@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { BaseClass } from '../../models/base/base-class';
+import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
 
 @Component({
   selector: 'app-move-list',
@@ -33,7 +34,8 @@ import { BaseClass } from '../../models/base/base-class';
     LoadingComponent,
     MatSortModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    PokemonLearnComponent
   ],
   animations: [
     trigger('detailExpand', [
