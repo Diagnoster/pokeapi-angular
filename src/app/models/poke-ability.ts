@@ -1,11 +1,10 @@
-import { BaseClass } from "./models/base/base-class";
-import { Pokemon } from "./models/pokemon";
+import { BaseClass } from "./base/base-class";
 
 export class PokeAbility {
     is_hidden: boolean;
     pokemon: BaseClass;
 
-    constructor(is_hidden: boolean, pokemon: Pokemon) {
+    constructor(is_hidden: boolean, pokemon: BaseClass) {
         this.is_hidden = is_hidden;
         this.pokemon = pokemon;       
     }
