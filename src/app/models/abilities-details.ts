@@ -1,7 +1,6 @@
 import { PokeAbility } from "../poke-ability";
 import { BaseClass } from "./base/base-class";
 import { EffectionDescription } from "./effection-description";
-import { Pokemon } from "./pokemon";
 
 export class AbilitiesDetails {
     id: number;

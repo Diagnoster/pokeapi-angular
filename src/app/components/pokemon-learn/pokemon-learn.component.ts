@@ -1,7 +1,6 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { Pokemon } from '../../models/pokemon';
+import { MatDialog } from '@angular/material/dialog';
 import { PokeAbility } from '../../poke-ability';
 import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';

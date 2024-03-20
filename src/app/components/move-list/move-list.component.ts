@@ -14,7 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoadingComponent } from '../loading/loading.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
-import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
