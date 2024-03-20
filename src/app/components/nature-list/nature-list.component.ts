@@ -24,8 +24,6 @@ export class NatureListComponent implements OnInit{
 
   ngOnInit() {
     this.getNatures();
-    console.log(this.natureDetails);
-
   }
 
   getNatures() {
