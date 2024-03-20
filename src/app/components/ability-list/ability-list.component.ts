@@ -15,8 +15,9 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { LoadingComponent } from '../loading/loading.component';
-import { Ability } from '../../models/ability';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { BaseClass } from '../../models/base/base-class';
+import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
 
 @Component({
   selector: 'app-ability-list',
@@ -34,7 +35,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     MatPaginatorModule,
     MatSortModule,
     LoadingComponent,
-    MatCardModule
+    MatCardModule,
+    PokemonLearnComponent
   ],
   animations: [
     trigger('detailExpand', [
@@ -48,7 +50,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AbilityListComponent implements OnInit {
-  abilities: Ability[] = [];
+  abilities: BaseClass[] = [];
   ability: AbilitiesDetails[] = [];
   dataSource = new MatTableDataSource<AbilitiesDetails>();
   displayedColumns = ['id', 'name'];
@@ -80,7 +82,6 @@ export class AbilityListComponent implements OnInit {
           this.loading = false;
         })
       });
-      console.log(this.abilities);
     });
   }
 
@@ -104,4 +105,15 @@ export class AbilityListComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  formatType(pokemon: AbilitiesDetails) {
+    const listaBaseClass: BaseClass[] = [];
+    
+    for (const ability of pokemon.pokemon) {
+      const baseClassItem = new BaseClass(ability.pokemon.name, ability.pokemon.url);
+      listaBaseClass.push(baseClassItem);
+    }
+    return listaBaseClass;
+  }
+
 }

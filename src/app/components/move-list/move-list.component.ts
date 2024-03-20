@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { PokeService } from '../../services/poke.service';
-import { Move } from '../../models/move';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MoveDetails } from '../../models/move-details';
@@ -15,10 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoadingComponent } from '../loading/loading.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
-import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
+import { BaseClass } from '../../models/base/base-class';
+import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
 
 @Component({
   selector: 'app-move-list',
@@ -33,7 +33,8 @@ import { MatCardModule } from '@angular/material/card';
     LoadingComponent,
     MatSortModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    PokemonLearnComponent
   ],
   animations: [
     trigger('detailExpand', [
@@ -48,7 +49,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class MoveListComponent implements OnInit {
 
-  moves: Move[];
+  moves: BaseClass[];
   moveDetailsList: MoveDetails [];
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
@@ -104,27 +105,6 @@ export class MoveListComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-  }
-
-  extractPokemonId(pokeUrl: string): any {
-      const parts: string[] = pokeUrl.split('/');
-      const pokeID = parseInt(parts[parts.length - 2]); // catch ID
-      if(pokeID <= 1025) {
-        return parseInt(parts[parts.length - 2]);
-      }
-  };
-
-  handleImageError(event: any) { 
-    event.target.style.display = 'none'; // pokemons without art
-  }
-
-  pokeModal(pokemon: any): void {
-    this.pokeService.getPokemon(pokemon).subscribe(pokemon => {
-      this.dialog.open(PokemonDetailsComponent, {
-        width: '750px',
-        data: { pokemon },
-      });
-    });
   }
   
 }

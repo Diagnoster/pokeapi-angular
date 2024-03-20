@@ -3,7 +3,7 @@ import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatCardModule } from '@angular/material/card';
 import { Nature } from '../../models/nature';
-import { BaseClass } from '../../models/base-class';
+import { BaseClass } from '../../models/base/base-class';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
@@ -24,8 +24,6 @@ export class NatureListComponent implements OnInit{
 
   ngOnInit() {
     this.getNatures();
-    console.log(this.natureDetails);
-
   }
 
   getNatures() {

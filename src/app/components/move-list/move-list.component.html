@@ -16,9 +16,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
           Name
         </th>
-        <td mat-cell *matCellDef="let move">
-          {{ upperFirstLetter(move.name) }}
-        </td>
+        <td mat-cell *matCellDef="let move">{{ upperFirstLetter(move.name) }}</td>
       </ng-container>
 
       <!-- Type Column -->
@@ -51,12 +49,11 @@
         <td mat-cell *matCellDef="let move" class="expand-cell">
           <button mat-icon-button aria-label="expand row" class="expand-button" (click)="
               expandedElement = expandedElement === move ? null : move;
-              $event.stopPropagation()
-            ">
+              $event.stopPropagation()">
             @if (expandedElement === move) {
-            <mat-icon>keyboard_arrow_up</mat-icon>
+              <mat-icon>keyboard_arrow_up</mat-icon>
             } @else {
-            <mat-icon>keyboard_arrow_down</mat-icon>
+              <mat-icon>keyboard_arrow_down</mat-icon>
             }
           </button>
         </td>
@@ -74,23 +71,7 @@
                 </span>
               }
               <p>PP: {{ move.pp }}</p>
-              <mat-card>
-                <mat-card-header>
-                  <div mat-card-avatar>
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png" />
-                  </div>
-                  <mat-card-title class="title">
-                    Learned by Pokémon
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                  @for (poke of move.learned_by_pokemon; track poke) {
-                  <img class="pokemon-artwork" (click)="pokeModal(poke.name)" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{
-                        extractPokemonId(poke.url)
-                      }}.png" (error)="handleImageError($event)" matTooltip="{{ poke.name }}" />
-                  }
-                </mat-card-content>
-              </mat-card>
+              <app-pokemon-learn [pokemon]="move.learned_by_pokemon"></app-pokemon-learn>
             </div>
           </div>
         </td>

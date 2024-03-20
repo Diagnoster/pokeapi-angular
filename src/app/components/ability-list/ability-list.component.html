@@ -8,7 +8,7 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
     </mat-form-field>
-    
+
     <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
       (matSortChange)="announceSortChange($event)">
       <!-- ID Column -->
@@ -27,7 +27,8 @@
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let item" class="expand-cell">
-          <button mat-icon-button aria-label="expand row" class="expand-button" (click)="(expandedElement = expandedElement === item ? null : item); $event.stopPropagation()">
+          <button mat-icon-button aria-label="expand row" class="expand-button"
+            (click)="(expandedElement = expandedElement === item ? null : item); $event.stopPropagation()">
             @if (expandedElement === item) {
               <mat-icon>keyboard_arrow_up</mat-icon>
             } @else {
@@ -47,6 +48,7 @@
                   <span class="element-description-attribution"> {{effect.short_effect}} </span>
                 }
               }
+              <app-pokemon-learn [pokemon]="formatType(element)"></app-pokemon-learn>
             </div>
           </div>
         </td>

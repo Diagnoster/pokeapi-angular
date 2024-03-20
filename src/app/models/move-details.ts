@@ -1,4 +1,4 @@
-import { Type } from "./type";
+import { BaseClass } from "./base/base-class";
 
 export class MoveDetails {
     name: string;
@@ -6,9 +6,9 @@ export class MoveDetails {
     accuracy: number;
     pp: number;
     power: number;
-    type: Type;
+    type: BaseClass;
 
-    constructor(name: string, id: number, accuracy: number, pp: number, power: number, type: Type) {
+    constructor(name: string, id: number, accuracy: number, pp: number, power: number, type: BaseClass) {
         this.name = name;
         this.id = id;
         this.accuracy = accuracy;
