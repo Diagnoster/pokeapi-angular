@@ -106,4 +106,14 @@ export class AbilityListComponent implements OnInit {
     }
   }
 
+  formatType(pokemon: AbilitiesDetails) {
+    const listaBaseClass: BaseClass[] = [];
+    
+    for (const ability of pokemon.pokemon) {
+      const baseClassItem = new BaseClass(ability.pokemon.name, ability.pokemon.url);
+      listaBaseClass.push(baseClassItem);
+    }
+    return listaBaseClass;
+  }
+
 }

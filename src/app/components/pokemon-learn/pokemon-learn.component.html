@@ -9,11 +9,9 @@
   </mat-card-header>
   <mat-card-content>
     @for (poke of pokemon; track poke) {
-      @if (extractValidPokemon(poke) === true) {
-        <div class="poke-box" (click)="pokeModal(getPokemonNameForDetails(poke))">
-          <span class="text">{{ getPokemonName(poke) }}</span>
-        </div>
-      }
+      <div class="poke-box" (click)="pokeModal(poke.url)">
+        <span class="text">{{ upperFirstLetter(poke.name) }}</span>
+      </div>
     }
   </mat-card-content>
 </mat-card>
