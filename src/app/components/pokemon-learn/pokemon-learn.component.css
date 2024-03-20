@@ -2,10 +2,6 @@ mat-card {
     display: table-row;
 }
 
-p {
-    font-weight: bold;
-}
-
 .mat-mdc-card-content {
     display: flex;
     flex-wrap: wrap;

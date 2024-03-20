@@ -24,7 +24,6 @@ export class PokemonLearnComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.pokemon);
   }
 
   extractValidPokemon(poke: any): boolean {

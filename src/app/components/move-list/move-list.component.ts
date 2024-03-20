@@ -107,24 +107,5 @@ export class MoveListComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-  extractValidPokemon(poke: any): boolean {
-      const parts: string[] = poke.url.split('/');
-      const pokeID = parseInt(parts[parts.length - 2]); // catch ID
-      if(pokeID <= 899) {
-        return true;
-      } else{
-        return false;
-      }
-  };
-  
-  pokeModal(pokemon: any): void {
-    this.pokeService.getPokemon(pokemon).subscribe(pokemon => {
-      this.dialog.open(PokemonDetailsComponent, {
-        width: '750px',
-        data: { pokemon },
-      });
-    });
-  }
   
 }

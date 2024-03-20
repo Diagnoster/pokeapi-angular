@@ -15,35 +15,8 @@ h1 {
   text-align: center;
 }
 
-.mat-mdc-card-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.poke-box {
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 150px;
-  min-width: 150px;
-}
-
-.text {
+p {
   font-weight: bold;
-  text-align: center;
-}
-
-.poke-box:hover {
-  cursor: pointer;
-  background: #4c5fcc;
-}
-
-.poke-box:hover .text {
-  color: white;
 }
 
 mat-form-field {
@@ -92,12 +65,4 @@ tr.element-row:not(.expanded-row):active {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-mat-card {
-  display: table-row;
-}
-
-p {
-  font-weight: bold;
 }

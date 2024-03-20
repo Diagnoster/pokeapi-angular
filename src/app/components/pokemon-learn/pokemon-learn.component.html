@@ -1,19 +1,19 @@
 <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png" />
-      </div>
-      <mat-card-title class="title">
-        Learned by Pokémon
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      @for (poke of pokemon; track poke) {
-        @if(extractValidPokemon(poke.pokemon) === true) {
-            <div class="poke-box" (click)="pokeModal(poke.pokemon.name)">                   
-                <span class="text">{{upperFirstLetter(poke.pokemon.name)}}</span> 
-            </div>
-        }
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png" />
+    </div>
+    <mat-card-title class="title">
+      Learned by Pokémon
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    @for (poke of pokemon; track poke) {
+      @if (extractValidPokemon(poke.pokemon) === true) {
+        <div class="poke-box" (click)="pokeModal(poke.pokemon.name)">
+          <span class="text">{{upperFirstLetter(poke.pokemon.name)}}</span>
+        </div>
       }
-    </mat-card-content>
+    }
+  </mat-card-content>
 </mat-card>
