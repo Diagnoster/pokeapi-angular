@@ -142,10 +142,10 @@
           <button mat-icon-button aria-label="expand row" class="expand-button"
             (click)="(expandedElement = expandedElement === item ? null : item); $event.stopPropagation()">
             @if (expandedElement === item) {
-            <mat-icon>keyboard_arrow_up</mat-icon>
+              <mat-icon>keyboard_arrow_up</mat-icon>
             }
             @else {
-            <mat-icon>keyboard_arrow_down</mat-icon>
+              <mat-icon>keyboard_arrow_down</mat-icon>
             }
           </button>
         </td>
@@ -172,7 +172,7 @@
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
     <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10]" showFirstLastButtons
-      aria-label="Select page of items">
+      aria-label="Select page of items"> 
     </mat-paginator>
   </div>
 </div>

@@ -1,25 +1,20 @@
-import { DoubleDamageFrom } from "./double-damage-from";
-import { DoubleDamageTo } from "./double-damage-to";
-import { HalfDamageFrom } from "./half-damage-from";
-import { HalfDamageTo } from "./half-damage-to";
-import { NoDamageFrom } from "./no-damage-from";
-import { NoDamageTo } from "./no-damage-to";
+import { BaseClass } from "./base/base-class";
 
 export class DamageRelations {
-    double_damage_from: DoubleDamageFrom [];
-    double_damage_to: DoubleDamageTo [];
-    half_damage_from: HalfDamageFrom [];
-    half_damage_to: HalfDamageTo [];
-    no_damage_from: NoDamageFrom [];
-    no_damage_to: NoDamageTo [];
+    double_damage_from: BaseClass [];
+    double_damage_to: BaseClass [];
+    half_damage_from: BaseClass [];
+    half_damage_to: BaseClass [];
+    no_damage_from: BaseClass [];
+    no_damage_to: BaseClass [];
 
     constructor(
-        double_damage_from: DoubleDamageFrom[],
-        double_damage_to: DoubleDamageTo[],
-        half_damage_from: HalfDamageFrom[],
-        half_damage_to: HalfDamageTo[],
-        no_damage_from: NoDamageFrom[],
-        no_damage_to: NoDamageTo[]
+        double_damage_from: BaseClass[],
+        double_damage_to: BaseClass[],
+        half_damage_from: BaseClass[],
+        half_damage_to: BaseClass[],
+        no_damage_from: BaseClass[],
+        no_damage_to: BaseClass[]
       ) {
         this.double_damage_from = double_damage_from;
         this.double_damage_to = double_damage_to;
