@@ -56,7 +56,6 @@ export class BattleSetupComponent implements OnInit {
   playerSelectedMoves: MoveDetails[] = [];
   enemySelectedMoves: MoveDetails[] = [];
 
-
   constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService, public dialog: MatDialog) {
     this.allPokemonListPlayer = [];
     this.allPokemonListEnemy= [];
@@ -103,6 +102,7 @@ export class BattleSetupComponent implements OnInit {
     this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
       this.enemyPokemon = pokemonDetails;
       this.enemySelectedMoves = [];
+      this.calculateTotalStats(this.playerPokemon);
     });
   }
   
@@ -111,6 +111,7 @@ export class BattleSetupComponent implements OnInit {
     this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
       this.playerPokemon = pokemonDetails;
       this.playerSelectedMoves = [];
+      this.calculateTotalStats(this.playerPokemon);
     });
   }
 
@@ -130,5 +131,10 @@ export class BattleSetupComponent implements OnInit {
       },
     });
   }
+
+  calculateTotalStats(pokemon: Pokemon): void {    
+    this.total = pokemon.stats.reduce((acc, stat) => acc + stat.base_stat, 0);
+    console.log(this.total);
+}
 
 }
