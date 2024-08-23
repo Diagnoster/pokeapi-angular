@@ -6,39 +6,51 @@
       </mat-card-title-group>
     </mat-card-header>
     <div class="pokemon-info-container">
-      <img class="pokemon-artwork"
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
-        alt="Imagem {{ pokemon.name }}">
-        <div class="pokemon-stats">
-          <span class="title-stat"> Stats </span>
-          @for (stats of pokemon.stats; track stats) {
-            <div class="stats">
-              <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
-              <mat-progress-bar class="progress-bar" mode="determinate"
-              value="{{( stats.base_stat / 255) * 100 }}"></mat-progress-bar>
-            </div>
-          }
-          <span class="title-total-stat"> Total: {{ total }} </span>
-        </div>
-        <div class="pokemon-abilities">
-          <span class="title-ability"> Abilities </span>
-          @for (abilities of pokemon.abilities; track abilities) {
-            <div class="stats">
-              <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }} <mat-icon class="icon">help_outline</mat-icon>
-              </span>
-            </div>
-          }
-        </div>
+      <div class="pokeinfo-left">
+        <img class="pokemon-artwork"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
+          alt="Imagem {{ pokemon.name }}">
       </div>
-      <mat-card-content class="pokemon-info-container">
+      <div class="pokestats-right">
+        @for (stats of pokemon.stats; track stats) {
+        <div class="stats">
+          <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
+          <div class="custom-progress-bar">
+            <div class="custom-progress" [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
+          </div>
+        </div>
+        }
+        <span class="title-stat"> Total stats: {{ total }} </span>
+      </div>
+    </div>
+    <mat-card-content>
+      <div class="types">
         <span class="title-type">Types:</span>
         @for (poke of pokemon.types; track poke) {
-          <div clas="type-info">
-            <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
-          </div>
+        <div clas="type-info">
+          <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+        </div>
         }
-      </mat-card-content>
-      <app-moves [pokemon]="pokemon"></app-moves>
-    </mat-card>
-  </div>
-  
+      </div>
+    </mat-card-content>
+    <div class="abilities">
+      <mat-card class="abilities-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <span class="title-ability"> Abilities </span>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          @for (abilities of pokemon.abilities; track abilities) {
+          <div class="stats">
+            <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }} <mat-icon
+                class="icon">help_outline</mat-icon>
+            </span>
+          </div>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <app-moves [pokemon]="pokemon"></app-moves>
+  </mat-card>
+</div>

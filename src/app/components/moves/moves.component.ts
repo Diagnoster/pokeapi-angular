@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -14,14 +14,14 @@ import { PokeService } from '../../services/poke.service';
 import { Pokemon } from '../../models/pokemon';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-moves',
   standalone: true,
   imports: [
     MatCardModule,
-    CommonModule,
     MatProgressBarModule,
     MatIconModule,
     MatButtonModule,
@@ -30,22 +30,27 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatSortModule,
     MatSnackBarModule
-  ],
+],
   templateUrl: './moves.component.html',
   styleUrl: './moves.component.css'
 })
-export class MovesComponent implements OnInit{
+export class MovesComponent implements OnInit{ 
 
   moves: MoveDetails[];
   dataSource = new MatTableDataSource<MoveDetails>();
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() pokemon: Pokemon | undefined;
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
   @Output() selectedMovesChange: EventEmitter<MoveDetails[]> = new EventEmitter<MoveDetails[]>();
   clickedRows = new Set<MoveDetails>();
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _snackBar: MatSnackBar) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _snackBar: MatSnackBar,
+    private _liveAnnouncer: LiveAnnouncer
+  ) {
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
@@ -59,6 +64,7 @@ export class MovesComponent implements OnInit{
       this.pokeService.getPokeMoves(pokeMove.move.url).subscribe((data: any) => {
         this.moves.push(data);  
         this.dataSource.data = this.moves;
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
     });
@@ -90,6 +96,14 @@ export class MovesComponent implements OnInit{
       this.clickedRows.add(row);
     }
     this.selectedMovesChange.emit(Array.from(this.clickedRows));
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
 

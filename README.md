@@ -45,11 +45,14 @@ Make sure you have Node.js and Angular CLI installed on your machine.
 - Move List: See a list of all moves.
 - Ability details: Modal with the details of each ability that the Pokémon can have.
 - List Items: See a list of all pocket items (medicine, pokeballs, berries and more).
+- List of Abilities: See a list of all abilities.
+- Natures: See a list of all natures.
 
-## Credits
-#### PokeAPI: Credits to PokeAPI for providing the API for data retrieval.
-#### Bulbapedia: Credits to Bulbapedia for providing information, icons, and layout ideas.
-#### Pokémon Company: Credits to the Pokémon Company for being the owner of the Pokémon brand.
+## Credits to
+#### PokeAPI: PokeAPI for providing the API for data retrieval.
+#### Bulbapedia: Bulbapedia for providing information, icons, and layout ideas.
+#### Pokémon Company: The Pokémon Company for being the owner of the Pokémon brand.
+#### Text Studio: By the images provided <a href="https://www.textstudio.com">Font Generator</a>
 
 ## About
 This software is 100% free, open-source and unlicensed.

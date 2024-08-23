@@ -2,21 +2,12 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 2em;
 }
 
 .content {
-  width: calc(100% - 4%);
-  margin: 2%;
-}
-
-h1 {
-  font-size: 30px;
+  width: 90%;
+  align-items: center;
   text-align: center;
-}
-
-p {
-  font-weight: bold;
 }
 
 mat-form-field {
@@ -44,17 +35,32 @@ tr.element-row:not(.expanded-row):active {
   border-bottom-width: 0;
 }
 
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
 .element-description {
   padding: 16px;
 }
 
 .element-description-attribution {
   opacity: 0.5;
-}
-
-.element-detail {
-  overflow: hidden;
-  display: flex;
 }
 
 .expand-cell {
@@ -65,4 +71,11 @@ tr.element-row:not(.expanded-row):active {
   position: absolute;
   top: 0;
   left: 0;
+  margin-left: 35%;
+}
+
+@media(max-width: 700px) {
+  .expand-button {
+    margin-left: 30%;
+  }
 }

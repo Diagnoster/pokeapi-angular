@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { PokeService } from '../../services/poke.service';
-import { Move } from '../../models/move';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MoveDetails } from '../../models/move-details';
@@ -13,6 +12,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { LoadingComponent } from '../loading/loading.component';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { BaseClass } from '../../models/base/base-class';
+import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
 
 @Component({
   selector: 'app-move-list',
@@ -24,7 +30,11 @@ import { LoadingComponent } from '../loading/loading.component';
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
-    LoadingComponent
+    LoadingComponent,
+    MatSortModule,
+    MatTooltipModule,
+    MatCardModule,
+    PokemonLearnComponent
   ],
   animations: [
     trigger('detailExpand', [
@@ -39,17 +49,18 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class MoveListComponent implements OnInit {
 
-  moves: Move[];
+  moves: BaseClass[];
   moveDetailsList: MoveDetails [];
-  displayedColumns = ['name', 'type', 'power', 'accuracy', 'pp'];
+  displayedColumns = ['name', 'type', 'power', 'accuracy'];
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   loading: boolean = true;
   expandedElement: MoveDetails | null;
+  @ViewChild(MatSort)
+  sort: MatSort = new MatSort;
 
-
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
@@ -68,6 +79,7 @@ export class MoveListComponent implements OnInit {
       forkJoin(observables).subscribe((moveDetails: any) => {
         this.moveDetailsList = moveDetails;
         this.dataSource.data = this.moveDetailsList;
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.loading = false;
       });
@@ -87,4 +99,12 @@ export class MoveListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+  
 }

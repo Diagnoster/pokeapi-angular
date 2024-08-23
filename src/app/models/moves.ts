@@ -1,9 +1,9 @@
-import { Move } from "./move";
+import { BaseClass } from "./base/base-class";
 
 export class Moves {
-    move: Move;
+    move: BaseClass;
 
-    constructor(move: Move) {
+    constructor(move: BaseClass) {
         this.move = move;
     }
 }

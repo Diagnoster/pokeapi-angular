@@ -83,4 +83,5 @@ export class PokemonDetailsComponent implements OnInit {
       },
     });
   }
+  
 }

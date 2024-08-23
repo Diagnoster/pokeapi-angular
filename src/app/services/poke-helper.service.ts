@@ -19,10 +19,8 @@ export class PokeHelperService {
         words[i] = words[i].toUpperCase();
       }
     }
-
     return words.join(' ');
   }
-  
   
   checkHyphen(palavra: string): boolean {
     return palavra.includes('-');
