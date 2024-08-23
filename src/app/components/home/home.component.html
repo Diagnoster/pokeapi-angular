@@ -1,12 +1,11 @@
 <div class="container">
-    @for (option of card; track option) {
-        <mat-card class="home-card" [routerLink]="option.route">
-            <mat-card-header>
-                <mat-card-title>{{option.title}}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src="{{option.image}}" alt="{{option.title}}" />
-            <mat-card-content>
-            </mat-card-content>
-        </mat-card>
-    }
+    <div class="pokedex-container" [routerLink]="'/pokedex'">
+        <img src="../../../assets/pokedexg.png" alt="Pokedex icon">
+    </div>
+    <div class="move-container" [routerLink]="'/moves'">
+        <img src="../../../assets/movelistg.png" alt="Pokedex icon">
+    </div>
+    <div class="items-container" [routerLink]="'/items'">
+        <img src="../../../assets/itemlistg.png" alt="Pokedex icon">
+    </div>
 </div>
