@@ -152,7 +152,7 @@ mat-card-title-group {
 }
 
 .name-ability:hover {
-  color: white;
+  color: darkred;
 }
 
 .custom-progress-bar {
