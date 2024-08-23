@@ -24,6 +24,8 @@ export class BattleFightComponent implements OnInit {
   enemyPokemon: Pokemon;
   playerSelectedMoves: MoveDetails[] = [];
   enemySelectedMoves: MoveDetails[] = [];
+  playerMaxHp: number = 0;
+  enemyMaxHp: number = 0;
   playerStats: BattleStats = { hp: 0, attack: 0, defense: 0, special_attack: 0, special_defense: 0, speed: 0 };
   enemyStats: BattleStats = { hp: 0, attack: 0, defense: 0, special_attack: 0, special_defense: 0, speed: 0 };
   selectedMove: MoveDetails | null = null;
@@ -52,6 +54,7 @@ export class BattleFightComponent implements OnInit {
       switch (index) {
         case 0:
           this.playerStats.hp = stat.base_stat;
+          this.playerMaxHp = stat.base_stat;
           break;
         case 1:
           this.playerStats.attack = stat.base_stat;
@@ -79,6 +82,7 @@ export class BattleFightComponent implements OnInit {
       switch (index) {
         case 0:
           this.enemyStats.hp = stat.base_stat;
+          this.enemyMaxHp = stat.base_stat;
           break;
         case 1:
           this.enemyStats.attack = stat.base_stat;
@@ -115,7 +119,7 @@ export class BattleFightComponent implements OnInit {
       this.attack(this.playerStats, this.enemyStats, this.selectedMove);
       setTimeout(() => {
         if (this.enemyStats.hp > 0) {
-          this.attack(this.enemyStats, this.playerStats, this.enemySelectedMoves[0]);
+          this.attack2(this.enemyStats, this.playerStats, this.enemySelectedMoves[0]);
           if(this.playerStats.hp <= 0) {
             this.battleText = "You lost!"
           }
@@ -127,6 +131,14 @@ export class BattleFightComponent implements OnInit {
     }
   }
 
+  attack2(attacker: BattleStats, playerStats: BattleStats, move: MoveDetails) {
+    if (playerStats.hp > 0) {
+      playerStats.hp -= move.power;
+      this.battleText = `Attacks with ${move.name} causing ${move.power} damage.`;
+    }
+    this.selectedMove = null;
+  }
+
 
   attack(attacker: BattleStats, defender: BattleStats, move: MoveDetails) {
     if (defender.hp > 0) {
@@ -134,6 +146,21 @@ export class BattleFightComponent implements OnInit {
       this.battleText = `Attacks with ${move.name} causing ${move.power} damage.`;
     }
     this.selectedMove = null;
+  }
+
+  getHpPercentage(playerStats: BattleStats): number {
+    return (playerStats.hp / this.playerMaxHp) * 100;
+  }
+
+  getStatBarColor(statValue: number, maxValue: number): string {
+    let hp = (statValue / maxValue) * 100;
+    if (hp <= 25) {
+      return 'red';
+    } else if (hp <= 70) {
+      return 'yellow';
+    } else {
+      return 'green';
+    }
   }
 
 }

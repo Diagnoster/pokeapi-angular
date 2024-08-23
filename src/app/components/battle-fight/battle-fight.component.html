@@ -6,7 +6,10 @@
                     <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-progress-bar class="progress-bar" mode="determinate" value="{{ enemyStats.hp }}"></mat-progress-bar>
+                    <div class="custom-progress-bar">
+                        <div class="custom-progress" [ngStyle]="{ 'width': (enemyStats.hp / enemyMaxHp) * 100 + '%',
+                             'background-color': getStatBarColor(enemyStats.hp, enemyMaxHp)}"></div>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>
@@ -24,7 +27,10 @@
                     <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <mat-progress-bar class="progress-bar" mode="determinate" value="{{ playerStats.hp }}"></mat-progress-bar>
+                    <div class="custom-progress-bar">
+                    <div class="custom-progress" [ngStyle]="{ 'width': (playerStats.hp / playerMaxHp) * 100 + '%',
+                             'background-color': getStatBarColor(playerStats.hp, playerMaxHp)}"></div>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>
