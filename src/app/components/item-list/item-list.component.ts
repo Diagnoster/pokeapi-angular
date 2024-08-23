@@ -8,7 +8,7 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { ItemDetails } from '../../models/item-details';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { LoadingComponent } from '../loading/loading.component';
@@ -21,7 +21,6 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   standalone: true,
   imports: [
     MatTableModule,
-    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
@@ -30,7 +29,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     MatIconModule,
     LoadingComponent,
     MatSortModule
-  ],
+],
   animations: [
     trigger('detailExpand', [
       state('collapsed,void', style({ height: '0px', minHeight: '0' })),

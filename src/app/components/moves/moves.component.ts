@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -21,7 +21,6 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   standalone: true,
   imports: [
     MatCardModule,
-    CommonModule,
     MatProgressBarModule,
     MatIconModule,
     MatButtonModule,
@@ -31,7 +30,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     MatDialogModule,
     MatPaginatorModule,
     MatSortModule
-  ],
+],
   templateUrl: './moves.component.html',
   styleUrl: './moves.component.css'
 })

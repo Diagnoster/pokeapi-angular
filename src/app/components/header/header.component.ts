@@ -35,7 +35,10 @@ export class HeaderComponent implements OnInit {
         if (event instanceof NavigationEnd) {
           const routeComponent = this.getRouteComponent(event.url);
           this.componentName = routeComponent ? routeComponent.charAt(0).toUpperCase() + routeComponent.slice(1) : '';
-          this.hideHeader = (event.url === '/home');
+          if(event.url == '/home') {
+            event.url = '/';
+          }
+          this.hideHeader = (event.url == '/');
         }
       });
   }

@@ -3,7 +3,7 @@ import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { AbilitiesDetails } from '../../models/abilities-details';
 import { MatCardModule } from '@angular/material/card';
-import { CommonModule } from '@angular/common';
+
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +24,6 @@ import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component'
   standalone: true,
   imports: [
     MatCardModule,
-    CommonModule,
     MatProgressBarModule,
     MatIconModule,
     MatButtonModule,
@@ -37,7 +36,7 @@ import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component'
     LoadingComponent,
     MatCardModule,
     PokemonLearnComponent
-  ],
+],
   animations: [
     trigger('detailExpand', [
       state('collapsed,void', style({ height: '0px', minHeight: '0' })),
