@@ -5,13 +5,18 @@
 }
 
 .title {
-  font-size: 25px;
+  font-size: 28px;
   padding-left: 2px;
+}
+
+.arrow-left, .arrow-right {
+  cursor: pointer;
 }
 
 mat-card-title-group {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .title-type {
@@ -123,6 +128,7 @@ mat-card-title-group {
 
 .pokestats-right {
   width: 375vh;
+  margin-top: 2%;
 }
 
 .text-center {
@@ -143,7 +149,9 @@ mat-card-title-group {
   text-transform: uppercase;
   font-size: 14px;
   margin-left: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon {
@@ -152,7 +160,7 @@ mat-card-title-group {
 }
 
 .name-ability:hover {
-  color: white;
+  color: darkred;
 }
 
 .custom-progress-bar {
@@ -176,7 +184,6 @@ mat-card-title-group {
 .pokemon-ability-container {
   display: flex;
 }
-
 
 @media (max-width: 890px) {
   .pokemon-info-container {
@@ -216,5 +223,9 @@ mat-card-title-group {
     margin-left: 1px;
     margin-right: 5px;
     height: 4px;
+  }
+
+  .title {
+    font-size: 25px;
   }
 }

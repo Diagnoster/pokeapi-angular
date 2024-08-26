@@ -1,9 +1,15 @@
 <div class="overflow-container">
   <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
     <mat-card-header>
+      <img class="arrow-left" src="../../../assets/left_arrow.png" alt="Left arrow icon" (click)="nextPokemon(pokemon.id, true)"
+      (mouseenter)="changeArrowImage(true, true)" 
+       (mouseleave)="changeArrowImage(true, false)">
       <mat-card-title-group>
         <mat-card-title class="title"># {{ pokemon.id }} - {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
       </mat-card-title-group>
+      <img class="arrow-right" src="../../../assets/right_arrow.png" alt="Right arrow icon" (click)="nextPokemon(pokemon.id, false)"
+      (mouseenter)="changeArrowImage(false, true)" 
+       (mouseleave)="changeArrowImage(false, false)">
     </mat-card-header>
     <div class="pokemon-info-container">
       <div class="pokeinfo-left">
@@ -43,8 +49,8 @@
         <mat-card-content>
           @for (abilities of pokemon.abilities; track abilities) {
           <div class="stats">
-            <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }} <mat-icon
-                class="icon">help_outline</mat-icon>
+            <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }}
+              <mat-icon class="icon">help_outline</mat-icon>
             </span>
           </div>
           }
