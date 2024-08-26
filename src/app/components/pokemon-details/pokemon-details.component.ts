@@ -102,6 +102,14 @@ export class PokemonDetailsComponent implements OnInit {
       this.pokemon = data;
     });
   }
-  
+
+  changeArrowImage(isLeftArrow: boolean, isHovered: boolean): void {
+    const arrowImage = isLeftArrow ? 'left_arrow.png' : 'right_arrow.png';
+    const selectedArrowImage = isLeftArrow ? 'selected_left_arrow.png' : 'selected_right_arrow.png';
+    
+    const imgElement = document.querySelector(isLeftArrow ? '.arrow-left' : '.arrow-right') as HTMLImageElement;
+    
+    imgElement.src = isHovered ? `../../../assets/${selectedArrowImage}` : `../../../assets/${arrowImage}`;
+  }
   
 }

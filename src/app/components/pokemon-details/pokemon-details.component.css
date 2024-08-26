@@ -5,11 +5,11 @@
 }
 
 .title {
-  font-size: 25px;
+  font-size: 28px;
   padding-left: 2px;
 }
 
-.arrow {
+.arrow-left, .arrow-right {
   cursor: pointer;
 }
 
@@ -223,5 +223,9 @@ mat-card-title-group {
     margin-left: 1px;
     margin-right: 5px;
     height: 4px;
+  }
+
+  .title {
+    font-size: 25px;
   }
 }
