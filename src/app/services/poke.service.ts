@@ -31,6 +31,11 @@ export class PokeService {
     return this.http.get<any>(url);
   }
 
+  getPokemonById(pokemon: number): Observable<any> {
+    const url = `${this.URL_BASE}/pokemon/${pokemon}`;
+    return this.http.get<any>(url);
+  }
+
   getDamageRelations(typeUrl: string): Observable<any> {
     const url = `${typeUrl}`;
     return this.http.get<any>(url);

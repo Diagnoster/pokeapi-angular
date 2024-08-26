@@ -1,11 +1,11 @@
 <div class="overflow-container">
   <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
     <mat-card-header>
-      <img src="../../../assets/left_arrow.png" alt="Left arrow icon">
+      <img class="arrow" src="../../../assets/left_arrow.png" alt="Left arrow icon" (click)="nextPokemon(pokemon.id, true)">
       <mat-card-title-group>
         <mat-card-title class="title"># {{ pokemon.id }} - {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
       </mat-card-title-group>
-      <img src="../../../assets/right_arrow.png" alt="Right arrow icon">
+      <img class="arrow" src="../../../assets/right_arrow.png" alt="Right arrow icon" (click)="nextPokemon(pokemon.id, false)">
     </mat-card-header>
     <div class="pokemon-info-container">
       <div class="pokeinfo-left">

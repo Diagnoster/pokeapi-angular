@@ -16,6 +16,7 @@ import { AbilitiesDetailsComponent } from '../abilities-details/abilities-detail
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MovesComponent } from '../moves/moves.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -31,7 +32,8 @@ import { MovesComponent } from '../moves/moves.component';
     MatInputModule,
     MatDialogModule,
     MatPaginatorModule,
-    MovesComponent
+    MovesComponent,
+    MatSnackBarModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'
@@ -46,7 +48,7 @@ export class PokemonDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();
@@ -83,5 +85,23 @@ export class PokemonDetailsComponent implements OnInit {
       },
     });
   }
+
+  nextPokemon(pokemonID: number, foreign: boolean) {
+    if (foreign && pokemonID === 1) {
+      this.snackBar.open('It is not possible to return from the first Pokémon', 'Close', {
+        duration: 3000,
+      });
+      return;
+    }
+    if (foreign) {
+      pokemonID -= 1;
+    } else {
+      pokemonID += 1;
+    }
+    this.pokeService.getPokemonById(pokemonID).subscribe((data: any) => {
+      this.pokemon = data;
+    });
+  }
+  
   
 }

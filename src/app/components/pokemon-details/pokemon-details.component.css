@@ -9,6 +9,10 @@
   padding-left: 2px;
 }
 
+.arrow {
+  cursor: pointer;
+}
+
 mat-card-title-group {
   display: flex;
   justify-content: center;
