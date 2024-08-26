@@ -42,8 +42,6 @@ export class BattleFightComponent implements OnInit {
   ngOnInit(): void {
     this.calcStats(this.playerPokemon, this.playerStats, true);
     this.calcStats(this.enemyPokemon, this.enemyStats, false);
-    console.log(this.playerStats);
-    console.log(this.enemyStats);
   }
 
   upperFirstLetter(word: string, gen?: boolean): string {

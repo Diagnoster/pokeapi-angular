@@ -63,7 +63,6 @@ export class BattleSetupComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllPokemons();
-    console.log(this.playerPokemon);
   }
 
   loadAllPokemons() : void {
@@ -121,7 +120,6 @@ export class BattleSetupComponent implements OnInit {
 
   
   fightModal(): void {
-    console.log(this.playerPokemon.name);
     this.dialog.open(BattleFightComponent, {
       data: { 
         playerPokemon: this.playerPokemon,
@@ -134,7 +132,6 @@ export class BattleSetupComponent implements OnInit {
 
   calculateTotalStats(pokemon: Pokemon): void {    
     this.total = pokemon.stats.reduce((acc, stat) => acc + stat.base_stat, 0);
-    console.log(this.total);
 }
 
 }

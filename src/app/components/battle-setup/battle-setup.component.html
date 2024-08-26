@@ -117,7 +117,7 @@
                 <mat-card-content>
                     <div class="pokemon-stats">
                         <span class="title-stat"> Stats </span>
-                        @for (stats of playerPokemon.stats; track stats) {
+                        @for (stats of enemyPokemon.stats; track stats) {
                             <div class="stats">
                               <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
                               <div class="custom-progress-bar">
