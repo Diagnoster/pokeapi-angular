@@ -12,6 +12,7 @@
 mat-card-title-group {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .title-type {
