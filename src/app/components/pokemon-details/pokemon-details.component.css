@@ -123,6 +123,7 @@ mat-card-title-group {
 
 .pokestats-right {
   width: 375vh;
+  margin-top: 2%;
 }
 
 .text-center {
@@ -143,7 +144,9 @@ mat-card-title-group {
   text-transform: uppercase;
   font-size: 14px;
   margin-left: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon {
@@ -176,7 +179,6 @@ mat-card-title-group {
 .pokemon-ability-container {
   display: flex;
 }
-
 
 @media (max-width: 890px) {
   .pokemon-info-container {
