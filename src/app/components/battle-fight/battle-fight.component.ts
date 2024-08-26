@@ -7,6 +7,7 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BattleStats } from '../../models/battle-stats';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-battle-fight',
@@ -31,7 +32,7 @@ export class BattleFightComponent implements OnInit {
   selectedMove: MoveDetails | null = null;
   battleText: string = "Choose a move to use";
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeHelper: PokeHelperService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeHelper: PokeHelperService, private cdr: ChangeDetectorRef) {
     this.playerPokemon = data.playerPokemon;
     this.enemyPokemon = data.enemyPokemon;
     this.playerSelectedMoves = data.playerSelectedMoves;
@@ -104,6 +105,9 @@ export class BattleFightComponent implements OnInit {
   executeAttack(attacker: BattleStats, defender: BattleStats, move: MoveDetails): void {
     if (defender.hp > 0) {
       defender.hp -= move.power;
+      if(defender.hp < 0)
+          defender.hp = 0;
+      this.cdr.detectChanges();
       this.battleText = `Attacks with ${move.name} causing ${move.power} damage.`;
     }
     this.selectedMove = null;
