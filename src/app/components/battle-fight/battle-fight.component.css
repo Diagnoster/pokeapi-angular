@@ -2,7 +2,7 @@
   display: flex;
   width: 500px;
   height: 400px;
-  background-image: url("../../../assets/battle.png");
+  background-image: url("/assets/battle_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;

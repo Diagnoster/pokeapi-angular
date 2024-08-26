@@ -4,7 +4,7 @@ import { MoveDetails } from '../../models/move-details';
 import { Pokemon } from '../../models/pokemon';
 import { MatCardModule } from '@angular/material/card';
 import { PokeHelperService } from '../../services/poke-helper.service';
-import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BattleStats } from '../../models/battle-stats';
 import { CommonModule } from '@angular/common';
 
@@ -39,8 +39,8 @@ export class BattleFightComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.calcStats(this.playerPokemon);
-    this.calcStats2(this.enemyPokemon);
+    this.calcStats(this.playerPokemon, this.playerStats, true);
+    this.calcStats(this.enemyPokemon, this.enemyStats, false);
     console.log(this.playerStats);
     console.log(this.enemyStats);
   }
@@ -49,55 +49,28 @@ export class BattleFightComponent implements OnInit {
     return this.pokeHelper.upperFirstLetter(word);
   }
 
-  calcStats(pokemon: Pokemon) {
+  calcStats(pokemon: Pokemon, stats: BattleStats, isPlayer: boolean): void {
     pokemon.stats.forEach((stat, index) => {
       switch (index) {
         case 0:
-          this.playerStats.hp = stat.base_stat;
-          this.playerMaxHp = stat.base_stat;
+          stats.hp = stat.base_stat;
+          if (isPlayer) this.playerMaxHp = stat.base_stat;
+          else this.enemyMaxHp = stat.base_stat;
           break;
         case 1:
-          this.playerStats.attack = stat.base_stat;
+          stats.attack = stat.base_stat;
           break;
         case 2:
-          this.playerStats.defense = stat.base_stat;
+          stats.defense = stat.base_stat;
           break;
         case 3:
-          this.playerStats.special_attack = stat.base_stat;
+          stats.special_attack = stat.base_stat;
           break;
         case 4:
-          this.playerStats.special_defense = stat.base_stat;
+          stats.special_defense = stat.base_stat;
           break;
         case 5:
-          this.playerStats.speed = stat.base_stat;
-          break;
-        default:
-          break;
-      }
-    });
-  }
-
-  calcStats2(pokemon: Pokemon) {
-    pokemon.stats.forEach((stat, index) => {
-      switch (index) {
-        case 0:
-          this.enemyStats.hp = stat.base_stat;
-          this.enemyMaxHp = stat.base_stat;
-          break;
-        case 1:
-          this.enemyStats.attack = stat.base_stat;
-          break;
-        case 2:
-          this.enemyStats.defense = stat.base_stat;
-          break;
-        case 3:
-          this.enemyStats.special_attack = stat.base_stat;
-          break;
-        case 4:
-          this.enemyStats.special_defense = stat.base_stat;
-          break;
-        case 5:
-          this.enemyStats.speed = stat.base_stat;
+          stats.speed = stat.base_stat;
           break;
         default:
           break;
@@ -116,31 +89,19 @@ export class BattleFightComponent implements OnInit {
       return;
     }
     if (this.playerStats.hp > 0 && this.enemyStats.hp > 0) {
-      this.attack(this.playerStats, this.enemyStats, this.selectedMove);
+      this.executeAttack(this.playerStats, this.enemyStats, this.selectedMove);
       setTimeout(() => {
         if (this.enemyStats.hp > 0) {
-          this.attack2(this.enemyStats, this.playerStats, this.enemySelectedMoves[0]);
-          if(this.playerStats.hp <= 0) {
-            this.battleText = "You lost!"
-          }
-        }
-        else {
+          this.executeAttack(this.enemyStats, this.playerStats, this.enemySelectedMoves[0]);
+          this.battleText = this.playerStats.hp <= 0 ? "You lost!" : this.battleText;
+        } else {
           this.battleText = "You win!";
         }
       }, 1300); // 1300 milliseconds delay
     }
   }
 
-  attack2(attacker: BattleStats, playerStats: BattleStats, move: MoveDetails) {
-    if (playerStats.hp > 0) {
-      playerStats.hp -= move.power;
-      this.battleText = `Attacks with ${move.name} causing ${move.power} damage.`;
-    }
-    this.selectedMove = null;
-  }
-
-
-  attack(attacker: BattleStats, defender: BattleStats, move: MoveDetails) {
+  executeAttack(attacker: BattleStats, defender: BattleStats, move: MoveDetails): void {
     if (defender.hp > 0) {
       defender.hp -= move.power;
       this.battleText = `Attacks with ${move.name} causing ${move.power} damage.`;
@@ -148,8 +109,8 @@ export class BattleFightComponent implements OnInit {
     this.selectedMove = null;
   }
 
-  getHpPercentage(playerStats: BattleStats): number {
-    return (playerStats.hp / this.playerMaxHp) * 100;
+  getHpPercentage(stats: BattleStats, maxHp: number): number {
+    return (stats.hp / maxHp) * 100;
   }
 
   getStatBarColor(statValue: number, maxValue: number): string {
@@ -162,5 +123,4 @@ export class BattleFightComponent implements OnInit {
       return 'green';
     }
   }
-
 }
