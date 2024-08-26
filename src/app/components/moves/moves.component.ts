@@ -1,5 +1,5 @@
-
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -13,6 +13,7 @@ import { MoveDetails } from '../../models/move-details';
 import { PokeService } from '../../services/poke.service';
 import { Pokemon } from '../../models/pokemon';
 import { PokeHelperService } from '../../services/poke-helper.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
@@ -29,12 +30,13 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     MatInputModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule
 ],
   templateUrl: './moves.component.html',
   styleUrl: './moves.component.css'
 })
-export class MovesComponent implements OnInit{
+export class MovesComponent implements OnInit{ 
 
   moves: MoveDetails[];
   dataSource = new MatTableDataSource<MoveDetails>();
@@ -43,8 +45,12 @@ export class MovesComponent implements OnInit{
   @Input() pokemon: Pokemon | undefined;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
+  @Output() selectedMovesChange: EventEmitter<MoveDetails[]> = new EventEmitter<MoveDetails[]>();
+  clickedRows = new Set<MoveDetails>();
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _snackBar: MatSnackBar,
+    private _liveAnnouncer: LiveAnnouncer
+  ) {
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
@@ -77,6 +83,21 @@ export class MovesComponent implements OnInit{
     return this.pokeHelperService.upperFirstLetter(word);
   }
 
+  clicked(row: MoveDetails) {
+    if (this.clickedRows.has(row)) {
+      this.clickedRows.delete(row);
+    } else if (this.clickedRows.size >= 4) {
+      this._snackBar.open('Maximum number of moves achieved!', 'Close', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 4 * 1000,
+      });
+    } else {
+      this.clickedRows.add(row);
+    }
+    this.selectedMovesChange.emit(Array.from(this.clickedRows));
+  }
+
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -84,5 +105,6 @@ export class MovesComponent implements OnInit{
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
 
 }
