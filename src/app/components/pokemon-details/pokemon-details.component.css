@@ -185,6 +185,33 @@ mat-card-title-group {
   display: flex;
 }
 
+.evolutions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.poke {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(255, 0, 157);
+  text-shadow: 1px 1px 1px black;
+}
+
 @media (max-width: 890px) {
   .pokemon-info-container {
     flex-wrap: wrap;

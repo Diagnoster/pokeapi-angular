@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PokemonType } from '../../models/enums/pokemon-type';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,6 +17,9 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MovesComponent } from '../moves/moves.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { switchMap } from 'rxjs';
+import { Chain } from '../../models/chain';
+import { EvolutionLine } from '../../models/evolution-line';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -33,7 +36,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatPaginatorModule,
     MovesComponent,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css'
@@ -47,6 +51,10 @@ export class PokemonDetailsComponent implements OnInit {
   displayedColumns = ['name', 'type', 'power', 'accuracy'];
   dataSource = new MatTableDataSource<MoveDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  evolutionChain: any;
+  evolutions: Chain[] = [];
+  pokeImages: EvolutionLine[] = [];
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar) {
     this.pokemon = data.pokemon;
@@ -56,6 +64,7 @@ export class PokemonDetailsComponent implements OnInit {
   
   ngOnInit(): void {
     this.calculateTotalStats();
+    this.getSpecie();
   }
 
   getColorForType(type: string): string {
@@ -76,6 +85,69 @@ export class PokemonDetailsComponent implements OnInit {
       this.total = this.total + stat.base_stat;
     });
   }
+
+  getSpecie() {
+    if (this.pokemon.species) {
+      this.pokeService.getSpecie(this.pokemon.species.url)
+        .pipe(
+          switchMap((data: any) => this.pokeService.getEvolutionChain(data.evolution_chain.url))
+        )
+        .subscribe((data: any) => {
+          this.evolutionChain = data.results;
+          this.getEvolution(data.chain);
+          this.getPokeImage(this.evolutions);
+        });
+    }
+  }
+
+  getEvolution(evolution: Chain): Chain[] {
+    this.evolutions = [];
+    
+    if (evolution && evolution.species && evolution.species.name) {
+      const newEvolution = new Chain(
+        evolution.species,
+        evolution.is_baby,
+        evolution.evolution_details,
+        evolution.evolves_to
+      );
+      this.evolutions.push(newEvolution);
+    }
+    if (Array.isArray(evolution.evolves_to) && evolution.evolves_to.length > 0) {
+      evolution.evolves_to.forEach((evo: any) => {
+        // recursive
+        this.evolutions = this.evolutions.concat(this.getEvolution(evo));
+      });
+    }
+    return this.evolutions;
+  }
+
+  getPokeImage(evolution: Chain[]) {
+    this.pokeImages = [];
+
+    let lvlUp: string;
+    let item: string;
+    let trigger: string;
+
+    evolution.forEach((poke: Chain) => {
+      console.log(poke);
+      this.pokeService.getPokemon(poke.species.name).subscribe((data: Pokemon) => {
+        poke.evolution_details.forEach(x => {
+          lvlUp = x.min_level;
+          item = x.item ? x.item.name : 'null';
+          trigger = x.trigger ? x.trigger.name: 'null';
+        })
+        const pokeInfo = new EvolutionLine(
+          data.sprites.front_default,
+          lvlUp,
+          item,
+          trigger
+        );
+        this.pokeImages.push(pokeInfo);
+      });
+    })
+    this.pokeImages.sort();
+  }
+  
 
   abilitiesModal(abilities: any): void {
     this.dialog.open(AbilitiesDetailsComponent, {
@@ -100,6 +172,10 @@ export class PokemonDetailsComponent implements OnInit {
     }
     this.pokeService.getPokemonById(pokemonID).subscribe((data: any) => {
       this.pokemon = data;
+      this.evolutions = [];
+      this.pokeImages = [];
+      this.getSpecie();
+
     });
   }
 

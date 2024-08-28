@@ -76,5 +76,13 @@ export class PokeService {
   getNatureDetails(natureUrl: string): Observable<any> {
     return this.http.get<any>(natureUrl);
   }
+
+  getSpecie(specieUrl: string): Observable<any> {
+    return this.http.get<any>(specieUrl);
+  }
+
+  getEvolutionChain(evolutionUrl: string): Observable<any> {
+    return this.http.get<any>(evolutionUrl);
+  }
   
 }
