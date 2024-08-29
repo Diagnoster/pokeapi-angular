@@ -129,7 +129,6 @@ export class PokemonDetailsComponent implements OnInit {
     let trigger: string;
 
     evolution.forEach((poke: Chain) => {
-      console.log(poke);
       this.pokeService.getPokemon(poke.species.name).subscribe((data: Pokemon) => {
         poke.evolution_details.forEach(x => {
           lvlUp = x.min_level;
@@ -140,14 +139,14 @@ export class PokemonDetailsComponent implements OnInit {
           data.sprites.front_default,
           lvlUp,
           item,
-          trigger
+          trigger,
+          poke.species.name
         );
         this.pokeImages.push(pokeInfo);
       });
     })
     this.pokeImages.sort();
   }
-  
 
   abilitiesModal(abilities: any): void {
     this.dialog.open(AbilitiesDetailsComponent, {
@@ -176,6 +175,15 @@ export class PokemonDetailsComponent implements OnInit {
       this.pokeImages = [];
       this.getSpecie();
 
+    });
+  }
+
+  nextPokemonByName(pokemonName: string) {
+    this.pokeService.getPokemon(pokemonName).subscribe((data: Pokemon) => {
+      this.pokemon = data;
+      this.evolutions = [];
+      this.pokeImages = [];
+      this.getSpecie();
     });
   }
 

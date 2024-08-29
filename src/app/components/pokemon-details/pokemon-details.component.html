@@ -36,6 +36,7 @@
             <div class="poke">
               <img class="pokemon-artwork-evolution"
               [src]="pokemonImage.pokeImage"
+              (click)="nextPokemonByName(pokemonImage.name)"
               alt="Imagem do Pokémon">   
               @if(pokemonImage.lvlUp) {
                 <p>Level {{pokemonImage.lvlUp}}</p>
