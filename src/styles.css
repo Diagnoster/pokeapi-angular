@@ -1,21 +1,243 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { 
-    height: 100%; 
+:root {
+  --background-color: #CBDFF0;
+  --text-color-black: #000000;
+  --text-color-white: #ffffff;
+  --black-background: #000000;
+  --minimal-black-background: #333333;
+  --grey-background: #616161;
+  --white-background: #ffffff;
+  --mat-grey-color: #6e6e6e;
+  --navbar-background: #f8f9fa;
+  --border-color: rgb(128, 126, 126);
+  --table-hover-bg: white;
+  --table-hover-color: black;
+  --menu-list-bg: #6e6e6e;
+  --pokedex-gradient: linear-gradient(90deg, #f0f0f0, #ffffff, #f8f8f8);
+  --move-gradient: linear-gradient(90deg, #ffffff, #f0f0f0, #e8e8e8);
+  --items-gradient: linear-gradient(90deg, #ffffff, #f8f8f8, #f0f0f0);
 }
 
-body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-image: url("assets/pokerealmap_op.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #CBDFF0;
+html,
+body {
+  height: 100%;
 }
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url("assets/pokerealmap_op.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #CBDFF0;
+}
 
 .line {
-    border-bottom: 1px solid rgb(128, 126, 126);
-    width: calc(100% - 6%);
-    margin: 3%;
+  border-bottom: 1px solid rgb(128, 126, 126);
+  width: calc(100% - 6%);
+  margin: 3%;
 }
+
+/********************************** Dark Mode Theme **********************************/
+
+body.dark-mode {
+  color: var(--text-color-white);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--text-color-white);
+}
+
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode a {
+  color: var(--text-color-white);
+}
+
+body.dark-mode .card {
+  background: #424242;
+  border-color: var(--grey-background);
+}
+
+body.dark-mode .navbar {
+  background: var(--minimal-black-background);
+}
+
+body.dark-mode mat-toolbar {
+  background: var(--minimal-black-background);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.158);
+}
+
+body.dark-mode header {
+  background: var(--minimal-black-background);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.158);
+}
+
+body.dark-mode .mat-mdc-menu-content {
+  background-color: var(--black-background);
+}
+
+body.dark-mode .mat-mdc-menu-submenu-icon {
+  color: var(--text-color-white);
+}
+
+body.dark-mode .menu-list {
+  background: var(--mat-grey-color);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.158);
+}
+
+body.dark-mode .pokedex-container {
+  background: linear-gradient(90deg, #121212, #1b1b1b, #242424);
+  justify-content: flex-start;
+}
+
+body.dark-mode .move-container {
+  background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #3a3a3a);
+  justify-content: center;
+}
+
+body.dark-mode .items-container {
+  background: linear-gradient(90deg, #202020, #2c2c2c, #383838);
+  justify-content: flex-end;
+}
+
+body.dark-mode .pokedex-container:hover {
+  background: linear-gradient(90deg, #1c1c1c, #2a2a2a, #3a3a3a);
+}
+
+body.dark-mode .move-container:hover {
+  background: linear-gradient(90deg, #242424, #333333, #4a4a4a);
+}
+
+body.dark-mode .items-container:hover {
+  background: linear-gradient(90deg, #2e2e2e, #404040, #565656);
+}
+
+body.dark-mode table {
+  background: var(--black-background);
+}
+
+body.dark-mode th {
+  color: var(--text-color-white);
+}
+
+body.dark-mode td {
+  color: var(--text-color-white);
+}
+
+body.dark-mode tr.element-row:not(.expanded-row):hover {
+  background-color: var(--white-background) !important;
+  color: var(--black-background) !important;
+}
+
+body.dark-mode tr.element-row:not(.expanded-row):hover td {
+  color: var(--black-background) !important;
+}
+
+body.dark-mode tr.element-row:not(.expanded-row):active {
+  background-color: var(--white-background) !important;
+  color: var(--black-background) !important;
+}
+
+body.dark-mode tr.element-row:not(.expanded-row):active td {
+  color: var(--black-background) !important;
+}
+
+body.dark-mode .title-item {
+  background: var(--black-background);
+}
+
+body.dark-mode tr.element-row:not(.expanded-row):hover {
+  color: var(--black-background);
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: var(--black-background);
+}
+
+body.dark-mode table:hover {
+  color: var(--black-background);
+}
+
+body.dark-mode .main-button {
+  background: var(--black-background);
+}
+
+body.dark-mode mat-paginator {
+  background: var(--mat-grey-color);
+  color: var(--text-color-white);
+}
+
+body.dark-mode button {
+  color: var(--text-color-white);
+}
+
+body.dark-mode .main-header {
+  background: var(--black-background);
+  color: var(--text-color-white);
+}
+
+body.dark-mode mat-option {
+  color: var(--black-background);
+}
+
+body.dark-mode .poke-box {
+  background: var(--black-background);
+}
+
+body.dark-mode mat-card-content {
+  background: var(--mat-grey-color);
+}
+
+body.dark-mode mat-card-header {
+  background: var(--mat-grey-color);
+}
+
+body.dark-mode mat-card {
+  background: var(--mat-grey-color);
+}
+
+body.dark-mode .types {
+  background: none;
+}
+
+body.dark-mode .pokemon-detail mat-card {
+  background: none;
+}
+
+body.dark-mode .pokemon-detail mat-card-header {
+  background: none;
+  color: #fff;
+}
+
+body.dark-mode .pokemon-detail mat-card-content {
+  background: none;
+}
+
+body.dark-mode .pokemon-detail mat-card-title {
+  color: var(--black-background);
+}
+
+body.dark-mode .pokemon-detail span  {
+  color: var(--black-background);
+}
+
+body.dark-mode .content .text {
+  color: var(--white-background);
+}
+
+body.dark-mode .container-nature .content {
+  background: var(--minimal-black-background);
+}
+
+
+
+
+
+
+/********************************** End Dark Mode Theme **********************************/

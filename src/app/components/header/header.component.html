@@ -15,19 +15,26 @@
     <button mat-button>
       <a routerLink="/home"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site"></a>
     </button>
-    <span [ngClass]="{'selected': selectedSpan === 'home'}"><a mat-button routerLink="/home" (click)="selectSpan('home')">Home</a></span>
-    <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" (click)="selectSpan('pokedex')">Pokedex</a></span>
-    <span [ngClass]="{'selected': selectedSpan === 'moves'}"><a mat-button routerLink="/moves" (click)="selectSpan('moves')">Moves</a></span>
-    <span [ngClass]="{'selected': selectedSpan === 'items'}"><a mat-button routerLink="/items" (click)="selectSpan('items')">Items</a></span>
-    <span [ngClass]="{'selected': selectedSpan === 'battle'}"><a mat-button routerLink="/battle" (click)="selectSpan('battle')">Battle</a></span>
-    <span [ngClass]="{'selected': selectedSpan === 'abilities'}"><a mat-button routerLink="/abilities" (click)="selectSpan('abilities')">Abilities</a></span>
-    <span [ngClass]="{'selected': selectedSpan === 'natures'}"><a mat-button routerLink="/natures" (click)="selectSpan('natures')">Natures</a></span>
+    <div class="selects">
+      <span [ngClass]="{'selected': selectedSpan === 'home'}"><a mat-button routerLink="/home" (click)="selectSpan('home')">Home</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" (click)="selectSpan('pokedex')">Pokedex</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'moves'}"><a mat-button routerLink="/moves" (click)="selectSpan('moves')">Moves</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'items'}"><a mat-button routerLink="/items" (click)="selectSpan('items')">Items</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'battle'}"><a mat-button routerLink="/battle" (click)="selectSpan('battle')">Battle</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'abilities'}"><a mat-button routerLink="/abilities" (click)="selectSpan('abilities')">Abilities</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'natures'}"><a mat-button routerLink="/natures" (click)="selectSpan('natures')">Natures</a></span>
+    </div>
     <span class="spacer"></span>
-    <a href="https://github.com/Diagnoster/pokeapi-angular">
-      <button mat-icon-button class="favorite-icon" aria-label="Favorite icon">
-        <mat-icon>favorite</mat-icon>
+    <div class="buttons">
+      <button class="dark-mode" mat-button (click)="toggleDarkMode()">
+        <mat-icon>brightness_medium</mat-icon>
       </button>
-    </a>
+      <a href="https://github.com/Diagnoster/pokeapi-angular">
+        <button mat-icon-button aria-label="Favorite icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </a>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 @if (!hideHeader) {

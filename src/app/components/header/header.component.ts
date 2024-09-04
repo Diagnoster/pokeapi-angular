@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   componentName: string = '';
   selectedSpan: string | null = null;
   hideHeader: boolean = false;
+  isDarkMode = false;
 
   constructor(private router: Router) { }
 
@@ -56,5 +57,15 @@ export class HeaderComponent implements OnInit {
     }
     const route = url.split('/').pop();
     return route ? route : null;
+  }
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+
+    if (this.isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
   }
 }
