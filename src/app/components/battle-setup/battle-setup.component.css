@@ -58,11 +58,6 @@ app-moves {
   margin-right: 2px;
 }
 
-.title-choose {
-  align-items: center;
-  width: 100%;
-}
-
 .pokemon-empty {
   display: flex;
   justify-content: center;
@@ -130,10 +125,6 @@ mat-card-content {
   flex: 1;
   align-items: center;
   justify-content: center;
-}
-
-mat-progress-bar {
-  height: 10px;
 }
 
 mat-card-subtitle {

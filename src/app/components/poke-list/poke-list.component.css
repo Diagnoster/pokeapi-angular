@@ -37,20 +37,9 @@
   white-space: nowrap;
 }
 
-.filter {
-  display: flex;
-  justify-content: center;
-}
-
 mat-form-field {
   width: 100%;
   display: flex;
-}
-
-.reset-button {
-  margin-top: 2px;
-  padding: 26px;
-  margin-left: 1%;
 }
 
 mat-card-subtitle {

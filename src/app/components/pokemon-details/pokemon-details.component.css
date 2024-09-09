@@ -57,13 +57,16 @@ mat-card-title-group {
   align-items: center;
 }
 
+.name-stat, .title-stat, .title-total-stat {
+  font-family: var(--font-family);
+}
+
 .title-stat {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
   text-transform: uppercase;
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
   font-weight: bold;
   color: rgb(238, 52, 52);
@@ -73,7 +76,6 @@ mat-card-title-group {
 }
 
 .name-stat {
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 16px;
   font-weight: bold;
   color: rgb(255, 255, 255);
@@ -82,21 +84,6 @@ mat-card-title-group {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.title-total-stat {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: rgb(77, 17, 17);
-  font-size: 20px;
-  margin-bottom: 10%;
-  margin-top: 10%;
-  display: flex;
-}
-
-.progress-bar {
-  height: 10px;
-  padding-bottom: 2px;
-  margin-left: 10px;
 }
 
 .type-info {
@@ -110,15 +97,6 @@ mat-card-title-group {
   padding-right: 3px;
 }
 
-.type-relations-container {
-  display: flex;
-}
-
-.type-relations {
-  display: flex;
-  margin-right: 3px;
-}
-
 .pokeinfo-left {
   display: flex;
   justify-content: center;
@@ -129,10 +107,6 @@ mat-card-title-group {
 .pokestats-right {
   width: 375vh;
   margin-top: 2%;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .title-ability {
@@ -179,10 +153,6 @@ mat-card-title-group {
   background-color: #4caf50;
   border-radius: 4px;
   border-color: rgb(61, 61, 61);
-}
-
-.pokemon-ability-container {
-  display: flex;
 }
 
 .evolutions {
@@ -267,13 +237,6 @@ p {
 }
 
 @media (max-width: 660px) {
-  .progress-bar {
-    padding-bottom: 2px;
-    margin-left: 1px;
-    margin-right: 5px;
-    height: 4px;
-  }
-
   .title {
     font-size: 25px;
   }
