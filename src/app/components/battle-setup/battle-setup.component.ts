@@ -20,6 +20,7 @@ import { MovesComponent } from '../moves/moves.component';
 import { MoveDetails } from '../../models/move-details';
 import { PokemonType } from '../../models/enums/pokemon-type';
 import { BattleFightComponent } from '../battle-fight/battle-fight.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-battle-setup',
@@ -30,9 +31,9 @@ import { BattleFightComponent } from '../battle-fight/battle-fight.component';
     MatCardModule,
     MatGridListModule,
     MatDialogModule,
-    MatSelectModule, 
-    FormsModule, 
-    MatFormFieldModule, 
+    MatSelectModule,
+    FormsModule,
+    MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
@@ -40,7 +41,8 @@ import { BattleFightComponent } from '../battle-fight/battle-fight.component';
     MatAutocompleteModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MovesComponent
+    MovesComponent,
+    MatTabsModule
   ],
   templateUrl: './battle-setup.component.html',
   styleUrl: './battle-setup.component.css'
@@ -50,22 +52,22 @@ export class BattleSetupComponent implements OnInit {
   allPokemonListEnemy: Pokemon[];
   selectedPokemonPlayer: string = '';
   selectedPokemonEnemy: string = '';
-  playerPokemon!: Pokemon;
-  enemyPokemon!: Pokemon;
+  playerPokemon!: Pokemon | undefined;
+  enemyPokemon!: Pokemon | undefined;
   total!: number;
   playerSelectedMoves: MoveDetails[] = [];
   enemySelectedMoves: MoveDetails[] = [];
 
   constructor(private pokeService: PokeService, private pokeHelper: PokeHelperService, public dialog: MatDialog) {
     this.allPokemonListPlayer = [];
-    this.allPokemonListEnemy= [];
+    this.allPokemonListEnemy = [];
   }
 
   ngOnInit(): void {
     this.loadAllPokemons();
   }
 
-  loadAllPokemons() : void {
+  loadAllPokemons(): void {
     this.pokeService.getPokemons().subscribe((pokemons: any) => {
       this.allPokemonListPlayer = pokemons.results;
       this.allPokemonListEnemy = pokemons.results;
@@ -75,12 +77,16 @@ export class BattleSetupComponent implements OnInit {
   getTypeDetailImageUrl(type: string): string {
     return this.pokeHelper.getTypeDetailImageUrl(type);
   }
-  
+
   clearInput(string: string) {
     if (string === 'player') {
       this.selectedPokemonPlayer = "";
+      this.playerSelectedMoves = [];
+      this.playerPokemon = undefined;
     } else if (string === 'enemy') {
-        this.selectedPokemonEnemy = "";
+      this.selectedPokemonEnemy = "";
+      this.enemySelectedMoves = [];
+      this.enemyPokemon = undefined;
     }
   }
 
@@ -101,16 +107,20 @@ export class BattleSetupComponent implements OnInit {
     this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
       this.enemyPokemon = pokemonDetails;
       this.enemySelectedMoves = [];
-      this.calculateTotalStats(this.playerPokemon);
+      if(this.enemyPokemon) {
+        this.calculateTotalStats(this.enemyPokemon);
+      }
     });
   }
-  
+
   onPlayerOptionSelected(event: MatAutocompleteSelectedEvent) {
     const selectedPokemonName = event.option.viewValue;
     this.pokeService.getPokemon(selectedPokemonName).subscribe((pokemonDetails) => {
       this.playerPokemon = pokemonDetails;
       this.playerSelectedMoves = [];
-      this.calculateTotalStats(this.playerPokemon);
+      if (this.playerPokemon) {
+        this.calculateTotalStats(this.playerPokemon);
+      }
     });
   }
 
@@ -118,10 +128,9 @@ export class BattleSetupComponent implements OnInit {
     return PokemonType[type as keyof typeof PokemonType];
   }
 
-  
   fightModal(): void {
     this.dialog.open(BattleFightComponent, {
-      data: { 
+      data: {
         playerPokemon: this.playerPokemon,
         playerSelectedMoves: this.playerSelectedMoves,
         enemySelectedMoves: this.enemySelectedMoves,
@@ -130,8 +139,8 @@ export class BattleSetupComponent implements OnInit {
     });
   }
 
-  calculateTotalStats(pokemon: Pokemon): void {    
+  calculateTotalStats(pokemon: Pokemon): void {
     this.total = pokemon.stats.reduce((acc, stat) => acc + stat.base_stat, 0);
-}
+  }
 
 }
