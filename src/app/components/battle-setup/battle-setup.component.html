@@ -1,154 +1,165 @@
 <div class="container">
-    <div class="select-pokemon">
-        @if (playerPokemon) {
-            <mat-card class="example-card" [ngStyle]="{ 'background': getColorForType(playerPokemon.types[0].type.name) }">
-                <div class="info-poke">
-                    <mat-card-header>
-                        <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
-                        <mat-card-subtitle>
-                            @for (poke of playerPokemon.types; track poke) {
-                                <div clas="type-info">
-                                    <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
-                                </div>
-                            }
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image class="pokemon-artwork"
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{playerPokemon.id}}.gif"
-                        alt="Imagem {{ playerPokemon.name }}">
-                </div>
-                <mat-card-content>
-                    <div class="pokemon-stats">
-                        <span class="title-stat"> Stats </span>
-                        @for (stats of playerPokemon.stats; track stats) {
-                            <div class="stats">
-                              <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
-                              <div class="custom-progress-bar">
-                                <div class="custom-progress" [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
-                              </div>
-                            </div>
-                        }
-                        <span class="title-stat"> Total: {{ total }} </span>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-            <div class="move-set" [ngStyle]="{ 'background': getColorForType(playerPokemon.types[0].type.name) }">
-                <h2 class="title-item"> Move Set </h2>
-                @if(playerSelectedMoves.length === 0) {
-                    <mat-card class="mat-card-content">
-                        <mat-card-content>Choose the moves from the list below</mat-card-content>
-                    </mat-card>
-                }
-                @for(move of playerSelectedMoves; track move) {
-                    <mat-card class="move-name">
-                        <mat-card-content>{{ upperFirstLetter(move.name, false) }}</mat-card-content>
-                    </mat-card>
-                }
-            </div>
-            <app-moves [pokemon]="playerPokemon"
-                (selectedMovesChange)="onSelectedMovesChange(playerPokemon, $event)"></app-moves>
-            }
-            @else {
-            <div class="pokemon-empty">
-                <h2 class="title-empty">Select Pokémon for battle!</h2>
-            </div>
-        }
-    </div>
-    <div class="choose-pokemon">
-        <mat-form-field>
-            <mat-label>Search Pokémon</mat-label>
-            <input matInput [matAutocomplete]="autoPlayer" [(ngModel)]="selectedPokemonPlayer"
-                placeholder="Filter a pokémon from the list">
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('player')">
-                <mat-icon>cancel</mat-icon>
-            </button>
-            <mat-autocomplete autoActiveFirstOption #autoPlayer="matAutocomplete"
-                (optionSelected)="onPlayerOptionSelected($event)">
-                @for (poke of allPokemonListPlayer; track poke) {
+    <mat-tab-group>
+        <mat-tab label="Player Pokemon">
+            <mat-form-field class="choose-pokemon">
+                <mat-label>Search Pokémon</mat-label>
+                <input matInput [matAutocomplete]="autoPlayer" [(ngModel)]="selectedPokemonPlayer"
+                    placeholder="Filter a pokémon from the list">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('player')">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+                <mat-autocomplete autoActiveFirstOption #autoPlayer="matAutocomplete"
+                    (optionSelected)="onPlayerOptionSelected($event)">
+                    @for (poke of allPokemonListPlayer; track poke) {
                     @if (poke.name.includes(selectedPokemonPlayer.toLowerCase())) {
-                        <mat-option [value]="poke.name">
-                            {{poke.name}}
-                        </mat-option>
+                    <mat-option [value]="poke.name">
+                        {{poke.name}}
+                    </mat-option>
                     }
-                }
-            </mat-autocomplete>
-        </mat-form-field>
-        <img mat-card-image class="vs-image"
-                        src="../../../assets/vs.png"
-                        alt="image versus pixel art">
-        <mat-form-field>
-            <mat-label>Search Pokémon</mat-label>
-            <input matInput [matAutocomplete]="autoEnemy" [(ngModel)]="selectedPokemonEnemy"
-                placeholder="Filter a pokémon from the list">
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('enemy')">
-                <mat-icon>cancel</mat-icon>
-            </button>
-            <mat-autocomplete autoActiveFirstOption #autoEnemy="matAutocomplete"
-                (optionSelected)="onEnemyOptionSelected($event)">
-                @for (poke of allPokemonListEnemy; track poke) {
-                    @if (poke.name.includes(selectedPokemonEnemy.toLowerCase())) {
-                        <mat-option [value]="poke.name">
-                            {{poke.name}}
-                        </mat-option>
                     }
-                }
-            </mat-autocomplete>
-        </mat-form-field>
-        <button class="battle-button" mat-button color="primary" (click)="fightModal()">Start Battle</button>
-    </div>
-    <div class="enemy-pokemon">
-        @if (enemyPokemon) {
-            <mat-card class="example-card" [ngStyle]="{ 'background': getColorForType(enemyPokemon.types[0].type.name) }">
-                <div class="info-poke">
-                    <mat-card-header>
-                        <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }} </mat-card-title>
-                        <mat-card-subtitle>
-                            @for (poke of enemyPokemon.types; track poke) {
+                </mat-autocomplete>
+            </mat-form-field>
+            <div class="select-pokemon">
+                @if (playerPokemon) {
+                <mat-card class="example-card"
+                    [ngStyle]="{ 'background': getColorForType(playerPokemon.types[0].type.name) }">
+                    <div class="info-poke">
+                        <mat-card-header>
+                            <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                @for (poke of playerPokemon.types; track poke) {
                                 <div clas="type-info">
-                                    <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+                                    <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)"
+                                        alt="Tipo do Pokémon">
                                 </div>
-                            }
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image class="pokemon-artwork"
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{enemyPokemon.id}}.gif"
-                        alt="Imagem {{ enemyPokemon.name }}">
-                </div>
-                <mat-card-content>
-                    <div class="pokemon-stats">
-                        <span class="title-stat"> Stats </span>
-                        @for (stats of enemyPokemon.stats; track stats) {
-                            <div class="stats">
-                              <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
-                              <div class="custom-progress-bar">
-                                <div class="custom-progress" [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
-                              </div>
-                            </div>
-                        }
-                        <span class="title-stat"> Total: {{ total }} </span>
+                                }
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image class="pokemon-artwork"
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{playerPokemon.id}}.gif"
+                            alt="Imagem {{ playerPokemon.name }}">
                     </div>
-                </mat-card-content>
-            </mat-card>
-            <div class="move-set" [ngStyle]="{ 'background': getColorForType(enemyPokemon.types[0].type.name) }">
-                <h2 class="title-item"> Move Set </h2>
-                @if(enemySelectedMoves.length === 0) {
+                    <mat-card-content>
+                        <div class="pokemon-stats">
+                            <span class="title-stat"> Stats </span>
+                            @for (stats of playerPokemon.stats; track stats) {
+                            <div class="stats">
+                                <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
+                                <div class="custom-progress-bar">
+                                    <div class="custom-progress"
+                                        [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
+                                </div>
+                            </div>
+                            }
+                            <span class="title-stat"> Total: {{ total }} </span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="move-set" [ngStyle]="{ 'background': getColorForType(playerPokemon.types[0].type.name) }">
+                    <h2 class="title-item"> Move Set </h2>
+                    @if(playerSelectedMoves.length === 0) {
                     <mat-card class="mat-card-content">
                         <mat-card-content>Choose the moves from the list below</mat-card-content>
                     </mat-card>
-                }
-                @for(move of enemySelectedMoves; track move) {
+                    }
+                    @for(move of playerSelectedMoves; track move) {
                     <mat-card class="move-name">
                         <mat-card-content>{{ upperFirstLetter(move.name, false) }}</mat-card-content>
                     </mat-card>
+                    }
+                </div>
+                <app-moves [pokemon]="playerPokemon"
+                    (selectedMovesChange)="onSelectedMovesChange(playerPokemon, $event)"></app-moves>
+                }
+                @else {
+                <div class="pokemon-empty">
+                    <h2 class="title-empty">Select Pokémon for battle!</h2>
+                </div>
                 }
             </div>
-            <app-moves [pokemon]="enemyPokemon"
-                (selectedMovesChange)="onSelectedMovesChange(enemyPokemon, $event)"></app-moves>
-        }
-        @else {
-            <div class="pokemon-empty">
-                <h2 class="title-empty">Select Pokémon for battle!</h2>
+        </mat-tab>
+        <mat-tab label="Enemy Pokemon">
+            <div class="enemy-pokemon">
+                <mat-form-field class="choose-pokemon">
+                    <mat-label>Search Pokémon</mat-label>
+                    <input matInput [matAutocomplete]="autoEnemy" [(ngModel)]="selectedPokemonEnemy"
+                        placeholder="Filter a pokémon from the list">
+                    <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('enemy')">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <mat-autocomplete autoActiveFirstOption #autoEnemy="matAutocomplete"
+                        (optionSelected)="onEnemyOptionSelected($event)">
+                        @for (poke of allPokemonListEnemy; track poke) {
+                        @if (poke.name.includes(selectedPokemonEnemy.toLowerCase())) {
+                        <mat-option [value]="poke.name">
+                            {{poke.name}}
+                        </mat-option>
+                        }
+                        }
+                    </mat-autocomplete>
+                </mat-form-field>
+                @if (enemyPokemon) {
+                <mat-card class="example-card"
+                    [ngStyle]="{ 'background': getColorForType(enemyPokemon.types[0].type.name) }">
+                    <div class="info-poke">
+                        <mat-card-header>
+                            <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                @for (poke of enemyPokemon.types; track poke) {
+                                <div clas="type-info">
+                                    <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)"
+                                        alt="Tipo do Pokémon">
+                                </div>
+                                }
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image class="pokemon-artwork"
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{enemyPokemon.id}}.gif"
+                            alt="Imagem {{ enemyPokemon.name }}">
+                    </div>
+                    <mat-card-content>
+                        <div class="pokemon-stats">
+                            <span class="title-stat"> Stats </span>
+                            @for (stats of enemyPokemon.stats; track stats) {
+                            <div class="stats">
+                                <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
+                                <div class="custom-progress-bar">
+                                    <div class="custom-progress"
+                                        [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
+                                </div>
+                            </div>
+                            }
+                            <span class="title-stat"> Total: {{ total }} </span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="move-set" [ngStyle]="{ 'background': getColorForType(enemyPokemon.types[0].type.name) }">
+                    <h2 class="title-item"> Move Set </h2>
+                    @if(enemySelectedMoves.length === 0) {
+                    <mat-card class="mat-card-content">
+                        <mat-card-content>Choose the moves from the list below</mat-card-content>
+                    </mat-card>
+                    }
+                    @for(move of enemySelectedMoves; track move) {
+                    <mat-card class="move-name">
+                        <mat-card-content>{{ upperFirstLetter(move.name, false) }}</mat-card-content>
+                    </mat-card>
+                    }
+                </div>
+                <app-moves [pokemon]="enemyPokemon"
+                    (selectedMovesChange)="onSelectedMovesChange(enemyPokemon, $event)"></app-moves>
+                }
+                @else {
+                <div class="pokemon-empty">
+                    <h2 class="title-empty">Select Pokémon for battle!</h2>
+                </div>
+                }
             </div>
-        }
-    </div>
+        </mat-tab>
+        <mat-tab label="Lets Battle">
+            <button class="battle-button" mat-button color="primary" (click)="fightModal()">Start Battle</button>
+        </mat-tab>
+    </mat-tab-group>
 </div>

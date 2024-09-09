@@ -61,7 +61,7 @@ export class PokemonDetailsComponent implements OnInit {
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
-  
+
   ngOnInit(): void {
     this.calculateTotalStats();
     this.getSpecie();
@@ -74,12 +74,12 @@ export class PokemonDetailsComponent implements OnInit {
   upperFirstLetter(word: string): string {
     return this.pokeHelperService.upperFirstLetter(word);
   }
-  
+
   getTypeDetailImageUrl(type: string): string {
     return this.pokeHelperService.getTypeDetailImageUrl(type);
   }
-  
-  calculateTotalStats(): void {    
+
+  calculateTotalStats(): void {
     this.total = 0;
     this.pokemon.stats.forEach(stat => {
       this.total = this.total + stat.base_stat;
@@ -123,18 +123,17 @@ export class PokemonDetailsComponent implements OnInit {
 
   getPokeImage(evolution: Chain[]) {
     this.pokeImages = [];
-
-    let lvlUp: string;
+    let lvlUp: number | null;
     let item: string;
     let trigger: string;
 
     evolution.forEach((poke: Chain) => {
       this.pokeService.getPokemon(poke.species.name).subscribe((data: Pokemon) => {
         poke.evolution_details.forEach(x => {
-          lvlUp = x.min_level;
+          lvlUp = x.min_level ? parseInt(x.min_level, 10) : null;
           item = x.item ? x.item.name : 'null';
-          trigger = x.trigger ? x.trigger.name: 'null';
-        })
+          trigger = x.trigger ? x.trigger.name : 'null';
+        });
         const pokeInfo = new EvolutionLine(
           data.sprites.front_default,
           lvlUp,
@@ -143,16 +142,36 @@ export class PokemonDetailsComponent implements OnInit {
           poke.species.name
         );
         this.pokeImages.push(pokeInfo);
+
+        this.pokeImages.sort((a, b) => {
+          const lvlA = a.lvlUp ?? 0;
+          const lvlB = b.lvlUp ?? 0;
+
+          const isTradeA = a.trigger === 'trade';
+          const isTradeB = b.trigger === 'trade';
+
+          if (isTradeA && isTradeB) {
+            return 0;
+          }
+
+          if (isTradeA) {
+            return 1;
+          }
+
+          if (isTradeB) {
+            return -1;
+          }
+          return lvlA - lvlB;
+        });
       });
-    })
-    this.pokeImages.sort();
+    });
   }
 
   abilitiesModal(abilities: any): void {
     this.dialog.open(AbilitiesDetailsComponent, {
-      data: { 
+      data: {
         abilities,
-        pokemon: this.pokemon  
+        pokemon: this.pokemon
       },
     });
   }
@@ -190,10 +209,10 @@ export class PokemonDetailsComponent implements OnInit {
   changeArrowImage(isLeftArrow: boolean, isHovered: boolean): void {
     const arrowImage = isLeftArrow ? 'left_arrow.png' : 'right_arrow.png';
     const selectedArrowImage = isLeftArrow ? 'selected_left_arrow.png' : 'selected_right_arrow.png';
-    
+
     const imgElement = document.querySelector(isLeftArrow ? '.arrow-left' : '.arrow-right') as HTMLImageElement;
-    
+
     imgElement.src = isHovered ? `../../../assets/${selectedArrowImage}` : `../../../assets/${arrowImage}`;
   }
-  
+
 }
