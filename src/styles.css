@@ -209,7 +209,7 @@ body.dark-mode .types {
 body.dark-mode .pokemon-detail mat-card {
   background: none;
 }
-
+ 
 body.dark-mode .pokemon-detail mat-card-header {
   background: none;
   color: #fff;
@@ -221,6 +221,18 @@ body.dark-mode .pokemon-detail mat-card-content {
 
 body.dark-mode .pokemon-detail mat-card-title {
   color: var(--black-background);
+}
+
+body.dark-mode .example-card mat-card-title {
+  color: var(--black-background);
+}
+
+body.dark-mode .example-card mat-card-header {
+  background: none;
+}
+
+body.dark-mode .example-card mat-card-content {
+  background: none;
 }
 
 body.dark-mode .pokemon-detail span  {
@@ -235,9 +247,8 @@ body.dark-mode .container-nature .content {
   background: var(--minimal-black-background);
 }
 
-
-
-
-
+body.dark-mode .battle-button {
+  background-color: var(--minimal-black-background);
+}
 
 /********************************** End Dark Mode Theme **********************************/
