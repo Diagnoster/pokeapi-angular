@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pokemon } from '../models/pokemon';
+import { Moves } from '../models/moves';
+import { Nature } from '../models/nature';
+import { BaseClass } from '../models/base/base-class';
+import { ItemDetails } from '../models/item-details';
+import { AbilitiesDetails } from '../models/abilities-details';
+import { MoveDetails } from '../models/move-details';
 
 @Injectable({
   providedIn: 'root'
@@ -12,50 +19,45 @@ export class PokeService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(): Observable<any> {
+  getPokemons(): Observable<Pokemon[]> {
     const url =`${this.URL_BASE}/pokemon?limit=905&offset=0`;
-    return this.http.get<any>(url);
+    return this.http.get<Pokemon[]>(url);
   }
 
-  getPokemonsLazy(offset: number, limit: number): Observable<any> {
+  getPokemonsLazy(offset: number, limit: number): Observable<Pokemon[]> {
     const url =`${this.URL_BASE}/pokemon?offset=${offset}&limit=${limit}`;
-    return this.http.get<any>(url);
+    return this.http.get<Pokemon[]>(url);
   }
 
-  getPokeDetails(pokemonUrl: string) : Observable<any> {
-    return this.http.get<any>(pokemonUrl);
+  getPokeDetails(pokemonUrl: string) : Observable<Pokemon> {
+    return this.http.get<Pokemon>(pokemonUrl);
   }
 
-  getPokemon(pokemon: string): Observable<any> {
+  getPokemon(pokemon: string): Observable<Pokemon> {
     const url = `${this.URL_BASE}/pokemon/${pokemon}`;
-    return this.http.get<any>(url);
+    return this.http.get<Pokemon>(url);
   }
 
-  getPokemonById(pokemon: number): Observable<any> {
+  getPokemonById(pokemon: number): Observable<Pokemon> {
     const url = `${this.URL_BASE}/pokemon/${pokemon}`;
-    return this.http.get<any>(url);
+    return this.http.get<Pokemon>(url);
   }
 
-  getDamageRelations(typeUrl: string): Observable<any> {
-    const url = `${typeUrl}`;
-    return this.http.get<any>(url);
+  getPokeMoves(moveUrl: string): Observable<MoveDetails> {
+    return this.http.get<MoveDetails>(moveUrl);
   }
 
-  getPokeMoves(moveUrl: string): Observable<any> {
-    return this.http.get<any>(moveUrl);
+  getAbility(abilityUrl: string): Observable<AbilitiesDetails> {
+    return this.http.get<AbilitiesDetails>(abilityUrl);
   }
 
-  getAbility(abilityUrl: string): Observable<any> {
-    return this.http.get<any>(abilityUrl);
-  }
-
-  getAllMoves() : Observable<any> {
+  getAllMoves() : Observable<Moves[]> {
     const url = `${this.URL_BASE}/move?offset=0&limit=937`;
-    return this.http.get<any>(url);
+    return this.http.get<Moves[]>(url);
   }
 
-  getItens(itemUrl: string) : Observable<any> {
-    return this.http.get<any>(itemUrl);
+  getItens(itemUrl: string) : Observable<ItemDetails> {
+    return this.http.get<ItemDetails>(itemUrl);
   }
 
   getSelectOption(item: string) : Observable<any> {
@@ -63,9 +65,9 @@ export class PokeService {
     return this.http.get<any>(url);
   }
 
-  getAbilities(): Observable<any> {
+  getAbilities(): Observable<BaseClass[]> {
     const url = `${this.URL_BASE}/ability/?offset=0&limit=240`;
-    return this.http.get<any>(url);
+    return this.http.get<BaseClass[]>(url);
   }
 
   getNatures(): Observable<any> {
@@ -73,8 +75,8 @@ export class PokeService {
     return this.http.get<any>(url);
   }
 
-  getNatureDetails(natureUrl: string): Observable<any> {
-    return this.http.get<any>(natureUrl);
+  getNatureDetails(natureUrl: string): Observable<Nature> {
+    return this.http.get<Nature>(natureUrl);
   }
 
   getSpecie(specieUrl: string): Observable<any> {

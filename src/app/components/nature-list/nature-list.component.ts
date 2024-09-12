@@ -28,8 +28,8 @@ export class NatureListComponent implements OnInit{
 
   getNatures() {
     this.pokeService.getNatures().subscribe(data => {
-      data.results.forEach( (ntr: any) => {
-        this.pokeService.getNatureDetails(ntr.url).subscribe(nature => {
+      data.results.forEach( (nature : any) => {
+        this.pokeService.getNatureDetails(nature.url).subscribe(nature => {
           this.natureDetails.push(nature);
         });
       });
