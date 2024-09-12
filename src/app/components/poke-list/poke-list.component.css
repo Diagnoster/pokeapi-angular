@@ -6,12 +6,10 @@
 
 .content {
   width: 90%;
-  align-items: center;
   text-align: center;
 }
 
 .poke-card {
-  justify-content: center;
   width: calc(25% - 1%);
   margin: 0.5%;
   box-sizing: border-box;
@@ -82,7 +80,5 @@ mat-card-subtitle {
     width: calc(50% - 2%);
     float: none;
     margin: 1%;
-    align-items: center;
-    align-content: center;
   }
 }

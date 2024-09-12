@@ -1,6 +1,8 @@
 mat-card {
-  justify-content: center; 
-  align-items: center
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 mat-card-title {
@@ -9,12 +11,4 @@ mat-card-title {
   border-radius: 5px;
   padding: 5px;
   color: white;
-}
-
-mat-card-subtitle {
-  align-items: center;
-}
-
-.title {
-  align-items: center;
 }

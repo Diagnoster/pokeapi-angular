@@ -1,13 +1,12 @@
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .content {
   width: 90%;
-  align-items: center;
-  text-align: center;
 }
 
 mat-form-field {
