@@ -1,5 +1,4 @@
 .container-nature {
-    align-items: center;
     text-align: center;
     width: 100%;
 }
@@ -17,8 +16,6 @@ h1 {
 }
 
 mat-card {
-    justify-content: center;
-    align-items: center;
     width: calc(25% - 1%);
     margin: 0.5%;
     min-width: 250px;
@@ -57,13 +54,8 @@ mat-card-content {
     align-items: center;
 }
 
-.mat-mdc-card-header {
-    justify-content: center;
-}
-
 .title {
     font-size: 25px;
-    align-items: center;
 }
 
 .stats-image {

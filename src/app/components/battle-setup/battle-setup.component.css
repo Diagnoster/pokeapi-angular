@@ -79,7 +79,6 @@ app-moves {
 }
 
 .pokemon-stats {
-  align-items: center;
   margin-top: 1em;
 }
 
@@ -123,8 +122,6 @@ mat-card-title {
 
 mat-card-content {
   flex: 1;
-  align-items: center;
-  justify-content: center;
 }
 
 mat-card-subtitle {
