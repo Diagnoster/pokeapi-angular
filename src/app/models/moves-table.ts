@@ -1,3 +1,5 @@
 export class MovesTable {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  constructor(
+    public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol']
+  ) {}
 }
