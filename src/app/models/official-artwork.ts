@@ -1,9 +1,6 @@
 export class OfficialArtwork {
-    front_default: string;
-    front_shiny: string;
-    
-    constructor(front_default: string, front_shiny: string) {
-        this.front_default = front_default;
-        this.front_shiny = front_shiny;
-    }
+    constructor(
+        public front_default: string,
+        public front_shiny: string
+    ) { }
 }
