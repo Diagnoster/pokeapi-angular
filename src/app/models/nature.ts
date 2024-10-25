@@ -4,7 +4,7 @@ export class Nature {
     constructor(
         public id: number,
         public name: string,
-        public descreased_stat: BaseClass,
+        public decreased_stat: BaseClass,
         public increased_stat: BaseClass
     ) { }
 }
