@@ -72,6 +72,16 @@ header {
   justify-content: center;
 }
 
+/* Animate Icons */
+.selects span img {
+  transition: transform 0.3s ease;
+}
+
+.selects span:hover img {
+  transform: translateY(-5px);
+}
+/* End Animate Icons */
+
 @media (max-width: 1100px) {
   header {
     margin-top: 55px;
