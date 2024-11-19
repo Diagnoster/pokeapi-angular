@@ -53,6 +53,14 @@ Make sure you have Node.js and Angular CLI installed on your machine.
 #### Bulbapedia: Bulbapedia for providing information, icons, and layout ideas.
 #### Pokémon Company: The Pokémon Company for being the owner of the Pokémon brand.
 #### Text Studio: By the images provided <a href="https://www.textstudio.com">Font Generator</a>
+#### Icons: 
+   <a href="https://www.flaticon.com/free-icons/home" title="home icons">Home icons created by Freepik - Flaticon</a>
+   <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Darius Dan - Flaticon</a>
+   <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Nikita Golubev - Flaticon</a>
+   <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Roundicons Freebies - Flaticon</a>
+   <a href="https://www.flaticon.com/free-icons/fist" title="fist icons">Fist icons created by Roundicons Freebies - Flaticon</a>
+   <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Roundicons Premium - Flaticon</a>
+   <a href="https://www.flaticon.com/free-icons/tornado" title="tornado icons">Tornado icons created by Roundicons Freebies - Flaticon</a>
 
 ## About
 This software is 100% free, open-source and unlicensed.

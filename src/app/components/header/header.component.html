@@ -16,13 +16,41 @@
       <a routerLink="/home"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site"></a>
     </button>
     <div class="selects">
-      <span [ngClass]="{'selected': selectedSpan === 'home'}"><a mat-button routerLink="/home" (click)="selectSpan('home')">Home</a></span>
-      <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" (click)="selectSpan('pokedex')">Pokedex</a></span>
-      <span [ngClass]="{'selected': selectedSpan === 'moves'}"><a mat-button routerLink="/moves" (click)="selectSpan('moves')">Moves</a></span>
-      <span [ngClass]="{'selected': selectedSpan === 'items'}"><a mat-button routerLink="/items" (click)="selectSpan('items')">Items</a></span>
-      <span [ngClass]="{'selected': selectedSpan === 'battle'}"><a mat-button routerLink="/battle" (click)="selectSpan('battle')">Battle</a></span>
-      <span [ngClass]="{'selected': selectedSpan === 'abilities'}"><a mat-button routerLink="/abilities" (click)="selectSpan('abilities')">Abilities</a></span>
-      <span [ngClass]="{'selected': selectedSpan === 'natures'}"><a mat-button routerLink="/natures" (click)="selectSpan('natures')">Natures</a></span>
+      <span [ngClass]="{'selected': selectedSpan === 'home'}"> <a mat-button routerLink="/home" matTooltip="Home"
+          (click)="selectSpan('home')">
+          <img src="../../../assets/home_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
+      <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" matTooltip="Pokedex"
+          (click)="selectSpan('pokedex')">
+          <img src="../../../assets/pokedex_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
+      <span [ngClass]="{'selected': selectedSpan === 'moves'}"><a mat-button routerLink="/moves" matTooltip="Moves"
+          (click)="selectSpan('moves')">
+          <img src="../../../assets/moves_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
+      <span [ngClass]="{'selected': selectedSpan === 'items'}"><a mat-button routerLink="/items" matTooltip="Items"
+          (click)="selectSpan('items')">
+          <img src="../../../assets/item_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
+      <span [ngClass]="{'selected': selectedSpan === 'battle'}"><a mat-button routerLink="/battle" matTooltip="Battle"
+          (click)="selectSpan('battle')">
+          <img src="../../../assets/battle_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
+      <span [ngClass]="{'selected': selectedSpan === 'abilities'}"><a mat-button routerLink="/abilities" matTooltip="Abilities"
+          (click)="selectSpan('abilities')">
+          <img src="../../../assets/abilitie_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
+      <span [ngClass]="{'selected': selectedSpan === 'natures'}"><a mat-button routerLink="/natures"matTooltip="Natures"
+          (click)="selectSpan('natures')">
+          <img src="../../../assets/nature_icon.png" alt="Pokedex icon">
+        </a>
+      </span>
     </div>
     <span class="spacer"></span>
     <div class="buttons">
@@ -38,7 +66,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 @if (!hideHeader) {
-  <header class="docs-primary-header component-page-header">
-    <h2> {{ componentName }} </h2>
-  </header>
+<header class="docs-primary-header component-page-header">
+  <h2> {{ componentName }} </h2>
+</header>
 }
