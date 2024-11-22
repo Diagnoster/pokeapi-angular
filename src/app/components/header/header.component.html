@@ -1,54 +1,46 @@
 <mat-toolbar #toolbar>
   <mat-toolbar-row class="main-header">
-    <button class="menu-list" mat-button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
-      <mat-icon>list</mat-icon>
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" yPosition="below">
-      <button mat-menu-item routerLink="/home">Home</button>
-      <button mat-menu-item routerLink="/pokedex">Pokedex</button>
-      <button mat-menu-item routerLink="/moves">Moves</button>
-      <button mat-menu-item routerLink="/items">Items</button>
-      <button mat-menu-item routerLink="/abilities">Abilities</button>
-      <button mat-menu-item routerLink="/natures">Natures</button>
-      <button mat-menu-item routerLink="/battle">Battle</button>
-    </mat-menu>
-    <button mat-button>
-      <a routerLink="/home"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site"></a>
-    </button>
+
+    <!-- Logo PokeApi -->
+    <a routerLink="/home"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Icone site"></a>
+
     <div class="selects">
-      <span [ngClass]="{'selected': selectedSpan === 'home'}"> <a mat-button routerLink="/home" matTooltip="Home"
+      <span [ngClass]="{'selected': selectedSpan === 'home'}"><a mat-button routerLink="/home" matTooltip="Home"
           (click)="selectSpan('home')">
-          <img src="../../../assets/home_icon.png" alt="Pokedex icon">
+          <img src="../../../assets/home_icon.png" alt="Home icon">
         </a>
       </span>
-      <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex" matTooltip="Pokedex"
-          (click)="selectSpan('pokedex')">
+      <span [ngClass]="{'selected': selectedSpan === 'pokedex'}"><a mat-button routerLink="/pokedex"
+          matTooltip="Pokedex" (click)="selectSpan('pokedex')">
           <img src="../../../assets/pokedex_icon.png" alt="Pokedex icon">
         </a>
       </span>
       <span [ngClass]="{'selected': selectedSpan === 'moves'}"><a mat-button routerLink="/moves" matTooltip="Moves"
           (click)="selectSpan('moves')">
-          <img src="../../../assets/moves_icon.png" alt="Pokedex icon">
+          <img src="../../../assets/moves_icon.png" alt="Moves icon">
         </a>
       </span>
       <span [ngClass]="{'selected': selectedSpan === 'items'}"><a mat-button routerLink="/items" matTooltip="Items"
           (click)="selectSpan('items')">
-          <img src="../../../assets/item_icon.png" alt="Pokedex icon">
+          <img src="../../../assets/item_icon.png" alt="Items icon">
         </a>
       </span>
       <span [ngClass]="{'selected': selectedSpan === 'battle'}"><a mat-button routerLink="/battle" matTooltip="Battle"
           (click)="selectSpan('battle')">
-          <img src="../../../assets/battle_icon.png" alt="Pokedex icon">
+          <img src="../../../assets/battle_icon.png" alt="Battle icon">
         </a>
       </span>
-      <span [ngClass]="{'selected': selectedSpan === 'abilities'}"><a mat-button routerLink="/abilities" matTooltip="Abilities"
-          (click)="selectSpan('abilities')">
-          <img src="../../../assets/abilitie_icon.png" alt="Pokedex icon">
+      <span [ngClass]="{'selected': selectedSpan === 'abilities'}"><a mat-button routerLink="/abilities"
+          matTooltip="Abilities" (click)="selectSpan('abilities')">
+          <img src="../../../assets/abilitie_icon.png" alt="Abilities icon">
         </a>
       </span>
-      <span [ngClass]="{'selected': selectedSpan === 'natures'}"><a mat-button routerLink="/natures"matTooltip="Natures"
-          (click)="selectSpan('natures')">
-          <img src="../../../assets/nature_icon.png" alt="Pokedex icon">
+      <span [ngClass]="{'selected': selectedSpan === 'natures'}"><a mat-button routerLink="/natures"
+          matTooltip="Natures" (click)="selectSpan('natures')">
+          <img src="../../../assets/nature_icon.png" alt="Natures icon">
         </a>
       </span>
     </div>
@@ -65,8 +57,23 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
 @if (!hideHeader) {
-<header class="docs-primary-header component-page-header">
-  <h2> {{ componentName }} </h2>
-</header>
+  <header class="docs-primary-header component-page-header">
+    <h2>{{ componentName }}</h2>
+  </header>
 }
+
+<mat-drawer-container>
+  <mat-sidenav #snav class="side-nav-left" position="start" role="directory" [opened]="opened" mode="over" (closedStart)="opened = false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">Home</a>
+      <a mat-list-item routerLink="/pokedex">Pokedex</a>
+      <a mat-list-item routerLink="/moves">Moves</a>
+      <a mat-list-item routerLink="/items">Items</a>
+      <a mat-list-item routerLink="/abilities">Abilities</a>
+      <a mat-list-item routerLink="/natures">Natures</a>
+      <a mat-list-item routerLink="/battle">Battle</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-drawer-container>

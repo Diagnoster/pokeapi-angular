@@ -19,7 +19,7 @@ mat-toolbar {
 .logo {
   height: 80px;
   width: auto;
-  margin: 7vh;
+  margin: 6vh;
   margin-left: 10%;
   display: flex;
   align-items: start;
@@ -82,6 +82,31 @@ header {
 }
 /* End Animate Icons */
 
+.side-nav-left {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(75%-25%);
+  z-index: 1003;
+  background-color: #3f51b5;
+  margin-top: 64px;
+}
+
+mat-nav-list {
+  z-index: auto;
+  background-color: #3f51b5;
+  height: 500px;
+  width: 129px;
+}
+
+mat-drawer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
 @media (max-width: 1100px) {
   header {
     margin-top: 55px;
@@ -94,7 +119,12 @@ header {
   .main-header .buttons {
     width: 100%;
     justify-content: end;
-
   }
 
+}
+
+@media (max-width: 605px) {
+  .side-nav-left {
+    margin-top: 57px;
+  }
 }

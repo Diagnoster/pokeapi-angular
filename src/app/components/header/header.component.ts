@@ -7,6 +7,9 @@ import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 
 @Component({
   selector: 'app-header',
@@ -18,7 +21,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RouterModule,
     CommonModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSidenavModule,
+    MatListModule
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
@@ -28,6 +33,7 @@ export class HeaderComponent implements OnInit {
   selectedSpan: string | null = null;
   hideHeader: boolean = false;
   isDarkMode = false;
+  opened = false;
 
   constructor(private router: Router) { }
 
