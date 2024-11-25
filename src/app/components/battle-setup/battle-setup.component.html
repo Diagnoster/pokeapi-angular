@@ -70,7 +70,8 @@
                     }
                 </div>
                 <app-moves [pokemon]="playerPokemon"
-                    (selectedMovesChange)="onSelectedMovesChange(playerPokemon, $event)"></app-moves>
+                    (selectedMovesChange)="onSelectedMovesChange(playerPokemon, $event)">
+                </app-moves>
                 }
                 @else {
                 <div class="pokemon-empty">
