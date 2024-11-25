@@ -193,7 +193,7 @@ export class PokemonDetailsComponent implements OnInit {
       this.evolutions = [];
       this.pokeImages = [];
       this.getSpecie();
-
+      this.calculateTotalStats();
     });
   }
 
@@ -203,6 +203,7 @@ export class PokemonDetailsComponent implements OnInit {
       this.evolutions = [];
       this.pokeImages = [];
       this.getSpecie();
+      this.calculateTotalStats();
     });
   }
 
