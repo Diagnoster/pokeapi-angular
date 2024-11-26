@@ -30,27 +30,32 @@
       </div>
     </div>
     <mat-card-content>
-      @if(pokeImages.length > 1) {
-        <div class="evolutions">
-          <div class="test" *ngFor="let pokemonImage of pokeImages; let i = index; let last = last">
-            <div class="poke">
-              <img class="pokemon-artwork-evolution"
-              [src]="pokemonImage.pokeImage"
-              (click)="nextPokemonByName(pokemonImage.name)"
-              alt="Imagem do Pokémon">   
-              @if(pokemonImage.lvlUp) {
-                <p>Level {{pokemonImage.lvlUp}}</p>
-              } 
-              @else if (pokemonImage.item != 'null') {
-                <p>{{ upperFirstLetter(pokemonImage.item)}}</p>
-              }
-              @else if (pokemonImage.trigger != 'null') {
-                <p>{{ upperFirstLetter(pokemonImage.trigger)}}</p>
-              }
+      @if (loading) {
+        <app-loading></app-loading>
+      }
+      @else {
+        @if(pokeImages.length > 1) {
+          <div class="evolutions">
+            <div class="test" *ngFor="let pokemonImage of pokeImages; let i = index; let last = last">
+              <div class="poke">
+                <img class="pokemon-artwork-evolution"
+                [src]="pokemonImage.pokeImage"
+                (click)="nextPokemonByName(pokemonImage.name)"
+                alt="Imagem do Pokémon">   
+                @if(pokemonImage.lvlUp) {
+                  <p>Level {{pokemonImage.lvlUp}}</p>
+                } 
+                @else if (pokemonImage.item != 'null') {
+                  <p>{{ upperFirstLetter(pokemonImage.item)}}</p>
+                }
+                @else if (pokemonImage.trigger != 'null') {
+                  <p>{{ upperFirstLetter(pokemonImage.trigger)}}</p>
+                }
+              </div>
+              <mat-icon *ngIf="!last">arrow_forward</mat-icon>
             </div>
-            <mat-icon *ngIf="!last">arrow_forward</mat-icon>
           </div>
-        </div>
+        }
       }
       <div class="types">
         <span class="title-type">Types:</span>
