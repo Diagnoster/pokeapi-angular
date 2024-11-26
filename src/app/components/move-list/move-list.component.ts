@@ -19,6 +19,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { BaseClass } from '../../models/base/base-class';
 import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
+import { DamageCategoryColor } from '../../models/enums/damage-category-color';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-move-list',
@@ -34,7 +36,8 @@ import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component'
     MatSortModule,
     MatTooltipModule,
     MatCardModule,
-    PokemonLearnComponent
+    PokemonLearnComponent,
+    CommonModule
   ],
   animations: [
     trigger('detailExpand', [
@@ -106,5 +109,10 @@ export class MoveListComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  getColorForType(damage: string): string {
+    return DamageCategoryColor[damage as keyof typeof DamageCategoryColor];
+  }
+
   
 }

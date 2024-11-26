@@ -65,16 +65,18 @@
           <div class="element-detail" [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'">
             <div class="element-description">
               <div class="box">
-                <p>ID: {{ move.id }}</p>
-              </div>
-              <div class="box">
-                <p>PP: {{ move.pp }}</p>
-              </div>
-              <div class="box">
-                <p>{{ upperFirstLetter(move.generation.name) }}</p>
-              </div>
-              <div class="box">
-                <p>{{ upperFirstLetter(move.damage_class.name) }}</p>
+                <mat-card>
+                  <mat-card-content>ID: {{ move.id }}</mat-card-content>
+                </mat-card>
+                <mat-card>
+                  <mat-card-content>PP: {{ move.pp }}</mat-card-content>
+                </mat-card>
+                <mat-card>
+                  <mat-card-content>{{ upperFirstLetter(move.generation.name) }}</mat-card-content>
+                </mat-card>
+                <mat-card [ngStyle]="{ 'background': getColorForType(move.damage_class.name) }">
+                  <mat-card-content>{{ upperFirstLetter(move.damage_class.name) }}</mat-card-content>
+                </mat-card>
               </div>
               @for (effect of move.effect_entries; track effect) {
                 <span class="element-description-attribution">
