@@ -46,13 +46,13 @@ tr.element-row:not(.expanded-row):active {
 
 .element-description {
   padding: 16px;
+  margin-bottom: 5px;
 }
 
 .element-description-attribution {
   display: block;
   opacity: 0.5;
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .element-detail {
@@ -79,6 +79,7 @@ tr.element-row:not(.expanded-row):active {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
+  margin-bottom: 6px;
 }
 
 .box p {

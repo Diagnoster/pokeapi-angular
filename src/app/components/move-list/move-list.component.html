@@ -70,6 +70,12 @@
               <div class="box">
                 <p>PP: {{ move.pp }}</p>
               </div>
+              <div class="box">
+                <p>{{ upperFirstLetter(move.generation.name) }}</p>
+              </div>
+              <div class="box">
+                <p>{{ upperFirstLetter(move.damage_class.name) }}</p>
+              </div>
               @for (effect of move.effect_entries; track effect) {
                 <span class="element-description-attribution">
                   {{ effect.effect }}
