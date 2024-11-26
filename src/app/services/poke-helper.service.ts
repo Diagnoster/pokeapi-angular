@@ -44,5 +44,12 @@ export class PokeHelperService {
     const imagePath = `assets/details-icons/${type.toLowerCase()}.png`;
     return imagePath;
   }
+
+  formatGenerationName(name: string): string {
+    return name
+      .replace('generation-', 'gen ')
+      .replace('-', ' ')
+      .toUpperCase();
+  }
   
 }

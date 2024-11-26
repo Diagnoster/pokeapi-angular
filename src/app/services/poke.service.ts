@@ -86,5 +86,10 @@ export class PokeService {
   getEvolutionChain(evolutionUrl: string): Observable<any> {
     return this.http.get<any>(evolutionUrl);
   }
+
+  getAllGenerations(): Observable<any> {
+    const url =`${this.URL_BASE}/generation/`;
+    return this.http.get<any>(url);
+  }
   
 }

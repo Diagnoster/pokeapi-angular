@@ -21,6 +21,7 @@ import { BaseClass } from '../../models/base/base-class';
 import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
 import { DamageCategoryColor } from '../../models/enums/damage-category-color';
 import { CommonModule } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-move-list',
@@ -37,7 +38,8 @@ import { CommonModule } from '@angular/common';
     MatTooltipModule,
     MatCardModule,
     PokemonLearnComponent,
-    CommonModule
+    CommonModule,
+    MatDividerModule
   ],
   animations: [
     trigger('detailExpand', [
@@ -62,16 +64,21 @@ export class MoveListComponent implements OnInit {
   expandedElement: MoveDetails | null;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
+  gen: BaseClass[];
+  icons: string[] = [];
 
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
     this.expandedElement = null;
+    this.gen = [];
   }
 
   ngOnInit() {
     this.getMoves();
+    this.getGenerations();
+    this.loadIcons();
   }
 
   getMoves() {
@@ -89,12 +96,23 @@ export class MoveListComponent implements OnInit {
     });
   }
 
+  getGenerations() {
+    this.pokeService.getAllGenerations().subscribe((data: any) => {
+      this.gen = data.results;
+      console.log(this.gen);
+    });
+  }
+
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
   
   upperFirstLetter(word: string): string {
     return this.pokeHelperService.upperFirstLetter(word);
+  }
+
+  formatGenerationName(word: string): string {
+    return this.pokeHelperService.formatGenerationName(word);
   }
 
   applyFilter(event: Event) {
@@ -113,6 +131,31 @@ export class MoveListComponent implements OnInit {
   getColorForType(damage: string): string {
     return DamageCategoryColor[damage as keyof typeof DamageCategoryColor];
   }
-
   
+  loadIcons() {
+    const iconFiles = [
+      'bug.png',
+      'dark.png',
+      'dragon.png',
+      'electric.png',
+      'fairy.png',
+      'fighting.png',
+      'fire.png',
+      'flying.png',
+      'ghost.png',
+      'grass.png',
+      'ground.png',
+      'ice.png',
+      'normal.png',
+      'poison.png',
+      'psychic.png',
+      'rock.png',
+      'shadow.png',
+      'steel.png',
+      'water.png'
+    ];
+
+    this.icons = iconFiles.map(file => `assets/retro-icons/${file}`);
+  }
+
 }

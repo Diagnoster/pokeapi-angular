@@ -8,7 +8,23 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
     </mat-form-field>
-
+    <mat-card>
+      <mat-card-content>
+        <div class="gen">
+          @for (generation of gen; track generation) {
+            <button mat-button class="gen-button">
+              {{ formatGenerationName(generation.name) }}
+            </button>
+          }
+        </div>
+        <mat-divider></mat-divider>
+        <div class="icon-filter-container">
+          @for (icon of icons; track icon) {
+            <img [src]="icon" alt="Filtro" class="icon-image" />
+          }
+        </div>        
+      </mat-card-content>      
+    </mat-card>
     <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
       (matSortChange)="announceSortChange($event)">
       <!-- Name Column -->
@@ -65,10 +81,10 @@
           <div class="element-detail" [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'">
             <div class="element-description">
               <div class="box">
-                <mat-card [ngStyle]="{ 'background': 'linear-gradient(90deg, #FFF5B3 0%, #FFFADD 100%)' }">
+                <mat-card class="move-info" [ngStyle]="{ 'background': 'linear-gradient(90deg, #FFF5B3 0%, #FFFADD 100%)' }">
                   <mat-card-content>ID: {{ move.id }}</mat-card-content>
                 </mat-card>
-                <mat-card [ngStyle]="{ 'background': 'linear-gradient(90deg, #B3D1FF 0%, #D9E8FF 100%)' }">
+                <mat-card class="move-info" [ngStyle]="{ 'background': 'linear-gradient(90deg, #B3D1FF 0%, #D9E8FF 100%)' }">
                   <mat-card-content>
                     @if(move.pp > 0) {
                       PP: {{ move.pp }}
@@ -78,10 +94,10 @@
                     }
                   </mat-card-content>
                 </mat-card>
-                <mat-card [ngStyle]="{ 'background': 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)' }">
+                <mat-card class="move-info" [ngStyle]="{ 'background': 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)' }">
                   <mat-card-content>{{ upperFirstLetter(move.generation.name) }}</mat-card-content>
                 </mat-card>                
-                <mat-card [ngStyle]="{ 'background': getColorForType(move.damage_class.name) }">
+                <mat-card class="move-info" [ngStyle]="{ 'background': getColorForType(move.damage_class.name) }">
                   <mat-card-content>{{ upperFirstLetter(move.damage_class.name) }}</mat-card-content>
                 </mat-card>
               </div>

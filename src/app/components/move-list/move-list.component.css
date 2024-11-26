@@ -87,6 +87,41 @@ tr.element-row:not(.expanded-row):active {
 }
 
 mat-card {
-  margin-right: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-weight: bold;
+}
+
+.gen {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.gen-button {
+  background-color: rgb(194, 190, 190);
+  padding: 3px;
+  margin: 5px;
+}
+
+.move-info {
+  margin-right: 6px;
+}
+
+.icon-filter-container {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-image {
+  width: 50px;
+  height: 30px;
+  object-fit: contain;
+  cursor: pointer;
+  margin-right: 5px;
 }
