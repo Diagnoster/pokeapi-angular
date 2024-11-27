@@ -61,6 +61,7 @@ Make sure you have Node.js and Angular CLI installed on your machine.
    ##### <a href="https://www.flaticon.com/free-icons/fist" title="fist icons">Fist icons created by Roundicons Freebies - Flaticon</a>
    ##### <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Roundicons Premium - Flaticon</a>
    ##### <a href="https://www.flaticon.com/free-icons/tornado" title="tornado icons">Tornado icons created by Roundicons Freebies - Flaticon</a>
+   ##### <a href="https://www.flaticon.com/free-icons/page-not-found" title="page not found icons">Page not found icons created by Pixel perfect - Flaticon</a>
 
 ## About
 This software is 100% free, open-source and unlicensed.
