@@ -16,10 +16,15 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        @for (poke of pokemon; track poke) {
-          <div class="poke-box" (click)="pokeModal(poke.name)">
-            <span class="text">{{ upperFirstLetter(poke.name) }}</span>
-          </div>
+        @if(pokemon?.length == 0) {
+          <span class="text">No Pokémon found.</span>
+        }
+        @else {
+          @for (poke of pokemon; track poke) {
+            <div class="poke-box" (click)="pokeModal(poke.name)">
+              <span class="text">{{ upperFirstLetter(poke.name) }}</span>
+            </div>
+          }
         }
       </mat-card-content>
     </mat-card>
