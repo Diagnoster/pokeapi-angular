@@ -17,7 +17,7 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MovesComponent } from '../moves/moves.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { switchMap } from 'rxjs';
+import { forkJoin, map, switchMap } from 'rxjs';
 import { Chain } from '../../models/chain';
 import { EvolutionLine } from '../../models/evolution-line';
 import { LoadingComponent } from '../loading/loading.component';
@@ -131,35 +131,51 @@ export class PokemonDetailsComponent implements OnInit {
     let lvlUp: number | null;
     let item: string;
     let trigger: string;
-
-    evolution.forEach((poke: Chain) => {
-      this.pokeService.getPokemon(poke.species.name).subscribe((data: Pokemon) => {
-         if (poke.evolution_details.length == 0) {
-          const firstPokemonLineEvolution = new EvolutionLine(
-            data.sprites.front_default,
-            null,
-            "",
-            "",
-            poke.species.name
-          );
-          this.pokeImages.push(firstPokemonLineEvolution);
-         }
-         else {
-          const details = poke.evolution_details[0];
-          lvlUp = details?.min_level ? parseInt(details.min_level, 10) : null;
-          item = details?.item ? details.item.name : 'null';
-          trigger = details?.trigger ? details.trigger.name : 'null';
-          
-          const pokeInfo = new EvolutionLine(
-            data.sprites.front_default,
-            lvlUp,
-            item,
-            trigger,
-            poke.species.name
-          );
-          this.pokeImages.push(pokeInfo);
-         }
+  
+    const requests = evolution.map((poke: Chain) => {
+      return this.pokeService.getPokemon(poke.species.name).pipe(
+        map((data: Pokemon) => {
+          if (poke.evolution_details.length == 0) {
+            const firstPokemonLineEvolution = new EvolutionLine(
+              data.sprites.front_default,
+              null,
+              "",
+              "",
+              poke.species.name
+            );
+            return firstPokemonLineEvolution;
+          } else {
+            const details = poke.evolution_details[0];
+            lvlUp = details?.min_level ? parseInt(details.min_level, 10) : null;
+            item = details?.item ? details.item.name : 'null';
+            trigger = details?.trigger ? details.trigger.name : 'null';
+            
+            return new EvolutionLine(
+              data.sprites.front_default,
+              lvlUp,
+              item,
+              trigger,
+              poke.species.name
+            );
+          }
+        })
+      );
+    });
+  
+    // forkjoin for wait all requisitions
+    forkJoin(requests).subscribe((pokeImages) => {
+      this.pokeImages = pokeImages;
+  
+      this.pokeImages.sort((a, b) => {
+        if (a.trigger === "" && b.trigger !== "") {
+          return -1;
+        } else if (a.trigger === "trade" && b.trigger !== "trade") {
+          return 1;
+        }
+        return 0;
       });
+  
+      console.log(this.pokeImages);
     });
   }
 
