@@ -5,26 +5,68 @@
     }
     <!-- Filter -->
     <mat-form-field>
-      <mat-label>Filter</mat-label>
+      <mat-label>Search Move</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
     </mat-form-field>
-    <mat-card>
-      <mat-card-content>
-        <div class="gen">
-          @for (generation of gen; track generation) {
-            <button mat-button class="gen-button">
-              {{ formatGenerationName(generation.name) }}
-            </button>
-          }
-        </div>
-        <mat-divider></mat-divider>
-        <div class="icon-filter-container">
-          @for (icon of icons; track icon) {
-            <img [src]="icon" alt="Filtro" class="icon-image" />
-          }
-        </div>        
-      </mat-card-content>      
-    </mat-card>
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Filters: </mat-panel-title>
+          <mat-panel-description>
+            Select or remove filters
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- Active filters  -->
+        <mat-card class="filter-card">
+          <mat-card-content>
+            <h2 class="filter-title">Selected Filters</h2>
+            <div class="active-filters">
+              @if(selectedGenerations.length > 0) {
+              @for(gen of selectedGenerations; track gen) {
+              <span>
+                <button class="filter-button" mat-button (click)="removeGenerationFilter(gen)">
+                  {{ formatGenerationName(gen) }}
+                  <mat-icon>close</mat-icon>
+                </button>
+              </span>
+              }
+              }
+              @if(selectedTypes.length > 0) {
+              @for(type of selectedTypes; track type) {
+              <span>
+                <button mat-button (click)="removeTypeFilter(type)">
+                  <img [src]="'assets/retro-icons/' + type + '.png'" alt="Filtro" class="icon-image"
+                    (click)="applyTypeFilter(type)" />
+                </button>
+              </span>
+              }
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-content>
+            <mat-divider></mat-divider>
+            <div class="gen">
+              @for (generation of gen; track generation) {
+              <button mat-button class="gen-button" (click)="applyGenerationFilter(generation.name)">
+                {{ formatGenerationName(generation.name) }}
+              </button>
+              }
+            </div>
+            <mat-divider></mat-divider>
+            <div class="icon-filter-container">
+              @for (icon of icons; track icon) {
+              <img [src]="'assets/retro-icons/' + icon + '.png'" alt="Filtro" class="icon-image"
+                (click)="applyTypeFilter(icon)" />
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <!-- End Active filters  -->
+      </mat-expansion-panel>
+    </mat-accordion>
     <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
       (matSortChange)="announceSortChange($event)">
       <!-- Name Column -->
@@ -67,9 +109,9 @@
               expandedElement = expandedElement === move ? null : move;
               $event.stopPropagation()">
             @if (expandedElement === move) {
-              <mat-icon>keyboard_arrow_up</mat-icon>
+            <mat-icon>keyboard_arrow_up</mat-icon>
             } @else {
-              <mat-icon>keyboard_arrow_down</mat-icon>
+            <mat-icon>keyboard_arrow_down</mat-icon>
             }
           </button>
         </td>
@@ -81,31 +123,34 @@
           <div class="element-detail" [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'">
             <div class="element-description">
               <div class="box">
-                <mat-card class="move-info" [ngStyle]="{ 'background': 'linear-gradient(90deg, #FFF5B3 0%, #FFFADD 100%)' }">
+                <mat-card class="move-info"
+                  [ngStyle]="{ 'background': 'linear-gradient(90deg, #FFF5B3 0%, #FFFADD 100%)' }">
                   <mat-card-content>ID: {{ move.id }}</mat-card-content>
                 </mat-card>
-                <mat-card class="move-info" [ngStyle]="{ 'background': 'linear-gradient(90deg, #B3D1FF 0%, #D9E8FF 100%)' }">
+                <mat-card class="move-info"
+                  [ngStyle]="{ 'background': 'linear-gradient(90deg, #B3D1FF 0%, #D9E8FF 100%)' }">
                   <mat-card-content>
                     @if(move.pp > 0) {
-                      PP: {{ move.pp }}
+                    PP: {{ move.pp }}
                     }
                     @else {
-                      PP: ?
+                    PP: ?
                     }
                   </mat-card-content>
                 </mat-card>
-                <mat-card class="move-info" [ngStyle]="{ 'background': 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)' }">
+                <mat-card class="move-info"
+                  [ngStyle]="{ 'background': 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)' }">
                   <mat-card-content>{{ upperFirstLetter(move.generation.name) }}</mat-card-content>
-                </mat-card>                
+                </mat-card>
                 <mat-card class="move-info" [ngStyle]="{ 'background': getColorForType(move.damage_class.name) }">
                   <mat-card-content>{{ upperFirstLetter(move.damage_class.name) }}</mat-card-content>
                 </mat-card>
               </div>
               @for (effect of move.effect_entries; track effect) {
-                <span class="element-description-attribution">
-                  {{ effect.effect }}
-                </span>
-              }           
+              <span class="element-description-attribution">
+                {{ effect.effect }}
+              </span>
+              }
               <app-pokemon-learn [pokemon]="move.learned_by_pokemon"></app-pokemon-learn>
             </div>
           </div>

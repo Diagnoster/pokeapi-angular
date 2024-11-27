@@ -15,13 +15,13 @@ h1 {
   text-align: center;
 }
 
-p {
+p, h2 {
   font-weight: bold;
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: -2em;
+  margin-bottom: -1% !important;
 }
 
 table {
@@ -104,6 +104,7 @@ mat-card {
   background-color: rgb(194, 190, 190);
   padding: 3px;
   margin: 5px;
+  font-size: 12px;
 }
 
 .move-info {
@@ -124,4 +125,18 @@ mat-card {
   object-fit: contain;
   cursor: pointer;
   margin-right: 5px;
+}
+
+.filter-button {
+  background-color: rgb(194, 190, 190);
+  margin: 2px;
+  font-size: 12px;
+}
+
+.filter-title {
+  text-align: center;
+}
+
+table {
+  margin-top: 1%;
 }
