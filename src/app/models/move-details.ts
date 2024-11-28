@@ -7,6 +7,8 @@ export class MoveDetails {
         public accuracy: number,
         public pp: number,
         public power: number,
-        public type: BaseClass
+        public type: BaseClass,
+        public generation: BaseClass,
+        public damage_class: BaseClass
     ) { }
 }

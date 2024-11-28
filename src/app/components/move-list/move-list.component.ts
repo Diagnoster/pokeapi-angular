@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal, ViewChild } from '@angular/core';
 import { PokeService } from '../../services/poke.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
@@ -19,6 +19,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { BaseClass } from '../../models/base/base-class';
 import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
+import { DamageCategoryColor } from '../../models/enums/damage-category-color';
+import { CommonModule } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-move-list',
@@ -34,7 +38,10 @@ import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component'
     MatSortModule,
     MatTooltipModule,
     MatCardModule,
-    PokemonLearnComponent
+    PokemonLearnComponent,
+    CommonModule,
+    MatDividerModule,
+    MatExpansionModule
   ],
   animations: [
     trigger('detailExpand', [
@@ -59,16 +66,24 @@ export class MoveListComponent implements OnInit {
   expandedElement: MoveDetails | null;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
+  gen: BaseClass[];
+  icons: string[] = [];
+  selectedGenerations: string[] = [];
+  selectedTypes: string[] = [];
+  readonly panelOpenState = signal(false);
 
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.moves = [];
     this.moveDetailsList = [];
     this.dataSource = new MatTableDataSource();
     this.expandedElement = null;
+    this.gen = [];
   }
 
   ngOnInit() {
     this.getMoves();
+    this.getGenerations();
+    this.loadIcons();
   }
 
   getMoves() {
@@ -86,12 +101,23 @@ export class MoveListComponent implements OnInit {
     });
   }
 
+  getGenerations() {
+    this.pokeService.getAllGenerations().subscribe((data: any) => {
+      this.gen = data.results;
+      console.log(this.gen);
+    });
+  }
+
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
   }
   
   upperFirstLetter(word: string): string {
     return this.pokeHelperService.upperFirstLetter(word);
+  }
+
+  formatGenerationName(word: string): string {
+    return this.pokeHelperService.formatGenerationName(word);
   }
 
   applyFilter(event: Event) {
@@ -106,5 +132,78 @@ export class MoveListComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  getColorForType(damage: string): string {
+    return DamageCategoryColor[damage as keyof typeof DamageCategoryColor];
+  }
   
+  loadIcons() {
+    const iconFiles = [
+      'bug',
+      'dark',
+      'dragon',
+      'electric',
+      'fairy',
+      'fighting',
+      'fire',
+      'flying',
+      'ghost',
+      'grass',
+      'ground',
+      'ice',
+      'normal',
+      'poison',
+      'psychic',
+      'rock',
+      'shadow',
+      'steel',
+      'water'
+    ];
+  
+    this.icons = iconFiles;
+  }
+
+  applyGenerationFilter(generationName: string) {
+    const index = this.selectedGenerations.indexOf(generationName);
+    if (index > -1) {
+      this.selectedGenerations.splice(index, 1);
+    } else {
+      this.selectedGenerations.push(generationName);
+    }
+    this.applyFilters();
+  }
+  
+  applyTypeFilter(type: string) {
+    const index = this.selectedTypes.indexOf(type);
+    if (index > -1) {
+      this.selectedTypes.splice(index, 1);
+    } else {
+      this.selectedTypes.push(type);
+    }
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    this.dataSource.data = this.moveDetailsList.filter(move => {
+      const matchesGeneration = this.selectedGenerations.length === 0 || this.selectedGenerations.includes(move.generation.name);
+      const matchesType = this.selectedTypes.length === 0 || this.selectedTypes.some(type => move.type.name === type);
+      return matchesGeneration && matchesType;
+    });
+  }
+
+  removeGenerationFilter(generationName: string) {
+    const index = this.selectedGenerations.indexOf(generationName);
+    if (index > -1) {
+      this.selectedGenerations.splice(index, 1);
+    }
+    this.applyFilters();
+  }
+  
+  removeTypeFilter(type: string) {
+    const index = this.selectedTypes.indexOf(type);
+    if (index > -1) {
+      this.selectedTypes.splice(index, 1);
+    }
+    this.applyFilters();
+  }
 }

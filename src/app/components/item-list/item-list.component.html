@@ -120,7 +120,8 @@
       <!-- Sprite Column -->
       <ng-container matColumnDef="sprite">
         <th mat-header-cell *matHeaderCellDef>Sprite</th>
-        <td mat-cell *matCellDef="let item"> <img [src]="item.sprites.default"> </td>
+          <td mat-cell *matCellDef="let item">
+            <img [src]="item.sprites.default != null? item.sprites.default : 'assets/not-found.png' "> </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -156,6 +157,9 @@
         <td mat-cell *matCellDef="let item" [attr.colspan]="columnsToDisplayWithExpand.length">
           <div class="element-detail" [@detailExpand]="item == expandedElement ? 'expanded' : 'collapsed'">
             <div class="element-description">
+              @if(item?.effect_entries.length == 0) {
+                <span class="element-description-attribution"> No description </span>
+              }
               @for (effect of item.effect_entries; track effect) {
                 <span class="element-description-attribution"> {{effect.effect}} </span>
               }

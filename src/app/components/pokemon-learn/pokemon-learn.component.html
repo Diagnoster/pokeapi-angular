@@ -1,17 +1,32 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar>
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png" />
-    </div>
-    <mat-card-title class="title">
-      Learned by Pokémon
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    @for (poke of pokemon; track poke) {
-      <div class="poke-box" (click)="pokeModal(poke.name)">
-        <span class="text">{{ upperFirstLetter(poke.name) }}</span>
-      </div>
-    }
-  </mat-card-content>
-</mat-card>
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Who learns: </mat-panel-title>
+      <mat-panel-description>
+        Pokémons that learn this move
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png" />
+        </div>
+        <mat-card-title class="title">
+          Learned by Pokémon
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        @if(pokemon?.length == 0) {
+          <span class="text">No Pokémon found.</span>
+        }
+        @else {
+          @for (poke of pokemon; track poke) {
+            <div class="poke-box" (click)="pokeModal(poke.name)">
+              <span class="text">{{ upperFirstLetter(poke.name) }}</span>
+            </div>
+          }
+        }
+      </mat-card-content>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
