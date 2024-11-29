@@ -87,7 +87,6 @@ header {
   top: 0;
   bottom: 0;
   left: 0;
-  width: calc(70%-30%);
   z-index: 1003;
   background-color: #3f51b5;
   margin-top: 64px;
