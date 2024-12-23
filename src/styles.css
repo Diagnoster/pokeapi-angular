@@ -235,6 +235,10 @@ body.dark-mode .example-card mat-card-content {
   background: none;
 }
 
+body.dark-mode mat-nav-list {
+  background: var(--black-background);
+}
+
 body.dark-mode .pokemon-detail span  {
   color: var(--black-background);
 }
