@@ -1,0 +1,10 @@
+<div class="container">
+  @for (location of locations; track location) {
+    <mat-card class="location-card" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>{{upperFirstLetter(location.name)}}</mat-card-title>
+        </mat-card-header>
+        <img class="img" mat-card-image src="{{location.img}}" alt="Photo of a Shiba Inu">
+    </mat-card>
+  }
+</div>
