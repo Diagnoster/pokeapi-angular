@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { PokeService } from '../../services/poke.service';
 import { MapLocation } from '../../models/map-location';
 import { PokeHelperService } from '../../services/poke-helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-location',
@@ -19,7 +20,7 @@ export class LocationComponent implements OnInit {
 
   locations: MapLocation[];
   
-  constructor (private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor (private pokeService: PokeService, private pokeHelperService: PokeHelperService, private router: Router) {
     this.locations = [];
   }
 
@@ -44,6 +45,12 @@ export class LocationComponent implements OnInit {
 
   upperFirstLetter(word: string, gen?: boolean): string {
     return this.pokeHelperService.upperFirstLetter(word, gen);
+  }
+
+  onLocationClick(location: MapLocation): void {
+    this.router.navigate(['/region-details'], {
+      state: { location: location },
+    });
   }
   
 }

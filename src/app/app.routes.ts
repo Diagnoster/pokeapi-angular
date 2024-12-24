@@ -7,6 +7,7 @@ import { BattleSetupComponent } from './components/battle-setup/battle-setup.com
 import { AbilityListComponent } from './components/ability-list/ability-list.component';
 import { NatureListComponent } from './components/nature-list/nature-list.component';
 import { LocationComponent } from './components/location/location.component';
+import { RegionDetailsComponent } from './components/region-details/region-details.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
     { path: 'battle', component: BattleSetupComponent },
     { path: 'abilities', component: AbilityListComponent },
     { path: 'natures', component: NatureListComponent },
-    { path: 'location', component: LocationComponent}
+    { path: 'location', component: LocationComponent},
+    { path: 'region-details', component: RegionDetailsComponent}
 ];
