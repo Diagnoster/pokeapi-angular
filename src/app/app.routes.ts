@@ -19,5 +19,5 @@ export const routes: Routes = [
     { path: 'abilities', component: AbilityListComponent },
     { path: 'natures', component: NatureListComponent },
     { path: 'location', component: LocationComponent},
-    { path: 'region-details', component: RegionDetailsComponent}
+    { path: 'region-details/:regionName', component: RegionDetailsComponent },
 ];

@@ -31,15 +31,14 @@ export class LocationComponent implements OnInit {
   getAllLocations() {
     this.pokeService.getAllLocations().subscribe((data: any) => {
       this.locations = data.results;
-  
+    
       const imageBasePath = 'assets/locations/';
-  
-      this.locations.forEach(location => {
+    
+      this.locations.forEach((location, index) => {
+        location.id = index + 1;
         const imageName = `${location.name}.png`;
         location.img = `${imageBasePath}${imageName}`;
       });
-  
-      console.log(this.locations);
     });
   }
 
@@ -48,8 +47,10 @@ export class LocationComponent implements OnInit {
   }
 
   onLocationClick(location: MapLocation): void {
-    this.router.navigate(['/region-details'], {
-      state: { location: location },
+    this.router.navigate([`/region-details/${location.name}`], {
+      state: {
+        location: location
+      }
     });
   }
   

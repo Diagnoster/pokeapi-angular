@@ -20,6 +20,8 @@
     width: 65%;
     background-color: white;
     padding: 1%;
+    border-radius: 10px;
+    margin-left: 5px;
 }
 
 .img {
@@ -27,6 +29,16 @@
     height: auto;
     border-radius: 10px;
     margin: 3%;
+}
+
+.section {
+    text-align: center;
+}
+
+.img-introduction {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
 }
 
 h1 {
@@ -38,6 +50,10 @@ mat-card {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+mat-divider {
+    margin-bottom: 10px;
 }
 
 mat-card-title {
@@ -56,6 +72,7 @@ mat-card-title {
     .text {
         width: 100%;
         padding: 0%;
+        margin-left: 0px;
     }
 
     .img {
