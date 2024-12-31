@@ -43,6 +43,10 @@ export class RegionDetailsComponent implements OnInit {
     return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 
+  formatGenerationName(word: string): string {
+    return this.pokeHelperService.formatGenerationName(word);
+  }
+
   getLocationDetails(id: number): void {
     this.pokeService.getRegion(id).subscribe({
       next: (data: any) => {

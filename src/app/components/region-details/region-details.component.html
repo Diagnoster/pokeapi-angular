@@ -7,9 +7,23 @@
             <img class="img" mat-card-image src="{{location?.img}}" alt="city image">
             <mat-card-content>
                 <div class="section">
+                    <mat-card-title>Pokedexes</mat-card-title>
+                    <mat-divider></mat-divider>
+                    @for(pokedex of location?.pokedexes; track pokedex) {
+                        <p>{{upperFirstLetter(pokedex.name)}}</p>
+                    }
+                </div>
+                <div class="section">
                     <mat-card-title>Version</mat-card-title>
                     <mat-divider></mat-divider>
-                    <p>Generation V</p>
+                    @for(ver of location?.version_groups; track ver) {
+                        <p>{{upperFirstLetter(ver.name)}}</p>
+                    }
+                </div>
+                <div class="section">
+                    <mat-card-title>Main Generation</mat-card-title>
+                    <mat-divider></mat-divider>
+                    <p>{{upperFirstLetter(location?.main_generation.name)}}</p>
                 </div>
                 <div class="section">
                     <mat-card-title>Introduction</mat-card-title>
