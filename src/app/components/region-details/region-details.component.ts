@@ -47,6 +47,9 @@ export class RegionDetailsComponent implements OnInit {
     this.pokeService.getRegion(id).subscribe({
       next: (data: any) => {
         this.location = data;
+        const imageBasePath = 'assets/regions/';
+        const imageName = `${this.location.name}.png`;
+        this.location.img = `${imageBasePath}${imageName}`;  
         console.log('Localização encontrada:', this.location);
       },
       error: (err) => {
