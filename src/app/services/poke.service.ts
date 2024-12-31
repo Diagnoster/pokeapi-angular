@@ -97,8 +97,9 @@ export class PokeService {
     return this.http.get<any>(url);
   }
 
-  getRegion(regionUrl: string): Observable<any> {
-    return this.http.get<any>(regionUrl);
+  getRegion(id: number): Observable<any> {
+    const url = `${this.URL_BASE}/region/${id}`;
+    return this.http.get<any>(url);
   }
   
 }

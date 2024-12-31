@@ -47,11 +47,7 @@ export class LocationComponent implements OnInit {
   }
 
   onLocationClick(location: MapLocation): void {
-    this.router.navigate([`/region-details/${location.name}`], {
-      state: {
-        location: location
-      }
-    });
+    this.router.navigate([`/region-details/${location.id}`]);
   }
   
 }

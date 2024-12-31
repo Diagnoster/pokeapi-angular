@@ -20,20 +20,39 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class RegionDetailsComponent implements OnInit {
 
-  location: any = {};
+  location: any;
+  locationId: number | null = null;
   
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
-    const navigation = window.history.state;
-    this.location = navigation.location || {};
-
-    console.log('Localização específica:', this.location);
+    const id = this.route.snapshot.paramMap.get('id');
+    
+    if (id) {
+      this.locationId = Number(id);  
+      if (this.locationId) {
+        this.getLocationDetails(this.locationId);
+      } else {
+        console.error('ID inválido');
+      }
+    }
   }
 
   upperFirstLetter(word: string, gen?: boolean): string {
     return this.pokeHelperService.upperFirstLetter(word, gen);
+  }
+
+  getLocationDetails(id: number): void {
+    this.pokeService.getRegion(id).subscribe({
+      next: (data: any) => {
+        this.location = data;
+        console.log('Localização encontrada:', this.location);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar a localização:', err);
+      }
+    });
   }
   
 }

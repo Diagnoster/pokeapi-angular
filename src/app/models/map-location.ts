@@ -3,7 +3,6 @@ export class MapLocation {
         public id: number,
         public name: string,
         public url: string,
-        public img: string,
-        public version_groups: string
+        public img: string
     ) { }
 }

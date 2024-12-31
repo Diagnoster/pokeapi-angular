@@ -2,14 +2,13 @@
     <div class="menu">
         <mat-card>
             <mat-card-header>
-                <mat-card-title>{{upperFirstLetter(location.name)}}</mat-card-title>
+                <mat-card-title>{{upperFirstLetter(location?.name)}}</mat-card-title>
             </mat-card-header>
-            <img class="img" mat-card-image src="{{location.img}}" alt="city image">
             <mat-card-content>
                 <div class="section">
                     <mat-card-title>Version</mat-card-title>
                     <mat-divider></mat-divider>
-                    <p>Generation V</p>
+                    <p>{{location?.name}}</p>
                 </div>
                 <div class="section">
                     <mat-card-title>Introduction</mat-card-title>
