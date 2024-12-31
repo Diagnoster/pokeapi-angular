@@ -40,6 +40,10 @@ mat-card {
     align-items: center;
 }
 
+mat-card-title {
+    margin-bottom: 10px;
+}
+
 @media (max-width: 950px) {
     .container {
         display: inline;
