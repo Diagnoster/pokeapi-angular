@@ -11,6 +11,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { RegionDetails } from '../../models/region-details';
 import { BaseClass } from '../../models/base/base-class';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-region-details',
@@ -35,7 +36,7 @@ export class RegionDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource<BaseClass>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute) { 
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute, private http: HttpClient) { 
   }
 
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class RegionDetailsComponent implements OnInit {
       this.locationId = Number(id);  
       if (this.locationId) {
         this.getLocationDetails(this.locationId);
+        this.loadLocations();
       } else {
         console.error('ID inválido');
       }
@@ -78,6 +80,13 @@ export class RegionDetailsComponent implements OnInit {
       error: (err) => {
         console.error('Erro ao buscar a localização:', err);
       }
+    });
+  }
+
+  loadLocations(): void {
+    this.http.get<any>('assets/data/locations.json').subscribe((data) => {
+      // Acesse o campo description do kanto
+      this.location.description = data.kanto.description;
     });
   }
 }

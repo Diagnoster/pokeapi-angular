@@ -9,6 +9,7 @@ export class RegionDetails {
         public main_generation: BaseClass,
         public pokedexes: BaseClass [],
         public version_groups: BaseClass [],
-        public locations: BaseClass []
+        public locations: BaseClass [],
+        public description: any
       ) { }
 }

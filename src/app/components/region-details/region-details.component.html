@@ -34,16 +34,11 @@
         </mat-card>
     </div>
     <div class="text">
-        <p>
-            A região de Kanto (japonês: カントー地方 região de Kanto) é uma região do mundo Pokémon. Kanto está localizada a leste de Johto, 
-            que juntas formam uma massa de terra conjunta ao sul de Sinnoh. Kanto é o cenário da primeira geração de jogos e pode ser explorado 
-            nas Gerações II, III, IV e VII.<br> Professor Carvalho é o Professor Pokémon residente e dá aos Treinadores Pokémon uma escolha entre 
-            Bulbasaur, Charmander ou Squirtle como seu primeiro parceiro Pokémon.<br> Em Pokémon Yellow, Carvalho pretendia dar ao jogador um Eevee, 
-            mas depois que seu neto Blue o pega, ele dá ao jogador um Pikachu que ele tinha acabado de capturar. Em Pokémon: Let's Go, Pikachu!, 
-            o jogador escolhe Pikachu, enquanto em Pokémon: Let's Go, Eevee!, o jogador escolhe Eevee.<br> Nos jogos, o jogador começa sua jornada 
-            em Pallet Town e termina no Indigo Plateau.
-        </p>
         <h2>Location</h2>
+        <mat-divider></mat-divider>
+        <p> {{location.description}} </p>
+        <h2>Areas</h2>
+        <mat-divider></mat-divider>
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
               <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
