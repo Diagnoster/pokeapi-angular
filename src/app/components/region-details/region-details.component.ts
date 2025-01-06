@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MapLocation } from '../../models/map-location';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -6,23 +6,11 @@ import { PokeService } from '../../services/poke.service';
 import { MatCardModule } from '@angular/material/card';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatRippleModule } from '@angular/material/core';
 import { RegionDetails } from '../../models/region-details';
-
-const ELEMENT_DATA = [
-  {name: 'Hydrogen'},
-  {name: 'Helium'},
-  {name: 'Lithium'},
-  {name: 'Beryllium'},
-  {name: 'Boron'},
-  {name: 'Carbon'},
-  {name: 'Nitrogen'},
-  {name: 'Oxygen'},
-  {name: 'Fluorine'},
-  {name: 'Neon'},
-];
-
+import { BaseClass } from '../../models/base/base-class';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-region-details',
@@ -32,7 +20,8 @@ const ELEMENT_DATA = [
     MatCardModule,
     MatDividerModule,
     MatTableModule,
-    MatRippleModule
+    MatRippleModule,
+    MatPaginatorModule
   ],
   templateUrl: './region-details.component.html',
   styleUrl: './region-details.component.css'
@@ -40,10 +29,12 @@ const ELEMENT_DATA = [
 export class RegionDetailsComponent implements OnInit {
 
   location!: RegionDetails;
+  tableLocationsName: BaseClass[] = [];
   locationId: number | null = null;
   displayedColumns: string[] = ['name'];
-  dataSource = ELEMENT_DATA;
-  
+  dataSource = new MatTableDataSource<BaseClass>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute) { 
   }
 
@@ -58,6 +49,10 @@ export class RegionDetailsComponent implements OnInit {
         console.error('ID inválido');
       }
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   upperFirstLetter(word: string, gen?: boolean): string {
@@ -76,11 +71,13 @@ export class RegionDetailsComponent implements OnInit {
         const imageName = `${this.location.name}.png`;
         this.location.img = `${imageBasePath}${imageName}`;  
         console.log('Localização encontrada:', this.location);
+  
+        this.dataSource.data = this.location.locations;
+        this.dataSource.paginator = this.paginator;
       },
       error: (err) => {
         console.error('Erro ao buscar a localização:', err);
       }
     });
   }
-  
 }
