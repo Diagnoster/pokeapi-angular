@@ -2,28 +2,28 @@
     <div class="menu">
         <mat-card>
             <mat-card-header>
-                <mat-card-title>{{upperFirstLetter(location?.name)}}</mat-card-title>
+                <mat-card-title>{{upperFirstLetter(location.name)}}</mat-card-title>
             </mat-card-header>
-            <img class="img" mat-card-image src="{{location?.img}}" alt="city image">
+            <img class="img" mat-card-image src="{{location.img}}" alt="city image">
             <mat-card-content>
                 <div class="section">
                     <mat-card-title>Pokedexes</mat-card-title>
                     <mat-divider></mat-divider>
-                    @for(pokedex of location?.pokedexes; track pokedex) {
+                    @for(pokedex of location.pokedexes; track pokedex) {
                         <p>{{upperFirstLetter(pokedex.name)}}</p>
                     }
                 </div>
                 <div class="section">
                     <mat-card-title>Version</mat-card-title>
                     <mat-divider></mat-divider>
-                    @for(ver of location?.version_groups; track ver) {
+                    @for(ver of location.version_groups; track ver) {
                         <p>{{upperFirstLetter(ver.name)}}</p>
                     }
                 </div>
                 <div class="section">
                     <mat-card-title>Main Generation</mat-card-title>
                     <mat-divider></mat-divider>
-                    <p>{{upperFirstLetter(location?.main_generation.name)}}</p>
+                    <p>{{upperFirstLetter(location.main_generation.name)}}</p>
                 </div>
                 <div class="section">
                     <mat-card-title>Introduction</mat-card-title>
@@ -43,5 +43,16 @@
             o jogador escolhe Pikachu, enquanto em Pokémon: Let's Go, Eevee!, o jogador escolhe Eevee.<br> Nos jogos, o jogador começa sua jornada 
             em Pallet Town e termina no Indigo Plateau.
         </p>
+        <h2>Location</h2>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+              <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+                    
     </div>
 </div>

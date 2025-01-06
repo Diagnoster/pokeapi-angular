@@ -6,6 +6,23 @@ import { PokeService } from '../../services/poke.service';
 import { MatCardModule } from '@angular/material/card';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+import { MatRippleModule } from '@angular/material/core';
+import { RegionDetails } from '../../models/region-details';
+
+const ELEMENT_DATA = [
+  {name: 'Hydrogen'},
+  {name: 'Helium'},
+  {name: 'Lithium'},
+  {name: 'Beryllium'},
+  {name: 'Boron'},
+  {name: 'Carbon'},
+  {name: 'Nitrogen'},
+  {name: 'Oxygen'},
+  {name: 'Fluorine'},
+  {name: 'Neon'},
+];
+
 
 @Component({
   selector: 'app-region-details',
@@ -13,15 +30,19 @@ import { MatDividerModule } from '@angular/material/divider';
   imports: [
     CommonModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTableModule,
+    MatRippleModule
   ],
   templateUrl: './region-details.component.html',
   styleUrl: './region-details.component.css'
 })
 export class RegionDetailsComponent implements OnInit {
 
-  location: any;
+  location!: RegionDetails;
   locationId: number | null = null;
+  displayedColumns: string[] = ['name'];
+  dataSource = ELEMENT_DATA;
   
   constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute) { 
   }
