@@ -10,6 +10,7 @@ export class RegionDetails {
         public pokedexes: BaseClass [],
         public version_groups: BaseClass [],
         public locations: BaseClass [],
-        public description: any
+        public description: any,
+        public introduction: string
       ) { }
 }

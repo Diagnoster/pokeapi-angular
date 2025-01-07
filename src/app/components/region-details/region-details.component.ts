@@ -85,8 +85,24 @@ export class RegionDetailsComponent implements OnInit {
 
   loadLocations(): void {
     this.http.get<any>('assets/data/locations.json').subscribe((data) => {
-      // Acesse o campo description do kanto
-      this.location.description = data.kanto.description;
+      // Acess property of JSON
+      const locationArray = data.locations;
+      
+      if (Array.isArray(locationArray)) {
+        const locationData = locationArray.find((loc: any) => loc.id === this.locationId);
+        if (locationData) {
+          this.location.description = locationData.description;
+          this.location.introduction = locationData.introduction;
+        } else {
+          console.error('No location found with ID:', this.locationId);
+        }
+      } else {
+        console.error('Unexpected data structure. "locations" is not an array:', locationArray);
+      }
+    }, error => {
+      console.error('Error loading data from locations.json:', error);
     });
   }
+  
+  
 }

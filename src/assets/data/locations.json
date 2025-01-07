@@ -1,5 +1,16 @@
 {
-  "kanto": {
-      "description": "The Kanto region (Japanese: カントー地方 Kanto region) is a region of the Pokémon world. Kanto is located east of Johto, which together form a joint landmass that is south of Sinnoh.\n\nKanto is the setting of the first generation of games and can be explored in Generations II, III, IV, and VII.\n\nProfessor Oak is the resident Pokémon Professor and gives Pokémon Trainers a choice between Bulbasaur, Charmander, or Squirtle as their first partner Pokémon. In Pokémon Yellow, Oak intended to give the player an Eevee, but after his grandson Blue takes it instead, he gives the player a Pikachu that he had just caught. In Pokémon: Let's Go, Pikachu!, the player chooses Pikachu, while in Pokémon: Let's Go, Eevee!, the player chooses Eevee. In the games, the player begins their journey in Pallet Town and ends it at the Indigo Plateau.\n\nThe artwork from the early games depict Kanto as grassland. Starting in Generation III, it is shown with denser tree coverage.\n\nAll cities in Kanto are named after colors, with the exception of Pallet Town, which refers to a palette, meaning a range of colors. Unlike every other region, Kanto's fictional name reflects its real-world name."
-  }
+  "locations": [
+    {
+      "id": 1,
+      "name": "Kanto",
+      "description": "The Kanto region (Japanese: カントー地方 Kanto region) is a region of the Pokémon world. Kanto is located east of Johto, which together form a joint landmass that is south of Sinnoh.\n\nKanto is the setting of the first generation of games and can be explored in Generations II, III, IV, and VII.\n\nProfessor Oak is the resident Pokémon Professor and gives Pokémon Trainers a choice between Bulbasaur, Charmander, or Squirtle as their first partner Pokémon. In Pokémon Yellow, Oak intended to give the player an Eevee, but after his grandson Blue takes it instead, he gives the player a Pikachu that he had just caught. In Pokémon: Let's Go, Pikachu!, the player chooses Pikachu, while in Pokémon: Let's Go, Eevee!, the player chooses Eevee. In the games, the player begins their journey in Pallet Town and ends it at the Indigo Plateau.\n\nThe artwork from the early games depict Kanto as grassland. Starting in Generation III, it is shown with denser tree coverage.\n\nAll cities in Kanto are named after colors, with the exception of Pallet Town, which refers to a palette, meaning a range of colors. Unlike every other region, Kanto's fictional name reflects its real-world name.",
+      "introduction": "Red and Green"
+    },
+    {
+      "id": 2,
+      "name": "Johto",
+      "description": "The Johto region (Japanese: ジョウト地方, Johto region) is a part of the Pokémon world located west of Kanto. Together, Johto and Kanto form a shared landmass positioned south of Sinnoh and the Sinjoh Ruins.\n\nFirst introduced in Pokémon Gold and Silver, Johto was the second major region in the Pokémon series. It features 100 additional Pokémon not found in previous games and serves as the setting for Pokémon Crystal, Pokémon HeartGold, and Pokémon SoulSilver.\n\nTrainers begin their journey in New Bark Town, where Professor Elm offers one of three starter Pokémon: Chikorita, Cyndaquil, or Totodile.\n\nIn the English versions of the games, most Johto city names are inspired by plants or plant-related themes.",
+      "introduction": "Gold and Silver"
+    }
+  ]
 }
