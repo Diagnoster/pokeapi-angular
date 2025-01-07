@@ -1,42 +1,40 @@
 <div class="container">
-    <div class="menu">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>{{upperFirstLetter(location.name)}}</mat-card-title>
-            </mat-card-header>
-            <img class="img" mat-card-image src="{{location.img}}" alt="city image">
-            <mat-card-content>
-                <div class="section">
-                    <mat-card-title>Pokedexes</mat-card-title>
-                    <mat-divider></mat-divider>
-                    @for(pokedex of location.pokedexes; track pokedex) {
-                        <p>{{upperFirstLetter(pokedex.name)}}</p>
-                    }
-                </div>
-                <div class="section">
-                    <mat-card-title>Version</mat-card-title>
-                    <mat-divider></mat-divider>
-                    @for(ver of location.version_groups; track ver) {
-                        <p>{{upperFirstLetter(ver.name)}}</p>
-                    }
-                </div>
-                <div class="section">
-                    <mat-card-title>Main Generation</mat-card-title>
-                    <mat-divider></mat-divider>
-                    <p>{{upperFirstLetter(location.main_generation.name)}}</p>
-                </div>
-                <div class="section">
-                    <mat-card-title>Introduction</mat-card-title>
-                    <mat-divider></mat-divider>
-                    <p>Red and Green</p>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
+    <mat-card class="menu">
+        <mat-card-header>
+            <mat-card-title>{{upperFirstLetter(location.name)}}</mat-card-title>
+        </mat-card-header>
+        <img class="img" mat-card-image src="{{location.img}}" alt="city image">
+        <mat-card-content>
+            <div class="section">
+                <mat-card-title>Pokedexes</mat-card-title>
+                <mat-divider></mat-divider>
+                @for(pokedex of location.pokedexes; track pokedex) {
+                    <p>{{upperFirstLetter(pokedex.name)}}</p>
+                }
+            </div>
+            <div class="section">
+                <mat-card-title>Version</mat-card-title>
+                <mat-divider></mat-divider>
+                @for(ver of location.version_groups; track ver) {
+                    <p>{{upperFirstLetter(ver.name)}}</p>
+                }
+            </div>
+            <div class="section">
+                <mat-card-title>Main Generation</mat-card-title>
+                <mat-divider></mat-divider>
+                <p>{{upperFirstLetter(location.main_generation.name)}}</p>
+            </div>
+            <div class="section">
+                <mat-card-title>Introduction</mat-card-title>
+                <mat-divider></mat-divider>
+                <p>Red and Green</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
     <div class="text">
         <h2>Location</h2>
         <mat-divider></mat-divider>
-        <p> {{location.description}} </p>
+        <p class="break-line" [innerHTML]="location.description"></p>
         <h2>Areas</h2>
         <mat-divider></mat-divider>
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
