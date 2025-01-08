@@ -36,13 +36,16 @@
                 </div>
             </mat-card-content>
         </mat-card>
+    }
         <div class="text">
             <h2>Location</h2>
             <mat-divider></mat-divider>
-            <p class="break-line" [innerHTML]="location.description"></p>
+            @if(location){
+                <p class="break-line" [innerHTML]="location.description"></p>
+            }
             <h2>Areas</h2>
             <mat-divider></mat-divider>
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                 <ng-container matColumnDef="name">
                 <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                 <mat-cell mat-cell *matCellDef="let element"> {{upperFirstLetter(element.name)}} </mat-cell>
@@ -50,10 +53,9 @@
             
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
+            </table>
             <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons
                 aria-label="Select page of items">
             </mat-paginator>            
         </div>
-    }
 </div>

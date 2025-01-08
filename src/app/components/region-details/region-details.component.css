@@ -14,7 +14,6 @@
     width: 35%;
     background-color: whitesmoke;
     border-radius: 10px;
-    height: 100%;
 }
 
 .text {
@@ -68,17 +67,17 @@ mat-card-title {
 
 @media (max-width: 950px) {
     .container {
-        display: inline;
+        display: inline;        
     }
 
     .menu {
-        width: 100%;
+        width: calc(100% - 6%);
+        margin: 3%;
     }
 
     .text {
-        width: 100%;
-        padding: 1%;
-        margin-left: 0px;
+        width: calc(100% - 6%);
+        margin: 3%;
     }
 
     .img {
