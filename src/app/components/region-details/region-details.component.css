@@ -22,6 +22,7 @@
     padding: 1%;
     border-radius: 10px;
     margin-left: 5px;
+    height: fit-content;
 }
 
 .img {
@@ -67,7 +68,7 @@ mat-card-title {
 
 @media (max-width: 950px) {
     .container {
-        display: inline;        
+        display: inline;   
     }
 
     .menu {
