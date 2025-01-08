@@ -1,0 +1,61 @@
+<div class="container">
+    @if(location) {
+        <mat-card class="menu">
+            <mat-card-header>
+                <mat-card-title>
+                    {{upperFirstLetter(location.name)}}
+                </mat-card-title>
+            </mat-card-header>
+                <img class="img" mat-card-image src="{{location.img}}" alt="city image">
+            <mat-card-content>
+                <div class="section">
+                    <mat-card-title>Pokedexes</mat-card-title>
+                    <mat-divider></mat-divider>
+                    @for(pokedex of location.pokedexes; track pokedex) {
+                        <p>{{upperFirstLetter(pokedex.name)}}</p>
+                    }
+                </div>
+                <div class="section">
+                    <mat-card-title>Version</mat-card-title>
+                    <mat-divider></mat-divider>
+                    @for(ver of location.version_groups; track ver) {
+                        <p>{{upperFirstLetter(ver.name)}}</p>
+                    }
+                </div>
+                <div class="section">
+                    <mat-card-title>Main Generation</mat-card-title>
+                    <mat-divider></mat-divider>
+                    @if(location.main_generation) {
+                        <p>{{upperFirstLetter(location.main_generation.name)}}</p>
+                    }
+                </div>
+                <div class="section">
+                    <mat-card-title>Introduction</mat-card-title>
+                    <mat-divider></mat-divider>
+                    <p [innerHTML]="location.introduction"></p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    }
+        <div class="text">
+            <h2>Location</h2>
+            <mat-divider></mat-divider>
+            @if(location){
+                <p class="break-line" [innerHTML]="location.description"></p>
+            }
+            <h2>Areas</h2>
+            <mat-divider></mat-divider>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="name">
+                <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let element"> {{upperFirstLetter(element.name)}} </mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </table>
+            <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons
+                aria-label="Select page of items">
+            </mat-paginator>            
+        </div>
+</div>

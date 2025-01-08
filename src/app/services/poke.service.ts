@@ -91,5 +91,15 @@ export class PokeService {
     const url =`${this.URL_BASE}/generation/`;
     return this.http.get<any>(url);
   }
+
+  getAllLocations(): Observable<any> {
+    const url = `${this.URL_BASE}/region`;
+    return this.http.get<any>(url);
+  }
+
+  getRegion(id: number): Observable<any> {
+    const url = `${this.URL_BASE}/region/${id}`;
+    return this.http.get<any>(url);
+  }
   
 }

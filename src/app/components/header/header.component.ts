@@ -10,7 +10,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -35,6 +34,20 @@ export class HeaderComponent implements OnInit {
   isDarkMode = false;
   opened = false;
 
+  // Mapping IDs to region names
+  private regionMap: { [key: number]: string } = {
+    1: 'Kanto',
+    2: 'Johto',
+    3: 'Hoenn',
+    4: 'Sinnoh',
+    5: 'Unova',
+    6: 'Kalos',
+    7: 'Alola',
+    8: 'Galar',
+    9: 'Hisui',
+    10: 'Paldea'
+  };
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -42,12 +55,14 @@ export class HeaderComponent implements OnInit {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
-          const routeComponent = this.getRouteComponent(event.url);
-          this.componentName = routeComponent ? routeComponent.charAt(0).toUpperCase() + routeComponent.slice(1) : '';
-          if(event.url == '/home') {
+          const regionId = this.getRegionIdFromUrl(event.url);
+          const regionName = this.regionMap[regionId] || 'Unknown Region';
+          this.componentName = regionName;
+          
+          if (event.url === '/home') {
             event.url = '/';
           }
-          this.hideHeader = (event.url == '/');
+          this.hideHeader = (event.url === '/');
         }
       });
   }
@@ -58,13 +73,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  private getRouteComponent(url: string): string | null {
-    // default route
-    if (url === '/') {
-      url = '/home';
-    }
-    const route = url.split('/').pop();
-    return route ? route : null;
+  private getRegionIdFromUrl(url: string): number {
+    const parts = url.split('/');
+    const id = parseInt(parts[parts.length - 1], 10); // get the last segment of the URL
+    return !isNaN(id) ? id : -1;
   }
 
   toggleDarkMode() {
