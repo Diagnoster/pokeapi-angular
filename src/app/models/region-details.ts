@@ -6,7 +6,7 @@ export class RegionDetails {
         public name: string,
         public url: string,
         public img: string,
-        public main_generation: BaseClass,
+        public main_generation: BaseClass | null,
         public pokedexes: BaseClass [],
         public version_groups: BaseClass [],
         public locations: BaseClass [],
