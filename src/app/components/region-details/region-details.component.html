@@ -25,7 +25,9 @@
                 <div class="section">
                     <mat-card-title>Main Generation</mat-card-title>
                     <mat-divider></mat-divider>
-                    <p>{{upperFirstLetter(location.main_generation.name)}}</p>
+                    @if(location.main_generation) {
+                        <p>{{upperFirstLetter(location.main_generation.name)}}</p>
+                    }
                 </div>
                 <div class="section">
                     <mat-card-title>Introduction</mat-card-title>
