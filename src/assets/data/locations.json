@@ -14,54 +14,48 @@
     },
     {
       "id": 3,
-      "name": "Johto",
-      "description": "The Johto region (Japanese: ジョウト地方, Johto region) is a part of the Pokémon world located west of Kanto. Together, Johto and Kanto form a shared landmass positioned south of Sinnoh and the Sinjoh Ruins.\n\nFirst introduced in Pokémon Gold and Silver, Johto was the second major region in the Pokémon series. It features 100 additional Pokémon not found in previous games and serves as the setting for Pokémon Crystal, Pokémon HeartGold, and Pokémon SoulSilver.\n\nTrainers begin their journey in New Bark Town, where Professor Elm offers one of three starter Pokémon: Chikorita, Cyndaquil, or Totodile.\n\nIn the English versions of the games, most Johto city names are inspired by plants or plant-related themes.",
-      "introduction": "Gold and Silver"
-    },
-    {
-      "id": 4,
       "name": "Hoenn",
       "description": "The Hoenn region (Japanese: ホウエン地方, Hoenn region) is a part of the Pokémon world, situated south of Sinnoh and southwest of both Kanto and Johto. It serves as the backdrop for the games Pokémon Ruby, Sapphire, Emerald, Omega Ruby, and Alpha Sapphire, making it the third core series region introduced in the Pokémon franchise.\n\nHoenn takes inspiration from Kyushu, a major island of Japan. Unlike Kanto and Johto, where city names are based on colors or plants, most Hoenn city names are combinations of descriptive words, such as \"Littleroot,\" \"Fortree,\" \"Slateport,\" and \"Ever Grande.\" Trainers embarking on their journey in Hoenn start in Littleroot Town, where Professor Birch offers them a choice of three partner Pokémon: Treecko, Torchic, or Mudkip.",
       "introduction": "Ruby and Sapphire"
     },
     {
-      "id": 5,
+      "id": 4,
       "name": "Sinnoh",
-      "description": "The Sinnoh region (Japanese: シンオウ地方 *Sinnoh region*), formerly known as Hisui (Japanese: ヒスイ地方 *Hisui region*), is a region in the Pokémon world. Situated north of Kanto, Johto, and Hoenn, it serves as the setting for *Pokémon Diamond, Pearl, Platinum, Brilliant Diamond, Shining Pearl,* and *Legends: Arceus*. The latter explores the region's ancient history when it was still referred to as Hisui. Sinnoh was the fourth core series region introduced in the Pokémon franchise.\n\nThe region consists of a large mainland, the Battle Zone on a separate landmass to the northeast, and several smaller islands along its coasts. Unlike Hoenn, which features numerous water routes, Sinnoh is predominantly land-based with very few water routes. The region is divided by the imposing Mount Coronet, much like how Kanto and Johto together form a contiguous landmass split by natural features.",
+      "description": "The Sinnoh region (Japanese: シンオウ地方 Sinnoh region), formerly known as Hisui (Japanese: ヒスイ地方 *Hisui region*), is a region in the Pokémon world. Situated north of Kanto, Johto, and Hoenn, it serves as the setting for *Pokémon Diamond, Pearl, Platinum, Brilliant Diamond, Shining Pearl,* and *Legends: Arceus*. The latter explores the region's ancient history when it was still referred to as Hisui. Sinnoh was the fourth core series region introduced in the Pokémon franchise.\n\nThe region consists of a large mainland, the Battle Zone on a separate landmass to the northeast, and several smaller islands along its coasts. Unlike Hoenn, which features numerous water routes, Sinnoh is predominantly land-based with very few water routes. The region is divided by the imposing Mount Coronet, much like how Kanto and Johto together form a contiguous landmass split by natural features.",
       "introduction": "Diamond and Pearl"
     },
     {
-      "id": 6,
+      "id": 5,
       "name": "Unova",
-      "description": "The **Unova region** (Japanese: イッシュ地方 *Isshu region*) is a location in the Pokémon world. It serves as the setting for *Pokémon Black and White* and their sequels, *Pokémon Black 2 and White 2*. Additionally, the *Indigo Disk* expansion of *Pokémon Scarlet and Violet* introduces Blueberry Academy, a school situated in Unova. Unova was the fifth core series region to debut.\n\nUnova is described as being far from Kanto, Johto, Hoenn, and Sinnoh, with a Pokémon population notably diverse and distinct from those of other regions. According to Junichi Masuda, Unova's geographical and cultural inspiration comes from the New York City metropolitan area. While primarily based on New York City, the region incorporates elements from across the state of New York, blending urban landscapes, rural settings, factory towns, and industrial zones. Unova also features cultural nods to the United States, the country in which this state is located.",
+      "description": "The Unova region (Japanese: イッシュ地方 Isshu region) is a location in the Pokémon world. It serves as the setting for *Pokémon Black and White* and their sequels, *Pokémon Black 2 and White 2*. Additionally, the *Indigo Disk* expansion of *Pokémon Scarlet and Violet* introduces Blueberry Academy, a school situated in Unova. Unova was the fifth core series region to debut.\n\nUnova is described as being far from Kanto, Johto, Hoenn, and Sinnoh, with a Pokémon population notably diverse and distinct from those of other regions. According to Junichi Masuda, Unova's geographical and cultural inspiration comes from the New York City metropolitan area. While primarily based on New York City, the region incorporates elements from across the state of New York, blending urban landscapes, rural settings, factory towns, and industrial zones. Unova also features cultural nods to the United States, the country in which this state is located.",
       "introduction": "Black and White"
     },
     {
-      "id": 7,
+      "id": 6,
       "name": "Kalos",
-      "description": "The **Kalos region** (Japanese: カロス地方 *Kalos region*) is a location in the Pokémon world. It is the sixth core series region to be introduced and serves as the setting for *Pokémon X and Y* and *Pokémon Legends: Z-A*.\n\nKalos is shaped like a five-pointed star, with one of its largest cities, Lumiose City, located in the northern-central part of the region. The region boasts an extensive network of rivers and waterways that wind through much of its landscape, connecting cities and towns. To the northeast of Lumiose City, a mountain range rises, offering colder temperatures that transition into the plains below. The western part of Kalos is bordered by a vast ocean, with Shalour City situated in the middle of a cove along the coastline.",
+      "description": "The Kalos region (Japanese: カロス地方 Kalos region) is a location in the Pokémon world. It is the sixth core series region to be introduced and serves as the setting for *Pokémon X and Y* and *Pokémon Legends: Z-A*.\n\nKalos is shaped like a five-pointed star, with one of its largest cities, Lumiose City, located in the northern-central part of the region. The region boasts an extensive network of rivers and waterways that wind through much of its landscape, connecting cities and towns. To the northeast of Lumiose City, a mountain range rises, offering colder temperatures that transition into the plains below. The western part of Kalos is bordered by a vast ocean, with Shalour City situated in the middle of a cove along the coastline.",
       "introduction": "X and Y"
     },
     {
-      "id": 8,
+      "id": 7,
       "name": "Alola",
-      "description": "The **Alola region** (Japanese: アローラ地方 *Alola region*) is a location in the Pokémon world. It was the seventh core series region to be introduced and serves as the setting for *Pokémon Sun, Moon, Ultra Sun,* and *Ultra Moon*.\n\nAlola consists of four islands: Melemele Island, Akala Island, Ula'ula Island, and Poni Island. In the center, there's an artificial island known as Aether Paradise, which is a popular resort that attracts many tourists from other regions. In Alola, humans and Pokémon share a close relationship, fostering a unique culture that distinguishes it from other regions.\n\nEach island has a kahuna, who is known for offering the first partner Pokémon to Trainers beginning their journey through the archipelago. In *Sun* and *Moon*, the kahuna of Melemele Island, Hala, offers Rowlet, Litten, and Popplio to new Trainers. In *Ultra Sun* and *Ultra Moon*, Professor Kukui of Hau'oli City Outskirts presents the same three Pokémon on behalf of Hala.",
+      "description": "The Alola region (Japanese: アローラ地方 Alola region) is a location in the Pokémon world. It was the seventh core series region to be introduced and serves as the setting for *Pokémon Sun, Moon, Ultra Sun,* and *Ultra Moon*.\n\nAlola consists of four islands: Melemele Island, Akala Island, Ula'ula Island, and Poni Island. In the center, there's an artificial island known as Aether Paradise, which is a popular resort that attracts many tourists from other regions. In Alola, humans and Pokémon share a close relationship, fostering a unique culture that distinguishes it from other regions.\n\nEach island has a kahuna, who is known for offering the first partner Pokémon to Trainers beginning their journey through the archipelago. In *Sun* and *Moon*, the kahuna of Melemele Island, Hala, offers Rowlet, Litten, and Popplio to new Trainers. In *Ultra Sun* and *Ultra Moon*, Professor Kukui of Hau'oli City Outskirts presents the same three Pokémon on behalf of Hala.",
       "introduction": "Sun and Moon"
     },
     {
-      "id": 9,
+      "id": 8,
       "name": "Galar",
       "description": "The Galar region (Japanese: ガラル地方) is a region in the Pokémon world and the eighth main series region to be introduced. It serves as the setting for Pokémon Sword and Shield.",
       "introduction": "Sword and Shield"
     },
     {
-      "id": 10,
+      "id": 9,
       "name": "Hisui",
       "description": "The Hisui region (Japanese: ヒスイ地方) refers to the Sinnoh region as it was known during its discovery and settlement, set in a historical period before Generation IV. It serves as the setting for *Pokémon Legends: Arceus*.",
       "introduction": "Legends: Arceus"
     },
     {
-      "id": 11,
+      "id": 10,
       "name": "Paldea",
       "description": "The Paldea region (Japanese: パルデア地方) is a region in the Pokémon world and the ninth core series region to be introduced. It serves as the setting for *Pokémon Scarlet* and *Violet*'s main story. In *The Hidden Treasure of Area Zero*, players leave Paldea to visit Kitakami and the Blueberry Academy in the Unova region.",
       "introduction": "Scarlet and Violet"
