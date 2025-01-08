@@ -29,7 +29,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegionDetailsComponent implements OnInit {
 
-  location!: RegionDetails;
+  location: RegionDetails = {
+    id: 0,
+    url: '',
+    name: '',
+    img: '',
+    pokedexes: [],
+    version_groups: [],
+    main_generation: null,
+    introduction: '',
+    description: '',
+    locations: []
+  };  
   tableLocationsName: BaseClass[] = [];
   locationId: number | null = null;
   displayedColumns: string[] = ['name'];
@@ -51,10 +62,6 @@ export class RegionDetailsComponent implements OnInit {
         console.error('ID inválido');
       }
     }
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
   }
 
   upperFirstLetter(word: string, gen?: boolean): string {

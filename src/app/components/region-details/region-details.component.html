@@ -40,9 +40,7 @@
         <div class="text">
             <h2>Location</h2>
             <mat-divider></mat-divider>
-            @if(location){
-                <p class="break-line" [innerHTML]="location.description"></p>
-            }
+            <p class="break-line" *ngIf="location?.description" [innerHTML]="location.description"></p>
             <h2>Areas</h2>
             <mat-divider></mat-divider>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
