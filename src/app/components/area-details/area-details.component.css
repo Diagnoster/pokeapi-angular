@@ -1,0 +1,20 @@
+.container {
+    width: calc(95% - 5%);
+    margin: 2.5%;
+}
+
+mat-card {
+    height: 150px;
+    width: 200px;
+    margin-bottom: 3%;
+}
+
+.mat-mdc-table {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+  }
+  
+  .mat-column-name {
+    height: 100px;
+  }
