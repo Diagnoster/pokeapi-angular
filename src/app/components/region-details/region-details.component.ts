@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MapLocation } from '../../models/map-location';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PokeService } from '../../services/poke.service';
 import { MatCardModule } from '@angular/material/card';
@@ -47,7 +47,7 @@ export class RegionDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource<BaseClass>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute, private http: HttpClient) { 
+  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { 
   }
 
   ngOnInit(): void {
@@ -111,5 +111,14 @@ export class RegionDetailsComponent implements OnInit {
     });
   }
   
+  onRowClick(row: BaseClass): void {
+    if (row.name && row.url) {
+      this.router.navigate(['/areas'], { 
+        queryParams: { name: row.name, url: row.url } 
+      });
+    } else {
+      console.error('Missing name or URL for the selected row:', row);
+    }
+  }
   
 }
