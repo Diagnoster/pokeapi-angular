@@ -4,6 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { PokeService } from '../../services/poke.service';
+import { PokeHelperService } from '../../services/poke-helper.service';
+import { LocationDetails } from '../../models/location-details';
 
 export interface PeriodicElement {
   name: string;
@@ -41,15 +43,15 @@ export class AreaDetailsComponent implements OnInit{
   dataSource = ELEMENT_DATA;
   name: string | null = null;
   url: string | null = null;
-  areas: any;
+  locationDetails: LocationDetails | undefined;
+  areasDetails: any;
 
-  constructor(private route: ActivatedRoute, private pokeService: PokeService) {}
+  constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.name = params['name'];
       this.url = params['url'];
-      console.log('Received parameters:', { name: this.name, url: this.url });
       this.getAreas(params['url']);
     });
   }
@@ -57,9 +59,15 @@ export class AreaDetailsComponent implements OnInit{
   getAreas(url: string) {
     if(this.url != null) {
       this.pokeService.getAllAreas(url).subscribe((data: any) => {
-        this.areas = data;
-        console.log(this.areas);
+        this.locationDetails = data;
+        console.log('objeto feito abaixo');
+        console.log(this.locationDetails);
       });
     }
   }
+
+  upperFirstLetter(word: string, gen?: boolean): string {
+    return this.pokeHelperService.upperFirstLetter(word, gen);
+  }
+
 }

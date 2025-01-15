@@ -1,10 +1,10 @@
 <div class="container">
   <div class="areas-container">
     <h2>Areas</h2>
-    @for(area of areas?.areas; track areas) {
+    @for(area of locationDetails?.areas; track area) {
       <mat-card appearance="outlined">
         <mat-card-header>
-          <mat-card-title> {{area.name}}</mat-card-title>
+          <mat-card-title> {{upperFirstLetter(area.name)}}</mat-card-title>
         </mat-card-header>
         <mat-card-actions>
           <button mat-button>Show Pokemons</button>
