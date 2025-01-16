@@ -42,7 +42,7 @@ export class AreaDetailsComponent implements OnInit{
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
   name: string | null = null;
-  url: string | null = null;
+  url: string | null = null; // api url
   locationDetails: LocationDetails | undefined;
   areasDetails: any;
 
@@ -57,15 +57,24 @@ export class AreaDetailsComponent implements OnInit{
   }
 
   getAreas(url: string) {
-    if(this.url != null) {
-      this.pokeService.getAllAreas(url).subscribe((data: any) => {
-        this.locationDetails = data;
-        console.log('objeto feito abaixo');
-        console.log(this.locationDetails);
+    if (url) {
+      this.pokeService.getAllAreas(url).subscribe({
+        next: (data: any) => {
+          this.locationDetails = data;
+        },
+        error: (err) => {
+          console.error('Erro to get areas:', err);
+        }
       });
+    } else {
+      console.warn('Invalid URL.');
     }
   }
 
+  getAreaLocationDetails() {
+    
+  }
+  
   upperFirstLetter(word: string, gen?: boolean): string {
     return this.pokeHelperService.upperFirstLetter(word, gen);
   }
