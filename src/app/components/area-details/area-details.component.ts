@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { LocationDetails } from '../../models/location-details';
+import { PokemonEncounters } from '../../models/pokemon-encounters';
+import { LocationArea } from '../../models/location-area';
+import { CommonModule } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 export interface PeriodicElement {
   name: string;
@@ -33,17 +38,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
   imports: [
     MatCardModule, 
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    CommonModule,
+    MatDividerModule
   ],
   templateUrl: './area-details.component.html',
   styleUrl: './area-details.component.css'
 })
-export class AreaDetailsComponent implements OnInit{
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+export class AreaDetailsComponent implements OnInit {
+  displayedColumns: string[] = ['position', 'name', 'symbol'];
+  dataSource = new MatTableDataSource<PokemonEncounters>();
   name: string | null = null;
   url: string | null = null; // api url
   locationDetails: LocationDetails | undefined;
+  locationArea: LocationArea | undefined;
   areasDetails: any;
 
   constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {}
@@ -63,7 +71,7 @@ export class AreaDetailsComponent implements OnInit{
           this.locationDetails = data;
         },
         error: (err) => {
-          console.error('Erro to get areas:', err);
+          console.error('Error:', err);
         }
       });
     } else {
@@ -71,8 +79,28 @@ export class AreaDetailsComponent implements OnInit{
     }
   }
 
-  getAreaLocationDetails() {
-    
+  searchLocationAreaDetails(url: string) {
+    if (url) {
+      this.pokeService.getLocationAreaDetails(url).subscribe({
+        next: (data: any) => {         
+          this.locationArea = data;
+          console.log('variavel locationArea abaixo');
+          console.log(this.locationArea);
+
+          if(this.locationArea) {
+            this.dataSource.data = this.locationArea?.pokemon_encounters;
+            console.log('varivel data source abaixo');
+            console.log(this.dataSource.data);
+          }
+
+        },
+        error: (err) => {
+          console.error('Error:', err);
+        }
+      });
+    } else {
+      console.warn('Invalid URL.');
+    }
   }
   
   upperFirstLetter(word: string, gen?: boolean): string {

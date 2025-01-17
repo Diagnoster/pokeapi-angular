@@ -105,6 +105,10 @@ export class PokeService {
   getAllAreas(url: string): Observable<any> {
     return this.http.get<any>(url);
   }
+
+  getLocationAreaDetails(url: string): Observable<any> {
+    return this.http.get<any>(url);
+  }
   
   
 }
