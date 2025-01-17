@@ -20,7 +20,7 @@
 }
 
 mat-card {
-  height: 150px;
+  height: auto;
   width: 200px;
   margin-bottom: 3%;
   margin-right: 3%;
@@ -46,6 +46,11 @@ mat-divider {
 
 .mat-column-name {
   height: 100px;
+}
+
+.method-img {
+  width: 30px;
+  height: 30px;
 }
 
 mat-card:hover {

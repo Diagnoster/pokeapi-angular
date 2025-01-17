@@ -39,37 +39,39 @@
   <h2>Pokémon found</h2>
   <!-- Pokemons find locations -->
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{upperFirstLetter(element.pokemon.name)}} </mat-cell>
-    </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <table>
-          <thead>
-            <tr>
-              <th>Max Chance</th>
-              <th>Detalhes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let detail of element.version_details">
-              <td>{{ detail.max_chance }}</td>
-              <td>{{ detail.version.name }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Pokemon Column -->
+    <ng-container matColumnDef="pokemon">
+      <mat-header-cell *matHeaderCellDef> Pokemon </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        {{upperFirstLetter(element.name)}} 
       </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    <!-- Chance Column -->
+    <ng-container matColumnDef="chance">
+      <mat-header-cell *matHeaderCellDef> Chance </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <p>{{element.min_level}}</p>
+        <p>{{element.max_level}}</p>
+        {{element.chance}}%
+      </mat-cell>
+    </ng-container>
+
+    <!-- Version Column -->
+    <ng-container matColumnDef="version">
+      <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          {{upperFirstLetter(element.version)}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Method Column -->
+    <ng-container matColumnDef="method">
+      <mat-header-cell *matHeaderCellDef> Method </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+          <img class="method-img" src="../../../assets/encounter-methods/{{element.method}}.png" alt="Moves icon">
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

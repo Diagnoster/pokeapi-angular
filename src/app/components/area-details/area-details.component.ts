@@ -19,18 +19,15 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+export interface poke {
+  name: string;
+  url: string;
+  chance: number;
+  method: string;
+  max_level: number;
+  min_level: number;
+  version: string;
+}
 
 @Component({
   selector: 'app-area-details',
@@ -46,13 +43,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './area-details.component.css'
 })
 export class AreaDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'symbol'];
-  dataSource = new MatTableDataSource<PokemonEncounters>();
+  displayedColumns: string[] = ['pokemon', 'chance', 'version', 'method'];
+  dataSource = new MatTableDataSource<poke>();
   name: string | null = null;
   url: string | null = null; // api url
   locationDetails: LocationDetails | undefined;
   locationArea: LocationArea | undefined;
   areasDetails: any;
+  pokemonList: poke[] = [];
 
   constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {}
 
@@ -87,8 +85,26 @@ export class AreaDetailsComponent implements OnInit {
           console.log('variavel locationArea abaixo');
           console.log(this.locationArea);
 
+          this.locationArea?.pokemon_encounters.forEach((poke) => {
+            poke.version_details.forEach((details) => {
+              details.encounter_details.forEach((encounterDetails) => {
+                const pokezim: poke = {
+                  name: poke.pokemon.name,
+                  url: poke.pokemon.url,
+                  chance: encounterDetails.chance,
+                  method: encounterDetails.method.name,
+                  max_level: encounterDetails.max_level,
+                  min_level: encounterDetails.min_level,
+                  version: details.version.name,
+                }; 
+                this.pokemonList.push(pokezim);
+              })
+            })
+          });
+
           if(this.locationArea) {
-            this.dataSource.data = this.locationArea?.pokemon_encounters;
+            
+            this.dataSource.data = this.pokemonList;
             console.log('varivel data source abaixo');
             console.log(this.dataSource.data);
           }
