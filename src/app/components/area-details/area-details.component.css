@@ -1,12 +1,22 @@
 .container {
   width: calc(95% - 5%);
   margin: 2.5%;
+  background-color: white;
+  padding: 2%;
+  border-radius: 10px;
 }
 
 .areas-container {
-display: flex;
-align-items: start;  
-flex-wrap: wrap;
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+.methods {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 mat-card {
@@ -14,6 +24,18 @@ mat-card {
   width: 200px;
   margin-bottom: 3%;
   margin-right: 3%;
+  border: none;
+}
+
+mat-divider {
+  margin-bottom: 1%;
+}
+
+.card-methods {
+  height: 80px;
+  width: 130px;
+  justify-content: center;
+  align-items: center;
 }
 
 .mat-mdc-table {
@@ -26,9 +48,33 @@ mat-card {
   height: 100px;
 }
 
+mat-card:hover {
+  color: #4c5fcc;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
 @media(max-width: 750px) {
   .areas-container {
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
   }
 }
