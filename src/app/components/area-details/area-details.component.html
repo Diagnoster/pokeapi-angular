@@ -1,5 +1,7 @@
 <div class="container">
-  <h2>Areas</h2>
+  <h1>Areas</h1>
+  <mat-divider></mat-divider>
+
   <div class="areas-container">
     @for(area of locationDetails?.areas; track area) {
       <mat-card appearance="outlined">
@@ -7,9 +9,30 @@
           <mat-card-title> {{upperFirstLetter(area.name)}}</mat-card-title>
         </mat-card-header>
         <mat-card-actions>
-          <button mat-button>Show Pokemons</button>
+          <button mat-button (click)="searchLocationAreaDetails(area.url)">Show Pokemons</button>
         </mat-card-actions>
       </mat-card>
+    }
+  </div>
+
+  <h2>Encounter Methods</h2>
+  <mat-divider></mat-divider>
+
+  <div class="methods">
+    @if(this.locationArea?.encounter_method_rates) {
+      @for(methods of this.locationArea?.encounter_method_rates; track methods) {
+        <mat-card appearance="outlined" class="card-methods">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="../../../assets/encounter-methods/{{methods.encounter_method.name}}.png" alt="Moves icon">          
+            </div>
+            <mat-card-title> {{upperFirstLetter(methods.encounter_method.name)}}</mat-card-title>
+          </mat-card-header>
+        </mat-card>
+      }
+    }
+    @else {
+      <p><b>Select Area for looking methods</b></p>
     }
   </div>
 
@@ -19,19 +42,28 @@
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{upperFirstLetter(element.pokemon.name)}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+      <mat-cell *matCellDef="let element">
+        <table>
+          <thead>
+            <tr>
+              <th>Max Chance</th>
+              <th>Detalhes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detail of element.version_details">
+              <td>{{ detail.max_chance }}</td>
+              <td>{{ detail.version.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
