@@ -52,9 +52,11 @@
     <ng-container matColumnDef="chance">
       <mat-header-cell *matHeaderCellDef> Chance </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <p>{{element.min_level}}</p>
-        <p>{{element.max_level}}</p>
-        {{element.chance}}%
+        <div class="chance-column">
+          <p class="catch"><strong>Catch: {{element.chance}}%</strong></p>
+          <p class="min-lvl">Min Lvl: {{element.min_level}}</p>
+          <p class="max-lvl">Max Lvl: {{element.max_level}}</p>
+        </div>
       </mat-cell>
     </ng-container>
 

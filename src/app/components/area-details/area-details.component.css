@@ -31,6 +31,19 @@ mat-divider {
   margin-bottom: 1%;
 }
 
+mat-cell {
+  padding: 1%;
+  padding-top: 2%;
+  justify-content: center;
+  text-align: center;
+}
+
+mat-header-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card-methods {
   height: 80px;
   width: 130px;
@@ -52,6 +65,20 @@ mat-divider {
   width: 30px;
   height: 30px;
 }
+
+.catch {
+  color: blue;
+}
+
+.min-lvl {
+  color: red;
+}
+
+.max-lvl {
+  color: green;
+}
+
+
 
 mat-card:hover {
   color: #4c5fcc;
