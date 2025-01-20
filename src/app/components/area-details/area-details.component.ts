@@ -10,6 +10,7 @@ import { PokemonEncounters } from '../../models/pokemon-encounters';
 import { LocationArea } from '../../models/location-area';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
+import { PokeFound } from '../../models/poke-found';
 
 
 export interface PeriodicElement {
@@ -17,16 +18,6 @@ export interface PeriodicElement {
   position: number;
   weight: number;
   symbol: string;
-}
-
-export interface poke {
-  name: string;
-  url: string;
-  chance: number;
-  method: string;
-  max_level: number;
-  min_level: number;
-  version: string;
 }
 
 @Component({
@@ -44,13 +35,13 @@ export interface poke {
 })
 export class AreaDetailsComponent implements OnInit {
   displayedColumns: string[] = ['pokemon', 'chance', 'version', 'method'];
-  dataSource = new MatTableDataSource<poke>();
+  dataSource = new MatTableDataSource<PokeFound>();
   name: string | null = null;
   url: string | null = null; // api url
   locationDetails: LocationDetails | undefined;
   locationArea: LocationArea | undefined;
   areasDetails: any;
-  pokemonList: poke[] = [];
+  pokemonList: PokeFound[] = [];
 
   constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {}
 
@@ -80,42 +71,49 @@ export class AreaDetailsComponent implements OnInit {
   searchLocationAreaDetails(url: string) {
     if (url) {
       this.pokeService.getLocationAreaDetails(url).subscribe({
-        next: (data: any) => {         
-          this.locationArea = data;
-          console.log('variavel locationArea abaixo');
-          console.log(this.locationArea);
-
-          this.locationArea?.pokemon_encounters.forEach((poke) => {
-            poke.version_details.forEach((details) => {
-              details.encounter_details.forEach((encounterDetails) => {
-                const pokezim: poke = {
-                  name: poke.pokemon.name,
-                  url: poke.pokemon.url,
-                  chance: encounterDetails.chance,
-                  method: encounterDetails.method.name,
-                  max_level: encounterDetails.max_level,
-                  min_level: encounterDetails.min_level,
-                  version: details.version.name,
-                }; 
-                this.pokemonList.push(pokezim);
-              })
-            })
-          });
-
-          if(this.locationArea) {
-            
-            this.dataSource.data = this.pokemonList;
-            console.log('varivel data source abaixo');
-            console.log(this.dataSource.data);
+        next: (data: any) => {
+          this.locationArea = data;  
+          if (this.locationArea?.pokemon_encounters) {
+            this.pokemonList = [];
+  
+            this.locationArea.pokemon_encounters.forEach((poke) => {
+              poke.version_details.forEach((details) => {
+                details.encounter_details.forEach((encounterDetails) => {
+                  // Get pokémon icon
+                  this.pokeService.getPokeDetails(poke.pokemon.url).subscribe({
+                    next: (pokeDetails: any) => {
+                      const iconUrl = pokeDetails.sprites.versions["generation-viii"].icons.front_default;
+  
+                      const pokezim: PokeFound = {
+                        name: poke.pokemon.name,
+                        url: poke.pokemon.url,
+                        chance: encounterDetails.chance,
+                        method: encounterDetails.method.name,
+                        max_level: encounterDetails.max_level,
+                        min_level: encounterDetails.min_level,
+                        version: details.version.name,
+                        icon: iconUrl,
+                      };
+  
+                      this.pokemonList.push(pokezim);
+  
+                      this.dataSource.data = [...this.pokemonList];
+                    },
+                    error: (err) => {
+                      console.error(`Erro ao obter detalhes do Pokémon ${poke.pokemon.name}:`, err);
+                    },
+                  });
+                });
+              });
+            });
           }
-
         },
         error: (err) => {
-          console.error('Error:', err);
-        }
+          console.error('Erro ao buscar detalhes da área:', err);
+        },
       });
     } else {
-      console.warn('Invalid URL.');
+      console.warn('URL inválida.');
     }
   }
   

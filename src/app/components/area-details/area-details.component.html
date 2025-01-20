@@ -9,7 +9,7 @@
           <mat-card-title> {{upperFirstLetter(area.name)}}</mat-card-title>
         </mat-card-header>
         <mat-card-actions>
-          <button mat-button (click)="searchLocationAreaDetails(area.url)">Show Pokemons</button>
+          <button mat-button (click)="searchLocationAreaDetails(area.url)">Show Pokémons</button>
         </mat-card-actions>
       </mat-card>
     }
@@ -40,11 +40,14 @@
   <!-- Pokemons find locations -->
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!-- Pokemon Column -->
+    <!-- Pokémon Column -->
     <ng-container matColumnDef="pokemon">
-      <mat-header-cell *matHeaderCellDef> Pokemon </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
-        {{upperFirstLetter(element.name)}} 
+      <mat-header-cell *matHeaderCellDef> Pokémon </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="pokemon-column">
+          <p><img class="poke-icon" src="{{element.icon}}" alt="Pokémon icon"></p>
+          <p>{{upperFirstLetter(element.name)}}</p>
+        </div>
       </mat-cell>
     </ng-container>
 

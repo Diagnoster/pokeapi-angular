@@ -78,7 +78,9 @@ mat-header-cell {
   color: green;
 }
 
-
+.poke-icon:hover {
+  animation: shake 0.5s ease-in-out;
+}
 
 mat-card:hover {
   color: #4c5fcc;
