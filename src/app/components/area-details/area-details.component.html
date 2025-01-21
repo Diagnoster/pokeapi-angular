@@ -37,6 +37,13 @@
   </div>
 
   <h2>Pokémon found</h2>
+
+  <!-- Filter -->
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Yellow" #input>
+  </mat-form-field>
+
   <!-- Pokemons find locations -->
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

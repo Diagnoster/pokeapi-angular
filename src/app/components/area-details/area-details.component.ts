@@ -13,6 +13,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { PokeFound } from '../../models/poke-found';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-area-details',
@@ -22,7 +25,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatTableModule,
     CommonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   templateUrl: './area-details.component.html',
   styleUrl: './area-details.component.css'
@@ -122,6 +128,15 @@ export class AreaDetailsComponent implements OnInit {
           data: { pokemon },
         });
       });
+    }
+
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
     }
 
 }

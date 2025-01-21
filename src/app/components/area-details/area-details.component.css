@@ -91,6 +91,10 @@ mat-card:hover {
   cursor: pointer;
 }
 
+mat-form-field {
+  width: 100%;
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);
