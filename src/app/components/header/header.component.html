@@ -43,6 +43,11 @@
           <img src="../../../assets/nature_icon.png" alt="Natures icon">
         </a>
       </span>
+      <span [ngClass]="{'selected': selectedSpan === 'location'}"><a mat-button routerLink="/location"
+        matTooltip="Location" (click)="selectSpan('location')">
+        <img src="../../../assets/location_icon.png" alt="Location icon">
+      </a>
+    </span>
     </div>
     <span class="spacer"></span>
     <div class="buttons">
@@ -60,7 +65,7 @@
 
 @if (!hideHeader) {
   <header class="docs-primary-header component-page-header">
-    <h2>{{ componentName }}</h2>
+    <h2>{{ upperFirstLetter(componentName) }}</h2>
   </header>
 }
 
