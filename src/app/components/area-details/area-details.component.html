@@ -44,12 +44,11 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Yellow" #input>
   </mat-form-field>
 
-  <!-- Pokemons find locations -->
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- Pokémon Column -->
     <ng-container matColumnDef="pokemon">
-      <mat-header-cell *matHeaderCellDef> Pokémon </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header="name"> Pokémon </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="pokemon-column">
           <p><img class="poke-icon" src="{{element.icon}}" alt="Pokémon icon" (click)="pokeModal(element.name)"></p>
@@ -57,10 +56,10 @@
         </div>
       </mat-cell>
     </ng-container>
-
+  
     <!-- Chance Column -->
     <ng-container matColumnDef="chance">
-      <mat-header-cell *matHeaderCellDef> Chance </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Chance </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="chance-column">
           <p class="catch"><strong>Appear: {{element.chance}}%</strong></p>
@@ -69,15 +68,15 @@
         </div>
       </mat-cell>
     </ng-container>
-
+  
     <!-- Version Column -->
     <ng-container matColumnDef="version">
-      <mat-header-cell *matHeaderCellDef> Version </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Version </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
           {{upperFirstLetter(element.version)}}
       </mat-cell>
     </ng-container>
-
+  
     <!-- Method Column -->
     <ng-container matColumnDef="method">
       <mat-header-cell *matHeaderCellDef> Method </mat-header-cell>
@@ -85,7 +84,7 @@
           <img class="method-img" src="../../../assets/encounter-methods/{{element.method}}.png" alt="Moves icon">
       </mat-cell>
     </ng-container>
-
+  
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

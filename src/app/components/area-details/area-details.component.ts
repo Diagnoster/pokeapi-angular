@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.comp
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-area-details',
@@ -28,7 +28,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatDividerModule,
     MatSortModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSortModule
   ],
   templateUrl: './area-details.component.html',
   styleUrl: './area-details.component.css'
@@ -42,6 +43,7 @@ export class AreaDetailsComponent implements OnInit {
   locationArea: LocationArea | undefined;
   areasDetails: any;
   pokemonList: PokeFound[] = [];
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService, public dialog: MatDialog) {}
 
@@ -98,6 +100,7 @@ export class AreaDetailsComponent implements OnInit {
                       this.pokemonList.push(pokezim);
   
                       this.dataSource.data = [...this.pokemonList];
+                      this.dataSource.sort = this.sort;
                     },
                     error: (err) => {
                       console.error(`Erro ao obter detalhes do Pokémon ${poke.pokemon.name}:`, err);
