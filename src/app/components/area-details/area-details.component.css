@@ -87,6 +87,10 @@ mat-card:hover {
   animation: shake 0.5s ease-in-out;
 }
 
+.pokemon-column {
+  cursor: pointer;
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);

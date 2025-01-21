@@ -6,7 +6,7 @@
     @for(area of locationDetails?.areas; track area) {
       <mat-card appearance="outlined">
         <mat-card-header>
-          <mat-card-title> {{upperFirstLetter(area.name)}}</mat-card-title>
+          <mat-card-title> {{upperFirstLetter(area.name)}} </mat-card-title>
         </mat-card-header>
         <mat-card-actions>
           <button mat-button (click)="searchLocationAreaDetails(area.url)">Show Pokémons</button>
@@ -45,7 +45,7 @@
       <mat-header-cell *matHeaderCellDef> Pokémon </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="pokemon-column">
-          <p><img class="poke-icon" src="{{element.icon}}" alt="Pokémon icon"></p>
+          <p><img class="poke-icon" src="{{element.icon}}" alt="Pokémon icon" (click)="pokeModal(element.name)"></p>
           <p>{{upperFirstLetter(element.name)}}</p>
         </div>
       </mat-cell>
@@ -56,7 +56,7 @@
       <mat-header-cell *matHeaderCellDef> Chance </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="chance-column">
-          <p class="catch"><strong>Catch: {{element.chance}}%</strong></p>
+          <p class="catch"><strong>Appear: {{element.chance}}%</strong></p>
           <p class="min-lvl">Min Lvl: {{element.min_level}}</p>
           <p class="max-lvl">Max Lvl: {{element.max_level}}</p>
         </div>

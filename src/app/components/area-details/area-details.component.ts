@@ -11,14 +11,8 @@ import { LocationArea } from '../../models/location-area';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { PokeFound } from '../../models/poke-found';
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-area-details',
@@ -43,7 +37,7 @@ export class AreaDetailsComponent implements OnInit {
   areasDetails: any;
   pokemonList: PokeFound[] = [];
 
-  constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {}
+  constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -120,5 +114,14 @@ export class AreaDetailsComponent implements OnInit {
   upperFirstLetter(word: string, gen?: boolean): string {
     return this.pokeHelperService.upperFirstLetter(word, gen);
   }
+
+    pokeModal(pokemon: any): void {
+      this.pokeService.getPokemon(pokemon).subscribe(pokemon => {
+        this.dialog.open(PokemonDetailsComponent, {
+          width: '750px',
+          data: { pokemon },
+        });
+      });
+    }
 
 }
