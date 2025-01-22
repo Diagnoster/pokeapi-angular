@@ -16,6 +16,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { BasicFilterComponent } from '../basic-filter/basic-filter.component';
 
 @Component({
   selector: 'app-area-details',
@@ -29,7 +30,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
     MatSortModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSortModule
+    MatSortModule,
+    BasicFilterComponent
   ],
   templateUrl: './area-details.component.html',
   styleUrl: './area-details.component.css'
@@ -133,13 +135,8 @@ export class AreaDetailsComponent implements OnInit {
       });
     }
 
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
+    applyFilter(filterValue: string): void {
       this.dataSource.filter = filterValue.trim().toLowerCase();
-  
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
     }
 
 }

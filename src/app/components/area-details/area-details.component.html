@@ -38,11 +38,12 @@
 
   <h2>Pokémon found</h2>
 
-  <!-- Filter -->
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Yellow" #input>
-  </mat-form-field>
+  <!-- Basic Filter Component -->
+  <app-basic-filter 
+    label="Filter" 
+    placeholder="Ex. Safari"
+    (filterChange)="applyFilter($event)">
+  </app-basic-filter>
 
   <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
