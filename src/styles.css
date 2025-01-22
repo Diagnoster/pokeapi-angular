@@ -236,11 +236,7 @@ body.dark-mode .example-card mat-card-content {
 }
 
 body.dark-mode mat-nav-list {
-  background: var(--black-background);
-}
-
-body.dark-mode .pokemon-detail span  {
-  color: var(--black-background);
+  background: var(--minimal-black-background);
 }
 
 body.dark-mode .content .text {
@@ -261,6 +257,10 @@ body.dark-mode mat-autocomplete {
 
 body.dark-mode .mat-mdc-option.mdc-list-item {
   background: var(--black-background);
+}
+
+body.dark-mode .mat-drawer-inner-container {
+  background-color: var(--minimal-black-background);
 }
 
 /********************************** End Dark Mode Theme **********************************/
