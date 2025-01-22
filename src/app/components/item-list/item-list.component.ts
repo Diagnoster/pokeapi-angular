@@ -8,13 +8,12 @@ import { PokeHelperService } from '../../services/poke-helper.service';
 import { ItemDetails } from '../../models/item-details';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-
 import { MatIconModule } from '@angular/material/icon';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { LoadingComponent } from '../loading/loading.component';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-
+import { BasicFilterComponent } from '../basic-filter/basic-filter.component';
 
 @Component({
   selector: 'app-item-list',
@@ -28,7 +27,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     MatMenuModule,
     MatIconModule,
     LoadingComponent,
-    MatSortModule
+    MatSortModule,
+    BasicFilterComponent
 ],
   animations: [
     trigger('detailExpand', [
@@ -105,8 +105,7 @@ export class ItemListComponent implements OnInit {
     return this.pokeHelperService.upperFirstLetter(word);
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 

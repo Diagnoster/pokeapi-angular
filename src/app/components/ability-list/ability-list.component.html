@@ -3,11 +3,12 @@
     @if (loading) {
       <app-loading></app-loading>
     }
-    <!-- Filter -->
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
-    </mat-form-field>
+    <!-- Basic Filter Component -->
+    <app-basic-filter 
+      label="Filter a ability from the list" 
+      placeholder="Ex. stench"
+      (filterChange)="applyFilter($event)">
+    </app-basic-filter>
 
     <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
       (matSortChange)="announceSortChange($event)">
