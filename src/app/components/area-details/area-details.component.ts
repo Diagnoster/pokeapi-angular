@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { BasicFilterComponent } from '../basic-filter/basic-filter.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-area-details',
@@ -31,7 +32,8 @@ import { BasicFilterComponent } from '../basic-filter/basic-filter.component';
     MatInputModule,
     MatFormFieldModule,
     MatSortModule,
-    BasicFilterComponent
+    BasicFilterComponent,
+    MatTooltipModule
   ],
   templateUrl: './area-details.component.html',
   styleUrl: './area-details.component.css'

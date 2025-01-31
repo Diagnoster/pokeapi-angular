@@ -24,7 +24,7 @@
         <mat-card appearance="outlined" class="card-methods">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image">
-              <img src="../../../assets/encounter-methods/{{methods.encounter_method.name}}.png" alt="Moves icon">          
+              <img src="../../../assets/encounter-methods/{{methods.encounter_method.name}}.png" alt="{{methods.encounter_method.name}} icon">          
             </div>
             <mat-card-title> {{upperFirstLetter(methods.encounter_method.name)}}</mat-card-title>
           </mat-card-header>
@@ -82,7 +82,7 @@
     <ng-container matColumnDef="method">
       <mat-header-cell *matHeaderCellDef> Method </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-          <img class="method-img" src="../../../assets/encounter-methods/{{element.method}}.png" alt="Moves icon">
+          <img class="method-img" src="../../../assets/encounter-methods/{{element.method}}.png" matTooltip="{{element.method}}" alt="Moves icon">
       </mat-cell>
     </ng-container>
   
