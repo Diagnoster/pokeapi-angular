@@ -91,13 +91,25 @@ export class HeaderComponent implements OnInit {
   }
 
   private getRouteComponent(url: string): string | null {
-    // default route
-    if (url === '/') {
-      url = '/home';
+    // check url contains "?"
+    const urlParts = url.split('?');
+
+    // get last party of the parameters
+    const cleanUrl = urlParts[0].split('/').pop();
+  
+    // if urlParts -> get name of url
+    if (urlParts.length > 1) {
+      const params = new URLSearchParams(urlParts[1]);
+      const locationName = params.get('name');
+      
+      if (locationName) {
+        return decodeURIComponent(locationName);
+      }
     }
-    const route = url.split('/').pop();
-    return route ? route : null;
+    // if there is no 'name', returns the last segment of the URL
+    return cleanUrl ? decodeURIComponent(cleanUrl.replace(/-/g, ' ')) : null;
   }
+  
 
   upperFirstLetter(word: string, gen?: boolean): string {
     return this.pokeHelperService.upperFirstLetter(word, gen);
