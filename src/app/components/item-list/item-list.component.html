@@ -104,11 +104,13 @@
       <button mat-menu-item (click)="selectItem('item-category/55/')">Picnic</button>
     </mat-menu>
 
-    <!-- Filter -->
-    <mat-form-field>
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter an item from the list" #input>
-    </mat-form-field>
+    <!-- Basic Filter Component -->
+    <app-basic-filter 
+      label="Filter a item from the list"
+      placeholder="Ex. pokeball"
+      (filterChange)="applyFilter($event)">
+    </app-basic-filter>
+    
     <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
       (matSortChange)="announceSortChange($event)">
       <!-- ID Column -->

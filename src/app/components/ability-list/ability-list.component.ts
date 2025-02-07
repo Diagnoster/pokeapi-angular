@@ -18,6 +18,7 @@ import { LoadingComponent } from '../loading/loading.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { BaseClass } from '../../models/base/base-class';
 import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component';
+import { BasicFilterComponent } from '../basic-filter/basic-filter.component';
 
 @Component({
   selector: 'app-ability-list',
@@ -35,7 +36,8 @@ import { PokemonLearnComponent } from '../pokemon-learn/pokemon-learn.component'
     MatSortModule,
     LoadingComponent,
     MatCardModule,
-    PokemonLearnComponent
+    PokemonLearnComponent,
+    BasicFilterComponent
 ],
   animations: [
     trigger('detailExpand', [
@@ -84,8 +86,7 @@ export class AbilityListComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 

@@ -47,7 +47,7 @@ Make sure you have Node.js and Angular CLI installed on your machine.
 - List Items: See a list of all pocket items (medicine, pokeballs, berries and more).
 - List of Abilities: See a list of all abilities.
 - Natures: See a list of all natures.
-- Locations: Locations and areas of the Pokémon world
+- Locations: Locations and areas of the Pokémon world.
 
 ## Credits to
 #### PokeAPI: PokeAPI for providing the API for data retrieval.

@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { PokeHelperService } from '../../services/poke-helper.service';
 
 @Component({
   selector: 'app-header',
@@ -48,7 +49,7 @@ export class HeaderComponent implements OnInit {
     10: 'Paldea'
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private pokeHelperService: PokeHelperService) { }
 
   ngOnInit(): void {
     this.router.events
@@ -56,7 +57,7 @@ export class HeaderComponent implements OnInit {
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
           const regionId = this.getRegionIdFromUrl(event.url);
-          const regionName = this.regionMap[regionId] || 'Unknown Region';
+          const regionName = this.regionMap[regionId] || this.getRouteComponent(event.url) || 'Unknown Region';
           this.componentName = regionName;
           
           if (event.url === '/home') {
@@ -87,5 +88,30 @@ export class HeaderComponent implements OnInit {
     } else {
       document.body.classList.remove('dark-mode');
     }
+  }
+
+  private getRouteComponent(url: string): string | null {
+    // check url contains "?"
+    const urlParts = url.split('?');
+
+    // get last party of the parameters
+    const cleanUrl = urlParts[0].split('/').pop();
+  
+    // if urlParts -> get name of url
+    if (urlParts.length > 1) {
+      const params = new URLSearchParams(urlParts[1]);
+      const locationName = params.get('name');
+      
+      if (locationName) {
+        return decodeURIComponent(locationName);
+      }
+    }
+    // if there is no 'name', returns the last segment of the URL
+    return cleanUrl ? decodeURIComponent(cleanUrl.replace(/-/g, ' ')) : null;
+  }
+  
+
+  upperFirstLetter(word: string, gen?: boolean): string {
+    return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 }

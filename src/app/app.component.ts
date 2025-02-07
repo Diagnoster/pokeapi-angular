@@ -5,6 +5,7 @@ import { PokeListComponent } from "./components/poke-list/poke-list.component";
 import { HeaderComponent } from './components/header/header.component';
 import { MoveListComponent } from './components/move-list/move-list.component';
 import { MovesComponent } from './components/moves/moves.component';
+import { BasicFilterComponent } from './components/basic-filter/basic-filter.component';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { MovesComponent } from './components/moves/moves.component';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, PokeListComponent, HeaderComponent, RouterLink, RouterLinkActive, MoveListComponent, MovesComponent]
+    imports: [RouterOutlet, PokeListComponent, HeaderComponent, RouterLink, RouterLinkActive, MoveListComponent, MovesComponent, BasicFilterComponent]
 })
 export class AppComponent {
   title = 'pokeapi';

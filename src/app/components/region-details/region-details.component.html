@@ -44,13 +44,13 @@
             <h2>Areas</h2>
             <mat-divider></mat-divider>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <ng-container matColumnDef="name">
-                <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                <mat-cell mat-cell *matCellDef="let element"> {{upperFirstLetter(element.name)}} </mat-cell>
+                <ng-container matColumnDef="name" >
+                    <mat-header-cell mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{upperFirstLetter(element.name)}} </mat-cell>
                 </ng-container>
             
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)"></mat-row>
             </table>
             <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[5]" showFirstLastButtons
                 aria-label="Select page of items">

@@ -101,5 +101,14 @@ export class PokeService {
     const url = `${this.URL_BASE}/region/${id}`;
     return this.http.get<any>(url);
   }
+
+  getAllAreas(url: string): Observable<any> {
+    return this.http.get<any>(url);
+  }
+
+  getLocationAreaDetails(url: string): Observable<any> {
+    return this.http.get<any>(url);
+  }
+  
   
 }

@@ -4,9 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PokeService } from '../../services/poke.service';
 import { PokeHelperService } from '../../services/poke-helper.service';
 import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
-import { PokeAbility } from '../../models/poke-ability';
 import { BaseClass } from '../../models/base/base-class';
-import { AbilitiesDetails } from '../../models/abilities-details';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({

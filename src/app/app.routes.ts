@@ -8,6 +8,7 @@ import { AbilityListComponent } from './components/ability-list/ability-list.com
 import { NatureListComponent } from './components/nature-list/nature-list.component';
 import { LocationComponent } from './components/location/location.component';
 import { RegionDetailsComponent } from './components/region-details/region-details.component';
+import { AreaDetailsComponent } from './components/area-details/area-details.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -20,4 +21,5 @@ export const routes: Routes = [
     { path: 'natures', component: NatureListComponent },
     { path: 'location', component: LocationComponent},
     { path: 'region-details/:id', component: RegionDetailsComponent },
+    { path: 'areas', component: AreaDetailsComponent },
 ];
