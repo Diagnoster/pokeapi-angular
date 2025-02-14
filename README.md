@@ -19,6 +19,7 @@ This project is an Angular 18 application that utilizes the PokeAPI to display i
 - <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> TypeScript
 
 ## How to Use
+
 ### Installation: 
 Make sure you have Node.js and Angular CLI installed on your machine.
 
