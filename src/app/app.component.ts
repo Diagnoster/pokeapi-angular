@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
-
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { PokeListComponent } from "./components/poke-list/poke-list.component";
-import { HeaderComponent } from './components/header/header.component';
-import { MoveListComponent } from './components/move-list/move-list.component';
-import { MovesComponent } from './components/moves/moves.component';
-import { BasicFilterComponent } from './components/basic-filter/basic-filter.component';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/shared/header/header.component';
 
 
 @Component({
@@ -13,7 +8,7 @@ import { BasicFilterComponent } from './components/basic-filter/basic-filter.com
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, PokeListComponent, HeaderComponent, RouterLink, RouterLinkActive, MoveListComponent, MovesComponent, BasicFilterComponent]
+    imports: [RouterOutlet, HeaderComponent]
 })
 export class AppComponent {
   title = 'pokeapi';

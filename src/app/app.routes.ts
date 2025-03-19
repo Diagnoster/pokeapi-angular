@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { MoveListComponent } from './components/move-list/move-list.component';
-import { PokeListComponent } from './components/poke-list/poke-list.component';
-import { ItemListComponent } from './components/item-list/item-list.component';
+import { MoveListComponent } from './components/movements/move-list/move-list.component';
+import { PokeListComponent } from './components/pokemon/poke-list/poke-list.component';
+import { ItemListComponent } from './components/items/item-list/item-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { BattleSetupComponent } from './components/battle-setup/battle-setup.component';
-import { AbilityListComponent } from './components/ability-list/ability-list.component';
-import { NatureListComponent } from './components/nature-list/nature-list.component';
-import { LocationComponent } from './components/location/location.component';
-import { RegionDetailsComponent } from './components/region-details/region-details.component';
-import { AreaDetailsComponent } from './components/area-details/area-details.component';
+import { BattleSetupComponent } from './components/battle/battle-setup/battle-setup.component';
+import { AbilityListComponent } from './components/ability/ability-list/ability-list.component';
+import { NatureListComponent } from './components/natures/nature-list/nature-list.component';
+import { LocationComponent } from './components/locations/location/location.component';
+import { RegionDetailsComponent } from './components/locations/region-details/region-details.component';
+import { AreaDetailsComponent } from './components/locations/area-details/area-details.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
