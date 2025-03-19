@@ -8,6 +8,7 @@ import { BaseClass } from '../models/base/base-class';
 import { ItemDetails } from '../models/item-details';
 import { AbilitiesDetails } from '../models/abilities-details';
 import { MoveDetails } from '../models/move-details';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ import { MoveDetails } from '../models/move-details';
 
 export class PokeService {
 
-  URL_BASE = 'https://pokeapi.co/api/v2';
+  URL_BASE = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
