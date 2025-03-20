@@ -20,6 +20,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { LoadingComponent } from '../../shared/loading/loading.component';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 
 @Component({
@@ -43,7 +44,15 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
   ],
   providers: [PokeService],
   templateUrl: './poke-list.component.html',
-  styleUrl: './poke-list.component.css'
+  styleUrl: './poke-list.component.css',
+  animations: [
+    trigger('fadeInDownBig', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-100px)' }),
+        animate('800ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class PokeListComponent implements OnInit {
 

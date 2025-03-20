@@ -23,7 +23,7 @@
       @for (pokemon of pokemonList; track pokemon) {
         <mat-card class="poke-card pulse"
           [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
-          (click)="pokeModal(pokemon)">
+          (click)="pokeModal(pokemon)" @fadeInDownBig>
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
@@ -51,7 +51,7 @@
       @for (pokemon of filteredPokemonList; track pokemon) {
         <mat-card class="poke-card pulse"
           [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"
-          (click)="pokeModal(pokemon)">
+          (click)="pokeModal(pokemon)" @fadeInDownBig>
           <mat-card-header>
             <mat-card-title-group>
               <mat-card-title class="pokemon-name"> {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
