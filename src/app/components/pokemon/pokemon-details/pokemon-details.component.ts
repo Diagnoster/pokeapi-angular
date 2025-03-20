@@ -21,6 +21,7 @@ import { forkJoin, map, switchMap } from 'rxjs';
 import { Chain } from '../../../models/chain';
 import { EvolutionLine } from '../../../models/evolution-line';
 import { LoadingComponent } from '../../shared/loading/loading.component';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -42,7 +43,19 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
     LoadingComponent
   ],
   templateUrl: './pokemon-details.component.html',
-  styleUrl: './pokemon-details.component.css'
+  styleUrl: './pokemon-details.component.css',
+  animations: [
+    trigger('slideInFromLeft', [
+      state('in', style({ transform: 'translateX(0)', opacity: 1 })),
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate('400ms ease-out')
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in', style({ transform: 'translateX(-100%)', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 
 export class PokemonDetailsComponent implements OnInit {

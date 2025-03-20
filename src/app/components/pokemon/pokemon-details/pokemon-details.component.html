@@ -15,9 +15,10 @@
       <div class="pokeinfo-left">
         <img class="pokemon-artwork"
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
-          alt="Imagem {{ pokemon.name }}">
+          alt="Imagem {{ pokemon.name }}"
+          [@slideInFromLeft]="pokemon.id">
       </div>
-      <div class="pokestats-right">
+      <div class="pokestats-right" [@slideInFromLeft]="'in'">
         @for (stats of pokemon.stats; track stats) {
         <div class="stats">
           <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
@@ -67,7 +68,7 @@
       </div>
     </mat-card-content>
     <div class="abilities">
-      <mat-card class="abilities-card">
+      <mat-card class="abilities-card" [@slideIn]>
         <mat-card-header>
           <mat-card-title-group>
             <span class="title-ability"> Abilities </span>
