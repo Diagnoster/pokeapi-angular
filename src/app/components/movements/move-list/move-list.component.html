@@ -1,0 +1,170 @@
+<div class="container">
+  <div class="content">
+    @if (loading) {
+    <app-loading></app-loading>
+    }
+    <!-- Filter -->
+    <mat-form-field>
+      <mat-label>Search Move</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter a movement from the list" #input />
+    </mat-form-field>
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Filters: </mat-panel-title>
+          <mat-panel-description>
+            Select or remove filters
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- Active filters  -->
+        <mat-card class="filter-card">
+          <mat-card-content>
+            <h2 class="filter-title">Selected Filters</h2>
+            <div class="active-filters">
+              @if(selectedGenerations.length > 0) {
+              @for(gen of selectedGenerations; track gen) {
+              <span>
+                <button class="filter-button" mat-button (click)="removeGenerationFilter(gen)">
+                  {{ gen | formatGenerationName }}
+                  <mat-icon>close</mat-icon>
+                </button>
+              </span>
+              }
+              }
+              @if(selectedTypes.length > 0) {
+              @for(type of selectedTypes; track type) {
+              <span>
+                <button mat-button (click)="removeTypeFilter(type)">
+                  <img [src]="'assets/retro-icons/' + type + '.png'" alt="Filtro" class="icon-image"
+                    (click)="applyTypeFilter(type)" />
+                </button>
+              </span>
+              }
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card>
+          <mat-card-content>
+            <mat-divider></mat-divider>
+            <div class="gen">
+              @for (generation of gen; track generation) {
+              <button mat-button class="gen-button" (click)="applyGenerationFilter(generation.name)">
+                {{ generation.name | formatGenerationName }}
+              </button>
+              }
+            </div>
+            <mat-divider></mat-divider>
+            <div class="icon-filter-container">
+              @for (icon of icons; track icon) {
+              <img [src]="'assets/retro-icons/' + icon + '.png'" alt="Filtro" class="icon-image"
+                (click)="applyTypeFilter(icon)" />
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <!-- End Active filters  -->
+      </mat-expansion-panel>
+    </mat-accordion>
+    <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort
+      (matSortChange)="announceSortChange($event)">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+          Name
+        </th>
+        <td mat-cell *matCellDef="let move">{{ move.name | upperFirstLetter }}</td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let move">
+          <img [src]="getTypeRetroImageUrl(move.type.name)" alt="Tipo do Pokémon" />
+        </td>
+      </ng-container>
+
+      <!-- Power Column -->
+      <ng-container matColumnDef="power">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by power">
+          Power
+        </th>
+        <td mat-cell *matCellDef="let move">{{ move.power }}</td>
+      </ng-container>
+
+      <!-- Accuracy Column -->
+      <ng-container matColumnDef="accuracy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by accuracy">
+          Acc
+        </th>
+        <td mat-cell *matCellDef="let move">{{ move.accuracy }}</td>
+      </ng-container>
+
+      <!-- Expand Column-->
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let move" class="expand-cell">
+          <button mat-icon-button aria-label="expand row" class="expand-button" (click)="
+              expandedElement = expandedElement === move ? null : move;
+              $event.stopPropagation()">
+            @if (expandedElement === move) {
+            <mat-icon>keyboard_arrow_up</mat-icon>
+            } @else {
+            <mat-icon>keyboard_arrow_down</mat-icon>
+            }
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let move" [attr.colspan]="columnsToDisplayWithExpand.length">
+          <div class="element-detail" [@detailExpand]="move == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="element-description">
+              <div class="box">
+                <mat-card class="move-info"
+                  [ngStyle]="{ 'background': 'linear-gradient(90deg, #FFF5B3 0%, #FFFADD 100%)' }">
+                  <mat-card-content>ID: {{ move.id }}</mat-card-content>
+                </mat-card>
+                <mat-card class="move-info"
+                  [ngStyle]="{ 'background': 'linear-gradient(90deg, #B3D1FF 0%, #D9E8FF 100%)' }">
+                  <mat-card-content>
+                    @if(move.pp > 0) {
+                    PP: {{ move.pp }}
+                    }
+                    @else {
+                    PP: ?
+                    }
+                  </mat-card-content>
+                </mat-card>
+                <mat-card class="move-info"
+                  [ngStyle]="{ 'background': 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)' }">
+                  <mat-card-content>{{ move.generation.name | upperFirstLetter }}</mat-card-content>
+                </mat-card>
+                <mat-card class="move-info" [ngStyle]="{ 'background': getColorForType(move.damage_class.name) }">
+                  <mat-card-content>{{ move.damage_class.name | upperFirstLetter }}</mat-card-content>
+                </mat-card>
+              </div>
+              @for (effect of move.effect_entries; track effect) {
+              <span class="element-description-attribution">
+                {{ effect.effect }}
+              </span>
+              }
+              <app-pokemon-learn [pokemon]="move.learned_by_pokemon"></app-pokemon-learn>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand" class="element-row"
+        [class.expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+    </table>
+    <mat-paginator [length]="dataSource.data.length" [pageSizeOptions]="[10]" showFirstLastButtons
+      aria-label="Select page of moves">
+    </mat-paginator>
+  </div>
+</div>

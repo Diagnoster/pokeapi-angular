@@ -1,0 +1,50 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: -2em;
+}
+
+td[mat-cell] {
+    text-align: center;
+}
+
+tr[mat-row] {
+    text-align: center;
+}
+
+th[mat-header-cell] {
+    text-align: center;
+    background: #CFCFC4;
+}
+
+mat-paginator {
+    width: 100%;
+    background: white;
+}
+
+.table-container {
+    width: calc(100% - 4%);
+    float: none;
+    margin: 2%;
+}
+
+.title-move {
+    text-align: center;
+    background-color: #AFAF9E;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -1px;
+    padding: 5px; 
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+    font-weight: bold;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}

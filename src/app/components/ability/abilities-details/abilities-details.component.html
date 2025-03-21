@@ -1,0 +1,24 @@
+@for (ab of ability; track ab) {
+  <mat-card class="abilities-card">
+    <mat-card-header>
+      <mat-card-title class="title" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"> 
+        {{ ab.name | upperFirstLetter }} 
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-subtitle>
+      {{ ab.generation.name | upperFirstLetter:true }}
+    </mat-card-subtitle>
+    <div class="line"></div>
+    @if (ab.effect_entries.length > 0) {
+      @if (ab.effect_entries[0].language.name === 'en') {
+        <mat-card-content>
+          <p> {{ ab.effect_entries[0].short_effect }} </p>
+        </mat-card-content>
+      } @else if (ab.effect_entries.length > 1 && ab.effect_entries[1].language.name === 'en') {
+        <mat-card-content>
+          <p> {{ ab.effect_entries[1].short_effect }} </p>
+        </mat-card-content>
+      }
+    }
+  </mat-card>
+}

@@ -1,0 +1,51 @@
+<div class="battle-container">
+    <div class="enemy-container">
+        <div class="enemy-stats">
+            <mat-card class="name-card" [ngStyle]="{ 'background': '#F0EFD1' }">
+                <mat-card-header>
+                    <mat-card-title class="title"> {{ enemyPokemon.name | upperFirstLetter }} </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="custom-progress-bar">
+                        <div class="custom-progress" [ngStyle]="{ 'width': (enemyStats.hp / enemyMaxHp) * 100 + '%',
+                             'background-color': getStatBarColor(enemyStats.hp, enemyMaxHp)}"></div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <img mat-card-image class="pokemon-image"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/{{enemyPokemon.id}}.gif"
+        alt="Imagem {{ playerPokemon.name }}">
+    </div>
+    <div class="pokemon-container">
+        <img mat-card-image class="pokemon-image"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/{{playerPokemon.id}}.gif"
+        alt="Imagem {{ playerPokemon.name }}">
+        <div class="poke-stats2">
+            <mat-card class="name-card" [ngStyle]="{ 'background': '#F0EFD1' }">
+                <mat-card-header>
+                    <mat-card-title class="title"> {{ playerPokemon.name | upperFirstLetter }} </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="custom-progress-bar">
+                    <div class="custom-progress" [ngStyle]="{ 'width': (playerStats.hp / playerMaxHp) * 100 + '%',
+                             'background-color': getStatBarColor(playerStats.hp, playerMaxHp)}"></div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="player-container">
+        <div class="player-info">
+            <p class="battle-text"> {{ battleText }} </p>
+        </div>
+        <div class="move-set">
+            @for(move of playerSelectedMoves; track move) {
+                <mat-card class="move-name" (click)="selectMove(move)">
+                    <mat-card-content>{{ move.name | upperFirstLetter }}</mat-card-content>
+                </mat-card>
+            }
+        </div>
+    </div>
+</div>
+

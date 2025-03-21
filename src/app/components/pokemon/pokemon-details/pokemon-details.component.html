@@ -1,0 +1,90 @@
+<div class="overflow-container">
+  <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
+    <mat-card-header>
+      <img class="arrow-left" src="../../../assets/left_arrow.png" alt="Left arrow icon" (click)="nextPokemon(pokemon.id, true)"
+      (mouseenter)="changeArrowImage(true, true)" 
+       (mouseleave)="changeArrowImage(true, false)">
+      <mat-card-title-group>
+        <mat-card-title class="title"># {{ pokemon.id }} - {{ pokemon.name | upperFirstLetter }} </mat-card-title>
+      </mat-card-title-group>
+      <img class="arrow-right" src="../../../assets/right_arrow.png" alt="Right arrow icon" (click)="nextPokemon(pokemon.id, false)"
+      (mouseenter)="changeArrowImage(false, true)" 
+       (mouseleave)="changeArrowImage(false, false)">
+    </mat-card-header>
+    <div class="pokemon-info-container">
+      <div class="pokeinfo-left">
+        <img class="pokemon-artwork"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
+          alt="Imagem {{ pokemon.name }}"
+          [@slideInFromLeft]="pokemon.id">
+      </div>
+      <div class="pokestats-right" [@slideInFromLeft]="'in'">
+        @for (stats of pokemon.stats; track stats) {
+        <div class="stats">
+          <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
+          <div class="custom-progress-bar">
+            <div class="custom-progress" [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
+          </div>
+        </div>
+        }
+        <span class="title-stat"> Total stats: {{ total }} </span>
+      </div>
+    </div>
+    <mat-card-content>
+      @if (loading) {
+        <app-loading></app-loading>
+      }
+      @else {
+        @if(pokeImages.length > 1) {
+          <div class="evolutions">
+            <div class="test" *ngFor="let pokemonImage of pokeImages; let i = index; let last = last">
+              <div class="poke">
+                <img class="pokemon-artwork-evolution"
+                [src]="pokemonImage.pokeImage"
+                (click)="nextPokemonByName(pokemonImage.name)"
+                alt="Imagem do Pokémon">   
+                @if(pokemonImage.lvlUp) {
+                  <p>Level {{pokemonImage.lvlUp}}</p>
+                } 
+                @else if (pokemonImage.item != 'null') {
+                  <p>{{ pokemonImage.item | upperFirstLetter }}</p>
+                }
+                @else if (pokemonImage.trigger != 'null') {
+                  <p>{{ pokemonImage.trigger | upperFirstLetter }}</p>
+                }
+              </div>
+              <mat-icon *ngIf="!last">arrow_forward</mat-icon>
+            </div>
+          </div>
+        }
+      }
+      <div class="types">
+        <span class="title-type">Types:</span>
+        @for (poke of pokemon.types; track poke) {
+          <div clas="type-info">
+            <img class="type-icon" [src]="getTypeDetailImageUrl(poke.type.name)" alt="Tipo do Pokémon">
+          </div>
+        }
+      </div>
+    </mat-card-content>
+    <div class="abilities">
+      <mat-card class="abilities-card" [@slideIn]>
+        <mat-card-header>
+          <mat-card-title-group>
+            <span class="title-ability"> Abilities </span>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          @for (abilities of pokemon.abilities; track abilities) {
+          <div class="stats">
+            <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }}
+              <mat-icon class="icon">help_outline</mat-icon>
+            </span>
+          </div>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <app-moves [pokemon]="pokemon"></app-moves>
+  </mat-card>
+</div>
