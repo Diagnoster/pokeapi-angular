@@ -7,13 +7,6 @@ export class PokeHelperService {
 
   constructor() { }
   
-  checkHyphen(palavra: string): boolean {
-    if (typeof palavra !== 'string') {
-      return false;
-    }
-    return palavra.includes('-');
-  }
-  
   getTypeRetroImageUrl(type: string): string {
     const imagePath = `assets/retro-icons/${type.toLowerCase()}.png`;
     return imagePath;
