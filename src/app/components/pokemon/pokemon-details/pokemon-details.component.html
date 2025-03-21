@@ -13,10 +13,22 @@
     </mat-card-header>
     <div class="pokemon-info-container">
       <div class="pokeinfo-left">
-        <img class="pokemon-artwork"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
-          alt="Imagem {{ pokemon.name }}"
-          [@slideInFromLeft]="pokemon.id">
+          <div class="flip-container">
+            <div class="flipper">
+              <div class="front">
+                <img class="pokemon-artwork"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
+                alt="Imagem {{ pokemon.name }}"
+                [@slideInFromLeft]="pokemon.id">
+              </div>
+              <div class="back">
+                <img class="pokemon-artwork"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/{{pokemon.id}}.png"
+                alt="Imagem {{ pokemon.name }}"
+                [@slideInFromLeft]="pokemon.id">
+              </div>
+            </div>
+          </div>
       </div>
       <div class="pokestats-right" [@slideInFromLeft]="'in'">
         @for (stats of pokemon.stats; track stats) {
