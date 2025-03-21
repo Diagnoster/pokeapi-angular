@@ -1,5 +1,5 @@
-# <img src="src/assets/pokeball.png" alt="material" width="50"/>  PokeAPI with Angular 18 and Angular Material <img src="src/assets/pokeball.png" alt="material" width="50"/>
-This project is an Angular 18 application that utilizes the PokeAPI to display information about Pokémon. It is developed using Angular Material to ensure a beautiful and responsive user interface.
+# <img src="src/assets/pokeball.png" alt="material" width="50"/>  PokeAPI with Angular 19 and Angular Material <img src="src/assets/pokeball.png" alt="material" width="50"/>
+This project is an Angular 19 application that utilizes the PokeAPI to display information about Pokémon. It is developed using Angular Material to ensure a beautiful and responsive user interface.
 
 ## Screenshots
 <p align="center">
