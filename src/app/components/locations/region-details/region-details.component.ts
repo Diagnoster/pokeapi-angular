@@ -12,6 +12,7 @@ import { BaseClass } from '../../../models/base/base-class';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-region-details',
@@ -22,8 +23,9 @@ import { forkJoin } from 'rxjs';
     MatDividerModule,
     MatTableModule,
     MatRippleModule,
-    MatPaginatorModule
-  ],
+    MatPaginatorModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './region-details.component.html',
   styleUrl: './region-details.component.css'
 })
@@ -62,10 +64,6 @@ export class RegionDetailsComponent implements OnInit {
         console.error('Invalid ID');
       }
     }
-  }
-
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 
   formatGenerationName(word: string): string {

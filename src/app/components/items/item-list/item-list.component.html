@@ -8,7 +8,7 @@
       <app-loading></app-loading>
     }
     @if (nameCategory) {
-      <h1 class="title-item"> {{ upperFirstLetter(nameCategory) }} </h1>
+      <h1 class="title-item"> {{ nameCategory | upperFirstLetter }} </h1>
     }
     <mat-menu #items="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="pocket">Pocket Items</button>
@@ -129,7 +129,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
-        <td mat-cell *matCellDef="let item"> {{ upperFirstLetter(item.name) }} </td>
+        <td mat-cell *matCellDef="let item"> {{ item.name | upperFirstLetter }} </td>
       </ng-container>
 
       <!-- Cost Column -->

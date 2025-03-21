@@ -5,14 +5,16 @@ import { MatCardModule } from '@angular/material/card';
 import { Nature } from '../../../models/nature';
 import { BaseClass } from '../../../models/base/base-class';
 import { MatDividerModule } from '@angular/material/divider';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-nature-list',
   standalone: true,
   imports: [
     MatCardModule,
-    MatDividerModule
-  ],
+    MatDividerModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './nature-list.component.html',
   styleUrl: './nature-list.component.css'
 })
@@ -20,7 +22,7 @@ export class NatureListComponent implements OnInit{
   natures: BaseClass[] = [];
   natureDetails: Nature[] = [];
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService){}
+  constructor(private pokeService: PokeService){}
 
   ngOnInit() {
     this.getNatures();
@@ -34,9 +36,5 @@ export class NatureListComponent implements OnInit{
         });
       });
     });
-  }
-
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 }

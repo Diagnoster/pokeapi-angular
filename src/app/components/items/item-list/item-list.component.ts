@@ -14,6 +14,7 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { BasicFilterComponent } from '../../shared/basic-filter/basic-filter.component';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-item-list',
@@ -28,7 +29,8 @@ import { BasicFilterComponent } from '../../shared/basic-filter/basic-filter.com
     MatIconModule,
     LoadingComponent,
     MatSortModule,
-    BasicFilterComponent
+    BasicFilterComponent,
+    UpperFirstLetterPipe
 ],
   animations: [
     trigger('detailExpand', [
@@ -55,7 +57,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private pokeService: PokeService, private _liveAnnouncer: LiveAnnouncer) {
     this.items = [];
     this.itemDetailsList = [];
     this.dataSource = new MatTableDataSource();
@@ -99,10 +101,6 @@ export class ItemListComponent implements OnInit {
         });
       });
     });
-  }
-  
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   applyFilter(filterValue: string): void {

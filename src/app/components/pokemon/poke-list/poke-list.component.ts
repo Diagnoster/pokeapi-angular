@@ -21,6 +21,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 
 @Component({
@@ -32,16 +33,17 @@ import { trigger, transition, style, animate } from '@angular/animations';
     MatGridListModule,
     MatCardModule,
     MatDialogModule,
-    MatSelectModule, 
-    FormsModule, 
-    MatFormFieldModule, 
+    MatSelectModule,
+    FormsModule,
+    MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
     MatAutocompleteModule,
     MatIconModule,
-    LoadingComponent
-  ],
+    LoadingComponent,
+    UpperFirstLetterPipe
+],
   providers: [PokeService],
   templateUrl: './poke-list.component.html',
   styleUrl: './poke-list.component.css',
@@ -139,10 +141,6 @@ export class PokeListComponent implements OnInit {
       });
       this.loading = false;
     });
-  }
-
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   getColorForType(type: string): string {

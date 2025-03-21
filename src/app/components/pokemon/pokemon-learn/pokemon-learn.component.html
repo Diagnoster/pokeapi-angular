@@ -22,7 +22,7 @@
         @else {
           @for (poke of pokemon; track poke) {
             <div class="poke-box" (click)="pokeModal(poke.name)">
-              <span class="text">{{ upperFirstLetter(poke.name) }}</span>
+              <span class="text">{{ poke.name | upperFirstLetter }}</span>
             </div>
           }
         }

@@ -5,7 +5,7 @@
       (mouseenter)="changeArrowImage(true, true)" 
        (mouseleave)="changeArrowImage(true, false)">
       <mat-card-title-group>
-        <mat-card-title class="title"># {{ pokemon.id }} - {{ upperFirstLetter(pokemon.name) }} </mat-card-title>
+        <mat-card-title class="title"># {{ pokemon.id }} - {{ pokemon.name | upperFirstLetter }} </mat-card-title>
       </mat-card-title-group>
       <img class="arrow-right" src="../../../assets/right_arrow.png" alt="Right arrow icon" (click)="nextPokemon(pokemon.id, false)"
       (mouseenter)="changeArrowImage(false, true)" 
@@ -47,10 +47,10 @@
                   <p>Level {{pokemonImage.lvlUp}}</p>
                 } 
                 @else if (pokemonImage.item != 'null') {
-                  <p>{{ upperFirstLetter(pokemonImage.item)}}</p>
+                  <p>{{ pokemonImage.item | upperFirstLetter }}</p>
                 }
                 @else if (pokemonImage.trigger != 'null') {
-                  <p>{{ upperFirstLetter(pokemonImage.trigger)}}</p>
+                  <p>{{ pokemonImage.trigger | upperFirstLetter }}</p>
                 }
               </div>
               <mat-icon *ngIf="!last">arrow_forward</mat-icon>

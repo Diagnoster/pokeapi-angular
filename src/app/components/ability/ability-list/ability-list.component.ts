@@ -18,6 +18,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { BaseClass } from '../../../models/base/base-class';
 import { PokemonLearnComponent } from '../../pokemon/pokemon-learn/pokemon-learn.component';
 import { BasicFilterComponent } from '../../shared/basic-filter/basic-filter.component';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-ability-list',
@@ -36,7 +37,8 @@ import { BasicFilterComponent } from '../../shared/basic-filter/basic-filter.com
     LoadingComponent,
     MatCardModule,
     PokemonLearnComponent,
-    BasicFilterComponent
+    BasicFilterComponent,
+    UpperFirstLetterPipe
 ],
   animations: [
     trigger('detailExpand', [
@@ -91,10 +93,6 @@ export class AbilityListComponent implements OnInit {
 
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
-  }
-
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   announceSortChange(sortState: Sort) {

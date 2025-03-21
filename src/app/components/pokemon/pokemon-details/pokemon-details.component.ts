@@ -22,6 +22,7 @@ import { Chain } from '../../../models/chain';
 import { EvolutionLine } from '../../../models/evolution-line';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-pokemon-details',
@@ -40,8 +41,9 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
     MovesComponent,
     MatSnackBarModule,
     MatIconModule,
-    LoadingComponent
-  ],
+    LoadingComponent,
+    UpperFirstLetterPipe
+],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css',
   animations: [
@@ -84,10 +86,6 @@ export class PokemonDetailsComponent implements OnInit {
 
   getColorForType(type: string): string {
     return PokemonType[type as keyof typeof PokemonType];
-  }
-
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   getTypeDetailImageUrl(type: string): string {

@@ -16,6 +16,7 @@ import { PokeHelperService } from '../../../services/poke-helper.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-moves',
@@ -31,7 +32,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     MatDialogModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    UpperFirstLetterPipe
 ],
   templateUrl: './moves.component.html',
   styleUrl: './moves.component.css'
@@ -77,10 +79,6 @@ export class MovesComponent implements OnInit{
 
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
-  }
-
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   clicked(row: MoveDetails) {

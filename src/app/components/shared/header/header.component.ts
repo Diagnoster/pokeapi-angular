@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { PokeHelperService } from '../../../services/poke-helper.service';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-header',
@@ -23,8 +24,9 @@ import { PokeHelperService } from '../../../services/poke-helper.service';
     MatMenuModule,
     MatTooltipModule,
     MatSidenavModule,
-    MatListModule
-  ],
+    MatListModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
@@ -49,7 +51,7 @@ export class HeaderComponent implements OnInit {
     10: 'Paldea'
   };
 
-  constructor(private router: Router, private pokeHelperService: PokeHelperService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.router.events
@@ -108,10 +110,5 @@ export class HeaderComponent implements OnInit {
     }
     // if there is no 'name', returns the last segment of the URL
     return cleanUrl ? decodeURIComponent(cleanUrl.replace(/-/g, ' ')) : null;
-  }
-  
-
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 }

@@ -23,6 +23,7 @@ import { DamageCategoryColor } from '../../../models/enums/damage-category-color
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-move-list',
@@ -41,8 +42,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     PokemonLearnComponent,
     CommonModule,
     MatDividerModule,
-    MatExpansionModule
-  ],
+    MatExpansionModule,
+    UpperFirstLetterPipe
+],
   animations: [
     trigger('detailExpand', [
       state('collapsed,void', style({ height: '0px', minHeight: '0' })),
@@ -110,10 +112,6 @@ export class MoveListComponent implements OnInit {
 
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
-  }
-  
-  upperFirstLetter(word: string): string {
-    return this.pokeHelperService.upperFirstLetter(word);
   }
 
   formatGenerationName(word: string): string {

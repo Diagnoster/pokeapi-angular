@@ -25,7 +25,7 @@
                     [ngStyle]="{ 'background': getColorForType(playerPokemon.types[0].type.name) }">
                     <div class="info-poke">
                         <mat-card-header>
-                            <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }}
+                            <mat-card-title class="title"> {{ playerPokemon.name | upperFirstLetter }}
                             </mat-card-title>
                             <mat-card-subtitle>
                                 @for (poke of playerPokemon.types; track poke) {
@@ -65,7 +65,7 @@
                     }
                     @for(move of playerSelectedMoves; track move) {
                     <mat-card class="move-name">
-                        <mat-card-content>{{ upperFirstLetter(move.name, false) }}</mat-card-content>
+                        <mat-card-content>{{ move.name | upperFirstLetter }}</mat-card-content>
                     </mat-card>
                     }
                 </div>
@@ -105,7 +105,7 @@
                     [ngStyle]="{ 'background': getColorForType(enemyPokemon.types[0].type.name) }">
                     <div class="info-poke">
                         <mat-card-header>
-                            <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }}
+                            <mat-card-title class="title"> {{ enemyPokemon.name | upperFirstLetter }}
                             </mat-card-title>
                             <mat-card-subtitle>
                                 @for (poke of enemyPokemon.types; track poke) {
@@ -145,7 +145,7 @@
                     }
                     @for(move of enemySelectedMoves; track move) {
                     <mat-card class="move-name">
-                        <mat-card-content>{{ upperFirstLetter(move.name, false) }}</mat-card-content>
+                        <mat-card-content>{{ move.name | upperFirstLetter }}</mat-card-content>
                     </mat-card>
                     }
                 </div>

@@ -2,11 +2,11 @@
   <mat-card class="abilities-card">
     <mat-card-header>
       <mat-card-title class="title" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }"> 
-        {{ upperFirstLetter(ab.name) }} 
+        {{ ab.name | upperFirstLetter }} 
       </mat-card-title>
     </mat-card-header>
     <mat-card-subtitle>
-      {{ upperFirstLetter(ab.generation.name, true) }}
+      {{ ab.generation.name | upperFirstLetter:true }}
     </mat-card-subtitle>
     <div class="line"></div>
     @if (ab.effect_entries.length > 0) {

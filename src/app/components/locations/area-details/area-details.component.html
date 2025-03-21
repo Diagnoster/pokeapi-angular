@@ -6,7 +6,7 @@
     @for(area of locationDetails?.areas; track area) {
       <mat-card appearance="outlined">
         <mat-card-header>
-          <mat-card-title> {{upperFirstLetter(area.name)}} </mat-card-title>
+          <mat-card-title> {{ area.name | upperFirstLetter }} </mat-card-title>
         </mat-card-header>
         <mat-card-actions>
           <button mat-button (click)="searchLocationAreaDetails(area.url)">Show Pokémons</button>
@@ -26,7 +26,7 @@
             <div mat-card-avatar class="example-header-image">
               <img src="../../../assets/encounter-methods/{{methods.encounter_method.name}}.png" alt="{{methods.encounter_method.name}} icon">          
             </div>
-            <mat-card-title> {{upperFirstLetter(methods.encounter_method.name)}}</mat-card-title>
+            <mat-card-title> {{ methods.encounter_method.name | upperFirstLetter }}</mat-card-title>
           </mat-card-header>
         </mat-card>
       }
@@ -53,7 +53,7 @@
       <mat-cell *matCellDef="let element">
         <div class="pokemon-column">
           <p><img class="poke-icon" src="{{element.icon}}" alt="Pokémon icon" (click)="pokeModal(element.name)"></p>
-          <p>{{upperFirstLetter(element.name)}}</p>
+          <p>{{ element.name | upperFirstLetter }}</p>
         </div>
       </mat-cell>
     </ng-container>
@@ -74,7 +74,7 @@
     <ng-container matColumnDef="version">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Version </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-          {{upperFirstLetter(element.version)}}
+          {{ element.version | upperFirstLetter }}
       </mat-cell>
     </ng-container>
   

@@ -8,6 +8,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BattleStats } from '../../../models/battle-stats';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-battle-fight',
@@ -15,8 +16,9 @@ import { ChangeDetectorRef } from '@angular/core';
   imports: [
     MatCardModule,
     MatProgressBarModule,
-    CommonModule
-  ],
+    CommonModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './battle-fight.component.html',
   styleUrl: './battle-fight.component.css'
 })
@@ -32,7 +34,7 @@ export class BattleFightComponent implements OnInit {
   selectedMove: MoveDetails | null = null;
   battleText: string = "Choose a move to use";
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeHelper: PokeHelperService, private cdr: ChangeDetectorRef) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private cdr: ChangeDetectorRef) {
     this.playerPokemon = data.playerPokemon;
     this.enemyPokemon = data.enemyPokemon;
     this.playerSelectedMoves = data.playerSelectedMoves;
@@ -42,10 +44,6 @@ export class BattleFightComponent implements OnInit {
   ngOnInit(): void {
     this.calcStats(this.playerPokemon, this.playerStats, true);
     this.calcStats(this.enemyPokemon, this.enemyStats, false);
-  }
-
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelper.upperFirstLetter(word);
   }
 
   calcStats(pokemon: Pokemon, stats: BattleStats, isPlayer: boolean): void {

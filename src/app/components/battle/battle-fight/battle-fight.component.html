@@ -3,7 +3,7 @@
         <div class="enemy-stats">
             <mat-card class="name-card" [ngStyle]="{ 'background': '#F0EFD1' }">
                 <mat-card-header>
-                    <mat-card-title class="title"> {{ upperFirstLetter(enemyPokemon.name, false) }} </mat-card-title>
+                    <mat-card-title class="title"> {{ enemyPokemon.name | upperFirstLetter }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="custom-progress-bar">
@@ -24,7 +24,7 @@
         <div class="poke-stats2">
             <mat-card class="name-card" [ngStyle]="{ 'background': '#F0EFD1' }">
                 <mat-card-header>
-                    <mat-card-title class="title"> {{ upperFirstLetter(playerPokemon.name, false) }} </mat-card-title>
+                    <mat-card-title class="title"> {{ playerPokemon.name | upperFirstLetter }} </mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="custom-progress-bar">
@@ -42,7 +42,7 @@
         <div class="move-set">
             @for(move of playerSelectedMoves; track move) {
                 <mat-card class="move-name" (click)="selectMove(move)">
-                    <mat-card-content>{{ upperFirstLetter(move.name) }}</mat-card-content>
+                    <mat-card-content>{{ move.name | upperFirstLetter }}</mat-card-content>
                 </mat-card>
             }
         </div>

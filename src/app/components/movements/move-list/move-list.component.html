@@ -74,7 +74,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
           Name
         </th>
-        <td mat-cell *matCellDef="let move">{{ upperFirstLetter(move.name) }}</td>
+        <td mat-cell *matCellDef="let move">{{ move.name | upperFirstLetter }}</td>
       </ng-container>
 
       <!-- Type Column -->
@@ -140,10 +140,10 @@
                 </mat-card>
                 <mat-card class="move-info"
                   [ngStyle]="{ 'background': 'linear-gradient(90deg, #AAAABB 0%, #DDDDFF 100%)' }">
-                  <mat-card-content>{{ upperFirstLetter(move.generation.name) }}</mat-card-content>
+                  <mat-card-content>{{ move.generation.name | upperFirstLetter }}</mat-card-content>
                 </mat-card>
                 <mat-card class="move-info" [ngStyle]="{ 'background': getColorForType(move.damage_class.name) }">
-                  <mat-card-content>{{ upperFirstLetter(move.damage_class.name) }}</mat-card-content>
+                  <mat-card-content>{{ move.damage_class.name | upperFirstLetter }}</mat-card-content>
                 </mat-card>
               </div>
               @for (effect of move.effect_entries; track effect) {

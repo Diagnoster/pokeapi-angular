@@ -9,7 +9,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
-      <td mat-cell *matCellDef="let move">{{ upperFirstLetter(move.name) }}</td>
+      <td mat-cell *matCellDef="let move">{{ move.name | upperFirstLetter }}</td>
     </ng-container>
 
     <!-- Type Column -->

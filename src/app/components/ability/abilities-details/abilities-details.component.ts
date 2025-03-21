@@ -8,15 +8,16 @@ import { Pokemon } from '../../../models/pokemon';
 import { PokemonType } from '../../../models/enums/pokemon-type';
 import { CommonModule } from '@angular/common';
 import { BaseClass } from '../../../models/base/base-class';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-abilities-details',
   standalone: true,
   imports: [
     MatCardModule,
-    CommonModule
-
-  ],
+    CommonModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './abilities-details.component.html',
   styleUrl: './abilities-details.component.css'
 })
@@ -26,7 +27,7 @@ export class AbilitiesDetailsComponent implements OnInit {
   pokemon: Pokemon;
   ability: AbilitiesDetails[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeService, private pokeHelperService: PokeHelperService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private pokeService: PokeService) {
     this.abilities = data.abilities;
     this.pokemon = data.pokemon;
     this.ability = [];
@@ -34,10 +35,6 @@ export class AbilitiesDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAbility(this.abilities.url);
-  }
-
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 
   getAbility(abilityUrl: string): void {

@@ -21,6 +21,7 @@ import { MoveDetails } from '../../../models/move-details';
 import { PokemonType } from '../../../models/enums/pokemon-type';
 import { BattleFightComponent } from '../battle-fight/battle-fight.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-battle-setup',
@@ -42,8 +43,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     MatProgressSpinnerModule,
     MovesComponent,
-    MatTabsModule
-  ],
+    MatTabsModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './battle-setup.component.html',
   styleUrl: './battle-setup.component.css'
 })
@@ -88,10 +90,6 @@ export class BattleSetupComponent implements OnInit {
       this.enemySelectedMoves = [];
       this.enemyPokemon = undefined;
     }
-  }
-
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelper.upperFirstLetter(word);
   }
 
   onSelectedMovesChange(pokemon: Pokemon, moves: MoveDetails[]) {

@@ -5,14 +5,16 @@ import { PokeService } from '../../../services/poke.service';
 import { MapLocation } from '../../../models/map-location';
 import { PokeHelperService } from '../../../services/poke-helper.service';
 import { Router } from '@angular/router';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-location',
   standalone: true,
   imports: [
-    MatCardModule, 
-    MatButtonModule
-  ],
+    MatCardModule,
+    MatButtonModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './location.component.html',
   styleUrl: './location.component.css'
 })
@@ -20,7 +22,7 @@ export class LocationComponent implements OnInit {
 
   locations: MapLocation[];
   
-  constructor (private pokeService: PokeService, private pokeHelperService: PokeHelperService, private router: Router) {
+  constructor (private pokeService: PokeService, private router: Router) {
     this.locations = [];
   }
 
@@ -40,10 +42,6 @@ export class LocationComponent implements OnInit {
         location.img = `${imageBasePath}${imageName}`;
       });
     });
-  }
-
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 
   onLocationClick(location: MapLocation): void {

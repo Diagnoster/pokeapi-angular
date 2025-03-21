@@ -17,12 +17,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { BasicFilterComponent } from '../../shared/basic-filter/basic-filter.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 
 @Component({
   selector: 'app-area-details',
   standalone: true,
   imports: [
-    MatCardModule, 
+    MatCardModule,
     MatButtonModule,
     MatTableModule,
     CommonModule,
@@ -32,8 +33,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatFormFieldModule,
     MatSortModule,
     BasicFilterComponent,
-    MatTooltipModule
-  ],
+    MatTooltipModule,
+    UpperFirstLetterPipe
+],
   templateUrl: './area-details.component.html',
   styleUrl: './area-details.component.css'
 })
@@ -48,7 +50,7 @@ export class AreaDetailsComponent implements OnInit {
   pokemonList: PokeFound[] = [];
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
-  constructor(private route: ActivatedRoute, private pokeService: PokeService, private pokeHelperService: PokeHelperService, public dialog: MatDialog) {}
+  constructor(private route: ActivatedRoute, private pokeService: PokeService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -121,10 +123,6 @@ export class AreaDetailsComponent implements OnInit {
     } else {
       console.warn('URL inválida.');
     }
-  }
-  
-  upperFirstLetter(word: string, gen?: boolean): string {
-    return this.pokeHelperService.upperFirstLetter(word, gen);
   }
 
     pokeModal(pokemon: any): void {
