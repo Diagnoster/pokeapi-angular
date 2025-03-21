@@ -98,7 +98,7 @@ mat-card-title-group {
 }
 
 .pokeinfo-left {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   width: 375vh;
@@ -107,6 +107,25 @@ mat-card-title-group {
 .pokestats-right {
   width: 375vh;
   margin-top: 2%;
+}
+
+.hw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hw-span {
+  margin: 5%;
+}
+
+.hw-card {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .title-ability {
@@ -231,6 +250,14 @@ p {
   width: 16px;
   height: 16px;
   vertical-align: middle;
+}
+
+.nature {
+  text-align: center;
+}
+
+h4 {
+  font-weight: bold;
 }
 
 @keyframes card-pulse {

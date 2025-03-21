@@ -29,8 +29,27 @@
               </div>
             </div>
           </div>
+          <div class="hw">
+            <mat-card class="hw-card" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">            
+              <span class="hw-span"><b> Height: {{ pokemon.height }}m </b> </span>
+            </mat-card>
+            <mat-card class="hw-card" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
+              <span class="hw-span"><b> Weight: {{ pokemon.weight }}kg </b> </span>
+            </mat-card>
+          </div>
       </div>
       <div class="pokestats-right" [@slideInFromLeft]="'in'">
+        <div class="nature">
+          <h4>Nature</h4>
+          <mat-form-field>
+            <mat-label>Select Nature</mat-label>
+            <mat-select>
+              @for (food of foods; track food) {
+                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
         @for (stats of pokemon.stats; track stats) {
         <div class="stats">
           <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
@@ -80,7 +99,7 @@
       </div>
     </mat-card-content>
     <div class="abilities">
-      <mat-card class="abilities-card" [@slideIn]>
+      <mat-card class="abilities-card">
         <mat-card-header>
           <mat-card-title-group>
             <span class="title-ability"> Abilities </span>

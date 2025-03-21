@@ -23,7 +23,13 @@ import { EvolutionLine } from '../../../models/evolution-line';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-pokemon-details',
   standalone: true,
@@ -42,7 +48,9 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     MatSnackBarModule,
     MatIconModule,
     LoadingComponent,
-    UpperFirstLetterPipe
+    UpperFirstLetterPipe,
+    MatOptionModule,
+    MatSelectModule
 ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css',
@@ -60,6 +68,7 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
   ]
 })
 
+
 export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: Pokemon;
@@ -72,6 +81,11 @@ export class PokemonDetailsComponent implements OnInit {
   evolutions: Chain[] = [];
   pokeImages: EvolutionLine[] = [];
   loading: boolean = true;
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar) {
     this.pokemon = data.pokemon;
