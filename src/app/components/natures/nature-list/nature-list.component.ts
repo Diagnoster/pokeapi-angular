@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeService } from '../../../services/poke.service';
-import { PokeHelperService } from '../../../services/poke-helper.service';
 import { MatCardModule } from '@angular/material/card';
 import { Nature } from '../../../models/nature';
 import { BaseClass } from '../../../models/base/base-class';
