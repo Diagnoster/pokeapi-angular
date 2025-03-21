@@ -111,4 +111,8 @@ export class HeaderComponent implements OnInit {
     // if there is no 'name', returns the last segment of the URL
     return cleanUrl ? decodeURIComponent(cleanUrl.replace(/-/g, ' ')) : null;
   }
+
+  goToHome(): void {
+    this.router.navigate([`/home`]);
+  }
 }

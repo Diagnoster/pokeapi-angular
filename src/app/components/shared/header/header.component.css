@@ -18,11 +18,16 @@ mat-toolbar {
 
 .logo {
   height: 80px;
-  width: auto;
-  margin: 6vh;
-  margin-left: 10%;
+  width: 80px;
+  margin-left: 2%;
   display: flex;
   align-items: start;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.2);
 }
 
 .selects {
