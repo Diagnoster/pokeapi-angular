@@ -1,5 +1,5 @@
 
-<div class="container-nature">
+<div class="container-nature" [@slideIn]>
     <div class="content">
         <h1>What is Nature?</h1>
         <mat-divider></mat-divider>
@@ -10,34 +10,34 @@
         <p class="text">Each Pokémon can have a Nature that affects two of its basic stats, boosting one by <b>10%</b> while decreasing another by <b>10%</b>. There are 25 different Natures, with various combinations of boosts and decreases.</p>
         <p class="text">Some Natures have no effect on stats, boosting and decreasing the same stat. Below you can check all existing natures:</p>
         <mat-divider></mat-divider>
+        @for(nature of natureDetails; track nature) {
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title class="title"> {{ nature.name | upperFirstLetter }} </mat-card-title>
+                </mat-card-header>
+                <div class="line"></div>
+                <mat-card-content>
+                    @if(nature.increased_stat != null) {
+                        
+                        <div class="stats">
+                            <p> {{ nature.increased_stat.name | upperFirstLetter }} </p>
+                            <img class="stats-image" src="../../../assets/up_stats64.png" alt="up stats pixel art" />
+                        </div>
+                        <div class="stats">
+                            <p> {{ nature.decreased_stat.name | upperFirstLetter }} </p>
+                            <img class="stats-image" src="../../../assets/down_stats64.png" alt="down stats pixel art" />
+                        </div>
+                        
+                        
+                    }
+                    @else {
+                        <div class="stats">
+                            <p> No Change Stats </p>
+                            <img class="stats-image" src="../../../assets/no_change64.png" alt="down stats pixel art" />
+                        </div>
+                    }
+                </mat-card-content>
+            </mat-card>
+        }
     </div>
-    @for(nature of natureDetails; track nature) {
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title class="title"> {{ nature.name | upperFirstLetter }} </mat-card-title>
-            </mat-card-header>
-            <div class="line"></div>
-            <mat-card-content>
-                @if(nature.increased_stat != null) {
-                    
-                    <div class="stats">
-                        <p> {{ nature.increased_stat.name | upperFirstLetter }} </p>
-                        <img class="stats-image" src="../../../assets/up_stats64.png" alt="up stats pixel art" />
-                    </div>
-                    <div class="stats">
-                        <p> {{ nature.decreased_stat.name | upperFirstLetter }} </p>
-                        <img class="stats-image" src="../../../assets/down_stats64.png" alt="down stats pixel art" />
-                    </div>
-                    
-                    
-                }
-                @else {
-                    <div class="stats">
-                        <p> No Change Stats </p>
-                        <img class="stats-image" src="../../../assets/no_change64.png" alt="down stats pixel art" />
-                    </div>
-                }
-            </mat-card-content>
-        </mat-card>
-    }
 </div>
