@@ -26,7 +26,7 @@
               @for(gen of selectedGenerations; track gen) {
               <span>
                 <button class="filter-button" mat-button (click)="removeGenerationFilter(gen)">
-                  {{ formatGenerationName(gen) }}
+                  {{ gen | formatGenerationName }}
                   <mat-icon>close</mat-icon>
                 </button>
               </span>
@@ -51,7 +51,7 @@
             <div class="gen">
               @for (generation of gen; track generation) {
               <button mat-button class="gen-button" (click)="applyGenerationFilter(generation.name)">
-                {{ formatGenerationName(generation.name) }}
+                {{ generation.name | formatGenerationName }}
               </button>
               }
             </div>

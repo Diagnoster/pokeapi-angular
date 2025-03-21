@@ -49,7 +49,7 @@ export class RegionDetailsComponent implements OnInit {
   dataSource = new MatTableDataSource<BaseClass>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private pokeService: PokeService, private pokeHelperService: PokeHelperService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { 
+  constructor(private pokeService: PokeService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { 
   }
 
   ngOnInit(): void {
@@ -64,10 +64,6 @@ export class RegionDetailsComponent implements OnInit {
         console.error('Invalid ID');
       }
     }
-  }
-
-  formatGenerationName(word: string): string {
-    return this.pokeHelperService.formatGenerationName(word);
   }
 
   getLocationDetails(id: number): void {

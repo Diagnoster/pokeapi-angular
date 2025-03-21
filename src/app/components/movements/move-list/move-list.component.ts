@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { FormatGenerationNamePipe } from "../../../pipes/format-generation-name.pipe";
 
 @Component({
   selector: 'app-move-list',
@@ -43,7 +44,8 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     CommonModule,
     MatDividerModule,
     MatExpansionModule,
-    UpperFirstLetterPipe
+    UpperFirstLetterPipe,
+    FormatGenerationNamePipe
 ],
   animations: [
     trigger('detailExpand', [
@@ -112,10 +114,6 @@ export class MoveListComponent implements OnInit {
 
   getTypeRetroImageUrl(type: string): string {
     return this.pokeHelperService.getTypeRetroImageUrl(type);
-  }
-
-  formatGenerationName(word: string): string {
-    return this.pokeHelperService.formatGenerationName(word);
   }
 
   applyFilter(event: Event) {
