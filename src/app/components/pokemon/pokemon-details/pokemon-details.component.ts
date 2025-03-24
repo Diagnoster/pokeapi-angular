@@ -26,6 +26,7 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClient } from '@angular/common/http';
+import { Nature } from '../../../models/nature';
 
 interface Food {
   value: string;
@@ -81,11 +82,7 @@ export class PokemonDetailsComponent implements OnInit {
   evolutions: Chain[] = [];
   pokeImages: EvolutionLine[] = [];
   loading: boolean = true;
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
+  natures: Nature[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar, private http: HttpClient) {
     this.pokemon = data.pokemon;
@@ -94,9 +91,9 @@ export class PokemonDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadNaturesStats();
     this.calculateTotalStats();
     this.getSpecie();
-    this.loadNaturesStats();
   }
 
   getColorForType(type: string): string {
@@ -256,11 +253,10 @@ export class PokemonDetailsComponent implements OnInit {
 
   loadNaturesStats(): void {
     this.http.get<any>('assets/data/natures.json').subscribe((data) => {
-      // Acess property of JSON
-      const naturesArray = data.natures;
-      console.log(naturesArray);
+      this.natures.push(data.natures);
+      console.log(this.natures);
     }, error => {
-      console.error('Error loading data from locations.json:', error);
+      console.error('Error loading data from natures.json:', error);
     });
   }
 

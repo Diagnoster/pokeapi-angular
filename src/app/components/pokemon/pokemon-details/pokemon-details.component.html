@@ -5,8 +5,8 @@
       <mat-form-field class="search-nature">
         <mat-label>Select Nature</mat-label>
         <mat-select>
-          @for (food of foods; track food) {
-            <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+          @for (nature of natures; track nature) {
+            {{ nature.name }} (↑ {{ nature.increased_stat }} / ↓ {{ nature.decreased_stat }})
           }
         </mat-select>
       </mat-form-field>
