@@ -260,6 +260,12 @@ h4 {
   font-weight: bold;
 }
 
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  cursor: pointer;
+  background: purple;
+}
+
+
 @keyframes card-pulse {
   0% {
     transform: scale(1);

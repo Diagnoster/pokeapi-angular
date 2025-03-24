@@ -1,5 +1,16 @@
 <div class="overflow-container">
   <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
+    <div class="nature">
+      <h4>Nature</h4>
+      <mat-form-field class="search-nature">
+        <mat-label>Select Nature</mat-label>
+        <mat-select>
+          @for (food of foods; track food) {
+            <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
     <mat-card-header>
       <img class="arrow-left" src="../../../assets/left_arrow.png" alt="Left arrow icon" (click)="nextPokemon(pokemon.id, true)"
       (mouseenter)="changeArrowImage(true, true)" 
@@ -39,17 +50,7 @@
           </div>
       </div>
       <div class="pokestats-right" [@slideInFromLeft]="'in'">
-        <div class="nature">
-          <h4>Nature</h4>
-          <mat-form-field>
-            <mat-label>Select Nature</mat-label>
-            <mat-select>
-              @for (food of foods; track food) {
-                <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-        </div>
+
         @for (stats of pokemon.stats; track stats) {
         <div class="stats">
           <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>

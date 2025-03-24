@@ -25,6 +25,7 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClient } from '@angular/common/http';
 
 interface Food {
   value: string;
@@ -68,7 +69,6 @@ interface Food {
   ]
 })
 
-
 export class PokemonDetailsComponent implements OnInit {
 
   pokemon!: Pokemon;
@@ -87,7 +87,7 @@ export class PokemonDetailsComponent implements OnInit {
     {value: 'tacos-2', viewValue: 'Tacos'},
   ];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar, private http: HttpClient) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();
@@ -96,6 +96,7 @@ export class PokemonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.calculateTotalStats();
     this.getSpecie();
+    this.loadNaturesStats();
   }
 
   getColorForType(type: string): string {
@@ -251,6 +252,16 @@ export class PokemonDetailsComponent implements OnInit {
     const imgElement = document.querySelector(isLeftArrow ? '.arrow-left' : '.arrow-right') as HTMLImageElement;
 
     imgElement.src = isHovered ? `../../../assets/${selectedArrowImage}` : `../../../assets/${arrowImage}`;
+  }
+
+  loadNaturesStats(): void {
+    this.http.get<any>('assets/data/natures.json').subscribe((data) => {
+      // Acess property of JSON
+      const naturesArray = data.natures;
+      console.log(naturesArray);
+    }, error => {
+      console.error('Error loading data from locations.json:', error);
+    });
   }
 
 }
