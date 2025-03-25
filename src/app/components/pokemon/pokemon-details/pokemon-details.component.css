@@ -254,6 +254,7 @@ p {
 
 .nature {
   text-align: center;
+  margin-top: 10%;
 }
 
 h4 {
@@ -316,4 +317,22 @@ h4 {
   .title {
     font-size: 25px;
   }
+}
+
+/* ng deep mat-form-field */
+
+::ng-deep .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border-radius: 10px;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  display: none;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+  display: none;
+}
+
+::ng-deep .mdc-line-ripple::before {
+  display: none;
 }
