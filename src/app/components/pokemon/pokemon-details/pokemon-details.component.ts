@@ -27,11 +27,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpClient } from '@angular/common/http';
 import { Nature } from '../../../models/nature';
+import { ReactiveFormsModule } from '@angular/forms';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
 @Component({
   selector: 'app-pokemon-details',
   standalone: true,
@@ -52,7 +49,8 @@ interface Food {
     LoadingComponent,
     UpperFirstLetterPipe,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
 ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css',
@@ -253,7 +251,7 @@ export class PokemonDetailsComponent implements OnInit {
 
   loadNaturesStats(): void {
     this.http.get<any>('assets/data/natures.json').subscribe((data) => {
-      this.natures.push(data.natures);
+      this.natures = data.natures;
       console.log(this.natures);
     }, error => {
       console.error('Error loading data from natures.json:', error);
