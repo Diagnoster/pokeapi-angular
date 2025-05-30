@@ -98,7 +98,7 @@ mat-card-title-group {
 }
 
 .pokeinfo-left {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   width: 375vh;
@@ -107,6 +107,25 @@ mat-card-title-group {
 .pokestats-right {
   width: 375vh;
   margin-top: 2%;
+}
+
+.hw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hw-span {
+  margin: 5%;
+}
+
+.hw-card {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .title-ability {
@@ -190,6 +209,64 @@ p {
   animation: card-pulse 1.2s ease-in-out infinite;
 }
 
+.flip-container {
+  perspective: 1000px;
+  width: 280px;
+  height: 330px;
+  margin: 0 auto;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-container:hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+}
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.flip-img {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.nature {
+  text-align: center;
+  margin-top: 10%;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  cursor: pointer;
+  background: purple;
+}
+
+
 @keyframes card-pulse {
   0% {
     transform: scale(1);
@@ -240,4 +317,22 @@ p {
   .title {
     font-size: 25px;
   }
+}
+
+/* ng deep mat-form-field */
+
+::ng-deep .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  border-radius: 10px;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+  display: none;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+  display: none;
+}
+
+::ng-deep .mdc-line-ripple::before {
+  display: none;
 }

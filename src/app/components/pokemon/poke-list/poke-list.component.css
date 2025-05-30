@@ -35,6 +35,10 @@
   white-space: nowrap;
 }
 
+.poke-search {
+  margin-top: 2%;
+}
+
 mat-form-field {
   width: 100%;
   display: flex;

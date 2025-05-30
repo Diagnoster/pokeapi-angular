@@ -23,6 +23,11 @@ import { EvolutionLine } from '../../../models/evolution-line';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { HttpClient } from '@angular/common/http';
+import { Nature } from '../../../models/nature';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -42,8 +47,11 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     MatSnackBarModule,
     MatIconModule,
     LoadingComponent,
-    UpperFirstLetterPipe
-],
+    UpperFirstLetterPipe,
+    MatOptionModule,
+    MatSelectModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.css',
   animations: [
@@ -72,14 +80,23 @@ export class PokemonDetailsComponent implements OnInit {
   evolutions: Chain[] = [];
   pokeImages: EvolutionLine[] = [];
   loading: boolean = true;
+  natures: Nature[] = [];
+  selectedNature?: Nature;
+  modifiedStats: {
+    name: string,
+    base_stat: number,
+    modified_stat: number
+  }[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar) {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar, private http: HttpClient) {
     this.pokemon = data.pokemon;
     this.moves = [];
     this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit(): void {
+    this.loadNaturesStats();
     this.calculateTotalStats();
     this.getSpecie();
   }
@@ -92,11 +109,12 @@ export class PokemonDetailsComponent implements OnInit {
     return this.pokeHelperService.getTypeDetailImageUrl(type);
   }
 
-  calculateTotalStats(): void {
-    this.total = 0;
-    this.pokemon.stats.forEach(stat => {
-      this.total = this.total + stat.base_stat;
-    });
+  calculateTotalStats(nextPokemon?: boolean): void {
+    if (this.modifiedStats.length > 0 && !nextPokemon) {
+      this.total = this.modifiedStats.reduce((acc, stat) => acc + stat.modified_stat, 0);
+    } else {
+      this.total = this.pokemon.stats.reduce((acc, stat) => acc + stat.base_stat, 0);
+    }
   }
 
   getSpecie() {
@@ -118,7 +136,7 @@ export class PokemonDetailsComponent implements OnInit {
   getEvolution(evolution: Chain): Chain[] {
     this.evolutions = [];
     this.pokeImages = [];
-    
+
     if (evolution && evolution.species && evolution.species.name) {
       const newEvolution = new Chain(
         evolution.species,
@@ -142,7 +160,7 @@ export class PokemonDetailsComponent implements OnInit {
     let lvlUp: number | null;
     let item: string;
     let trigger: string;
-  
+
     const requests = evolution.map((poke: Chain) => {
       return this.pokeService.getPokemon(poke.species.name).pipe(
         map((data: Pokemon) => {
@@ -160,7 +178,7 @@ export class PokemonDetailsComponent implements OnInit {
             lvlUp = details?.min_level ? parseInt(details.min_level, 10) : null;
             item = details?.item ? details.item.name : 'null';
             trigger = details?.trigger ? details.trigger.name : 'null';
-            
+
             return new EvolutionLine(
               data.sprites.front_default,
               lvlUp,
@@ -172,11 +190,11 @@ export class PokemonDetailsComponent implements OnInit {
         })
       );
     });
-  
+
     // forkjoin for wait all requisitions
     forkJoin(requests).subscribe((pokeImages) => {
       this.pokeImages = pokeImages;
-  
+
       this.pokeImages.sort((a, b) => {
         if (a.trigger === "" && b.trigger !== "") {
           return -1;
@@ -185,7 +203,7 @@ export class PokemonDetailsComponent implements OnInit {
         }
         return 0;
       });
-  
+
       console.log(this.pokeImages);
     });
   }
@@ -216,7 +234,7 @@ export class PokemonDetailsComponent implements OnInit {
       this.evolutions = [];
       this.pokeImages = [];
       this.getSpecie();
-      this.calculateTotalStats();
+      this.calculateTotalStats(true);
     });
   }
 
@@ -237,6 +255,50 @@ export class PokemonDetailsComponent implements OnInit {
     const imgElement = document.querySelector(isLeftArrow ? '.arrow-left' : '.arrow-right') as HTMLImageElement;
 
     imgElement.src = isHovered ? `../../../assets/${selectedArrowImage}` : `../../../assets/${arrowImage}`;
+  }
+
+  loadNaturesStats(): void {
+    this.http.get<any>('assets/data/natures.json').subscribe((data) => {
+      this.natures = data.natures;
+      console.log(this.natures);
+    }, error => {
+      console.error('Error loading data from natures.json:', error);
+    });
+  }
+
+  applyNatureToStats(nature: any): void {
+    this.modifiedStats = this.pokemon.stats.map(stat => {
+      let modifiedValue = stat.base_stat;
+      const statName = stat.stat.name;
+      const increased = nature.increased_stat;
+      const decreased = nature.decreased_stat;
+
+      if (statName === increased) {
+        modifiedValue = Math.round(stat.base_stat * 1.1);
+      } else if (statName === decreased) {
+        modifiedValue = Math.round(stat.base_stat * 0.9);
+      }
+
+      return {
+        name: stat.stat.name,
+        base_stat: stat.base_stat,
+        modified_stat: modifiedValue
+      };
+    });
+
+    this.total = this.modifiedStats.reduce((acc, stat) => acc + stat.modified_stat, 0);
+  }
+
+  onNatureChange(natureName: string) {
+    const selected = this.natures.find(n => n.name.toLowerCase() === natureName.toLowerCase());
+    if (selected) {
+      this.selectedNature = selected;
+      this.applyNatureToStats(selected);
+    } else {
+      this.selectedNature = undefined;
+      this.modifiedStats = [];
+      this.calculateTotalStats();
+    }
   }
 
 }

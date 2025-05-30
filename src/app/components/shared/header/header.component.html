@@ -5,7 +5,7 @@
     </button>
 
     <!-- Logo PokeApi -->
-    <a routerLink="/home"><img class="logo" src="../../../assets/pokeapi_logo.png" alt="Site icon"></a>
+    <img class="logo" src="../../../assets/pokeapi_logo.png" (click)="goToHome()" alt="Site icon">
 
     <div class="selects">
       <span [ngClass]="{'selected': selectedSpan === 'home'}"><a mat-button routerLink="/home" matTooltip="Home"

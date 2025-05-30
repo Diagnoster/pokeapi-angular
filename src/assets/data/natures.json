@@ -1,0 +1,29 @@
+{
+    "natures": [
+      { "id": 1, "name": "Hardy", "increased_stat": "none", "decreased_stat": "none" },
+      { "id": 2, "name": "Lonely", "increased_stat": "attack", "decreased_stat": "defense" },
+      { "id": 3, "name": "Brave", "increased_stat": "attack", "decreased_stat": "speed" },
+      { "id": 4, "name": "Adamant", "increased_stat": "attack", "decreased_stat": "special-attack" },
+      { "id": 5, "name": "Naughty", "increased_stat": "attack", "decreased_stat": "special-defense" },
+      { "id": 6, "name": "Bold", "increased_stat_stat": "defense", "decreased_stat": "attack" },
+      { "id": 7, "name": "Docile", "increased_stat_stat": "none", "decreased_stat_stat": "none" },
+      { "id": 8, "name": "Relaxed", "increased_stat": "defense", "decreased_stat": "speed" },
+      { "id": 9, "name": "Impish", "increased_stat": "defense", "decreased_stat": "special-attack" },
+      { "id": 10, "name": "Lax", "increased_stat": "defense", "decreased_stat": "special-defense" },
+      { "id": 11, "name": "Timid", "increased_stat": "speed", "decreased_stat": "attack" },
+      { "id": 12, "name": "Hasty", "increased_stat": "speed", "decreased_stat": "defense" },
+      { "id": 13, "name": "Serious", "increased_stat": "none", "decreased_stat": "none" },
+      { "id": 14, "name": "Jolly", "increased_stat": "speed", "decreased_stat": "special-attack" },
+      { "id": 15, "name": "Naive", "increased_stat": "speed", "decreased_stat": "special-defense" },
+      { "id": 16, "name": "Modest", "increased_stat": "special-attack", "decreased_stat": "attack" },
+      { "id": 17, "name": "Mild", "increased_stat": "special-attack", "decreased_stat": "defense" },
+      { "id": 18, "name": "Quiet", "increased_stat": "special-attack", "decreased_stat": "speed" },
+      { "id": 19, "name": "Bashful", "increased_stat": "none", "decreased_stat": "none" },
+      { "id": 20, "name": "Rash", "increased_stat": "special-attack", "decreased_stat": "special-defense" },
+      { "id": 21, "name": "Calm", "increased_stat": "special-defense", "decreased_stat": "attack" },
+      { "id": 22, "name": "Gentle", "increased_stat": "special-defense", "decreased_stat": "defense" },
+      { "id": 23, "name": "Sassy", "increased_stat": "special-defense", "decreased_stat": "speed" },
+      { "id": 24, "name": "Careful", "increased_stat": "special-defense", "decreased_stat": "special-attack" },
+      { "id": 25, "name": "Quirky", "increased_stat": "none", "decreased_stat": "none" }
+    ]
+  }

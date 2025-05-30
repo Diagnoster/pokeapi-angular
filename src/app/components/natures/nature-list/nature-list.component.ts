@@ -5,6 +5,7 @@ import { Nature } from '../../../models/nature';
 import { BaseClass } from '../../../models/base/base-class';
 import { MatDividerModule } from '@angular/material/divider';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-nature-list',
@@ -15,7 +16,15 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     UpperFirstLetterPipe
 ],
   templateUrl: './nature-list.component.html',
-  styleUrl: './nature-list.component.css'
+  styleUrl: './nature-list.component.css',
+  animations: [
+    trigger('slideIn', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }), // Start <- to ->
+        animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class NatureListComponent implements OnInit{
   natures: BaseClass[] = [];
