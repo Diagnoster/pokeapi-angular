@@ -108,8 +108,9 @@ export class PokemonDetailsComponent implements OnInit {
   getTypeDetailImageUrl(type: string): string {
     return this.pokeHelperService.getTypeDetailImageUrl(type);
   }
-  calculateTotalStats(): void {
-    if (this.modifiedStats.length > 0) {
+
+  calculateTotalStats(nextPokemon?: boolean): void {
+    if (this.modifiedStats.length > 0 && !nextPokemon) {
       this.total = this.modifiedStats.reduce((acc, stat) => acc + stat.modified_stat, 0);
     } else {
       this.total = this.pokemon.stats.reduce((acc, stat) => acc + stat.base_stat, 0);
@@ -233,7 +234,7 @@ export class PokemonDetailsComponent implements OnInit {
       this.evolutions = [];
       this.pokeImages = [];
       this.getSpecie();
-      this.calculateTotalStats();
+      this.calculateTotalStats(true);
     });
   }
 
