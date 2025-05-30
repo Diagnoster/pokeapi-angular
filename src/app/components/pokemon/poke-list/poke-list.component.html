@@ -3,7 +3,7 @@
     @if (loading) {
       <app-loading></app-loading>
     }
-    <mat-form-field>
+    <mat-form-field class="poke-search">
       <mat-label>Search Pokémon</mat-label>
       <input matInput [matAutocomplete]="auto" [(ngModel)]="selectedPokemon" placeholder="Filter a pokémon from the list">
       <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInput($event)">
