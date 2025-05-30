@@ -6,6 +6,7 @@ import { MapLocation } from '../../../models/map-location';
 import { PokeHelperService } from '../../../services/poke-helper.service';
 import { Router } from '@angular/router';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-location',
@@ -16,7 +17,15 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     UpperFirstLetterPipe
 ],
   templateUrl: './location.component.html',
-  styleUrl: './location.component.css'
+  styleUrl: './location.component.css',
+  animations: [
+  trigger('bounceIn', [
+    transition(':enter', [
+      style({ transform: 'scale(0.3)', opacity: 0 }),
+      animate('800ms cubic-bezier(.68,-0.55,.27,1.55)', style({ transform: 'scale(1)', opacity: 1 }))
+    ])
+    ])
+  ]
 })
 export class LocationComponent implements OnInit {
 

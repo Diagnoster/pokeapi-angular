@@ -13,6 +13,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-region-details',
@@ -27,7 +28,15 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     UpperFirstLetterPipe
 ],
   templateUrl: './region-details.component.html',
-  styleUrl: './region-details.component.css'
+  styleUrl: './region-details.component.css',
+  animations: [
+    trigger('fadeInDownBig', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(100px)' }),
+        animate('800ms cubic-bezier(0.23, 1, 0.32, 1)', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class RegionDetailsComponent implements OnInit {
 

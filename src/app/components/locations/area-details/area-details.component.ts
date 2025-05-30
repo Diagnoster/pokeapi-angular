@@ -18,6 +18,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { BasicFilterComponent } from '../../shared/basic-filter/basic-filter.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-area-details',
@@ -37,7 +38,15 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     UpperFirstLetterPipe
 ],
   templateUrl: './area-details.component.html',
-  styleUrl: './area-details.component.css'
+  styleUrl: './area-details.component.css',
+  animations: [
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class AreaDetailsComponent implements OnInit {
   displayedColumns: string[] = ['pokemon', 'chance', 'version', 'method'];

@@ -22,6 +22,7 @@ import { PokemonType } from '../../../models/enums/pokemon-type';
 import { BattleFightComponent } from '../battle-fight/battle-fight.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-battle-setup',
@@ -47,7 +48,15 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
     UpperFirstLetterPipe
 ],
   templateUrl: './battle-setup.component.html',
-  styleUrl: './battle-setup.component.css'
+  styleUrl: './battle-setup.component.css',
+  animations: [
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class BattleSetupComponent implements OnInit {
   allPokemonListPlayer: Pokemon[];

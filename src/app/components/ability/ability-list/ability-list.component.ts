@@ -46,6 +46,12 @@ import { UpperFirstLetterPipe } from "../../../pipes/upper-first-letter.pipe";
       state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
   ],
   templateUrl: './ability-list.component.html',
   styleUrl: './ability-list.component.css',

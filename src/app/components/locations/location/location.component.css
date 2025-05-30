@@ -3,14 +3,23 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .location-card {
     border-radius: 10px;
     align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0.5%;
+    cursor: pointer;
 }
 
 .img {
     width: 350px;
     height: 200px;
+}
+
+mat-card-header {
+    margin-bottom: 3%;
 }
