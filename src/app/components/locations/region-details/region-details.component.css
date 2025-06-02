@@ -12,7 +12,6 @@
     justify-content: center;
     align-items: center;
     width: 35%;
-    background-color: whitesmoke;
     border-radius: 10px;
 }
 
@@ -59,6 +58,10 @@ mat-divider {
 
 mat-card-title {
     margin-bottom: 10px;
+}
+
+mat-cell {
+    cursor: pointer;
 }
 
 .break-line {

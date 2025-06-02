@@ -269,4 +269,20 @@ body.dark-mode .stats {
   background-color: rgb(201, 201, 201);
 }
 
+/* header component */
+
+body.dark-mode .dark-mode {
+  color: white;
+}
+
+/* region-details component */
+
+body.dark-mode .text {
+  background-color: var(--mat-grey-color);
+}
+
+body.dark-mode mat-header-cell, mat-cell,mat-header-row, mat-row, mat-paginator {
+  color: white;
+}
+
 /********************************** End Dark Mode Theme **********************************/
