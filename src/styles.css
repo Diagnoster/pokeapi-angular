@@ -263,4 +263,10 @@ body.dark-mode .mat-drawer-inner-container {
   background-color: var(--minimal-black-background);
 }
 
+/* nature component */
+
+body.dark-mode .stats {
+  background-color: rgb(201, 201, 201);
+}
+
 /********************************** End Dark Mode Theme **********************************/

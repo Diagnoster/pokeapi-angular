@@ -34,6 +34,7 @@ mat-card {
 .stats {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    margin: 1%;
 }
 
 .poke-image {
@@ -47,6 +48,12 @@ mat-card {
 
 mat-card:hover {
     box-shadow: 2px 3px 3px 3px #cfd2e5;;
+}
+
+mat-card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 mat-card-content {

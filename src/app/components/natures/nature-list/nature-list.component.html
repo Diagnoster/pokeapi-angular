@@ -17,8 +17,7 @@
                 </mat-card-header>
                 <div class="line"></div>
                 <mat-card-content>
-                    @if(nature.increased_stat != null) {
-                        
+                    @if(nature.increased_stat != null) {   
                         <div class="stats">
                             <p> {{ nature.increased_stat.name | upperFirstLetter }} </p>
                             <img class="stats-image" src="../../../assets/up_stats64.png" alt="up stats pixel art" />
@@ -26,9 +25,7 @@
                         <div class="stats">
                             <p> {{ nature.decreased_stat.name | upperFirstLetter }} </p>
                             <img class="stats-image" src="../../../assets/down_stats64.png" alt="down stats pixel art" />
-                        </div>
-                        
-                        
+                        </div>                       
                     }
                     @else {
                         <div class="stats">
