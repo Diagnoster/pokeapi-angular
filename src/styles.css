@@ -285,4 +285,10 @@ body.dark-mode mat-header-cell, mat-cell,mat-header-row, mat-row, mat-paginator 
   color: white;
 }
 
+/* areas-details component */
+
+body.dark-mode .main-container {
+  background-color: var(--mat-grey-color);
+}
+
 /********************************** End Dark Mode Theme **********************************/
