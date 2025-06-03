@@ -263,4 +263,32 @@ body.dark-mode .mat-drawer-inner-container {
   background-color: var(--minimal-black-background);
 }
 
+/* nature component */
+
+body.dark-mode .stats {
+  background-color: rgb(201, 201, 201);
+}
+
+/* header component */
+
+body.dark-mode .dark-mode {
+  color: white;
+}
+
+/* region-details component */
+
+body.dark-mode .text {
+  background-color: var(--mat-grey-color);
+}
+
+body.dark-mode mat-header-cell, mat-cell,mat-header-row, mat-row, mat-paginator {
+  color: white;
+}
+
+/* areas-details component */
+
+body.dark-mode .main-container {
+  background-color: var(--mat-grey-color);
+}
+
 /********************************** End Dark Mode Theme **********************************/

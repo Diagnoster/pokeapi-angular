@@ -17,12 +17,12 @@
       </mat-card-header>
       <mat-card-content>
         @if(pokemon?.length == 0) {
-          <span class="text">No Pokémon found.</span>
+          <span class="span">No Pokémon found.</span>
         }
         @else {
           @for (poke of pokemon; track poke) {
             <div class="poke-box" (click)="pokeModal(poke.name)">
-              <span class="text">{{ poke.name | upperFirstLetter }}</span>
+              <span class="span">{{ poke.name | upperFirstLetter }}</span>
             </div>
           }
         }

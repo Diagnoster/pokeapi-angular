@@ -1,5 +1,5 @@
 <div class="overflow-container">
-  <mat-card class="pokemon-detail" [ngStyle]="{ 'background': getColorForType(pokemon.types[0].type.name) }">
+<mat-card class="pokemon-detail" [ngStyle]="!isDarkMode ? { 'background': getColorForType(pokemon.types[0].type.name) } : null">
     <mat-card-header>
       <img class="arrow-left" src="../../../assets/left_arrow.png" alt="Left arrow icon"
         (click)="nextPokemon(pokemon.id, true)" (mouseenter)="changeArrowImage(true, true)"
@@ -39,7 +39,7 @@
       <div class="pokestats-right" [@slideInFromLeft]="'in'">
         @if(modifiedStats.length > 0) {
           @for (stat of modifiedStats; track stat) {
-            <div class="stats">
+            <div class="statsvalue">
               <span class="name-stat"> {{ stat.name }}: {{ stat.modified_stat }}
               </span>
               <div class="custom-progress-bar">
@@ -50,7 +50,7 @@
         }
         @else {
           @for (stats of pokemon.stats; track stats) {
-            <div class="stats">
+            <div class="statsvalue">
               <span class="name-stat"> {{ stats.stat.name }} : {{ stats.base_stat }} </span>
               <div class="custom-progress-bar">
                 <div class="custom-progress" [ngStyle]="{ 'width': (stats.base_stat / 255) * 100 + '%' }"></div>
@@ -118,7 +118,7 @@
         </mat-card-header>
         <mat-card-content>
           @for (abilities of pokemon.abilities; track abilities) {
-          <div class="stats">
+          <div class="statsvalue">
             <span class="name-ability" (click)="abilitiesModal(abilities.ability)"> {{ abilities.ability.name }}
               <mat-icon class="icon">help_outline</mat-icon>
             </span>

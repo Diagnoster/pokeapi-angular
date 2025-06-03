@@ -22,7 +22,7 @@ mat-card {
     min-width: 150px;
 }
 
-.text {
+.span {
     font-weight: bold;
     text-align: center;
 }
@@ -32,6 +32,6 @@ mat-card {
     background: #4c5fcc;
 }
 
-.poke-box:hover .text {
+.poke-box:hover .span {
     color: white;
 }

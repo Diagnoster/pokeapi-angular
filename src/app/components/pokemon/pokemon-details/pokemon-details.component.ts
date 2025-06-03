@@ -87,7 +87,7 @@ export class PokemonDetailsComponent implements OnInit {
     base_stat: number,
     modified_stat: number
   }[] = [];
-
+  isDarkMode = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private pokeService: PokeService, private pokeHelperService: PokeHelperService, private snackBar: MatSnackBar, private http: HttpClient) {
     this.pokemon = data.pokemon;
@@ -99,6 +99,7 @@ export class PokemonDetailsComponent implements OnInit {
     this.loadNaturesStats();
     this.calculateTotalStats();
     this.getSpecie();
+    this.isDarkMode = document.body.classList.contains('dark-mode');
   }
 
   getColorForType(type: string): string {
