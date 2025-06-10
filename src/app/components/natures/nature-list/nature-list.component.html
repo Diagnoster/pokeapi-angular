@@ -3,12 +3,12 @@
     <div class="content">
         <h1>What is Nature?</h1>
         <mat-divider></mat-divider>
-        <p class="text">Natures are characteristics that subtly influence how a Pokémon's stats grow as it gains experience.</p>
-        <p class="text"> Let's check pokemon <b>Mr.Mime</b> as an example: </p>
+        <p class="fixed-text">Natures are characteristics that subtly influence how a Pokémon's stats grow as it gains experience.</p>
+        <p class="fixed-text"> Let's check pokemon <b>Mr.Mime</b> as an example: </p>
         <img class="poke-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png" alt="up stats pixel art" />
         <img class="example-stats" src="../../../assets/example_stats.png" alt="up stats pixel art" />
-        <p class="text">Each Pokémon can have a Nature that affects two of its basic stats, boosting one by <b>10%</b> while decreasing another by <b>10%</b>. There are 25 different Natures, with various combinations of boosts and decreases.</p>
-        <p class="text">Some Natures have no effect on stats, boosting and decreasing the same stat. Below you can check all existing natures:</p>
+        <p class="fixed-text">Each Pokémon can have a Nature that affects two of its basic stats, boosting one by <b>10%</b> while decreasing another by <b>10%</b>. There are 25 different Natures, with various combinations of boosts and decreases.</p>
+        <p class="fixed-text">Some Natures have no effect on stats, boosting and decreasing the same stat. Below you can check all existing natures:</p>
         <mat-divider></mat-divider>
         @for(nature of natureDetails; track nature) {
             <mat-card>
@@ -17,8 +17,7 @@
                 </mat-card-header>
                 <div class="line"></div>
                 <mat-card-content>
-                    @if(nature.increased_stat != null) {
-                        
+                    @if(nature.increased_stat != null) {   
                         <div class="stats">
                             <p> {{ nature.increased_stat.name | upperFirstLetter }} </p>
                             <img class="stats-image" src="../../../assets/up_stats64.png" alt="up stats pixel art" />
@@ -26,9 +25,7 @@
                         <div class="stats">
                             <p> {{ nature.decreased_stat.name | upperFirstLetter }} </p>
                             <img class="stats-image" src="../../../assets/down_stats64.png" alt="down stats pixel art" />
-                        </div>
-                        
-                        
+                        </div>                       
                     }
                     @else {
                         <div class="stats">
