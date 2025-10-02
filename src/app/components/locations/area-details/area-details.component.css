@@ -19,6 +19,10 @@
   flex-wrap: wrap;
 }
 
+.title-area {
+  color: brown;
+}
+
 mat-card {
   height: auto;
   width: 200px;
@@ -42,6 +46,7 @@ mat-header-cell {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgb(165, 43, 43) !important;
 }
 
 .card-methods {
@@ -110,13 +115,5 @@ mat-form-field {
   }
   100% {
     transform: translateX(0);
-  }
-}
-
-
-@media(max-width: 750px) {
-  .areas-container {
-    align-items: center;
-    justify-content: center;
   }
 }

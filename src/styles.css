@@ -285,6 +285,12 @@ body.dark-mode mat-header-cell, mat-cell,mat-header-row, mat-row, mat-paginator 
   color: white;
 }
 
+/* area-details component */
+
+body.dark-mode .title-area {
+  color: white;
+}
+
 /* areas-details component */
 
 body.dark-mode .main-container {
